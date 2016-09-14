@@ -7,6 +7,7 @@ namespace Repository.Migrations
     {
         public override void Up()
         {
+			
             CreateTable(
                 "dbo.UserProfile",
                 c => new

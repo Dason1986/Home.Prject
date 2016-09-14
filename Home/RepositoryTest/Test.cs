@@ -12,6 +12,7 @@ namespace RepositoryTest
         public void TestCase()
         {
             MainBoundedContext dbcontext = new MainBoundedContext();
+		
             var contactRole = dbcontext.Set<ContactRole>();
             contactRole.Add(new ContactRole() { ID = Guid.NewGuid(), Created = DateTime.Now, Name = "高祖父", CreatedBy = "sqlscript", StatusCode = Infrastructure.Domain.StatusCode.Enabled });
             contactRole.Add(new ContactRole() { ID = Guid.NewGuid(), Created = DateTime.Now, Name = "高祖母", CreatedBy = "sqlscript", StatusCode = Infrastructure.Domain.StatusCode.Enabled });
