@@ -31,6 +31,7 @@
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="System" />
+    <Reference Include="System.ComponentModel.DataAnnotations" />
     <Reference Include="System.Core" />
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Data.DataSetExtensions" />
@@ -44,12 +45,15 @@
     <Compile Include="Aggregates\UserAgg\UserProfile.cs" />
     <Compile Include="Aggregates\UserAgg\ContactProfile.cs" />
     <Compile Include="Aggregates\Entity.cs" />
+    <Compile Include="Aggregates\UserAgg\ContactRelationRight.cs" />
     <Compile Include="Aggregates\UserAgg\ContactRelation.cs" />
-    <Compile Include="Aggregates\UserAgg\Relation.cs" />
   </ItemGroup>
+  <ItemGroup />
   <ItemGroup>
-    <Folder Include="Aggregates\" />
-    <Folder Include="Aggregates\UserAgg\" />
+    <ProjectReference Include="..\..\04 Infrastructure Layer\Infrastructure\Infrastructure.csproj">
+      <Project>{d1d763e0-2e29-416c-ac6a-0cd313d71f16}</Project>
+      <Name>Infrastructure</Name>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

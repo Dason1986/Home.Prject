@@ -1,4 +1,5 @@
 ﻿using System;
+using System.ComponentModel.DataAnnotations;
 
 namespace DomainModel
 {
@@ -7,6 +8,17 @@ namespace DomainModel
 		public UserProfile ()
 		{
 		}
-	}
+
+        public Guid ContactProfileID { get; set; }
+
+        public ContactProfile ContactProfile { get; set; }
+    }
+    public class ContactRole : Entity
+    {
+        [StringLength(20)]
+        public string Name { get; set; }
+        [StringLength(20)]
+        public string Remark { get; set; }
+    }
 }
 

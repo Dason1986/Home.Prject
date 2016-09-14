@@ -1,0 +1,15 @@
+﻿EF6 
+
+Enable-Migrations -EnableAutomaticMigrations
+Add-Migration "MigrationName" -Force  -Verbose
+Update-Database -TargetMigration "MigrationName" -Verbose  -force
+
+
+
+CMD by  administrator
+
+migrate.exe MEGA.IAS.ECMS.Infrastructure.Data.dll -artupConfigurationFile="[*.exe].config" -targetMigration="V2" -Verbose  -force
+
+
+
+ 

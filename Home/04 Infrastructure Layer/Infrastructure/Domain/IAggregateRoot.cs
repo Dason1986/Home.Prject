@@ -4,9 +4,13 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Infrastructure
+namespace Infrastructure.Domain
 {
-    public class Class1
+    public interface IAggregateRoot
     {
     }
+ 
+
+  
+ 
 }

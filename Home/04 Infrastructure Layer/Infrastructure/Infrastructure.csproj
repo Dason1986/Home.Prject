@@ -40,8 +40,17 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Class1.cs" />
+    <Compile Include="Domain\DomainEventConsistentQueue.cs" />
+    <Compile Include="Domain\DomainEvents\IDomainEvent.cs" />
+    <Compile Include="Domain\DomainEvents\IDomainEventBus.cs" />
+    <Compile Include="Domain\DomainEvents\IEventHandler.cs" />
+    <Compile Include="Domain\IAggregateRoot.cs" />
+    <Compile Include="Domain\ICreatedInfo.cs" />
+    <Compile Include="Domain\IUnitOfWork.cs" />
+    <Compile Include="IdentityGenerator.cs" />
+    <Compile Include="Domain\IEntity.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Domain\StatusCode.cs" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="IRepository\" />

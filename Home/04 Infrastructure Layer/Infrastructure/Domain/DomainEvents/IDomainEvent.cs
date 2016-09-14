@@ -4,9 +4,9 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Repository
+namespace Infrastructure.Domain.DomainEvents
 {
-    public class Class1
+    public interface IDomainEvent
     {
     }
 }
