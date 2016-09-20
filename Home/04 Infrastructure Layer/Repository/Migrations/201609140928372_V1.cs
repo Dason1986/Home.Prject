@@ -63,6 +63,8 @@ namespace Repository.Migrations
                     {
                         ID = c.Guid(nullable: false),
                         Name = c.String(maxLength: 20, storeType: "nvarchar"),
+						Six = c.Int(nullable: false),
+						Level = c.Int(nullable: false),
                         Remark = c.String(maxLength: 20, storeType: "nvarchar"),
                         Created = c.DateTime(nullable: false, precision: 0),
                         CreatedBy = c.String(nullable: false, maxLength: 20, storeType: "nvarchar"),

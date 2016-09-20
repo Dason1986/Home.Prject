@@ -9,16 +9,24 @@ namespace DomainModel
 		{
 		}
 
-        public Guid ContactProfileID { get; set; }
+		public Guid ContactProfileID { get; set; }
 
-        public ContactProfile ContactProfile { get; set; }
-    }
-    public class ContactRole : Entity
-    {
-        [StringLength(20)]
-        public string Name { get; set; }
-        [StringLength(20)]
-        public string Remark { get; set; }
-    }
+		public ContactProfile ContactProfile { get; set; }
+	}
+
+	public class ContactRole : Entity
+	{
+		[StringLength (20)]
+		public string Name { get; set; }
+
+		[StringLength (20)]
+		public string Remark { get; set; }
+
+
+		public int Level { get; set; }
+
+		public Sex Six { get; set; }
+
+	}
 }
 

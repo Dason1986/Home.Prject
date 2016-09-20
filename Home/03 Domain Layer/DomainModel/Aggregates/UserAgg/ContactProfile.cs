@@ -1,4 +1,5 @@
 ﻿using System;
+using System.ComponentModel.DataAnnotations;
 
 namespace DomainModel
 {
@@ -10,23 +11,22 @@ namespace DomainModel
 		}
 		 
 
+		[StringLength(20)]
+		public string Name { get; set; }
 
-		public string Name {
-			get;
-			set;
-		}
-		public int Six {
-			get;
-			set;
-		}
-		public DateTime Birthday {
-			get;
-			set;
-		}
+		public Sex Six{ get; set; }
+
+		public DateTime Birthday { get; set; }
 
 
 
 
+
+	}
+
+	public enum Sex{
+		Male,
+		Female
 	}
 }
 
