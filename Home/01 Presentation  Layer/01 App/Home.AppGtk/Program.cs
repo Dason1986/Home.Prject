@@ -8,7 +8,7 @@ namespace Home.AppGtk
 		public static void Main (string[] args)
 		{
 			Application.Init ();
-			MainWindow win = new MainWindow ();
+			var win = new LoginView ();
 			win.Show ();
 			Application.Run ();
 		}

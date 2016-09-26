@@ -28,6 +28,9 @@
     <ConsolePause>false</ConsolePause>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="Library.Core">
+      <HintPath>..\Lib\Library.Core.dll</HintPath>
+    </Reference>
     <Reference Include="System" />
     <Reference Include="System.ComponentModel.DataAnnotations" />
     <Reference Include="EntityFramework, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
@@ -58,10 +61,6 @@
     <ProjectReference Include="..\03 Domain Layer\DomainModel\DomainModel.csproj">
       <Project>{F253EE76-A606-42A6-B654-E5AD30EDD47D}</Project>
       <Name>DomainModel</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\04 Infrastructure Layer\Infrastructure\Infrastructure.csproj">
-      <Project>{D1D763E0-2E29-416C-AC6A-0CD313D71F16}</Project>
-      <Name>Infrastructure</Name>
     </ProjectReference>
     <ProjectReference Include="..\04 Infrastructure Layer\Repository\Repository.csproj">
       <Project>{28EE81F9-857E-4451-AF91-AD842ECEE48C}</Project>

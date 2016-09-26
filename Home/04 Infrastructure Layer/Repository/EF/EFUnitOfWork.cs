@@ -1,4 +1,5 @@
-﻿using Infrastructure.Domain;
+﻿
+using Library.Domain.Data;
 using System;
 using System.Collections.Generic;
 using System.Data.Entity;

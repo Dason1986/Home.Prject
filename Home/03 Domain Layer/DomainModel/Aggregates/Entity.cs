@@ -1,5 +1,4 @@
-﻿using Infrastructure;
-using Infrastructure.Domain;
+﻿using Library.ComponentModel.Model;
 using System;
 using System.ComponentModel.DataAnnotations;
 

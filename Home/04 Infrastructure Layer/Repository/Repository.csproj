@@ -30,6 +30,15 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="Library.Core">
+      <HintPath>..\..\Lib\Library.Core.dll</HintPath>
+    </Reference>
+    <Reference Include="Library.Domain">
+      <HintPath>..\..\Lib\Library.Domain.dll</HintPath>
+    </Reference>
+    <Reference Include="Library.Domain.Data">
+      <HintPath>..\..\Lib\Library.Domain.Data.dll</HintPath>
+    </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />
     <Reference Include="System.Xml.Linq" />
@@ -59,6 +68,8 @@
     <Compile Include="EF\EFUnitOfWork.cs" />
     <Compile Include="EF\MainBoundedContext.cs" />
     <Compile Include="EF\Mapping\TypeConfiguration.cs" />
+    <Compile Include="EF\Mapping\UserAgg\ContactProfileEntityTypeConfiguration.cs" />
+    <Compile Include="EF\Mapping\UserAgg\FamilyRoleEntityTypeConfiguration.cs" />
     <Compile Include="EF\Mapping\UserAgg\UserProfileEntityTypeConfiguration.cs" />
     <Compile Include="Migrations\201609140928372_V1.cs" />
     <Compile Include="Migrations\201609140928372_V1.Designer.cs">
@@ -83,10 +94,6 @@
     <ProjectReference Include="..\..\03 Domain Layer\DomainModel\DomainModel.csproj">
       <Project>{F253EE76-A606-42A6-B654-E5AD30EDD47D}</Project>
       <Name>DomainModel</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\Infrastructure\Infrastructure.csproj">
-      <Project>{d1d763e0-2e29-416c-ac6a-0cd313d71f16}</Project>
-      <Name>Infrastructure</Name>
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>

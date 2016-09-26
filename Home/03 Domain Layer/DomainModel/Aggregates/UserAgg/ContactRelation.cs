@@ -19,8 +19,8 @@ namespace DomainModel
         [StringLength(100)]
         public string Remark { get; set; }
 
-        public virtual ContactRole LeftRole { get; set; }
-        public virtual ContactRole RightRole { get; set; }
+        public virtual FamilyRole LeftRole { get; set; }
+        public virtual FamilyRole RightRole { get; set; }
     }
 
     public enum RelationLine

@@ -30,6 +30,12 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="Library.Core">
+      <HintPath>..\..\Lib\Library.Core.dll</HintPath>
+    </Reference>
+    <Reference Include="Library.Domain">
+      <HintPath>..\..\Lib\Library.Domain.dll</HintPath>
+    </Reference>
     <Reference Include="System" />
     <Reference Include="System.ComponentModel.DataAnnotations" />
     <Reference Include="System.Core" />
@@ -41,20 +47,13 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Aggregates\UserAgg\FamilyRole.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Aggregates\UserAgg\UserProfile.cs" />
     <Compile Include="Aggregates\UserAgg\ContactProfile.cs" />
     <Compile Include="Aggregates\Entity.cs" />
-    <Compile Include="Aggregates\UserAgg\ContactRelationRight.cs" />
-    <Compile Include="Aggregates\UserAgg\ContactRelation.cs" />
   </ItemGroup>
   <ItemGroup />
-  <ItemGroup>
-    <ProjectReference Include="..\..\04 Infrastructure Layer\Infrastructure\Infrastructure.csproj">
-      <Project>{d1d763e0-2e29-416c-ac6a-0cd313d71f16}</Project>
-      <Name>Infrastructure</Name>
-    </ProjectReference>
-  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.

@@ -1,10 +1,5 @@
 ﻿using DomainModel;
-using System;
-using System.Collections.Generic;
 using System.Data.Entity.ModelConfiguration;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace Repository.EF.Mapping.UserAgg
 {
@@ -17,22 +12,7 @@ namespace Repository.EF.Mapping.UserAgg
             ToTable("UserProfile");
         }
     }
-    internal class ContactRoleEntityTypeConfiguration : EntityTypeConfiguration<ContactRole>
-    {
-        public ContactRoleEntityTypeConfiguration()
-        {
-
-            ToTable("ContactRole");
-        }
-    }
-    internal class ContactProfileEntityTypeConfiguration : EntityTypeConfiguration<ContactProfile>
-    {
-        public ContactProfileEntityTypeConfiguration()
-        {
-
-            ToTable("ContactProfile");
-        }
-    }
+    /*
     internal class ContactRelationEntityTypeConfiguration : EntityTypeConfiguration<ContactRelation>
     {
         public ContactRelationEntityTypeConfiguration()
@@ -49,5 +29,5 @@ namespace Repository.EF.Mapping.UserAgg
 
             ToTable("ContactRelationRight");
         }
-    }
+    }*/
 }

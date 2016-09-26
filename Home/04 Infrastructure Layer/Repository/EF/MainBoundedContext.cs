@@ -1,4 +1,5 @@
-﻿using Infrastructure.Domain;
+﻿
+using Library.Domain.Data;
 using Repository.Migrations;
 using System;
 using System.Collections.Generic;
@@ -16,7 +17,7 @@ namespace Repository
     {
         static MainBoundedContext()
         {
-                Database.SetInitializer(new MigrateDatabaseToLatestVersion<MainBoundedContext, Configuration>());
+            Database.SetInitializer(new MigrateDatabaseToLatestVersion<MainBoundedContext, Configuration>());
         }
 
         public MainBoundedContext()
@@ -40,6 +41,11 @@ namespace Repository
             //刪除未使用的約定
             modelBuilder.Conventions.Remove<OneToManyCascadeDeleteConvention>();
             EF.Mapping.TypeConfiguration.ModelCreating(modelBuilder);
+        }
+
+        IUnitOfWork IDbContext.CreateUnitOfWork()
+        {
+            return new EFUnitOfWork(this);
         }
     }
 }
