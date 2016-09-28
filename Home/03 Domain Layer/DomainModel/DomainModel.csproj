@@ -36,6 +36,9 @@
     <Reference Include="Library.Domain">
       <HintPath>..\..\Lib\Library.Domain.dll</HintPath>
     </Reference>
+    <Reference Include="Library.Domain.Data">
+      <HintPath>..\..\Lib\Library.Domain.Data.dll</HintPath>
+    </Reference>
     <Reference Include="System" />
     <Reference Include="System.ComponentModel.DataAnnotations" />
     <Reference Include="System.Core" />
@@ -47,11 +50,16 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Aggregates\UserAgg\FamilyRole.cs" />
+    <Compile Include="Aggregates\Entity.cs" />
+    <Compile Include="Aggregates\FileAgg\FileInfo.cs" />
+    <Compile Include="Aggregates\GalleryAgg\Album.cs" />
+    <Compile Include="Aggregates\ContactAgg\FamilyRole.cs" />
+    <Compile Include="Aggregates\Gender.cs" />
+    <Compile Include="ModuleProviders\IGalleryModuleProvider.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Aggregates\UserAgg\UserProfile.cs" />
-    <Compile Include="Aggregates\UserAgg\ContactProfile.cs" />
-    <Compile Include="Aggregates\Entity.cs" />
+    <Compile Include="Aggregates\ContactAgg\ContactProfile.cs" />
+    <Compile Include="Repositories\IPhotoRepository.cs" />
   </ItemGroup>
   <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

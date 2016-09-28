@@ -4,6 +4,7 @@ using Repository;
 using System;
 using Library.ComponentModel.Model;
 using Library;
+using DomainModel.ContactAgg;
 
 namespace RepositoryTest
 {
@@ -26,8 +27,10 @@ namespace RepositoryTest
 				CreatedBy = "sqlscript",
 				StatusCode =StatusCode.Enabled
 			});
-			contactRole.Add (new FamilyRole () {
-				ID = IdentityGenerator.Next(roleId),
+            roleId = IdentityGenerator.Next(roleId);
+
+            contactRole.Add (new FamilyRole () {
+				ID = roleId,
 				Created = DateTime.Now,
 				Name = "高祖母",
 				Six= Gender
@@ -36,9 +39,12 @@ namespace RepositoryTest
 				CreatedBy = "sqlscript",
 				StatusCode =StatusCode.Enabled
 			});
-			contactRole.Add (new FamilyRole () {
-				ID = IdentityGenerator.Next(roleId),
-				Created = DateTime.Now,
+            roleId = IdentityGenerator.Next(roleId);
+
+            contactRole.Add(new FamilyRole()
+            {
+                ID = roleId,
+                Created = DateTime.Now,
 				Name = "外高祖父",
 				Six= Gender
     .Male,
@@ -46,9 +52,12 @@ namespace RepositoryTest
 				CreatedBy = "sqlscript",
 				StatusCode =StatusCode.Enabled
 			});
-			contactRole.Add (new FamilyRole () {
-				ID = IdentityGenerator.Next(roleId),
-				Created = DateTime.Now,
+            roleId = IdentityGenerator.Next(roleId);
+
+            contactRole.Add(new FamilyRole()
+            {
+                ID = roleId,
+                Created = DateTime.Now,
 				Name = "外高祖母",
 				Six= Gender
     .Female,
@@ -57,9 +66,12 @@ namespace RepositoryTest
 				StatusCode =StatusCode.Enabled
 			});
 
-			contactRole.Add (new FamilyRole () {
-				ID = IdentityGenerator.Next(roleId),
-				Created = DateTime.Now,
+            roleId = IdentityGenerator.Next(roleId);
+
+            contactRole.Add(new FamilyRole()
+            {
+                ID = roleId,
+                Created = DateTime.Now,
 				Name = "曾祖父",
 				Six= Gender
     .Male,
@@ -67,9 +79,12 @@ namespace RepositoryTest
 				CreatedBy = "sqlscript",
 				StatusCode =StatusCode.Enabled
 			});
-			contactRole.Add (new FamilyRole () {
-				ID = IdentityGenerator.Next(roleId),
-				Created = DateTime.Now,
+            roleId = IdentityGenerator.Next(roleId);
+
+            contactRole.Add(new FamilyRole()
+            {
+                ID = roleId,
+                Created = DateTime.Now,
 				Name = "曾祖母",
 				Six= Gender
     .Female,
@@ -77,9 +92,12 @@ namespace RepositoryTest
 				CreatedBy = "sqlscript",
 				StatusCode =StatusCode.Enabled
 			});
-			contactRole.Add (new FamilyRole () {
-				ID = IdentityGenerator.Next(roleId),
-				Created = DateTime.Now,
+            roleId = IdentityGenerator.Next(roleId);
+
+            contactRole.Add(new FamilyRole()
+            {
+                ID = roleId,
+                Created = DateTime.Now,
 				Name = "外曾祖父",
 				Six= Gender
     .Male,
@@ -87,9 +105,12 @@ namespace RepositoryTest
 				CreatedBy = "sqlscript",
 				StatusCode =StatusCode.Enabled
 			});
-			contactRole.Add (new FamilyRole () {
-				ID = IdentityGenerator.Next(roleId),
-				Created = DateTime.Now,
+            roleId = IdentityGenerator.Next(roleId);
+
+            contactRole.Add(new FamilyRole()
+            {
+                ID = roleId,
+                Created = DateTime.Now,
 				Name = "外曾祖母",
 				Six= Gender
     .Female,
@@ -98,9 +119,12 @@ namespace RepositoryTest
 				StatusCode =StatusCode.Enabled
 			});
 
-			contactRole.Add (new FamilyRole () {
-				ID = IdentityGenerator.Next(roleId),
-				Created = DateTime.Now,
+            roleId = IdentityGenerator.Next(roleId);
+
+            contactRole.Add(new FamilyRole()
+            {
+                ID = roleId,
+                Created = DateTime.Now,
 				Name = "爺爺",
 				Six= Gender
     .Male,
@@ -108,9 +132,12 @@ namespace RepositoryTest
 				CreatedBy = "sqlscript",
 				StatusCode =StatusCode.Enabled
 			});
-			contactRole.Add (new FamilyRole () {
-				ID = IdentityGenerator.Next(roleId),
-				Created = DateTime.Now,
+            roleId = IdentityGenerator.Next(roleId);
+
+            contactRole.Add(new FamilyRole()
+            {
+                ID = roleId,
+                Created = DateTime.Now,
 				Name = "奶奶",
 				Six= Gender
     .Female,
@@ -118,9 +145,12 @@ namespace RepositoryTest
 				CreatedBy = "sqlscript",
 				StatusCode =StatusCode.Enabled
 			});
-			contactRole.Add (new FamilyRole () {
-				ID = IdentityGenerator.Next(roleId),
-				Created = DateTime.Now,
+            roleId = IdentityGenerator.Next(roleId);
+
+            contactRole.Add(new FamilyRole()
+            {
+                ID = roleId,
+                Created = DateTime.Now,
 				Name = "外公",
 				Six= Gender
     .Male,
@@ -128,9 +158,12 @@ namespace RepositoryTest
 				CreatedBy = "sqlscript",
 				StatusCode =StatusCode.Enabled
 			});
-			contactRole.Add (new FamilyRole () {
-				ID = IdentityGenerator.Next(roleId),
-				Created = DateTime.Now,
+            roleId = IdentityGenerator.Next(roleId);
+
+            contactRole.Add(new FamilyRole()
+            {
+                ID = roleId,
+                Created = DateTime.Now,
 				Name = "外婆",
 				Six= Gender
     .Female,
@@ -139,9 +172,12 @@ namespace RepositoryTest
 				StatusCode =StatusCode.Enabled
 			});
 
-			contactRole.Add (new FamilyRole () {
-				ID = IdentityGenerator.Next(roleId),
-				Created = DateTime.Now,
+            roleId = IdentityGenerator.Next(roleId);
+
+            contactRole.Add(new FamilyRole()
+            {
+                ID = roleId,
+                Created = DateTime.Now,
 				Name = "伯伯",
 				Six= Gender
     .Male,
@@ -149,9 +185,12 @@ namespace RepositoryTest
 				CreatedBy = "sqlscript",
 				StatusCode =StatusCode.Enabled
 			});
-			contactRole.Add (new FamilyRole () {
-				ID = IdentityGenerator.Next(roleId),
-				Created = DateTime.Now,
+            roleId = IdentityGenerator.Next(roleId);
+
+            contactRole.Add(new FamilyRole()
+            {
+                ID = roleId,
+                Created = DateTime.Now,
 				Name = "伯娘",
 				Six= Gender
     .Female,
@@ -159,9 +198,12 @@ namespace RepositoryTest
 				CreatedBy = "sqlscript",
 				StatusCode =StatusCode.Enabled
 			});
-			contactRole.Add (new FamilyRole () {
-				ID = IdentityGenerator.Next(roleId),
-				Created = DateTime.Now,
+            roleId = IdentityGenerator.Next(roleId);
+
+            contactRole.Add(new FamilyRole()
+            {
+                ID = roleId,
+                Created = DateTime.Now,
 				Name = "姑媽",
 				Six= Gender
     .Female,
@@ -169,9 +211,12 @@ namespace RepositoryTest
 				CreatedBy = "sqlscript",
 				StatusCode =StatusCode.Enabled
 			});
-			contactRole.Add (new FamilyRole () {
-				ID = IdentityGenerator.Next(roleId),
-				Created = DateTime.Now,
+            roleId = IdentityGenerator.Next(roleId);
+
+            contactRole.Add(new FamilyRole()
+            {
+                ID = roleId,
+                Created = DateTime.Now,
 				Name = "姑丈",
 				Six= Gender
     .Male,
@@ -179,9 +224,12 @@ namespace RepositoryTest
 				CreatedBy = "sqlscript",
 				StatusCode =StatusCode.Enabled
 			});
-			contactRole.Add (new FamilyRole () {
-				ID = IdentityGenerator.Next(roleId),
-				Created = DateTime.Now,
+            roleId = IdentityGenerator.Next(roleId);
+
+            contactRole.Add(new FamilyRole()
+            {
+                ID = roleId,
+                Created = DateTime.Now,
 				Name = "父亲",
 				Six= Gender
     .Male,
@@ -189,9 +237,12 @@ namespace RepositoryTest
 				CreatedBy = "sqlscript",
 				StatusCode =StatusCode.Enabled
 			});
-			contactRole.Add (new FamilyRole () {
-				ID = IdentityGenerator.Next(roleId),
-				Created = DateTime.Now,
+            roleId = IdentityGenerator.Next(roleId);
+
+            contactRole.Add(new FamilyRole()
+            {
+                ID = roleId,
+                Created = DateTime.Now,
 				Name = "母亲",
 				Six= Gender
     .Female,
@@ -199,9 +250,12 @@ namespace RepositoryTest
 				CreatedBy = "sqlscript",
 				StatusCode =StatusCode.Enabled
 			});
-			contactRole.Add (new FamilyRole () {
-				ID = IdentityGenerator.Next(roleId),
-				Created = DateTime.Now,
+            roleId = IdentityGenerator.Next(roleId);
+
+            contactRole.Add(new FamilyRole()
+            {
+                ID = roleId,
+                Created = DateTime.Now,
 				Name = "叔叔",
 				Six= Gender
     .Male,
@@ -209,9 +263,12 @@ namespace RepositoryTest
 				CreatedBy = "sqlscript",
 				StatusCode =StatusCode.Enabled
 			});
-			contactRole.Add (new FamilyRole () {
-				ID = IdentityGenerator.Next(roleId),
-				Created = DateTime.Now,
+            roleId = IdentityGenerator.Next(roleId);
+
+            contactRole.Add(new FamilyRole()
+            {
+                ID = roleId,
+                Created = DateTime.Now,
 				Name = "婶婶",
 				Six= Gender
     .Female,
@@ -219,9 +276,12 @@ namespace RepositoryTest
 				CreatedBy = "sqlscript",
 				StatusCode =StatusCode.Enabled
 			});
-			contactRole.Add (new FamilyRole () {
-				ID = IdentityGenerator.Next(roleId),
-				Created = DateTime.Now,
+            roleId = IdentityGenerator.Next(roleId);
+
+            contactRole.Add(new FamilyRole()
+            {
+                ID = roleId,
+                Created = DateTime.Now,
 				Name = "姑姐",
 				Six= Gender
     .Female,
@@ -230,10 +290,13 @@ namespace RepositoryTest
 				StatusCode =StatusCode.Enabled
 			});
 
-	 
-			contactRole.Add (new FamilyRole () {
-				ID = IdentityGenerator.Next(roleId),
-				Created = DateTime.Now,
+
+            roleId = IdentityGenerator.Next(roleId);
+
+            contactRole.Add(new FamilyRole()
+            {
+                ID = roleId,
+                Created = DateTime.Now,
 				Name = "岳父",
 				Six= Gender
     .Male,
@@ -241,9 +304,12 @@ namespace RepositoryTest
 				CreatedBy = "sqlscript",
 				StatusCode =StatusCode.Enabled
 			});
-			contactRole.Add (new FamilyRole () {
-				ID = IdentityGenerator.Next(roleId),
-				Created = DateTime.Now,
+            roleId = IdentityGenerator.Next(roleId);
+
+            contactRole.Add(new FamilyRole()
+            {
+                ID = roleId,
+                Created = DateTime.Now,
 				Name = "岳母",
 				Six= Gender
     .Female,
@@ -251,9 +317,12 @@ namespace RepositoryTest
 				CreatedBy = "sqlscript",
 				StatusCode =StatusCode.Enabled
 			});
-			contactRole.Add (new FamilyRole () {
-				ID = IdentityGenerator.Next(roleId),
-				Created = DateTime.Now,
+            roleId = IdentityGenerator.Next(roleId);
+
+            contactRole.Add(new FamilyRole()
+            {
+                ID = roleId,
+                Created = DateTime.Now,
 				Name = "舅舅",
 				Six= Gender
     .Male,
@@ -261,9 +330,12 @@ namespace RepositoryTest
 				CreatedBy = "sqlscript",
 				StatusCode =StatusCode.Enabled
 			});
-			contactRole.Add (new FamilyRole () {
-				ID = IdentityGenerator.Next(roleId),
-				Created = DateTime.Now,
+            roleId = IdentityGenerator.Next(roleId);
+
+            contactRole.Add(new FamilyRole()
+            {
+                ID = roleId,
+                Created = DateTime.Now,
 				Name = "舅母",
 				Six= Gender
     .Female,
@@ -271,9 +343,12 @@ namespace RepositoryTest
 				CreatedBy = "sqlscript",
 				StatusCode =StatusCode.Enabled
 			});
-			contactRole.Add (new FamilyRole () {
-				ID = IdentityGenerator.Next(roleId),
-				Created = DateTime.Now,
+            roleId = IdentityGenerator.Next(roleId);
+
+            contactRole.Add(new FamilyRole()
+            {
+                ID = roleId,
+                Created = DateTime.Now,
 				Name = "姨妈",
 				Six= Gender
     .Female,
@@ -281,9 +356,12 @@ namespace RepositoryTest
 				CreatedBy = "sqlscript",
 				StatusCode =StatusCode.Enabled
 			});
-			contactRole.Add (new FamilyRole () {
-				ID = IdentityGenerator.Next(roleId),
-				Created = DateTime.Now,
+            roleId = IdentityGenerator.Next(roleId);
+
+            contactRole.Add(new FamilyRole()
+            {
+                ID = roleId,
+                Created = DateTime.Now,
 				Name = "姨丈",
 				Six= Gender
     .Male,
@@ -293,45 +371,60 @@ namespace RepositoryTest
 			});
 
 
-			contactRole.Add (new FamilyRole () {
-				ID = IdentityGenerator.Next(roleId),
-				Created = DateTime.Now,
+            roleId = IdentityGenerator.Next(roleId);
+
+            contactRole.Add(new FamilyRole()
+            {
+                ID = roleId,
+                Created = DateTime.Now,
 				Name = "哥哥",
 				Six= Gender
     .Male,
 				CreatedBy = "sqlscript",
 				StatusCode =StatusCode.Enabled
 			});
-			contactRole.Add (new FamilyRole () {
-				ID = IdentityGenerator.Next(roleId),
-				Created = DateTime.Now,
+            roleId = IdentityGenerator.Next(roleId);
+
+            contactRole.Add(new FamilyRole()
+            {
+                ID = roleId,
+                Created = DateTime.Now,
 				Name = "嫂",
 				Six= Gender
     .Female,
 				CreatedBy = "sqlscript",
 				StatusCode =StatusCode.Enabled
 			});
-			contactRole.Add (new FamilyRole () {
-				ID = IdentityGenerator.Next(roleId),
-				Created = DateTime.Now,
+            roleId = IdentityGenerator.Next(roleId);
+
+            contactRole.Add(new FamilyRole()
+            {
+                ID = roleId,
+                Created = DateTime.Now,
 				Name = "姐姐",
 				Six= Gender
     .Female,
 				CreatedBy = "sqlscript",
 				StatusCode =StatusCode.Enabled
 			});
-			contactRole.Add (new FamilyRole () {
-				ID = IdentityGenerator.Next(roleId),
-				Created = DateTime.Now,
+            roleId = IdentityGenerator.Next(roleId);
+
+            contactRole.Add(new FamilyRole()
+            {
+                ID = roleId,
+                Created = DateTime.Now,
 				Name = "姐夫",
 				Six= Gender
     .Male,
 				CreatedBy = "sqlscript",
 				StatusCode =StatusCode.Enabled
 			});
-			contactRole.Add (new FamilyRole () {
-				ID = IdentityGenerator.Next(roleId),
-				Created = DateTime.Now,
+            roleId = IdentityGenerator.Next(roleId);
+
+            contactRole.Add(new FamilyRole()
+            {
+                ID = roleId,
+                Created = DateTime.Now,
 				Name = "弟弟",
 				Six= Gender
     .Male,
@@ -339,27 +432,36 @@ namespace RepositoryTest
 				StatusCode =StatusCode.Enabled
 			});
 
-			contactRole.Add (new FamilyRole () {
-				ID = IdentityGenerator.Next(roleId),
-				Created = DateTime.Now,
+            roleId = IdentityGenerator.Next(roleId);
+
+            contactRole.Add(new FamilyRole()
+            {
+                ID = roleId,
+                Created = DateTime.Now,
 				Name = "弟妹",
 				Six= Gender
     .Female,
 				CreatedBy = "sqlscript",
 				StatusCode =StatusCode.Enabled
 			});
-			contactRole.Add (new FamilyRole () {
-				ID = IdentityGenerator.Next(roleId),
-				Created = DateTime.Now,
+            roleId = IdentityGenerator.Next(roleId);
+
+            contactRole.Add(new FamilyRole()
+            {
+                ID = roleId,
+                Created = DateTime.Now,
 				Name = "妹妹",
 				Six= Gender
     .Female,
 				CreatedBy = "sqlscript",
 				StatusCode =StatusCode.Enabled
 			});
-			contactRole.Add (new FamilyRole () {
-				ID = IdentityGenerator.Next(roleId),
-				Created = DateTime.Now,
+            roleId = IdentityGenerator.Next(roleId);
+
+            contactRole.Add(new FamilyRole()
+            {
+                ID = roleId,
+                Created = DateTime.Now,
 				Name = "妹夫",
 				Six= Gender
     .Male,
@@ -367,144 +469,192 @@ namespace RepositoryTest
 				StatusCode =StatusCode.Enabled
 			});
 
-			contactRole.Add (new FamilyRole () {
-				ID = IdentityGenerator.Next(roleId),
-				Created = DateTime.Now,
+            roleId = IdentityGenerator.Next(roleId);
+
+            contactRole.Add(new FamilyRole()
+            {
+                ID = roleId,
+                Created = DateTime.Now,
 				Name = "堂哥",
 				Six= Gender
     .Male,
 				CreatedBy = "sqlscript",
 				StatusCode =StatusCode.Enabled
 			});
-			contactRole.Add (new FamilyRole () {
-				ID = IdentityGenerator.Next(roleId),
-				Created = DateTime.Now,
+            roleId = IdentityGenerator.Next(roleId);
+
+            contactRole.Add(new FamilyRole()
+            {
+                ID = roleId,
+                Created = DateTime.Now,
 				Name = "堂嫂",
 				Six= Gender
     .Female,
 				CreatedBy = "sqlscript",
 				StatusCode =StatusCode.Enabled
 			});
-			contactRole.Add (new FamilyRole () {
-				ID = IdentityGenerator.Next(roleId),
-				Created = DateTime.Now,
+            roleId = IdentityGenerator.Next(roleId);
+
+            contactRole.Add(new FamilyRole()
+            {
+                ID = roleId,
+                Created = DateTime.Now,
 				Name = "堂姐",
 				Six= Gender
     .Female,
 				CreatedBy = "sqlscript",
 				StatusCode =StatusCode.Enabled
 			});
-			contactRole.Add (new FamilyRole () {
-				ID = IdentityGenerator.Next(roleId),
-				Created = DateTime.Now,
+            roleId = IdentityGenerator.Next(roleId);
+
+            contactRole.Add(new FamilyRole()
+            {
+                ID = roleId,
+                Created = DateTime.Now,
 				Name = "堂姐夫",
 				Six= Gender
     .Male,
 				CreatedBy = "sqlscript",
 				StatusCode =StatusCode.Enabled
 			});
-			contactRole.Add (new FamilyRole () {
-				ID = IdentityGenerator.Next(roleId),
-				Created = DateTime.Now,
+            roleId = IdentityGenerator.Next(roleId);
+
+            contactRole.Add(new FamilyRole()
+            {
+                ID = roleId,
+                Created = DateTime.Now,
 				Name = "堂弟",
 				Six= Gender
     .Male,
 				CreatedBy = "sqlscript",
 				StatusCode =StatusCode.Enabled
 			});
-			contactRole.Add (new FamilyRole () {
-				ID = IdentityGenerator.Next(roleId),
-				Created = DateTime.Now,
+            roleId = IdentityGenerator.Next(roleId);
+
+            contactRole.Add(new FamilyRole()
+            {
+                ID = roleId,
+                Created = DateTime.Now,
 				Name = "堂弟妹",
 				Six= Gender
     .Female,
 				CreatedBy = "sqlscript",
 				StatusCode =StatusCode.Enabled
 			});
-			contactRole.Add (new FamilyRole () {
-				ID = IdentityGenerator.Next(roleId),
-				Created = DateTime.Now,
+            roleId = IdentityGenerator.Next(roleId);
+
+            contactRole.Add(new FamilyRole()
+            {
+                ID = roleId,
+                Created = DateTime.Now,
 				Name = "堂妹",
 				Six= Gender
     .Female,
 				CreatedBy = "sqlscript",
 				StatusCode =StatusCode.Enabled
 			});
-			contactRole.Add (new FamilyRole () {
-				ID = IdentityGenerator.Next(roleId),
-				Created = DateTime.Now,
+            roleId = IdentityGenerator.Next(roleId);
+
+            contactRole.Add(new FamilyRole()
+            {
+                ID = roleId,
+                Created = DateTime.Now,
 				Name = "堂妹夫",
 				Six= Gender
     .Male,
 				CreatedBy = "sqlscript",
 				StatusCode =StatusCode.Enabled
 			});
-			contactRole.Add (new FamilyRole () {
-				ID = IdentityGenerator.Next(roleId),
-				Created = DateTime.Now,
+            roleId = IdentityGenerator.Next(roleId);
+
+            contactRole.Add(new FamilyRole()
+            {
+                ID = roleId,
+                Created = DateTime.Now,
 				Name = "表哥",
 				Six= Gender
     .Male,
 				CreatedBy = "sqlscript",
 				StatusCode =StatusCode.Enabled
 			});
-			contactRole.Add (new FamilyRole () {
-				ID = IdentityGenerator.Next(roleId),
-				Created = DateTime.Now,
+            roleId = IdentityGenerator.Next(roleId);
+
+            contactRole.Add(new FamilyRole()
+            {
+                ID = roleId,
+                Created = DateTime.Now,
 				Name = "表嫂",
 				Six= Gender
     .Female,
 				CreatedBy = "sqlscript",
 				StatusCode =StatusCode.Enabled
 			});
-			contactRole.Add (new FamilyRole () {
-				ID = IdentityGenerator.Next(roleId),
-				Created = DateTime.Now,
+            roleId = IdentityGenerator.Next(roleId);
+
+            contactRole.Add(new FamilyRole()
+            {
+                ID = roleId,
+                Created = DateTime.Now,
 				Name = "表姐",
 				Six= Gender
     .Female,
 				CreatedBy = "sqlscript",
 				StatusCode =StatusCode.Enabled
 			});
-			contactRole.Add (new FamilyRole () {
-				ID = IdentityGenerator.Next(roleId),
-				Created = DateTime.Now,
+            roleId = IdentityGenerator.Next(roleId);
+
+            contactRole.Add(new FamilyRole()
+            {
+                ID = roleId,
+                Created = DateTime.Now,
 				Name = "表姐夫",
 				Six= Gender
     .Male,
 				CreatedBy = "sqlscript",
 				StatusCode =StatusCode.Enabled
 			});
-			contactRole.Add (new FamilyRole () {
-				ID = IdentityGenerator.Next(roleId),
-				Created = DateTime.Now,
+            roleId = IdentityGenerator.Next(roleId);
+
+            contactRole.Add(new FamilyRole()
+            {
+                ID = roleId,
+                Created = DateTime.Now,
 				Name = "表弟",
 				Six= Gender
     .Male,
 				CreatedBy = "sqlscript",
 				StatusCode =StatusCode.Enabled
 			});
-			contactRole.Add (new FamilyRole () {
-				ID = IdentityGenerator.Next(roleId),
-				Created = DateTime.Now,
+            roleId = IdentityGenerator.Next(roleId);
+
+            contactRole.Add(new FamilyRole()
+            {
+                ID = roleId,
+                Created = DateTime.Now,
 				Name = "表弟妹",
 				Six= Gender
     .Female,
 				CreatedBy = "sqlscript",
 				StatusCode =StatusCode.Enabled
 			});
-			contactRole.Add (new FamilyRole () {
-				ID = IdentityGenerator.Next(roleId),
-				Created = DateTime.Now,
+            roleId = IdentityGenerator.Next(roleId);
+
+            contactRole.Add(new FamilyRole()
+            {
+                ID = roleId,
+                Created = DateTime.Now,
 				Name = "表妹",
 				Six= Gender
     .Female,
 				CreatedBy = "sqlscript",
 				StatusCode =StatusCode.Enabled
 			});
-			contactRole.Add (new FamilyRole () {
-				ID = IdentityGenerator.Next(roleId),
-				Created = DateTime.Now,
+            roleId = IdentityGenerator.Next(roleId);
+
+            contactRole.Add(new FamilyRole()
+            {
+                ID = roleId,
+                Created = DateTime.Now,
 				Name = "表妹夫",
 				Six= Gender
     .Male,
@@ -513,9 +663,12 @@ namespace RepositoryTest
 			});
 
 
-			contactRole.Add (new FamilyRole () {
-				ID = IdentityGenerator.Next(roleId),
-				Created = DateTime.Now,
+            roleId = IdentityGenerator.Next(roleId);
+
+            contactRole.Add(new FamilyRole()
+            {
+                ID = roleId,
+                Created = DateTime.Now,
 				Name = "儿子",
 				Six= Gender
     .Male,
@@ -523,9 +676,12 @@ namespace RepositoryTest
 				CreatedBy = "sqlscript",
 				StatusCode =StatusCode.Enabled
 			});
-			contactRole.Add (new FamilyRole () {
-				ID = IdentityGenerator.Next(roleId),
-				Created = DateTime.Now,
+            roleId = IdentityGenerator.Next(roleId);
+
+            contactRole.Add(new FamilyRole()
+            {
+                ID = roleId,
+                Created = DateTime.Now,
 				Name = "儿媳",
 				Six= Gender
     .Female,
@@ -534,19 +690,25 @@ namespace RepositoryTest
 				StatusCode =StatusCode.Enabled
 			});
 
-			contactRole.Add (new FamilyRole () {
-				ID = IdentityGenerator.Next(roleId),
-				Created = DateTime.Now,
+            roleId = IdentityGenerator.Next(roleId);
+
+            contactRole.Add(new FamilyRole()
+            {
+                ID = roleId,
+                Created = DateTime.Now,
 				Name = "女儿",
 				Six= Gender
     .Female,
 				Level = -1,
 				CreatedBy = "sqlscript",
 				StatusCode =StatusCode.Enabled
-			});	
-			contactRole.Add (new FamilyRole () {
-				ID = IdentityGenerator.Next(roleId),
-				Created = DateTime.Now,
+			});
+            roleId = IdentityGenerator.Next(roleId);
+
+            contactRole.Add(new FamilyRole()
+            {
+                ID = roleId,
+                Created = DateTime.Now,
 				Name = "女婿",
 				Six= Gender
     .Male,
@@ -555,9 +717,12 @@ namespace RepositoryTest
 				StatusCode =StatusCode.Enabled
 			});
 
-			contactRole.Add (new FamilyRole () {
-				ID = IdentityGenerator.Next(roleId),
-				Created = DateTime.Now,
+            roleId = IdentityGenerator.Next(roleId);
+
+            contactRole.Add(new FamilyRole()
+            {
+                ID = roleId,
+                Created = DateTime.Now,
 				Name = "侄子",
 				Six= Gender
     .Male,
@@ -566,9 +731,12 @@ namespace RepositoryTest
 				CreatedBy = "sqlscript",
 				StatusCode =StatusCode.Enabled
 			});
-			contactRole.Add (new FamilyRole () {
-				ID = IdentityGenerator.Next(roleId),
-				Created = DateTime.Now,
+            roleId = IdentityGenerator.Next(roleId);
+
+            contactRole.Add(new FamilyRole()
+            {
+                ID = roleId,
+                Created = DateTime.Now,
 				Name = "侄子媳",
 				Six= Gender
     .Female,
@@ -576,9 +744,12 @@ namespace RepositoryTest
 				CreatedBy = "sqlscript",
 				StatusCode =StatusCode.Enabled
 			});
-			contactRole.Add (new FamilyRole () {
-				ID = IdentityGenerator.Next(roleId),
-				Created = DateTime.Now,
+            roleId = IdentityGenerator.Next(roleId);
+
+            contactRole.Add(new FamilyRole()
+            {
+                ID = roleId,
+                Created = DateTime.Now,
 				Name = "侄女",
 				Six= Gender
     .Female,
@@ -587,9 +758,12 @@ namespace RepositoryTest
 				CreatedBy = "sqlscript",
 				StatusCode =StatusCode.Enabled
 			});
-			contactRole.Add (new FamilyRole () {
-				ID = IdentityGenerator.Next(roleId),
-				Created = DateTime.Now,
+            roleId = IdentityGenerator.Next(roleId);
+
+            contactRole.Add(new FamilyRole()
+            {
+                ID = roleId,
+                Created = DateTime.Now,
 				Name = "侄女婿",
 				Six= Gender
     .Male,
@@ -598,9 +772,12 @@ namespace RepositoryTest
 				CreatedBy = "sqlscript",
 				StatusCode =StatusCode.Enabled
 			});
-			contactRole.Add (new FamilyRole () {
-				ID = IdentityGenerator.Next(roleId),
-				Created = DateTime.Now,
+            roleId = IdentityGenerator.Next(roleId);
+
+            contactRole.Add(new FamilyRole()
+            {
+                ID = roleId,
+                Created = DateTime.Now,
 				Name = "外甥子",
 				Six= Gender
     .Male,
@@ -609,9 +786,12 @@ namespace RepositoryTest
 				CreatedBy = "sqlscript",
 				StatusCode =StatusCode.Enabled
 			});
-			contactRole.Add (new FamilyRole () {
-				ID = IdentityGenerator.Next(roleId),
-				Created = DateTime.Now,
+            roleId = IdentityGenerator.Next(roleId);
+
+            contactRole.Add(new FamilyRole()
+            {
+                ID = roleId,
+                Created = DateTime.Now,
 				Name = "外甥子媳",
 				Six= Gender
     .Female,
@@ -620,9 +800,12 @@ namespace RepositoryTest
 				CreatedBy = "sqlscript",
 				StatusCode =StatusCode.Enabled
 			});
-			contactRole.Add (new FamilyRole () {
-				ID = IdentityGenerator.Next(roleId),
-				Created = DateTime.Now,
+            roleId = IdentityGenerator.Next(roleId);
+
+            contactRole.Add(new FamilyRole()
+            {
+                ID = roleId,
+                Created = DateTime.Now,
 				Name = "外甥女",
 				Six= Gender
     .Female,
@@ -631,9 +814,12 @@ namespace RepositoryTest
 				CreatedBy = "sqlscript",
 				StatusCode =StatusCode.Enabled
 			});
-			contactRole.Add (new FamilyRole () {
-				ID = IdentityGenerator.Next(roleId),
-				Created = DateTime.Now,
+            roleId = IdentityGenerator.Next(roleId);
+
+            contactRole.Add(new FamilyRole()
+            {
+                ID = roleId,
+                Created = DateTime.Now,
 				Name = "外甥女婿",
 				Six= Gender
     .Male,
@@ -642,9 +828,12 @@ namespace RepositoryTest
 				CreatedBy = "sqlscript",
 				StatusCode =StatusCode.Enabled
 			});
-			contactRole.Add (new FamilyRole () {
-				ID = IdentityGenerator.Next(roleId),
-				Created = DateTime.Now,
+            roleId = IdentityGenerator.Next(roleId);
+
+            contactRole.Add(new FamilyRole()
+            {
+                ID = roleId,
+                Created = DateTime.Now,
 				Name = "姨甥子",
 				Six= Gender
     .Male,
@@ -653,9 +842,12 @@ namespace RepositoryTest
 				CreatedBy = "sqlscript",
 				StatusCode =StatusCode.Enabled
 			});
-			contactRole.Add (new FamilyRole () {
-				ID = IdentityGenerator.Next(roleId),
-				Created = DateTime.Now,
+            roleId = IdentityGenerator.Next(roleId);
+
+            contactRole.Add(new FamilyRole()
+            {
+                ID = roleId,
+                Created = DateTime.Now,
 				Name = "姨甥子媳",
 				Six= Gender
     .Female,
@@ -664,9 +856,12 @@ namespace RepositoryTest
 				CreatedBy = "sqlscript",
 				StatusCode =StatusCode.Enabled
 			});
-			contactRole.Add (new FamilyRole () {
-				ID = IdentityGenerator.Next(roleId),
-				Created = DateTime.Now,
+            roleId = IdentityGenerator.Next(roleId);
+
+            contactRole.Add(new FamilyRole()
+            {
+                ID = roleId,
+                Created = DateTime.Now,
 				Name = "姨甥女",
 				Six= Gender
     .Female,
@@ -675,9 +870,12 @@ namespace RepositoryTest
 				CreatedBy = "sqlscript",
 				StatusCode =StatusCode.Enabled
 			});
-			contactRole.Add (new FamilyRole () {
-				ID = IdentityGenerator.Next(roleId),
-				Created = DateTime.Now,
+            roleId = IdentityGenerator.Next(roleId);
+
+            contactRole.Add(new FamilyRole()
+            {
+                ID = roleId,
+                Created = DateTime.Now,
 				Name = "姨甥女婿",
 				Six= Gender
     .Male,
@@ -687,9 +885,12 @@ namespace RepositoryTest
 			});
 
 
-			contactRole.Add (new FamilyRole () {
-				ID = IdentityGenerator.Next(roleId),
-				Created = DateTime.Now,
+            roleId = IdentityGenerator.Next(roleId);
+
+            contactRole.Add(new FamilyRole()
+            {
+                ID = roleId,
+                Created = DateTime.Now,
 				Name = "孙子",
 				Six= Gender
     .Male,
@@ -697,9 +898,12 @@ namespace RepositoryTest
 				CreatedBy = "sqlscript",
 				StatusCode =StatusCode.Enabled
 			});
-			contactRole.Add (new FamilyRole () {
-				ID = IdentityGenerator.Next(roleId),
-				Created = DateTime.Now,
+            roleId = IdentityGenerator.Next(roleId);
+
+            contactRole.Add(new FamilyRole()
+            {
+                ID = roleId,
+                Created = DateTime.Now,
 				Name = "孙女",
 				Six= Gender
     .Female,
@@ -707,9 +911,12 @@ namespace RepositoryTest
 				CreatedBy = "sqlscript",
 				StatusCode =StatusCode.Enabled
 			});
-			contactRole.Add (new FamilyRole () {
-				ID = IdentityGenerator.Next(roleId),
-				Created = DateTime.Now,
+            roleId = IdentityGenerator.Next(roleId);
+
+            contactRole.Add(new FamilyRole()
+            {
+                ID = roleId,
+                Created = DateTime.Now,
 				Name = "外孙子",
 				Six= Gender
     .Male,
@@ -717,9 +924,12 @@ namespace RepositoryTest
 				CreatedBy = "sqlscript",
 				StatusCode =StatusCode.Enabled
 			});
-			contactRole.Add (new FamilyRole () {
-				ID = IdentityGenerator.Next(roleId),
-				Created = DateTime.Now,
+            roleId = IdentityGenerator.Next(roleId);
+
+            contactRole.Add(new FamilyRole()
+            {
+                ID = roleId,
+                Created = DateTime.Now,
 				Name = "外孙女",
 				Six= Gender
     .Female,
@@ -728,9 +938,12 @@ namespace RepositoryTest
 				StatusCode =StatusCode.Enabled
 			});
 
-			contactRole.Add (new FamilyRole () {
-				ID = IdentityGenerator.Next(roleId),
-				Created = DateTime.Now,
+            roleId = IdentityGenerator.Next(roleId);
+
+            contactRole.Add(new FamilyRole()
+            {
+                ID = roleId,
+                Created = DateTime.Now,
 				Name = "曾孙",
 				Six= Gender
     .Male,
@@ -738,9 +951,12 @@ namespace RepositoryTest
 				CreatedBy = "sqlscript",
 				StatusCode =StatusCode.Enabled
 			});
-			contactRole.Add (new FamilyRole () {
-				ID = IdentityGenerator.Next(roleId),
-				Created = DateTime.Now,
+            roleId = IdentityGenerator.Next(roleId);
+
+            contactRole.Add(new FamilyRole()
+            {
+                ID = roleId,
+                Created = DateTime.Now,
 				Name = "曾孙女",
 				Six= Gender
     .Female,
@@ -749,9 +965,12 @@ namespace RepositoryTest
 				StatusCode =StatusCode.Enabled
 			});
 
-			contactRole.Add (new FamilyRole () {
-				ID = IdentityGenerator.Next(roleId),
-				Created = DateTime.Now,
+            roleId = IdentityGenerator.Next(roleId);
+
+            contactRole.Add(new FamilyRole()
+            {
+                ID = roleId,
+                Created = DateTime.Now,
 				Name = "玄孙",
 				Six= Gender
     .Male,
@@ -759,9 +978,12 @@ namespace RepositoryTest
 				CreatedBy = "sqlscript",
 				StatusCode =StatusCode.Enabled
 			});
-			contactRole.Add (new FamilyRole () {
-				ID = IdentityGenerator.Next(roleId),
-				Created = DateTime.Now,
+            roleId = IdentityGenerator.Next(roleId);
+
+            contactRole.Add(new FamilyRole()
+            {
+                ID = roleId,
+                Created = DateTime.Now,
 				Name = "玄孙女",
 				Six= Gender
     .Female,

@@ -1,5 +1,6 @@
 ﻿
 using Library.Domain.Data;
+using Library.Domain.Data.EF;
 using Repository.Migrations;
 using System;
 using System.Collections.Generic;
@@ -13,7 +14,7 @@ using System.Threading.Tasks;
 namespace Repository
 {
     [DbConfigurationType(typeof(MySql.Data.Entity.MySqlEFConfiguration))]
-    public class MainBoundedContext : DbContext, IDbContext
+    public class MainBoundedContext : EFContext, IDbContext
     {
         static MainBoundedContext()
         {
@@ -26,7 +27,7 @@ namespace Repository
         }
 
         protected MainBoundedContext(DbConnection existingConnection)
-            : base(existingConnection, true)
+            : base(existingConnection)
         {
         }
 

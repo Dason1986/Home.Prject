@@ -3,7 +3,7 @@ using System.Data.Entity.ModelConfiguration;
 
 namespace Repository.EF.Mapping.UserAgg
 {
-    internal class UserProfileEntityTypeConfiguration : EntityTypeConfiguration<UserProfile>
+    internal class UserProfileEntityTypeConfiguration : EntityTypeConfiguration<DomainModel.UserAgg.UserProfile>
     {
         public UserProfileEntityTypeConfiguration()
         {

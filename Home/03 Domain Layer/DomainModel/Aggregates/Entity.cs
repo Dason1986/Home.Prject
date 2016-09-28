@@ -4,18 +4,26 @@ using System.ComponentModel.DataAnnotations;
 
 namespace DomainModel
 {
-    public class Entity : IEntity, ICreatedInfo
+    public class Entity : Library.Domain.Entity, IEntity, ICreatedInfo
     {
-        [Required]
-        [Key]
-        public Guid ID { get; set; }
+        public Entity()
+        {
+
+        }
+        public Entity(ICreatedInfo createinfo)
+        {
+            ID = Library.IdentityGenerator.NewGuid();
+            Created = DateTime.Now;
+            CreatedBy = createinfo.CreatedBy;
+            StatusCode = StatusCode.Enabled;
+        }
+
         [Required]
         public DateTime Created { get; set; }
         [Required]
         [StringLength(20)]
         public string CreatedBy { get; set; }
 
-        public StatusCode StatusCode { get; set; }
     }
 }
 

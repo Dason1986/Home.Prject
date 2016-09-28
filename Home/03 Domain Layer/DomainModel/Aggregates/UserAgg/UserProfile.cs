@@ -1,6 +1,7 @@
-﻿using System;
+﻿using DomainModel.ContactAgg;
+using System;
 
-namespace DomainModel
+namespace DomainModel.UserAgg
 {
     public class UserProfile : Entity
     {

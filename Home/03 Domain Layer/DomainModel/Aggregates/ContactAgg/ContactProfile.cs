@@ -1,7 +1,7 @@
 ﻿using System;
 using System.ComponentModel.DataAnnotations;
 
-namespace DomainModel
+namespace DomainModel.ContactAgg
 {
 
     public class ContactProfile : Entity
@@ -22,12 +22,6 @@ namespace DomainModel
 
 
 
-    }
-
-    public enum Gender
-    {
-        Male,
-        Female
     }
 }
 

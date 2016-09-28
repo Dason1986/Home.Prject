@@ -1,4 +1,6 @@
-﻿using Repository.EF.Mapping.UserAgg;
+﻿using Repository.EF.Mapping.FileAgg;
+using Repository.EF.Mapping.GalleryAgg;
+using Repository.EF.Mapping.UserAgg;
 using System;
 using System.Collections.Generic;
 using System.Data.Entity;
@@ -12,9 +14,10 @@ namespace Repository.EF.Mapping
     {
         public static void ModelCreating(DbModelBuilder modelBuilder)
         {
-            UserAgg(modelBuilder);
-           
             SystemAgg(modelBuilder);
+            UserAgg(modelBuilder);
+            FileAgg(modelBuilder);
+            GalleryAgg(modelBuilder);
           
         }
 
@@ -22,7 +25,20 @@ namespace Repository.EF.Mapping
         {
            
         }
+        private static void FileAgg(DbModelBuilder modelBuilder)
+        {
+            modelBuilder.Configurations.Add(new FileInfoEntityTypeConfiguration());
 
+        }
+
+        private static void GalleryAgg(DbModelBuilder modelBuilder)
+        {
+            modelBuilder.Configurations.Add(new AlbumEntityTypeConfiguration());
+            modelBuilder.Configurations.Add(new PhotoEntityTypeConfiguration());
+            modelBuilder.Configurations.Add(new PhtotAttributeEntityTypeConfiguration());
+
+
+        }
         private static void UserAgg(DbModelBuilder modelBuilder)
         {
             modelBuilder.Configurations.Add(new UserProfileEntityTypeConfiguration());

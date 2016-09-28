@@ -67,6 +67,8 @@
   <ItemGroup>
     <Compile Include="EF\EFUnitOfWork.cs" />
     <Compile Include="EF\MainBoundedContext.cs" />
+    <Compile Include="EF\Mapping\FileAgg\FileInfoEntityTypeConfiguration.cs" />
+    <Compile Include="EF\Mapping\GalleryAgg\AlbumTypeConfiguration.cs" />
     <Compile Include="EF\Mapping\TypeConfiguration.cs" />
     <Compile Include="EF\Mapping\UserAgg\ContactProfileEntityTypeConfiguration.cs" />
     <Compile Include="EF\Mapping\UserAgg\FamilyRoleEntityTypeConfiguration.cs" />
@@ -76,7 +78,9 @@
       <DependentUpon>201609140928372_V1.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
+    <Compile Include="ModuleProviders\GalleryModuleProvider.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Repositories\PhotoRepository.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
@@ -101,4 +105,5 @@
       <DependentUpon>201609140928372_V1.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
+  <ItemGroup />
 </Project>

@@ -31,6 +31,13 @@
     <Reference Include="Library.Core">
       <HintPath>..\Lib\Library.Core.dll</HintPath>
     </Reference>
+    <Reference Include="Library.Domain, Version=1.0.0.0, Culture=neutral, PublicKeyToken=712eb980f01a2dfe, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\Lib\Library.Domain.dll</HintPath>
+    </Reference>
+    <Reference Include="Library.Domain.Data">
+      <HintPath>..\Lib\Library.Domain.Data.dll</HintPath>
+    </Reference>
     <Reference Include="System" />
     <Reference Include="System.ComponentModel.DataAnnotations" />
     <Reference Include="EntityFramework, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
@@ -46,7 +53,7 @@
       <HintPath>..\packages\MySql.Data.Entity.6.9.9\lib\net45\MySql.Data.Entity.EF6.dll</HintPath>
     </Reference>
     <Reference Include="nunit.framework">
-      <HintPath>..\packages\NUnit.2.6.4\lib\nunit.framework.dll</HintPath>
+      <HintPath>..\packages\NUnit.3.4.1\lib\net45\nunit.framework.dll</HintPath>
     </Reference>
   </ItemGroup>
   <ItemGroup>

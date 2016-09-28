@@ -49,6 +49,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DistributedServices", "01 P
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "RepositoryTest", "RepositoryTest\RepositoryTest.csproj", "{DDA61FB1-7F79-4AC2-ABC3-BE62E8E1F568}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "HomeTool.Console", "02 Applicatioin Layer\HomeTool.Console\HomeTool.Console.csproj", "{64E22760-6A4E-499D-8B3C-552CC408D42F}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -91,6 +93,10 @@ Global
 		{DDA61FB1-7F79-4AC2-ABC3-BE62E8E1F568}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{DDA61FB1-7F79-4AC2-ABC3-BE62E8E1F568}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{DDA61FB1-7F79-4AC2-ABC3-BE62E8E1F568}.Release|Any CPU.Build.0 = Release|Any CPU
+		{64E22760-6A4E-499D-8B3C-552CC408D42F}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{64E22760-6A4E-499D-8B3C-552CC408D42F}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{64E22760-6A4E-499D-8B3C-552CC408D42F}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{64E22760-6A4E-499D-8B3C-552CC408D42F}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -109,5 +115,6 @@ Global
 		{BC1F66F3-6EA5-4008-B5B2-CE931D7B79D7} = {39B5C303-D0BD-4D4D-B2AE-5EDEB6F010A9}
 		{3441B964-F9BE-4101-9BEF-110084107191} = {86C6C60E-3D4D-4FDC-AC13-6DA26364595F}
 		{DDA61FB1-7F79-4AC2-ABC3-BE62E8E1F568} = {12A376A1-B1E7-41BC-93DD-ABBB56C4669A}
+		{64E22760-6A4E-499D-8B3C-552CC408D42F} = {86C6C60E-3D4D-4FDC-AC13-6DA26364595F}
 	EndGlobalSection
 EndGlobal
