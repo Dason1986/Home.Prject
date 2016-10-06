@@ -35,7 +35,9 @@ namespace Repository.EF.Mapping
         {
             modelBuilder.Configurations.Add(new AlbumEntityTypeConfiguration());
             modelBuilder.Configurations.Add(new PhotoEntityTypeConfiguration());
-            modelBuilder.Configurations.Add(new PhtotAttributeEntityTypeConfiguration());
+            modelBuilder.Configurations.Add(new PhotoAttributeEntityTypeConfiguration());
+            modelBuilder.Configurations.Add(new PhotoFingerprintEntityTypeConfiguration());
+            modelBuilder.Configurations.Add(new PhotoSimilarEntityTypeConfiguration());
 
 
         }

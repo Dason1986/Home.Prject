@@ -10,6 +10,7 @@ namespace Repository.EF.Mapping.FileAgg
         public FileInfoEntityTypeConfiguration()
         {
 
+            HasRequired(c => c.Photo).WithRequiredPrincipal();
             ToTable("FileInfo");
         }
     }

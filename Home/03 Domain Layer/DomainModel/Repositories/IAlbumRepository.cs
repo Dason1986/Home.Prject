@@ -3,7 +3,8 @@ using Library.Domain.Data;
 
 namespace DomainModel.Repositories
 {
-    public interface IPhotoRepository : IRepository<Photo>
+
+    public interface IAlbumRepository : IRepository<Album>
     {
     }
 }

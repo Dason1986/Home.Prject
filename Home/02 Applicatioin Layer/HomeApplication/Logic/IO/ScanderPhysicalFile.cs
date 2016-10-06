@@ -1,59 +1,67 @@
 ﻿using DomainModel.Repositories;
-using Library.ComponentModel.Model;
 using Repository;
 using Repository.ModuleProviders;
 using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
-namespace HomeApplication.IO
+namespace HomeApplication.Logic.IO
 {
-    public class FileManagement
+    public struct ScanderPhysicalFileOption : IOption
     {
+        public string Path { get; set; }
+
     }
-    public class CreatedInfo : ICreatedInfo
+    public class ScanderPhysicalFileOptionCommandBuilder : IOptionCommandBuilder<ScanderPhysicalFileOption>
     {
-        public DateTime Created
+        public ScanderPhysicalFileOption GetOption()
         {
-            get
+            return _option;
+        }
+        ScanderPhysicalFileOption _option;
+        IOption IOptionCommandBuilder.GetOption()
+        {
+            return _option;
+        }
+        public void RumCommandLine()
+        {
+            _option = new ScanderPhysicalFileOption();
+            LabCmd:
+            Console.Write("輸入指定掃描目標：");
+            var path = Console.ReadLine();
+            if (string.IsNullOrEmpty(path))
             {
-                return DateTime.Now;
+                Console.WriteLine("不能爲空");
+                goto LabCmd;
             }
-
-
+            if (!System.IO.Directory.Exists(path))
+            {
+                Console.WriteLine("目錄不存在");
+                goto LabCmd;
+            }
+            _option.Path = path;
         }
-
-        public string CreatedBy { get; protected set; }
-
-        static CreatedInfo()
-        {
-
-            ScanderPhysical = new CreatedInfo() { CreatedBy = "ScanderPhysical" };
-        }
-        public static CreatedInfo ScanderPhysical { get; private set; }
     }
 
-    public class ScanderPhysicalFile
+    public class ScanderPhysicalFile : BaseLogicService, ILogicService
     {
         public ScanderPhysicalFileOption Option { get; set; }
         string path;
         GalleryModuleProvider provider;
         IFileInfoRepository _filesRepository;
         MainBoundedContext dbcontext;
-        ICreatedInfo createinfo;
+
         int batchCount = 50;
-        public void Run()
+        public override void Run()
         {
+            Logger.Info("開始");
             if (string.IsNullOrEmpty(Option.Path)) throw new Exception("路徑爲空");
-            path = Option.Path.Substring(1, Option.Path.Length - 2);
+            path = Option.Path;
+            if (path[0] == '\'' || path[0] == '"') path = path.Substring(1, Option.Path.Length - 2);
             if (!System.IO.Directory.Exists(path)) System.IO.Directory.CreateDirectory(path);
             dbcontext = new MainBoundedContext();
             provider = new GalleryModuleProvider(dbcontext);
             _filesRepository = provider.CreateFileInfo();
             Scan(path);
-
+            dbcontext.Dispose();
         }
         void Scan(string dic)
         {
@@ -63,7 +71,8 @@ namespace HomeApplication.IO
             foreach (var item in files)
             {
                 count++;
-                Console.WriteLine(item);
+             
+                Logger.Info(item);
                 if (_filesRepository.FileExists(item)) continue;
                 var fileinfo = new DomainModel.Aggregates.FileAgg.FileInfo(CreatedInfo.ScanderPhysical);
                 System.IO.FileInfo sysInfo = new System.IO.FileInfo(item);
@@ -86,10 +95,29 @@ namespace HomeApplication.IO
                 Scan(item);
             }
         }
-    }
-    public struct ScanderPhysicalFileOption
-    {
-        public string Path { get; set; }
 
+        IOption ILogicService.Option
+        {
+            get { return this.Option; }
+            set { Option = (ScanderPhysicalFileOption)value; }
+        }
+
+        protected override IOption ServiceOption
+        {
+            get
+            {
+                return Option;
+            }
+
+            set
+            {
+                Option = (ScanderPhysicalFileOption)value;
+            }
+        }
+
+        void ILogicService.Run()
+        {
+            Run();
+        }
     }
 }

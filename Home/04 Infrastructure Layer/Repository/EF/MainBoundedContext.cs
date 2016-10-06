@@ -36,6 +36,8 @@ namespace Repository
         {
         }
 
+      
+
         protected override void OnModelCreating(DbModelBuilder modelBuilder)
         {
 

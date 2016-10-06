@@ -4,9 +4,10 @@ using Library.Domain.Data.EF;
 
 namespace Repository.Repositories
 {
-    public class PhotoRepository : Library.Domain.Data.EF.Repository<Photo>, IPhotoRepository
+
+    public class AlbumRepository : Library.Domain.Data.EF.Repository<Album>, IAlbumRepository
     {
-        public PhotoRepository(EFContext context) : base(context)
+        public AlbumRepository(EFContext context) : base(context)
         {
         }
     }

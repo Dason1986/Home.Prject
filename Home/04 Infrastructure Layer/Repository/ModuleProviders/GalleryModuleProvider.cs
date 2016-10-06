@@ -31,9 +31,19 @@ namespace Repository.ModuleProviders
             return new PhotoRepository(this.Context);
         }
 
-        public IPhtotAttributeRepository CreatePhtotAttribute()
+        public IPhotoAttributeRepository CreatePhotoAttribute()
         {
-            return new PhtotAttributeRepository(this.Context);
+            return new PhotoAttributeRepository(this.Context);
+        }
+
+        public IPhotoFingerprintRepository CreatePhotoFingerprint()
+        {
+            return new PhotoFingerprintRepository(this.Context);
+        }
+
+        public IPhotoSimilarRepository CreatePhotoSimilar()
+        {
+            return new PhotoSimilarRepository(this.Context);
         }
     }
 }

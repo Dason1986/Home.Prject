@@ -12,4 +12,9 @@
         Graphy,
         Scand
     }
+
+    public enum SimilarAlgorithm
+    {
+        GrayHistogram
+    }
 }

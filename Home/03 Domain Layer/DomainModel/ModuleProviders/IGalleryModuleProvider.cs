@@ -14,8 +14,12 @@ namespace DomainModel.ModuleProviders
 
         IAlbumRepository CreateAlbum();
 
-        IPhtotAttributeRepository CreatePhtotAttribute();
+        IPhotoAttributeRepository CreatePhotoAttribute();
 
         IFileInfoRepository CreateFileInfo();
+
+        IPhotoFingerprintRepository CreatePhotoFingerprint();
+
+        IPhotoSimilarRepository CreatePhotoSimilar();
     }
 }

@@ -1,0 +1,1 @@
+﻿insert Album (id,StatusCode,Created,CreatedBy) values(N'00000000-0000-0000-0000-000000000000',0,now(),N'CreateScript')
