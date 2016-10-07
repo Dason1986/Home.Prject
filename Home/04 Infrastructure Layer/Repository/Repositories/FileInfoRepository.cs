@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using Library.Domain.Data.EF;
 using DomainModel.Aggregates.FileAgg;
+using System;
 
 namespace Repository.Repositories
 {
@@ -17,9 +18,14 @@ namespace Repository.Repositories
             return Set.Any(n => n.FullPath == filepath);
         }
 
+        public bool FileExists(string mD5, long fileSize)
+        {
+            return Set.Any(n => n.MD5 == mD5&&n.FileSize==fileSize);
+        }
+
         public IEnumerable<FileInfo> GetFilesByExtensions(string[] extensions)
         {
-            return Set.Where(n => extensions.Contains(n.Extension));
+            return Set.Where(n => extensions.Contains(n.Extension)&& n.StatusCode== Library.ComponentModel.Model.StatusCode.Enabled);
         }
     }
 }

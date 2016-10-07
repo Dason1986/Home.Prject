@@ -1,5 +1,7 @@
 ﻿using DomainModel.Aggregates.GalleryAgg;
+using DomainModel.ModuleProviders;
 using DomainModel.Repositories;
+using Library;
 using NLog.Fluent;
 using Repository;
 using Repository.ModuleProviders;
@@ -16,7 +18,17 @@ namespace HomeApplication.Logic.IO
 
     public class PhotoFileAnalysis : BaseMultiThreadingLogicService
     {
-        public PhotoFileAnalysisOption Option { get; set; }
+        public   PhotoFileAnalysisOption Option
+        {
+            get { return _option; }
+            set
+            {
+                _option = value;
+              
+            }
+        }
+
+        PhotoFileAnalysisOption _option;
         protected override IOption ServiceOption
         {
             get
@@ -41,9 +53,9 @@ namespace HomeApplication.Logic.IO
 
             var take = endindex - beginindex;
 
-            using (MainBoundedContext dbcontext = new MainBoundedContext())
+             
             {
-                GalleryModuleProvider provider = new GalleryModuleProvider(dbcontext);
+                var provider = Bootstrap.Currnet.GetService<IGalleryModuleProvider>();
                 IFileInfoRepository _filesRepository = provider.CreateFileInfo();
 
 
@@ -217,8 +229,7 @@ namespace HomeApplication.Logic.IO
 
         protected override int GetTotalRecord()
         {
-            MainBoundedContext dbcontext = new MainBoundedContext();
-            GalleryModuleProvider provider = new GalleryModuleProvider(dbcontext);
+            var provider = Bootstrap.Currnet.GetService<IGalleryModuleProvider>();
             IFileInfoRepository _filesRepository = provider.CreateFileInfo();
 
             var filecount = _filesRepository.GetFilesByExtensions(Option.ImageTypes).Count();
@@ -255,6 +266,7 @@ namespace HomeApplication.Logic.IO
 
                 return;
             }
+            Console.WriteLine();
             LabCmd:
             Console.Write("輸入圖像類型（,分隔）：");
             var path = Console.ReadLine();

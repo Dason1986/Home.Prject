@@ -36,7 +36,8 @@
     <Reference Include="Library.Domain">
       <HintPath>..\..\Lib\Library.Domain.dll</HintPath>
     </Reference>
-    <Reference Include="Library.Domain.Data">
+    <Reference Include="Library.Domain.Data, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
       <HintPath>..\..\Lib\Library.Domain.Data.dll</HintPath>
     </Reference>
     <Reference Include="System" />

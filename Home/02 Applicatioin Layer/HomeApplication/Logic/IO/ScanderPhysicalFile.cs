@@ -1,4 +1,7 @@
-﻿using DomainModel.Repositories;
+﻿using DomainModel.ModuleProviders;
+using DomainModel.Repositories;
+using Library;
+using Library.Domain.Data.EF;
 using Repository;
 using Repository.ModuleProviders;
 using System;
@@ -41,27 +44,46 @@ namespace HomeApplication.Logic.IO
         }
     }
 
-    public class ScanderPhysicalFile : BaseLogicService, ILogicService
+    public class ScanderPhysicalFile : BaseLogicService
     {
-        public ScanderPhysicalFileOption Option { get; set; }
-        string path;
-        GalleryModuleProvider provider;
-        IFileInfoRepository _filesRepository;
-        MainBoundedContext dbcontext;
+        public   ScanderPhysicalFileOption Option
+        {
+            get { return _option; }
+            set
+            {
+                _option = value;
+              
+            }
+        }
+        protected override IOption ServiceOption
+        {
+            get
+            {
+                return Option;
+            }
 
+            set
+            {
+                Option = (ScanderPhysicalFileOption)value;
+            }
+        }
+        ScanderPhysicalFileOption _option;
+        string path;
+        IGalleryModuleProvider provider;
+        IFileInfoRepository _filesRepository;
+          
         int batchCount = 50;
-        public override void Run()
+        protected override void OnDowrok()
         {
             Logger.Info("開始");
             if (string.IsNullOrEmpty(Option.Path)) throw new Exception("路徑爲空");
             path = Option.Path;
             if (path[0] == '\'' || path[0] == '"') path = path.Substring(1, Option.Path.Length - 2);
             if (!System.IO.Directory.Exists(path)) System.IO.Directory.CreateDirectory(path);
-            dbcontext = new MainBoundedContext();
-            provider = new GalleryModuleProvider(dbcontext);
+            provider= Bootstrap.Currnet.GetService<IGalleryModuleProvider>();
             _filesRepository = provider.CreateFileInfo();
             Scan(path);
-            dbcontext.Dispose();
+           
         }
         void Scan(string dic)
         {
@@ -71,7 +93,7 @@ namespace HomeApplication.Logic.IO
             foreach (var item in files)
             {
                 count++;
-             
+
                 Logger.Info(item);
                 if (_filesRepository.FileExists(item)) continue;
                 var fileinfo = new DomainModel.Aggregates.FileAgg.FileInfo(CreatedInfo.ScanderPhysical);
@@ -81,6 +103,7 @@ namespace HomeApplication.Logic.IO
                 fileinfo.FileName = sysInfo.Name;
                 fileinfo.MD5 = Library.HelperUtility.FileUtility.FileMD5(item);
                 if (sysInfo.Exists) fileinfo.FileSize = sysInfo.Length;
+                if (_filesRepository.FileExists(fileinfo.MD5, fileinfo.FileSize)) fileinfo.StatusCode = Library.ComponentModel.Model.StatusCode.Disabled;
                 _filesRepository.Add(fileinfo);
                 if (count >= batchCount)
                 {
@@ -96,28 +119,10 @@ namespace HomeApplication.Logic.IO
             }
         }
 
-        IOption ILogicService.Option
-        {
-            get { return this.Option; }
-            set { Option = (ScanderPhysicalFileOption)value; }
-        }
 
-        protected override IOption ServiceOption
-        {
-            get
-            {
-                return Option;
-            }
 
-            set
-            {
-                Option = (ScanderPhysicalFileOption)value;
-            }
-        }
+    
 
-        void ILogicService.Run()
-        {
-            Run();
-        }
+
     }
 }

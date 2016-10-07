@@ -1,5 +1,7 @@
 ﻿using DomainModel;
 using DomainModel.Aggregates.GalleryAgg;
+using DomainModel.ModuleProviders;
+using Library;
 using Repository;
 using Repository.ModuleProviders;
 using System;
@@ -10,31 +12,32 @@ namespace HomeApplication.Logic.IO
 {
     public class PhotoSimilarBuildFingerprint : BaseMultiThreadingLogicService
     {
+       
+       
+     
         protected override IOption ServiceOption
         {
             get
             {
-                return Option;
+                return _option;
             }
 
             set
             {
-                Option = (EmptyOption)value;
+                _option = (EmptyOption)value;
             }
         }
-        public EmptyOption Option { get; set; }
-
+        EmptyOption _option;
 
         protected override int GetTotalRecord()
         {
-            using (MainBoundedContext dbcontext = new MainBoundedContext())
-            {
-                GalleryModuleProvider provider = new GalleryModuleProvider(dbcontext);
+           
+                var provider = Bootstrap.Currnet.GetService<IGalleryModuleProvider>();
                 var _photoRepository = provider.CreatePhoto();
 
                 var filecount = _photoRepository.GetAll().Count();
                 return filecount;
-            }
+            
         }
 
         protected override void ThreadProssSize(int beginindex, int endindex)
@@ -45,20 +48,20 @@ namespace HomeApplication.Logic.IO
 
 
 
-            using (MainBoundedContext dbcontext = new MainBoundedContext())
+          //  using (MainBoundedContext dbcontext = new MainBoundedContext())
             {
                 var take = endindex - beginindex;
 
-                GalleryModuleProvider provider = new GalleryModuleProvider(dbcontext);
+                var provider = Bootstrap.Currnet.GetService<IGalleryModuleProvider>();
                 var _photoRepository = provider.CreatePhoto();
                 var photoFingerprintRepository = provider.CreatePhotoFingerprint();
 
                 var photolist = _photoRepository.GetAll().OrderBy(n => n.ID).Skip(beginindex).Take(take).ToList();
-                Library.Draw.SimilarImages.GrayHistogram _grayHistogram = new Library.Draw.SimilarImages.GrayHistogram();
-                _grayHistogram.Live = Library.Draw.SimilarImages.LiveEnum.Pixels256;
+                Library.Draw.SimilarImages.PerceptualHash _grayHistogram = new Library.Draw.SimilarImages.PerceptualHash();
+                _grayHistogram.Live = Library.Draw.SimilarImages.LiveEnum.Pixels32;
                 foreach (var item in photolist)
                 {
-                    if (photoFingerprintRepository.Exist(item.ID, SimilarAlgorithm.GrayHistogram)) continue;
+                    if (photoFingerprintRepository.Exist(item.ID, SimilarAlgorithm.PerceptualHash)) continue;
                     Logger.Info(item.File.FileName);
                     #region MyRegion
                     Image image = null;
@@ -78,7 +81,7 @@ namespace HomeApplication.Logic.IO
                     var fingerprint = _grayHistogram.BuildFingerprint(image);
                     var photoFingerprint = new PhotoFingerprint(CreatedInfo.BuildFingerprint)
                     {
-                        Algorithm = SimilarAlgorithm.GrayHistogram,
+                        Algorithm = SimilarAlgorithm.PerceptualHash,
                         PhotoID = item.ID,
                         //    Owner = item,
                         Fingerprint = fingerprint

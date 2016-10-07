@@ -8,5 +8,6 @@ namespace DomainModel.Repositories
     {
         bool FileExists(string filepath);
         IEnumerable<FileInfo> GetFilesByExtensions(string[] extensions);
+        bool FileExists(string mD5, long fileSize);
     }
 }

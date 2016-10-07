@@ -12,7 +12,7 @@ namespace Repository.ModuleProviders
 {
     public class GalleryModuleProvider : ModuleProvider, IGalleryModuleProvider
     {
-        public GalleryModuleProvider(MainBoundedContext context) : base(context)
+        public GalleryModuleProvider(EFContext context) : base(context)
         {
 
         }

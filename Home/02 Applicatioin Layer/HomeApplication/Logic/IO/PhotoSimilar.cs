@@ -1,17 +1,42 @@
 ﻿using Repository;
 using Repository.ModuleProviders;
-using Repository.Repositories;
 using System;
 using System.Linq;
+using Library.Draw.SimilarImages;
+using DomainModel.Aggregates.GalleryAgg;
+using System.Collections.Generic;
+using DomainModel.ModuleProviders;
+using Library;
 
 namespace HomeApplication.Logic.IO
 {
     public class PhotoSimilarOption : IOption
     {
-        public decimal Similarity { get; set; }
+        public double Similarity { get; set; }
+
+        public DomainModel.SimilarAlgorithm AlgorithmType { get; set; }
     }
     public class PhotoSimilar : BaseMultiThreadingLogicService
     {
+        public PhotoSimilar()
+        {
+            BatchSize = 5;
+
+            ThreadCount = 2;
+        }
+
+
+        public PhotoSimilarOption Option
+        {
+            get { return _option; }
+            set
+            {
+                _option = value;
+
+            }
+        }
+
+        PhotoSimilarOption _option;
         protected override IOption ServiceOption
         {
             get
@@ -24,59 +49,105 @@ namespace HomeApplication.Logic.IO
                 Option = (PhotoSimilarOption)value;
             }
         }
-        public PhotoSimilarOption Option { get; set; }
+
+
+
 
         protected override int GetTotalRecord()
         {
 
-            using (MainBoundedContext dbcontext = new MainBoundedContext())
+         //   using (MainBoundedContext dbcontext = new MainBoundedContext())
             {
-                GalleryModuleProvider provider = new GalleryModuleProvider(dbcontext);
+                var provider = Bootstrap.Currnet.GetService<IGalleryModuleProvider>();
 
                 var _photoRepository = provider.CreatePhotoFingerprint();
 
-                var filecount = _photoRepository.GetAll().Count();
+                var filecount = _photoRepository.GetAll().Where(n => n.Algorithm == Option.AlgorithmType).Count();
                 return filecount;
             }
 
         }
+        ISimilarAlgorithm similarImages;
+        protected override bool OnVerification()
+        {
+            switch (Option.AlgorithmType)
+            {
 
+                case DomainModel.SimilarAlgorithm.PerceptualHash:
+                    similarImages = new PerceptualHash();
+                    break;
+                case DomainModel.SimilarAlgorithm.GrayHistogram:
+                    similarImages = new GrayHistogram();
+                    break;
+
+            }
+
+            similarImages.Similarity = this.Option.Similarity;
+            return base.OnVerification();
+        }
+        //  IList<PhotoFingerprint> Fingerprints;
         protected override void ThreadProssSize(int beginindex, int endindex)
         {
-            using (MainBoundedContext dbcontext = new MainBoundedContext())
+
+            Logger.Info(string.Format("beginindex:{0} endindex:{1}", beginindex, endindex), 4);
+
+            try
             {
-                Logger.Info(string.Format("beginindex:{0} endindex:{1}", beginindex, endindex), 4);
-                Library.Draw.SimilarImages.GrayHistogram _grayHistogram = new Library.Draw.SimilarImages.GrayHistogram();
-                GalleryModuleProvider provider = new GalleryModuleProvider(dbcontext);
-                var _photoRepository = provider.CreatePhotoFingerprint();
-
-                var take = endindex - beginindex;
-                var list = _photoRepository.GetAll().OrderBy(n => n.ID).Skip(beginindex).Take(take).ToList();
-
-                MainBoundedContext dbcontexComper = new MainBoundedContext();
-                Library.Domain.Data.EF.UnitOfWork unitOfWork = new Library.Domain.Data.EF.UnitOfWork(dbcontexComper);
-                var _photoSimilarRepository = new PhotoSimilarRepository(dbcontexComper);
-                foreach (var leftitem in list)
+               
                 {
-                    foreach (var rightitem in _photoRepository.GetAll())
+
+                    var provider = Bootstrap.Currnet.GetService<IGalleryModuleProvider>();
+                    var _photoRepository = provider.CreatePhotoFingerprint();
+
+                    var take = endindex - beginindex;
+                    var list = _photoRepository.GetAll().OrderBy(n => n.ID).Skip(beginindex).Take(take).ToList();
+                    var _photoSimilarRepository = provider.CreatePhotoSimilar();
+
+                    foreach (var leftitem in list)
                     {
-                        if (leftitem.ID == rightitem.ID) continue;
-                        if (_photoSimilarRepository.Exist(leftitem.PhotoID, rightitem.PhotoID)) continue;
-                        var result = _grayHistogram.Compare(leftitem.Fingerprint, rightitem.Fingerprint);
-                        if (result.IsSame)
+
+                        Logger.Info(leftitem.Owner.File.FileName);
+                        try
                         {
-                            _photoSimilarRepository.Add(new DomainModel.Aggregates.GalleryAgg.PhotoSimilar(CreatedInfo.PhotoSimilar)
+
+                            var Fingerprints = _photoRepository.GetAll().OrderBy(n => n.ID).Where(n => n.Algorithm == Option.AlgorithmType);
+                            foreach (var rightitem in Fingerprints)
                             {
-                                LeftPhotoID = leftitem.PhotoID,
-                                RightPhotoID = rightitem.PhotoID
-                            });
+                                if (leftitem.ID == rightitem.ID) continue;
+                                // if (leftitem.Algorithm != rightitem.Algorithm) continue;
+
+                                var result = similarImages.Compare(leftitem.Fingerprint, rightitem.Fingerprint);
+                                var isSame = result.IsSame;
+
+                                if (isSame)
+                                {
+                                    if (_photoSimilarRepository.Exist(leftitem.PhotoID, rightitem.PhotoID)) continue;
+                                    Logger.Info("same:{0} - {1}", leftitem.Owner.File.FileName, rightitem.Owner.File.FileName);
+                                    _photoSimilarRepository.Add(new DomainModel.Aggregates.GalleryAgg.PhotoSimilar(CreatedInfo.PhotoSimilar)
+                                    {
+                                        LeftPhotoID = leftitem.PhotoID,
+                                        RightPhotoID = rightitem.PhotoID
+                                    });
+                                    provider.UnitOfWork.Commit();
+                                }
+                            }
 
                         }
+                        catch (Exception ex)
+                        {
+                            var message = ExceptionProvider.ProvideFault(ex);
+                            Logger.Error(ex, string.Format("file:{0} ,比較失敗!{1}", leftitem.Owner.File.FileName, message));
+                        }
                     }
-                    unitOfWork.Commit();
+
+
                 }
+            }
+            catch (Exception ex)
+            {
 
-
+                var message = ExceptionProvider.ProvideFault(ex);
+                Logger.Error(ex, string.Format("{0}-{1}比較失敗!{2}", beginindex, endindex, message));
             }
         }
     }
@@ -99,10 +170,12 @@ namespace HomeApplication.Logic.IO
             if (key.Key == ConsoleKey.Y)
             {
                 Console.WriteLine();
-                _option.Similarity = 80; ;
+                _option.AlgorithmType = DomainModel.SimilarAlgorithm.PerceptualHash;
+                _option.Similarity = 5;
 
                 return;
             }
+            Console.WriteLine();
             LabCmd:
             Console.Write("輸入圖像正確率：");
             var path = Console.ReadLine();
@@ -111,7 +184,7 @@ namespace HomeApplication.Logic.IO
                 Console.WriteLine("不能爲空");
                 goto LabCmd;
             }
-            var dimilarity = Library.HelperUtility.StringUtility.TryCast<decimal>(path);
+            var dimilarity = Library.HelperUtility.StringUtility.TryCast<double>(path);
             if (dimilarity.HasError)
             {
                 Console.WriteLine("無效輸入");

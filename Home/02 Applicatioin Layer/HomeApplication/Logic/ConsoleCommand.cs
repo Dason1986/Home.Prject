@@ -17,7 +17,17 @@ namespace HomeApplication.Logic
 
         public ConsoleCommand(string[] args)
         {
+            AppDomain.CurrentDomain.UnhandledException += CurrentDomain_UnhandledException;
             this.args = args;
+        }
+
+        private void CurrentDomain_UnhandledException(object sender, UnhandledExceptionEventArgs e)
+        {
+            if (e.ExceptionObject is Exception)
+            {
+                var Logger = LogManager.GetCurrentClassLogger();
+                Logger.Error(e.ExceptionObject as Exception, "未知錯誤！");
+            }
         }
 
         public void Run()
@@ -52,6 +62,11 @@ namespace HomeApplication.Logic
                 Key = "4",
                 CommandClassType = typeof(PhotoSimilar),
                 OptionBuilderType = typeof(PhotoSimilarOptionCommandBuilder)
+            } , new CommandMenu() {
+                Name = "刪除重複文件信息",
+                Key = "5",
+                CommandClassType = typeof(FileDistinct),
+                OptionBuilderType = typeof(EmptyOptionCommandBuilder)
             }};
         class CommandMenu
         {
@@ -92,7 +107,7 @@ namespace HomeApplication.Logic
                     var logicService = Library.HelperUtility.FastReflectionExtensions.CreateInstance<ILogicService>(itemmenu.CommandClassType);
                     optionBuilder.RumCommandLine();
                     logicService.Option = optionBuilder.GetOption();
-                    logicService.Run();
+                    logicService.Start();
                     Console.Write("執行完成，按任意鍵繼續。");
                 }
                 catch (Exception ex)

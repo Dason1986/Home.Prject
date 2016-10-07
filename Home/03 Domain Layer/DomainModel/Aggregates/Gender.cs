@@ -15,6 +15,7 @@
 
     public enum SimilarAlgorithm
     {
-        GrayHistogram
+        GrayHistogram,
+        PerceptualHash
     }
 }
