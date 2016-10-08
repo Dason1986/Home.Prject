@@ -7,7 +7,7 @@ using System.Linq;
 
 namespace HomeApplication.Logic.IO
 {
-    public class FileDistinct : BaseMultiThreadingLogicService
+    public class DeleteFileDistinctByMD5 : BaseMultiThreadingLogicService
     {
       
 

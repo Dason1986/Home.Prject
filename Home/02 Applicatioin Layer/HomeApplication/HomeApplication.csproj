@@ -87,9 +87,9 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="ConsoleAppBootstrap.cs" />
-    <Compile Include="Logic\IO\CreatedInfo.cs" />
-    <Compile Include="Logic\IO\ExceptionProvider.cs" />
-    <Compile Include="Logic\IO\FileDistinct.cs" />
+    <Compile Include="CreatedInfo.cs" />
+    <Compile Include="ExceptionProvider.cs" />
+    <Compile Include="Logic\IO\DeleteFileDistinctByMD5.cs" />
     <Compile Include="Logic\IO\PhotoFileAnalysis.cs" />
     <Compile Include="Logic\ConsoleCommand.cs" />
     <Compile Include="Logic\ILogicService.cs" />

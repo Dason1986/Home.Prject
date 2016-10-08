@@ -51,7 +51,7 @@ namespace HomeApplication.Logic.IO
             #region MyRegion
 
 
-            var take = endindex - beginindex;
+            var take = BatchSize;
 
              
             {

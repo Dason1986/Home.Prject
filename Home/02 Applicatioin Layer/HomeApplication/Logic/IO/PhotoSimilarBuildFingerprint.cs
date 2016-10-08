@@ -12,9 +12,9 @@ namespace HomeApplication.Logic.IO
 {
     public class PhotoSimilarBuildFingerprint : BaseMultiThreadingLogicService
     {
-       
-       
-     
+
+
+
         protected override IOption ServiceOption
         {
             get
@@ -31,13 +31,13 @@ namespace HomeApplication.Logic.IO
 
         protected override int GetTotalRecord()
         {
-           
-                var provider = Bootstrap.Currnet.GetService<IGalleryModuleProvider>();
-                var _photoRepository = provider.CreatePhoto();
 
-                var filecount = _photoRepository.GetAll().Count();
-                return filecount;
-            
+            var provider = Bootstrap.Currnet.GetService<IGalleryModuleProvider>();
+            var _photoRepository = provider.CreatePhoto();
+
+            var filecount = _photoRepository.GetAll().Count();
+            return filecount;
+
         }
 
         protected override void ThreadProssSize(int beginindex, int endindex)
@@ -48,9 +48,9 @@ namespace HomeApplication.Logic.IO
 
 
 
-          //  using (MainBoundedContext dbcontext = new MainBoundedContext())
+            //  using (MainBoundedContext dbcontext = new MainBoundedContext())
             {
-                var take = endindex - beginindex;
+                var take = BatchSize;
 
                 var provider = Bootstrap.Currnet.GetService<IGalleryModuleProvider>();
                 var _photoRepository = provider.CreatePhoto();

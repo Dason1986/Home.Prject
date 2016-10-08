@@ -208,7 +208,7 @@ namespace HomeApplication.Logic
             if (total <= ThreadCount || ThreadCount == 1)
             {
 
-                ThreadPross(0, (int)TotalRecord);
+                ThreadPross(0, (int)TotalRecord-1);
 
             }
             else
@@ -227,7 +227,7 @@ namespace HomeApplication.Logic
                             end = (int)TotalRecord;
                         }
 
-                        ThreadPross(beging, end);
+                        ThreadPross(beging, end-1);
 
                     });
 

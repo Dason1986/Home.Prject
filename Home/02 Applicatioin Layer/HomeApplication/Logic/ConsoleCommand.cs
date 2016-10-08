@@ -63,9 +63,9 @@ namespace HomeApplication.Logic
                 CommandClassType = typeof(PhotoSimilar),
                 OptionBuilderType = typeof(PhotoSimilarOptionCommandBuilder)
             } , new CommandMenu() {
-                Name = "刪除重複文件信息",
+                Name = "刪除重複文件信息(MD5)",
                 Key = "5",
-                CommandClassType = typeof(FileDistinct),
+                CommandClassType = typeof(DeleteFileDistinctByMD5),
                 OptionBuilderType = typeof(EmptyOptionCommandBuilder)
             }};
         class CommandMenu

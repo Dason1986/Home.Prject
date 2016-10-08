@@ -1,7 +1,7 @@
 ﻿using Library.ComponentModel.Model;
 using System;
 
-namespace HomeApplication.Logic.IO
+namespace HomeApplication
 {
 
     public class CreatedInfo : ICreatedInfo

@@ -3,7 +3,7 @@ using System.Data.Entity.Core;
 using System.Data.Entity.Validation;
 using System.Text;
 
-namespace HomeApplication.Logic.IO
+namespace HomeApplication
 {
     public static class ExceptionProvider
     {
