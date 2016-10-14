@@ -163,7 +163,7 @@ namespace HomeApplication.Logic
             //      Logger.Info(string.Format("begin:{0} end:{1}", begin, end - 1));
             for (long index = begin; index < end; index = index + size)
             {
-                var endindex = index + size;
+                var endindex = index + size-1;
                 if (endindex >= end) endindex = end;
                 try
                 {

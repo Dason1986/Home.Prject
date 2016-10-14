@@ -34,9 +34,6 @@ namespace HomeApplication
             Logger.Info(" 注入 db");
             _containerBuilder.RegisterType<MainBoundedContext>().As<EFContext>();
 
-            Logger.Info(" 注入 ModuleProvider");
-            _containerBuilder.RegisterType<GalleryModuleProvider>().As<IGalleryModuleProvider>();
-
             Logger.Info(" 注入 Repository");
             _containerBuilder.RegisterType<AlbumRepository>().As<IAlbumRepository>();
             _containerBuilder.RegisterType<FileInfoRepository>().As<IFileInfoRepository>();
@@ -45,13 +42,17 @@ namespace HomeApplication
             _containerBuilder.RegisterType<PhotoRepository>().As<IPhotoRepository>();
             _containerBuilder.RegisterType<PhotoSimilarRepository>().As<IPhotoSimilarRepository>();
 
+            Logger.Info(" 注入 ModuleProvider");
+            _containerBuilder.RegisterType<GalleryModuleProvider>().As<IGalleryModuleProvider>();
+
+
             Logger.Info(" 注入 DomainService");
             _containerBuilder.RegisterType<DomainEventBus>().As<IDomainEventBus>();
 
 
             Logger.Info(" 注入 Jobs");
 
-
+          
             _container = _containerBuilder.Build();
         }
         public override T GetService<T>()

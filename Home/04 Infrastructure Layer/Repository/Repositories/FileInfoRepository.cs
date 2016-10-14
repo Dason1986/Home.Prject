@@ -23,6 +23,11 @@ namespace Repository.Repositories
             return Set.Any(n => n.MD5 == mD5&&n.FileSize==fileSize);
         }
 
+        public FileInfo GetByFullPath(string file)
+        {
+            return Set.FirstOrDefault(n => n.FullPath == file);
+        }
+
         public IEnumerable<FileInfo> GetFilesByExtensions(string[] extensions)
         {
             return Set.Where(n => extensions.Contains(n.Extension)&& n.StatusCode== Library.ComponentModel.Model.StatusCode.Enabled);

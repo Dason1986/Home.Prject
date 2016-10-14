@@ -88,7 +88,7 @@ namespace HomeApplication.Logic.IO
                     };
                     photoFingerprintRepository.Add(photoFingerprint);
                     provider.UnitOfWork.Commit();
-
+                    image.Dispose();
 
 
 
