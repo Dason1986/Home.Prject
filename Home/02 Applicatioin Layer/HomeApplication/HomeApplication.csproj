@@ -57,11 +57,13 @@
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\..\Lib\Library.Core.dll</HintPath>
     </Reference>
-    <Reference Include="Library.Domain, Version=1.0.0.0, Culture=neutral, PublicKeyToken=712eb980f01a2dfe, processorArchitecture=MSIL">
-      <SpecificVersion>False</SpecificVersion>
+    <Reference Include="Library.Domain">
       <HintPath>..\..\Lib\Library.Domain.dll</HintPath>
     </Reference>
-    <Reference Include="Library.Domain.Data, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null" />
+    <Reference Include="Library.Domain.Data, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\Lib\Library.Domain.Data.dll</HintPath>
+    </Reference>
     <Reference Include="Library.Draw, Version=1.0.0.0, Culture=neutral, PublicKeyToken=6ba171779e958f36, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\..\Lib\Library.Draw.dll</HintPath>
@@ -88,6 +90,8 @@
   <ItemGroup>
     <Compile Include="ConsoleAppBootstrap.cs" />
     <Compile Include="CreatedInfo.cs" />
+    <Compile Include="DomainServices\AddPhotoDomainService.cs" />
+    <Compile Include="DomainServices\DomainService.cs" />
     <Compile Include="ExceptionProvider.cs" />
     <Compile Include="Logic\IO\DeleteFileDistinctByMD5.cs" />
     <Compile Include="Logic\IO\PhotoFileAnalysis.cs" />
@@ -97,6 +101,8 @@
     <Compile Include="Logic\IO\PhotoSimilarBuildFingerprint.cs" />
     <Compile Include="Logic\IO\ScanderPhysicalFile.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Services\GalleryServiceImpl.cs" />
+    <Compile Include="Services\ServiceImpl.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />

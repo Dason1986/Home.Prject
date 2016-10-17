@@ -7,87 +7,7 @@ using System.Threading;
 namespace HomeApplication.Logic
 {
 
-    public interface ILogicService
-    {
-        IOption Option { get; set; }
 
-        void Start();
-
-    }
-
-    public interface IOption
-    {
-
-    }
-    public interface IMultiThreadingOption : IOption
-    {
-        int ThreadCount { get; set; }
-        int BatchSize { get; set; }
-    }
-    public interface IOptionCommandBuilder
-    {
-        void RumCommandLine();
-        IOption GetOption();
-    }
-    public interface IOptionCommandBuilder<TOption> : IOptionCommandBuilder where TOption : IOption
-    {
-
-
-        new TOption GetOption();
-    }
-    public sealed class EmptyOption : IOption
-    {
-        static EmptyOption()
-        {
-            Epmty = new EmptyOption();
-
-        }
-        public static EmptyOption Epmty { get; set; }
-    }
-    public class EmptyOptionCommandBuilder : IOptionCommandBuilder
-    {
-        public IOption GetOption()
-        {
-            return EmptyOption.Epmty;
-        }
-
-        public void RumCommandLine()
-        {
-
-        }
-    }
-    public class LogicServiceProgress : EventArgs
-    {
-
-
-        public LogicServiceProgress(long totalRecord, long completedRecord, long beginIndex, long endIndex)
-        {
-            TotalRecord = totalRecord;
-            CompletedRecord = completedRecord;
-            BeginIndex = beginIndex;
-            EndIndex = endIndex;
-        }
-
-        public long TotalRecord { get; protected set; }
-        public long CompletedRecord { get; protected set; }
-
-        public long BeginIndex { get; protected set; }
-        public long EndIndex { get; protected set; }
-    }
-
-    public class LogicServiceFailure : EventArgs
-    {
-        public LogicServiceFailure(Exception error, long beginIndex, long endIndex)
-        {
-            Error = error;
-            BeginIndex = beginIndex;
-            EndIndex = endIndex;
-        }
-
-        public Exception Error { get; protected set; }
-        public long BeginIndex { get; protected set; }
-        public long EndIndex { get; protected set; }
-    }
     public abstract class BaseMultiThreadingLogicService : BaseLogicService
     {
         public BaseMultiThreadingLogicService()
@@ -163,7 +83,7 @@ namespace HomeApplication.Logic
             //      Logger.Info(string.Format("begin:{0} end:{1}", begin, end - 1));
             for (long index = begin; index < end; index = index + size)
             {
-                var endindex = index + size-1;
+                var endindex = index + size - 1;
                 if (endindex >= end) endindex = end;
                 try
                 {
@@ -208,7 +128,7 @@ namespace HomeApplication.Logic
             if (total <= ThreadCount || ThreadCount == 1)
             {
 
-                ThreadPross(0, (int)TotalRecord-1);
+                ThreadPross(0, (int)TotalRecord - 1);
 
             }
             else
@@ -227,7 +147,7 @@ namespace HomeApplication.Logic
                             end = (int)TotalRecord;
                         }
 
-                        ThreadPross(beging, end-1);
+                        ThreadPross(beging, end - 1);
 
                     });
 
@@ -248,8 +168,10 @@ namespace HomeApplication.Logic
     {
         public BaseLogicService()
         {
-            Logger = LogManager.GetCurrentClassLogger();
+            Logger = LogManager.GetLogger(this.GetType().FullName);
+            //   logerName = this.GetType().FullName;
         }
+
         protected NLog.ILogger Logger { get; set; }
         IOption ILogicService.Option
         {
@@ -268,6 +190,8 @@ namespace HomeApplication.Logic
         public event EventHandler Completed;
         protected void OnCompleted(TimeSpan usetime)
         {
+
+            Logger.Trace("完成執行");
             var handler = Completed;
             if (handler == null) return;
             SynchronizationContext.Current.Post(n =>
@@ -281,13 +205,15 @@ namespace HomeApplication.Logic
         {
             if (!OnVerification())
             {
-                Logger.Warn(string.Format("驗證失敗"), 1);
+                Logger.Warn("驗證失敗");
+
                 return;
             }
 
             Stopwatch watch = new Stopwatch();
             watch.Start();
-            Logger.Info(string.Format("開始執行"), 1);
+            Logger.Trace("開始執行");
+
             OnDowrok();
             watch.Stop();
             OnCompleted(watch.Elapsed);

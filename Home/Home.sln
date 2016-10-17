@@ -21,6 +21,7 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "06 Documnet", "06 Documnet"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Dev", "Dev", "{2EB35976-5C0F-4B24-A66D-E6262D114418}"
 	ProjectSection(SolutionItems) = preProject
+		..\Documnet\Dev\DomainEventBus.txt = ..\Documnet\Dev\DomainEventBus.txt
 		..\Documnet\Dev\EF.txt = ..\Documnet\Dev\EF.txt
 	EndProjectSection
 EndProject

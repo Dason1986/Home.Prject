@@ -1,6 +1,8 @@
 ﻿using Autofac;
+using DomainModel.DomainServices;
 using DomainModel.ModuleProviders;
 using DomainModel.Repositories;
+using HomeApplication.DomainServices;
 using Library;
 using Library.Domain.Data;
 using Library.Domain.Data.EF;
@@ -47,12 +49,13 @@ namespace HomeApplication
 
 
             Logger.Info(" 注入 DomainService");
-            _containerBuilder.RegisterType<DomainEventBus>().As<IDomainEventBus>();
-
+      //      _containerBuilder.RegisterType<DomainEventBus>().As<IDomainEventBus>();
+            _containerBuilder.RegisterType<AddPhotoDomainService>().As<IDomainService<PhotoItemEventArgs>, IAddPhotoDomainService>();
+            //   _containerBuilder.RegisterType<DomainEventBus>().Named<IDomainEventBus>("DomainEventBus").As<IDomainEventBus>();
 
             Logger.Info(" 注入 Jobs");
 
-          
+
             _container = _containerBuilder.Build();
         }
         public override T GetService<T>()
@@ -61,6 +64,13 @@ namespace HomeApplication
             return _container.Resolve<T>();
         }
 
+        public override T GetService<T>(string name)
+        {
+
+            return _container.ResolveNamed<T>(name);
+        }
 
     }
+   
+   
 }

@@ -1,0 +1,12 @@
+
+
+            Library.Domain.Data.DomainEventBus bus = new Library.Domain.Data.DomainEventBus();
+            bus.Publish<DomainModel.DomainServices.IAddPhotoDomainService>(new DomainModel.DomainServices.PhotoItemEventArgs());
+            //一次只報告一個事件
+
+            var filep = new DomainModel.Aggregates.FileAgg.FileProcess(Guid.Empty);
+            filep.CreatePhotoInfo();
+            filep.BuildFingerprint();
+            filep.Publish();
+            //一次執行多個事件
+         

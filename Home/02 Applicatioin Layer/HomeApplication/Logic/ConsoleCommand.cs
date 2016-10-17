@@ -1,5 +1,6 @@
 ﻿
 using HomeApplication.Logic.IO;
+using Library.ComponentModel.Logic;
 using NLog;
 using Repository;
 using Repository.ModuleProviders;
@@ -19,6 +20,7 @@ namespace HomeApplication.Logic
         {
             AppDomain.CurrentDomain.UnhandledException += CurrentDomain_UnhandledException;
             this.args = args;
+           
         }
 
         private void CurrentDomain_UnhandledException(object sender, UnhandledExceptionEventArgs e)
@@ -99,7 +101,7 @@ namespace HomeApplication.Logic
             builder.AppendLine("--------------------------------");
             foreach (var item in menus)
             {
-                builder.AppendFormat("{0} ) {1}",GetShow( item.Key), item.Name);
+                builder.AppendFormat("{0} ) {1}", GetShow(item.Key), item.Name);
                 builder.AppendLine();
             }
             builder.AppendLine("--------------------------------");
@@ -155,31 +157,31 @@ namespace HomeApplication.Logic
         {
             switch (key)
             {
-              
+
                 case ConsoleKey.D0:
-                    
+
                 case ConsoleKey.D1:
-                    
+
                 case ConsoleKey.D2:
-                    
+
                 case ConsoleKey.D3:
-                    
+
                 case ConsoleKey.D4:
-                    
+
                 case ConsoleKey.D5:
-                    
+
                 case ConsoleKey.D6:
-                    
+
                 case ConsoleKey.D7:
-                    
+
                 case ConsoleKey.D8:
-                    
+
                 case ConsoleKey.D9:
                     return key.ToString()[1];
 
                 default:
                     return key;
-                    
+
             }
         }
     }

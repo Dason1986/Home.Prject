@@ -1,6 +1,7 @@
 ﻿using DomainModel.ModuleProviders;
 using DomainModel.Repositories;
 using Library;
+using Library.ComponentModel.Logic;
 using Library.Domain.Data.EF;
 using Repository;
 using Repository.ModuleProviders;
@@ -94,7 +95,7 @@ namespace HomeApplication.Logic.IO
             {
                 count++;
 
-                Logger.Info(item);
+                Logger.Trace(item);
                 if (_filesRepository.FileExists(item)) continue;
                 var fileinfo = new DomainModel.Aggregates.FileAgg.FileInfo(CreatedInfo.ScanderPhysical);
                 System.IO.FileInfo sysInfo = new System.IO.FileInfo(item);

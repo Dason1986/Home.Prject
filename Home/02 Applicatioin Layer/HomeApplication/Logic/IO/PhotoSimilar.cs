@@ -9,6 +9,7 @@ using DomainModel.ModuleProviders;
 using Library;
 using System.Collections;
 using DomainModel.Repositories;
+using Library.ComponentModel.Logic;
 
 namespace HomeApplication.Logic.IO
 {

@@ -2,10 +2,12 @@
 using DomainModel.Aggregates.GalleryAgg;
 using DomainModel.Repositories;
 using Library.Domain.Data.EF;
+using System.Linq;
+using Library.ComponentModel.Model;
 
 namespace Repository.Repositories
 {
-    public class PhotoRepository : Library.Domain.Data.EF.Repository<Photo>, IPhotoRepository
+    public class PhotoRepository : Repository<Photo>, IPhotoRepository
     {
         public PhotoRepository(EFContext context) : base(context)
         {
@@ -22,6 +24,11 @@ namespace Repository.Repositories
 
             cmd.ExecuteSqlCommand(string.Format("delete from photo  where id='{0}'", id));
 
+        }
+
+        public int GetAllPhotoTotal()
+        {
+            return GetAll().Where(n => n.StatusCode == StatusCode.Enabled).Count();
         }
     }
 }

@@ -1,12 +1,6 @@
 ﻿using DomainModel.Aggregates.GalleryAgg;
 using Library.ComponentModel.Model;
-using Library.Domain;
-using System;
-using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace DomainModel.Aggregates.FileAgg
 {

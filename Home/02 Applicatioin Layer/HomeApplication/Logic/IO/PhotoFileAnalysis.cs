@@ -1,7 +1,9 @@
 ﻿using DomainModel.Aggregates.GalleryAgg;
+using DomainModel.DomainServices;
 using DomainModel.ModuleProviders;
 using DomainModel.Repositories;
 using Library;
+using Library.ComponentModel.Logic;
 using NLog.Fluent;
 using Repository;
 using Repository.ModuleProviders;
@@ -57,8 +59,10 @@ namespace HomeApplication.Logic.IO
                 default:
                     break;
             }
+
             return base.OnVerification();
         }
+
         protected override int GetTotalRecord()
         {
             return photoFileAnalysisProvider.GetTotalRecord();
@@ -68,82 +72,7 @@ namespace HomeApplication.Logic.IO
             photoFileAnalysisProvider.ThreadProssSize(beginindex, endindex);
         }
 
-        protected void CreateThumbnail(Photo photo, Image image)
-        {
-            ICollection<PhotoAttribute> attributes = photo.Attributes;
-            var ThumbnailWidth = 0;
-            var ThumbnailHeight = 0;
-            if (image.Width < 120 && image.Height < 120)
-            {
-                ThumbnailWidth = image.Width;
-                ThumbnailHeight = image.Height;
-            }
-            else if (image.Width > image.Height)
-            {
-                var per = (decimal)120 / image.Width;
-                ThumbnailWidth = 120;
 
-                ThumbnailHeight = (int)(image.Height * per);
-            }
-            else
-            {
-                var per = (decimal)120 / image.Height;
-                ThumbnailHeight = 120;
-
-                ThumbnailWidth = (int)(image.Width * per);
-            }
-
-            var thumbnailImage = image.GetThumbnailImage(ThumbnailWidth, ThumbnailHeight, () => { return false; }, IntPtr.Zero);
-            System.IO.MemoryStream ms = new System.IO.MemoryStream();
-            thumbnailImage.Save(ms, ImageFormat.Jpeg);
-            attributes.Add(new PhotoAttribute(CreatedInfo.PhotoFileAnalysis) { PhotoID = photo.ID, AttKey = Library.Draw.ImageExif.PropertyTagId.ThumbnailWidth.ToString(), AttValue = ThumbnailWidth.ToString() });
-            attributes.Add(new PhotoAttribute(CreatedInfo.PhotoFileAnalysis) { PhotoID = photo.ID, AttKey = Library.Draw.ImageExif.PropertyTagId.ThumbnailHeight.ToString(), AttValue = ThumbnailHeight.ToString() });
-            attributes.Add(new PhotoAttribute(CreatedInfo.PhotoFileAnalysis) { PhotoID = photo.ID, AttKey = Library.Draw.ImageExif.PropertyTagId.ThumbnailData.ToString(), BitValue = ms.ToArray() });
-            ms.Dispose();
-            thumbnailImage.Dispose();
-        }
-
-        protected void DoImageExif(Photo photo, Library.Draw.ImageExif exif)
-        {
-            ICollection<PhotoAttribute> attributes = photo.Attributes;
-
-            foreach (Library.Draw.ImageExif.ExifProperty exifitemProperty in exif.Properties)
-            {
-
-                if (exifitemProperty.Value == null || exifitemProperty.Value.Length == 0) continue;
-                var additemExif = new PhotoAttribute(CreatedInfo.PhotoFileAnalysis)
-                {
-                    PhotoID = photo.ID,
-                    AttKey = exifitemProperty.TagId.ToString(),
-
-                };
-
-
-
-
-                if (exifitemProperty.Type == Library.Draw.ImageExif.PropertyTagType.Byte)
-                {
-                    byte[] temp = new byte[exifitemProperty.Len];
-                    Array.Copy(exifitemProperty.Value, temp, exifitemProperty.Len);
-
-                    additemExif.BitValue = temp;
-                }
-                else
-                {
-                    var obj = exifitemProperty.DisplayValue;
-                    if (obj != null)
-                        additemExif.AttValue = obj.ToString().Trim();
-                    else additemExif.BitValue = exifitemProperty.Value;
-                }
-
-
-                // if (additemExif.AttValue.Length < 255)
-
-
-                attributes.Add(additemExif);
-
-            }
-        }
 
 
 
@@ -181,7 +110,7 @@ namespace HomeApplication.Logic.IO
 
             public override void ThreadProssSize(int beginindex, int endindex)
             {
-                Analysis.Logger.Info(string.Format("beginindex:{0} endindex:{1}", beginindex, endindex), 4);
+                Analysis.Logger.Trace(string.Format("beginindex:{0} endindex:{1}", beginindex, endindex), 4);
                 #region MyRegion
 
 
@@ -194,74 +123,11 @@ namespace HomeApplication.Logic.IO
 
 
                 var photolist = _filesRepository.GetFilesByExtensions(Analysis.Option.ImageTypes).Skip(beginindex).Take(take).ToList();
-                //index = index + size;
+                var domainService = Bootstrap.Currnet.GetService<IAddPhotoDomainService>();
+                domainService.ModuleProvider = provider;
                 foreach (var item in photolist)
-                {
-
-                    Image image = null;
-                    Photo photo = item.Photo;
-
-                    var fileinfo = new System.IO.FileInfo(item.FullPath);
-                    if (!fileinfo.Exists) continue;
-                    if (photo == null)
-                    {
-                        Analysis.Logger.Info(item.FileName);
-                        photo = new Photo(CreatedInfo.PhotoFileAnalysis)
-                        {
-                            FileID = item.ID,
-                            File = item,
-                            PhotoType = DomainModel.PhotoType.Graphy,
-                        };
-
-                        item.Photo = photo;
-                    }
-
-                    if (photo.Attributes != null && photo.Attributes.Count > 0) continue;
-                    try
-                    {
-                        image = new Bitmap(fileinfo.Open(System.IO.FileMode.Open, System.IO.FileAccess.Read, System.IO.FileShare.ReadWrite));
-                    }
-                    catch (Exception ex)
-                    {
-                        // Console.WriteLine(ex);
-                        Analysis.Logger.Error(ex, item.FullPath + "文件不能以圖像形式打開！");
-                        continue;
-
-                    }
-                    #region MyRegion
-                    try
-                    {
-                        Library.Draw.ImageExif exif = Library.Draw.ImageExif.GetExifInfo(image);
-                        ICollection<PhotoAttribute> attributes = new List<PhotoAttribute>();
-                        photo.Attributes = attributes;
-                        if (exif != null)
-                        {
-                            Analysis.DoImageExif(photo, exif);
-                        }
-                        if (exif == null || !image.PropertyIdList.Contains((int)Library.Draw.ImageExif.PropertyTagId.ThumbnailData))
-                        {
-                            Analysis.CreateThumbnail(photo, image);
-
-                        }
-                    }
-                    catch (Exception ex)
-                    {
-
-                        Analysis.Logger.Error(ex, item.FullPath + "分析圖像失敗！");
-                    }
-
-
-
-
-
-                    #endregion
-
-                    _filesRepository.UnitOfWork.Commit();
-
-
-                    if (image != null) image.Dispose();
-
-
+                {             
+                    domainService.Handle(item.Photo, item);
                 }
                 #endregion
                 GC.Collect();
@@ -280,92 +146,26 @@ namespace HomeApplication.Logic.IO
 
             public override void ThreadProssSize(int beginindex, int endindex)
             {
-                Analysis.Logger.Info(string.Format("beginindex:{0} endindex:{1}", beginindex, endindex), 4);
+                Analysis.Logger.Trace(string.Format("beginindex:{0} endindex:{1}", beginindex, endindex), 4);
                 #region MyRegion
 
 
                 var take = Analysis.BatchSize;
-
-
-
                 var provider = Bootstrap.Currnet.GetService<IGalleryModuleProvider>();
                 IFileInfoRepository _filesRepository = provider.CreateFileInfo();
-
-
                 var files = filenames.Skip(beginindex).Take(take).ToList();
+                var domainService = Bootstrap.Currnet.GetService<IAddPhotoDomainService>();
+                domainService.ModuleProvider = provider;
                 //index = index + size;
                 foreach (var file in files)
                 {
                     DomainModel.Aggregates.FileAgg.FileInfo item = _filesRepository.GetByFullPath(file);
                     if (item == null)
                     {
-                        Analysis.Logger.Warn("記錄不存在！"+ file);
+                        Analysis.Logger.Warn("記錄不存在！" + file);
                         continue;
                     }
-                    Image image = null;
-                    Photo photo = item.Photo;
-
-                    var fileinfo = new System.IO.FileInfo(item.FullPath);
-                    if (!fileinfo.Exists) continue;
-                    if (photo == null)
-                    {
-                        Analysis.Logger.Info(item.FileName);
-                        photo = new Photo(CreatedInfo.PhotoFileAnalysis)
-                        {
-                            FileID = item.ID,
-                            File = item,
-                            PhotoType = DomainModel.PhotoType.Graphy,
-                        };
-
-                        item.Photo = photo;
-                    }
-
-                    if (photo.Attributes != null && photo.Attributes.Count > 0) continue;
-                    try
-                    {
-                        image = new Bitmap(fileinfo.Open(System.IO.FileMode.Open, System.IO.FileAccess.Read, System.IO.FileShare.ReadWrite));
-                    }
-                    catch (Exception ex)
-                    {
-                        // Console.WriteLine(ex);
-                        Analysis.Logger.Error(ex, item.FullPath + "文件不能以圖像形式打開！");
-                        continue;
-
-                    }
-                    #region MyRegion
-                    try
-                    {
-                        Library.Draw.ImageExif exif = Library.Draw.ImageExif.GetExifInfo(image);
-                        ICollection<PhotoAttribute> attributes = new List<PhotoAttribute>();
-                        photo.Attributes = attributes;
-                        if (exif != null)
-                        {
-                            Analysis.DoImageExif(photo, exif);
-                        }
-                        if (exif == null || !image.PropertyIdList.Contains((int)Library.Draw.ImageExif.PropertyTagId.ThumbnailData))
-                        {
-                            Analysis.Logger.Info( item.FullPath + "生成縮略圖");
-                            Analysis.CreateThumbnail(photo, image);
-
-                        }
-                    }
-                    catch (Exception ex)
-                    {
-
-                        Analysis.Logger.Error(ex, item.FullPath + "分析圖像失敗！");
-                    }
-
-
-
-
-
-                    #endregion
-
-                    _filesRepository.UnitOfWork.Commit();
-
-
-                    if (image != null) image.Dispose();
-
+                    domainService.Handle(item.Photo, item);     
 
                 }
                 #endregion

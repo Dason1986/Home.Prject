@@ -7,5 +7,6 @@ namespace DomainModel.Repositories
     public interface IPhotoRepository : IRepository<Photo>
     {
         void DeletePhotoAllInfoByID(Guid iD);
+        int GetAllPhotoTotal();
     }
 }

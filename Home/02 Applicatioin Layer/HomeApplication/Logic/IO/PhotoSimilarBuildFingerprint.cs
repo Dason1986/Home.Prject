@@ -2,6 +2,7 @@
 using DomainModel.Aggregates.GalleryAgg;
 using DomainModel.ModuleProviders;
 using Library;
+using Library.ComponentModel.Logic;
 using Repository;
 using Repository.ModuleProviders;
 using System;
