@@ -7,9 +7,9 @@ using Library.Domain.DomainEvents;
 namespace DomainModel.Aggregates.FileAgg
 {
 
-    public class FileProcess : IAggregateRoot
+    public class FileAggregateRoot : IAggregateRoot
     {
-        public FileProcess(Guid fileid)
+        public FileAggregateRoot(Guid fileid)
         {
 
         }

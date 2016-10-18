@@ -68,6 +68,9 @@
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\..\Lib\Library.Draw.dll</HintPath>
     </Reference>
+    <Reference Include="Library.Infrastructure.Application">
+      <HintPath>..\..\Lib\Library.Infrastructure.Application.dll</HintPath>
+    </Reference>
     <Reference Include="NLog, Version=4.0.0.0, Culture=neutral, PublicKeyToken=5120e14c03d0593c, processorArchitecture=MSIL">
       <HintPath>..\..\packages\NLog.4.3.9\lib\net45\NLog.dll</HintPath>
       <Private>True</Private>
@@ -91,12 +94,14 @@
     <Compile Include="ConsoleAppBootstrap.cs" />
     <Compile Include="CreatedInfo.cs" />
     <Compile Include="DomainServices\AddPhotoDomainService.cs" />
+    <Compile Include="DomainServices\BuildFingerprintDomainService.cs" />
     <Compile Include="DomainServices\DomainService.cs" />
+    <Compile Include="DomainServices\PhotoDomainService.cs" />
+    <Compile Include="DomainServices\SimilarPhotoDomainService.cs" />
     <Compile Include="ExceptionProvider.cs" />
     <Compile Include="Logic\IO\DeleteFileDistinctByMD5.cs" />
     <Compile Include="Logic\IO\PhotoFileAnalysis.cs" />
     <Compile Include="Logic\ConsoleCommand.cs" />
-    <Compile Include="Logic\ILogicService.cs" />
     <Compile Include="Logic\IO\PhotoSimilar.cs" />
     <Compile Include="Logic\IO\PhotoSimilarBuildFingerprint.cs" />
     <Compile Include="Logic\IO\ScanderPhysicalFile.cs" />

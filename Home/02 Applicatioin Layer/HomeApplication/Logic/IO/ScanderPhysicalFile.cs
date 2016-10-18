@@ -3,6 +3,7 @@ using DomainModel.Repositories;
 using Library;
 using Library.ComponentModel.Logic;
 using Library.Domain.Data.EF;
+using Library.Infrastructure.Application;
 using Repository;
 using Repository.ModuleProviders;
 using System;
@@ -47,13 +48,13 @@ namespace HomeApplication.Logic.IO
 
     public class ScanderPhysicalFile : BaseLogicService
     {
-        public   ScanderPhysicalFileOption Option
+        public ScanderPhysicalFileOption Option
         {
             get { return _option; }
             set
             {
                 _option = value;
-              
+
             }
         }
         protected override IOption ServiceOption
@@ -72,7 +73,7 @@ namespace HomeApplication.Logic.IO
         string path;
         IGalleryModuleProvider provider;
         IFileInfoRepository _filesRepository;
-          
+
         int batchCount = 50;
         protected override void OnDowrok()
         {
@@ -81,10 +82,10 @@ namespace HomeApplication.Logic.IO
             path = Option.Path;
             if (path[0] == '\'' || path[0] == '"') path = path.Substring(1, Option.Path.Length - 2);
             if (!System.IO.Directory.Exists(path)) System.IO.Directory.CreateDirectory(path);
-            provider= Bootstrap.Currnet.GetService<IGalleryModuleProvider>();
+            provider = Bootstrap.Currnet.GetService<IGalleryModuleProvider>();
             _filesRepository = provider.CreateFileInfo();
             Scan(path);
-           
+
         }
         void Scan(string dic)
         {
@@ -112,7 +113,8 @@ namespace HomeApplication.Logic.IO
                     _filesRepository.UnitOfWork.Commit();
                 }
             }
-            _filesRepository.UnitOfWork.Commit();
+            if (count != 0)
+                _filesRepository.UnitOfWork.Commit();
             var dirs = System.IO.Directory.EnumerateDirectories(dic);
             foreach (var item in dirs)
             {
@@ -122,7 +124,7 @@ namespace HomeApplication.Logic.IO
 
 
 
-    
+
 
 
     }

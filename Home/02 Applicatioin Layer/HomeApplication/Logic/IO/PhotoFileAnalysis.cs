@@ -4,6 +4,7 @@ using DomainModel.ModuleProviders;
 using DomainModel.Repositories;
 using Library;
 using Library.ComponentModel.Logic;
+using Library.Infrastructure.Application;
 using NLog.Fluent;
 using Repository;
 using Repository.ModuleProviders;

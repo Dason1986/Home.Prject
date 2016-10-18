@@ -1,12 +1,27 @@
-
+﻿
 
             Library.Domain.Data.DomainEventBus bus = new Library.Domain.Data.DomainEventBus();
-            bus.Publish<DomainModel.DomainServices.IAddPhotoDomainService>(new DomainModel.DomainServices.PhotoItemEventArgs());
-            //一次只報告一個事件
+    		var	eventarsg=new DomainModel.DomainServices.PhotoItemEventArgs(){ PhotoID=Guid.Parse("20d7991d-e28a-e611-9c1d-6c3be52dcaf8") };
+            bus.Publish<DomainModel.DomainServices.IAddPhotoDomainService>(eventarsg);  	       
+            bus.Publish<DomainModel.DomainServices.IBuildFingerprintDomainService>(eventarsg);
+            //一次只執行一個服務,異步執行
+			//上面例子，同事並發兩個服務
 
-            var filep = new DomainModel.Aggregates.FileAgg.FileProcess(Guid.Empty);
+		 
+	
+
+
+			Library.Domain.Data.DomainEventBus bus = new Library.Domain.Data.DomainEventBus();
+            var eventarsg=new DomainModel.DomainServices.PhotoItemEventArgs() { PhotoID=Guid.Parse("20d7991d-e28a-e611-9c1d-6c3be52dcaf8") };
+            bus.AddEvent(new DomainModel.DomainServices.AddPhotoDomainEventHandler(eventarsg));
+            bus.AddEvent(new DomainModel.DomainServices.BuildFingerprintDomainEventHandler(eventarsg));
+            bus.Publish();
+        	//一次執行多個事件，由事件調用個服務，按順序一個完成下一個才運行（鏈接表）,異步執行
+			//執行後清空註冊事件列表
+
+            var filep = new DomainModel.Aggregates.FileAgg.FileProcess(Guid.Parse("20d7991d-e28a-e611-9c1d-6c3be52dcaf8") );
             filep.CreatePhotoInfo();
             filep.BuildFingerprint();
             filep.Publish();
-            //一次執行多個事件
+            //一次執行多個事件，封裝一般用於聚合根中（上一個的封裝）
          

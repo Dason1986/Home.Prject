@@ -10,6 +10,8 @@ using Library;
 using System.Collections;
 using DomainModel.Repositories;
 using Library.ComponentModel.Logic;
+using DomainModel.DomainServices;
+using Library.Infrastructure.Application;
 
 namespace HomeApplication.Logic.IO
 {
@@ -69,102 +71,15 @@ namespace HomeApplication.Logic.IO
             }
 
         }
-        ISimilarAlgorithm similarImages;
-        protected override bool OnVerification()
-        {
-            switch (Option.AlgorithmType)
-            {
+       
+       
 
-                case DomainModel.SimilarAlgorithm.PerceptualHash:
-                    similarImages = new PerceptualHash();
-                    break;
-                case DomainModel.SimilarAlgorithm.GrayHistogram:
-                    similarImages = new GrayHistogram();
-                    break;
-
-            }
-
-            similarImages.Similarity = this.Option.Similarity;
-            return base.OnVerification();
-        }
-        void Comparer(IPhotoSimilarRepository photoSimilarRepository, PhotoFingerprint leftitem, PhotoFingerprint rightitem)
-        {
-            var result = similarImages.Compare(leftitem.Fingerprint, rightitem.Fingerprint);
-            var isSame = result.IsSame;
-
-            if (isSame)
-            {
-                if (photoSimilarRepository.Exist(leftitem.PhotoID, rightitem.PhotoID)) return;
-                Logger.Info("same:{0} - {1}", leftitem.Owner.File.FileName, rightitem.Owner.File.FileName);
-                photoSimilarRepository.Add(new DomainModel.Aggregates.GalleryAgg.PhotoSimilar(CreatedInfo.PhotoSimilar)
-                {
-                    LeftPhotoID = leftitem.PhotoID,
-                    RightPhotoID = rightitem.PhotoID
-                });
-
-                photoSimilarRepository.UnitOfWork.Commit();
-            }
-        }
-        void ExternalComparer(IList<PhotoFingerprint> xlist, IList<PhotoFingerprint> ylist)
-        {
-            try
-            {
-                Logger.Info("ExternalComparer");
-                var provider = Bootstrap.Currnet.GetService<IGalleryModuleProvider>();
-
-                var photoSimilarRepository = provider.CreatePhotoSimilar();
-
-
-                foreach (var leftitem in xlist)
-                {
-                    foreach (var rightitem in ylist)
-                    {
-
-                        Comparer(photoSimilarRepository, leftitem, rightitem);
-                    }
-                }
-            }
-            catch (Exception ex)
-            {
-
-                var message = ExceptionProvider.ProvideFault(ex);
-                Logger.Error(ex, string.Format("比較失敗!{0}", message));
-            }
-        }
-        void InteriorComparer(IList<PhotoFingerprint> list)
-        {
-            try
-            {
-                Logger.Info("InteriorComparer");
-                var provider = Bootstrap.Currnet.GetService<IGalleryModuleProvider>();
-                var photoSimilarRepository = provider.CreatePhotoSimilar();
-
-                var row = 0;
-                foreach (var leftitem in list)
-                {
-
-                    for (int i = 0; i < list.Count; i++)
-                    {
-                        if (i == row) continue;
-                        var rightitem = list[i];
-                        Comparer(photoSimilarRepository, leftitem, rightitem);
-
-                    }
-                    row++;
-                }
-            }
-            catch (Exception ex)
-            {
-
-                var message = ExceptionProvider.ProvideFault(ex);
-                Logger.Error(ex, string.Format("比較失敗!{0}", message));
-            }
-        }
+    
         //  IList<PhotoFingerprint> Fingerprints;
         protected virtual IList<PhotoFingerprint> ThreadProssSize(int beginindex, int endindex)
         {
 
-            Logger.Info(string.Format("beginindex:{0} endindex:{1}", beginindex, endindex), 4);
+            Logger.Trace(string.Format("beginindex:{0} endindex:{1}", beginindex, endindex), 4);
             var provider = Bootstrap.Currnet.GetService<IGalleryModuleProvider>();
             var _photoRepository = provider.CreatePhotoFingerprint();
 
@@ -191,16 +106,23 @@ namespace HomeApplication.Logic.IO
 
             }
             var row = 0;
+            var domainservice = Bootstrap.Currnet.GetService<ISimilarPhotoDomainService>();
+            domainservice.ModuleProvider = Bootstrap.Currnet.GetService<IGalleryModuleProvider>();
+       
+            domainservice.Similarity = this.Option.Similarity;
+       
             foreach (var leftitem in ranges)
             {
                 var leftlist = ThreadProssSize(leftitem.Begin, leftitem.End);
-                InteriorComparer(leftlist);
+                domainservice.Fingerprints = leftlist;
+                domainservice.InteriorComparer();
                 for (int i = 0; i < ranges.Count; i++)
                 {
                     if (i == row) continue;
                     var rightitem = ranges[i];
                     var reghtlist = ThreadProssSize(rightitem.Begin, rightitem.End);
-                    ExternalComparer(leftlist, reghtlist);
+                    domainservice.ComparerFingerprints = reghtlist;
+                    domainservice. ExternalComparer();
                 }
                 row++;
                 // arr.Add(list);

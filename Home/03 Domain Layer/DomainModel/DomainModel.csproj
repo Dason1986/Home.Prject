@@ -51,8 +51,8 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Aggregates\Entity.cs" />
+    <Compile Include="Aggregates\FileAgg\FileAggregateRoot.cs" />
     <Compile Include="Aggregates\FileAgg\FileInfo.cs" />
-    <Compile Include="Aggregates\FileAgg\FileProcess.cs" />
     <Compile Include="Aggregates\GalleryAgg\Album.cs" />
     <Compile Include="Aggregates\ContactAgg\FamilyRole.cs" />
     <Compile Include="Aggregates\GalleryAgg\Photo.cs" />
@@ -60,7 +60,9 @@
     <Compile Include="Aggregates\GalleryAgg\PhotoFingerprint.cs" />
     <Compile Include="Aggregates\GalleryAgg\PhotoSimilar.cs" />
     <Compile Include="Aggregates\Gender.cs" />
+    <Compile Include="DomainServices\IBuildFingerprintDomainService.cs" />
     <Compile Include="DomainServices\IPhotoAddDomainService.cs" />
+    <Compile Include="DomainServices\ISimilarPhotoDomainService.cs" />
     <Compile Include="ModuleProviders\IGalleryModuleProvider.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Aggregates\UserAgg\UserProfile.cs" />

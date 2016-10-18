@@ -18,6 +18,11 @@ namespace Repository.Repositories
         {
             return Set.Any(n => n.PhotoID == phtotID && n.Algorithm == grayHistogram);
         }
+
+        public PhotoFingerprint GetByPhtotID(Guid phtotID, SimilarAlgorithm algorithm)
+        {
+            return Set.FirstOrDefault(n => n.PhotoID == phtotID && n.Algorithm == algorithm);
+        }
     }
 
 }

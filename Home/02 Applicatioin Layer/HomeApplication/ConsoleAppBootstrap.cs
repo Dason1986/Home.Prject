@@ -49,8 +49,10 @@ namespace HomeApplication
 
 
             Logger.Info(" 注入 DomainService");
-      //      _containerBuilder.RegisterType<DomainEventBus>().As<IDomainEventBus>();
-            _containerBuilder.RegisterType<AddPhotoDomainService>().As<IDomainService<PhotoItemEventArgs>, IAddPhotoDomainService>();
+            //      _containerBuilder.RegisterType<DomainEventBus>().As<IDomainEventBus>();
+            _containerBuilder.RegisterType<AddPhotoDomainService>().As<IAddPhotoDomainService>();
+            _containerBuilder.RegisterType<BuildFingerprintDomainService>().As<IBuildFingerprintDomainService>();
+            _containerBuilder.RegisterType<SimilarPhotoDomainService>().As<ISimilarPhotoDomainService>();
             //   _containerBuilder.RegisterType<DomainEventBus>().Named<IDomainEventBus>("DomainEventBus").As<IDomainEventBus>();
 
             Logger.Info(" 注入 Jobs");
@@ -71,6 +73,6 @@ namespace HomeApplication
         }
 
     }
-   
-   
+
+
 }

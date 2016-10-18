@@ -1,9 +1,5 @@
 ﻿using Library.Domain.DomainEvents;
 using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using DomainModel.ModuleProviders;
 
 namespace DomainModel.DomainServices
@@ -23,12 +19,7 @@ namespace DomainModel.DomainServices
         public AddPhotoDomainEventHandler(PhotoItemEventArgs args) : base(args)
         {
         }
-
-       
-
-
     }
-
     public interface IAddPhotoDomainService : IDomainService, IDomainService<PhotoItemEventArgs>
     {
         IGalleryModuleProvider ModuleProvider { get; set; }

@@ -39,7 +39,7 @@ namespace HomeApplication.Services
 
         private void FileUploadCompleted(DomainModel.Aggregates.FileAgg.FileInfo file)
         {
-            var process = new FileProcess(file.ID);
+            var process = new FileAggregateRoot(file.ID);
             process.CreatePhotoInfo();
             process.Publish();
         }
