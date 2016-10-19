@@ -52,5 +52,18 @@ namespace HomeApplication.DomainServices
             ModuleProvider.UnitOfWork.Commit();
         }
         protected abstract void DoAddAction();
+
+        protected override void Dispose(bool disposing)
+        {
+            if (disposing)
+            {
+                if (this.ModuleProvider != null)
+                {
+                    this.ModuleProvider.Dispose();
+                    this.ModuleProvider = null;
+                }
+                base.Dispose(disposing);
+            }
+        }
     }
 }

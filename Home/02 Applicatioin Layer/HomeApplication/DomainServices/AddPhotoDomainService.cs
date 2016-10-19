@@ -35,13 +35,17 @@ namespace HomeApplication.DomainServices
                 Logger.Trace(CurrnetFile.FullPath + "|Create Photo Entity");
                 CurrnetPhoto = new Photo(CreatedInfo.PhotoFileAnalysis)
                 {
+                    ID= CurrnetFile.ID,
                     FileID = CurrnetFile.ID,
-                    File = CurrnetFile,
+              //       File = CurrnetFile,
                     PhotoType = DomainModel.PhotoType.Graphy,
                 };
-                CurrnetFile.Photo = CurrnetPhoto;
+                PhotoRepository.Add(CurrnetPhoto);
+                 CurrnetFile.Photo = CurrnetPhoto;
+                
             }
             if (CurrnetPhoto.Attributes != null && CurrnetPhoto.Attributes.Count > 0) return;
+     //       this.FilesRepository.Attach(CurrnetFile);
             Logger.Trace(CurrnetFile.FullPath + "|Analysis");
             Image image;
 
@@ -75,6 +79,7 @@ namespace HomeApplication.DomainServices
             }
             fs.Dispose();
             image.Dispose();
+            
         }
 
 

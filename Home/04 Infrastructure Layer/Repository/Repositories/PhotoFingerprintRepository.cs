@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Linq;
 using DomainModel;
 using DomainModel.Aggregates.GalleryAgg;
@@ -22,6 +23,11 @@ namespace Repository.Repositories
         public PhotoFingerprint GetByPhtotID(Guid phtotID, SimilarAlgorithm algorithm)
         {
             return Set.FirstOrDefault(n => n.PhotoID == phtotID && n.Algorithm == algorithm);
+        }
+
+        public IList<PhotoFingerprint> GetList(SimilarAlgorithm algorithmType, int beginindex, int take)
+        {
+            return CreateSet().AsNoTracking().OrderBy(n=>n.Created).Where(n => n.Algorithm == algorithmType).Skip(beginindex).Take(take).ToList();
         }
     }
 

@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using DomainModel.Aggregates.GalleryAgg;
 using Library.Domain.Data;
 
@@ -8,5 +9,6 @@ namespace DomainModel.Repositories
     {
         void DeletePhotoAllInfoByID(Guid iD);
         int GetAllPhotoTotal();
+        IList<Photo> GetList(int beginindex, int take);
     }
 }

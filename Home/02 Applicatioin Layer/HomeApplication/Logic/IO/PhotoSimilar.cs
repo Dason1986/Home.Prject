@@ -66,28 +66,30 @@ namespace HomeApplication.Logic.IO
 
                 var _photoRepository = provider.CreatePhotoFingerprint();
 
-                var filecount = _photoRepository.GetAll().Where(n => n.Algorithm == Option.AlgorithmType).Count();
+                var filecount = _photoRepository.GetAll().Count(n => n.Algorithm == Option.AlgorithmType);
                 return filecount;
             }
 
         }
-       
-       
 
-    
+
+
+
         //  IList<PhotoFingerprint> Fingerprints;
         protected virtual IList<PhotoFingerprint> ThreadProssSize(int beginindex, int endindex)
         {
 
             Logger.Trace(string.Format("beginindex:{0} endindex:{1}", beginindex, endindex), 4);
-            var provider = Bootstrap.Currnet.GetService<IGalleryModuleProvider>();
-            var _photoRepository = provider.CreatePhotoFingerprint();
+            using (var provider = Bootstrap.Currnet.GetService<IGalleryModuleProvider>())
+            {
+                var _photoRepository = provider.CreatePhotoFingerprint();
 
-            var take = endindex - beginindex;
-            var list = _photoRepository.GetAll().Where(n => n.Algorithm == Option.AlgorithmType).OrderBy(n => n.ID).Skip(beginindex).Take(take).ToList();
+                var take = endindex - beginindex;
+                var list = _photoRepository.GetList(Option.AlgorithmType, beginindex, endindex);
 
 
-            return list;
+                return list;
+            }
         }
 
         protected override void OnDowrok()
@@ -102,30 +104,36 @@ namespace HomeApplication.Logic.IO
                 {
                     endindex = count;
                 }
+                endindex--;
                 ranges.Add(new RangeItem<int>(i, endindex));
 
             }
             var row = 0;
-            var domainservice = Bootstrap.Currnet.GetService<ISimilarPhotoDomainService>();
-            domainservice.ModuleProvider = Bootstrap.Currnet.GetService<IGalleryModuleProvider>();
-       
-            domainservice.Similarity = this.Option.Similarity;
-       
-            foreach (var leftitem in ranges)
+            using (var provider = Bootstrap.Currnet.GetService<IGalleryModuleProvider>())
             {
-                var leftlist = ThreadProssSize(leftitem.Begin, leftitem.End);
-                domainservice.Fingerprints = leftlist;
-                domainservice.InteriorComparer();
-                for (int i = 0; i < ranges.Count; i++)
+                using (var domainservice = Bootstrap.Currnet.GetService<ISimilarPhotoDomainService>())
                 {
-                    if (i == row) continue;
-                    var rightitem = ranges[i];
-                    var reghtlist = ThreadProssSize(rightitem.Begin, rightitem.End);
-                    domainservice.ComparerFingerprints = reghtlist;
-                    domainservice. ExternalComparer();
+                    domainservice.ModuleProvider = provider;
+
+                    domainservice.Similarity = this.Option.Similarity;
+
+                    foreach (var leftitem in ranges)
+                    {
+                        var leftlist = ThreadProssSize(leftitem.Begin, leftitem.End);
+                        domainservice.Fingerprints = leftlist;
+                        domainservice.InteriorComparer();
+                        for (int i = 0; i < ranges.Count; i++)
+                        {
+                            if (i <= row) continue;
+                            var rangeitem = ranges[i];
+                            var reghtlist = ThreadProssSize(rangeitem.Begin, rangeitem.End);
+                            domainservice.ComparerFingerprints = reghtlist;
+                            domainservice.ExternalComparer();
+                        }
+                        row++;
+                        // arr.Add(list);
+                    }
                 }
-                row++;
-                // arr.Add(list);
             }
         }
     }

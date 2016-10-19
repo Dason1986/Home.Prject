@@ -4,6 +4,7 @@ using DomainModel.Repositories;
 using Library.Domain.Data.EF;
 using System.Linq;
 using Library.ComponentModel.Model;
+using System.Collections.Generic;
 
 namespace Repository.Repositories
 {
@@ -29,6 +30,12 @@ namespace Repository.Repositories
         public int GetAllPhotoTotal()
         {
             return GetAll().Where(n => n.StatusCode == StatusCode.Enabled).Count();
+        }
+
+        public IList<Photo> GetList(int beginindex, int take)
+        {
+            var photos = CreateSet().Include("File").Include("ParentAlbum").Include("Attributes").AsNoTracking().OrderBy(n => n.Created).Skip(beginindex).Take(take).ToList();
+            return photos;
         }
     }
 }

@@ -8,6 +8,7 @@ using Library.Infrastructure.Application;
 using Repository;
 using Repository.ModuleProviders;
 using System;
+using System.Collections.Generic;
 using System.Drawing;
 using System.Linq;
 
@@ -56,7 +57,7 @@ namespace HomeApplication.Logic.IO
             IBuildFingerprintDomainService domainservice = Bootstrap.Currnet.GetService<IBuildFingerprintDomainService>();
             domainservice.ModuleProvider = provider;
             //   domainservice.SetAlgorithm( SimilarAlgorithm.);
-            var photolist = _photoRepository.GetAll().OrderBy(n => n.ID).Skip(beginindex).Take(take).ToList();
+            IList<Photo> photolist = _photoRepository.GetList(beginindex,take);
 
             foreach (var item in photolist)
             {

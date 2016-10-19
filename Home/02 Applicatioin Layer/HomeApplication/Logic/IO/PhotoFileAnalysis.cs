@@ -13,6 +13,7 @@ using System.Collections.Generic;
 using System.Drawing;
 using System.Drawing.Imaging;
 using System.Linq;
+using System.Runtime.InteropServices;
 using System.Threading;
 //using static Library.Draw.ImageExif;
 
@@ -45,6 +46,7 @@ namespace HomeApplication.Logic.IO
                 Option = (PhotoFileAnalysisOption)value;
             }
         }
+
         PhotoFileAnalysisProvider photoFileAnalysisProvider;
 
         protected override bool OnVerification()
@@ -55,7 +57,10 @@ namespace HomeApplication.Logic.IO
                     photoFileAnalysisProvider = new PhotoFileAnalysisByDb(this);
                     break;
                 case PhotoFileAnalysisSrouceType.File:
-                    photoFileAnalysisProvider = new PhotoFileAnalysisByConfigFile(this);
+                    photoFileAnalysisProvider = new PhotoFileAnalysisByFileList(this);
+                    break;
+                case PhotoFileAnalysisSrouceType.Dir:
+                    photoFileAnalysisProvider = new PhotoFileAnalysisByDir(this);
                     break;
                 default:
                     break;
@@ -88,12 +93,30 @@ namespace HomeApplication.Logic.IO
             public abstract int GetTotalRecord();
             public abstract void ThreadProssSize(int beginindex, int endindex);
         }
+        class PhotoFileAnalysisByDir : PhotoFileAnalysisByFilePath
+        {
+            public PhotoFileAnalysisByDir(PhotoFileAnalysis analysis) : base(analysis)
+            {
+            }
 
+            public override int GetTotalRecord()
+            {
+                var path = Analysis.Option.DirPath;
+                if (System.IO.Directory.Exists(path))
+                {
+                    Filenames = Analysis.Option.ImageTypes.SelectMany(n => System.IO.Directory.GetFiles(path, "*" + n, System.IO.SearchOption.AllDirectories)).ToArray();
+                    return Filenames.Length;
+                }
+                return 0;
+            }
+
+
+        }
         class PhotoFileAnalysisByDb : PhotoFileAnalysisProvider
         {
 
 
-            string[] filenames;
+
 
             public PhotoFileAnalysisByDb(PhotoFileAnalysis analysis) : base(analysis)
             {
@@ -105,7 +128,7 @@ namespace HomeApplication.Logic.IO
                 var provider = Bootstrap.Currnet.GetService<IGalleryModuleProvider>();
                 IFileInfoRepository _filesRepository = provider.CreateFileInfo();
 
-                var filecount = _filesRepository.GetFilesByExtensions(Analysis.Option.ImageTypes).Count();
+                var filecount = _filesRepository.GetPhotoFilesByExtensions(Analysis.Option.ImageTypes).Count();
                 return filecount;
             }
 
@@ -119,32 +142,30 @@ namespace HomeApplication.Logic.IO
 
 
 
-                var provider = Bootstrap.Currnet.GetService<IGalleryModuleProvider>();
-                IFileInfoRepository _filesRepository = provider.CreateFileInfo();
+                using (var provider = Bootstrap.Currnet.GetService<IGalleryModuleProvider>())
+                {
+                    IFileInfoRepository _filesRepository = provider.CreateFileInfo();
 
 
-                var photolist = _filesRepository.GetFilesByExtensions(Analysis.Option.ImageTypes).Skip(beginindex).Take(take).ToList();
-                var domainService = Bootstrap.Currnet.GetService<IAddPhotoDomainService>();
-                domainService.ModuleProvider = provider;
-                foreach (var item in photolist)
-                {             
-                    domainService.Handle(item.Photo, item);
+                    var photolist = _filesRepository.GetPhotoFilesByExtensions(Analysis.Option.ImageTypes).Skip(beginindex).Take(take).ToList();
+                    var domainService = Bootstrap.Currnet.GetService<IAddPhotoDomainService>();
+                    domainService.ModuleProvider = provider;
+                    foreach (var item in photolist)
+                    {
+                        domainService.Handle(item.Photo, item);
+                    }
+                    GC.Collect();
                 }
                 #endregion
-                GC.Collect();
             }
         }
-        class PhotoFileAnalysisByConfigFile : PhotoFileAnalysisProvider
+        abstract class PhotoFileAnalysisByFilePath : PhotoFileAnalysisProvider
         {
-
-
-            string[] filenames;
-
-            public PhotoFileAnalysisByConfigFile(PhotoFileAnalysis analysis) : base(analysis)
+            public PhotoFileAnalysisByFilePath(PhotoFileAnalysis analysis) : base(analysis)
             {
             }
 
-
+            protected string[] Filenames { get; set; }
             public override void ThreadProssSize(int beginindex, int endindex)
             {
                 Analysis.Logger.Trace(string.Format("beginindex:{0} endindex:{1}", beginindex, endindex), 4);
@@ -152,26 +173,43 @@ namespace HomeApplication.Logic.IO
 
 
                 var take = Analysis.BatchSize;
-                var provider = Bootstrap.Currnet.GetService<IGalleryModuleProvider>();
-                IFileInfoRepository _filesRepository = provider.CreateFileInfo();
-                var files = filenames.Skip(beginindex).Take(take).ToList();
-                var domainService = Bootstrap.Currnet.GetService<IAddPhotoDomainService>();
-                domainService.ModuleProvider = provider;
-                //index = index + size;
-                foreach (var file in files)
+                using (var provider = Bootstrap.Currnet.GetService<IGalleryModuleProvider>())
                 {
-                    DomainModel.Aggregates.FileAgg.FileInfo item = _filesRepository.GetByFullPath(file);
-                    if (item == null)
+                    IFileInfoRepository _filesRepository = provider.CreateFileInfo();
+                    var files = Filenames.Skip(beginindex).Take(take).ToList();
+                    var domainService = Bootstrap.Currnet.GetService<IAddPhotoDomainService>();
+                    domainService.ModuleProvider = provider;
+                    //index = index + size;
+                    foreach (var file in files)
                     {
-                        Analysis.Logger.Warn("記錄不存在！" + file);
-                        continue;
-                    }
-                    domainService.Handle(item.Photo, item);     
+                        DomainModel.Aggregates.FileAgg.FileInfo item = _filesRepository.GetByFullPath(file);
+                        if (item == null)
+                        {
+                            Analysis.Logger.Warn("記錄不存在！" + file);
+                            continue;
+                        }
+                        domainService.Handle(item.Photo, item);
 
+                    }
+                    provider.Dispose();
+                    GC.Collect();
                 }
                 #endregion
-                GC.Collect();
+
             }
+        }
+        class PhotoFileAnalysisByFileList : PhotoFileAnalysisByFilePath
+        {
+
+
+
+
+            public PhotoFileAnalysisByFileList(PhotoFileAnalysis analysis) : base(analysis)
+            {
+            }
+
+
+
 
 
 
@@ -180,8 +218,8 @@ namespace HomeApplication.Logic.IO
                 var file = Analysis.Option.FileListPath;
                 if (System.IO.File.Exists(file))
                 {
-                    filenames = System.IO.File.ReadAllLines(file);
-                    return filenames.Length;
+                    Filenames = System.IO.File.ReadAllLines(file);
+                    return Filenames.Length;
                 }
                 return 0;
             }
@@ -195,11 +233,13 @@ namespace HomeApplication.Logic.IO
         public string FileListPath { get; set; }
         public PhotoFileAnalysisSrouceType SourceType { get; set; }
         public string[] ImageTypes { get; set; }
+        public string DirPath { get; internal set; }
     }
     public enum PhotoFileAnalysisSrouceType
     {
         Db,
-        File
+        File,
+        Dir
     }
     public class PhotoFileAnalysisOptionCommandBuilder : IOptionCommandBuilder<PhotoFileAnalysisOption>
     {
@@ -229,12 +269,13 @@ namespace HomeApplication.Logic.IO
             {
                 LabSource:
 
-                Console.Write("圖像文件來源（0:db,1:txt文件）：");
+                Console.Write("圖像文件來源（0:db,1:txt文件,2:目錄）：");
                 var sourcetype = Console.ReadLine();
                 switch (sourcetype)
                 {
                     case "0": _option.SourceType = PhotoFileAnalysisSrouceType.Db; break;
                     case "1": _option.SourceType = PhotoFileAnalysisSrouceType.File; break;
+                    case "2": _option.SourceType = PhotoFileAnalysisSrouceType.Dir; break;
                     default:
                         goto LabSource;
                 }
@@ -263,8 +304,9 @@ namespace HomeApplication.Logic.IO
                         }
 
                         _option.ImageTypes = path.Split(',');
+                        break;
                     }
-                    break;
+
                 case PhotoFileAnalysisSrouceType.File:
                     {
                         LabCmd:
@@ -281,8 +323,47 @@ namespace HomeApplication.Logic.IO
                             goto LabCmd;
                         }
                         _option.FileListPath = path;
+                        break;
                     }
-                    break;
+
+                case PhotoFileAnalysisSrouceType.Dir:
+                    {
+                        LabCmd:
+                        Console.Write("輸入指定掃描目標：");
+                        var path = Console.ReadLine();
+                        if (string.IsNullOrEmpty(path))
+                        {
+                            Console.WriteLine("不能爲空");
+                            goto LabCmd;
+                        }
+                        if (!System.IO.Directory.Exists(path))
+                        {
+                            Console.WriteLine("目錄不存在");
+                            goto LabCmd;
+                        }
+                        _option.DirPath = path;
+
+                        Console.Write("是否使用默认文件類型（Y）：");
+
+                        if (Console.ReadKey().Key == ConsoleKey.Y)
+                        {
+                            //  Console.WriteLine();
+                            _option.ImageTypes = new string[] { ".jpg", ".png", ".gif", ".jpeg", ".bmp" };
+
+                            return;
+                        }
+                        LabImageTypes:
+                        Console.Write("輸入圖像類型（,分隔）：");
+                        var imageTypes = Console.ReadLine();
+                        if (string.IsNullOrEmpty(imageTypes))
+                        {
+                            Console.WriteLine("不能爲空！");
+                            goto LabImageTypes;
+                        }
+
+                        _option.ImageTypes = imageTypes.Split(',');
+                        break;
+                    }
                 default:
                     break;
             }

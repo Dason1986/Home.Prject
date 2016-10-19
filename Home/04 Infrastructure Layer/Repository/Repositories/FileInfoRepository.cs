@@ -4,6 +4,7 @@ using System.Linq;
 using Library.Domain.Data.EF;
 using DomainModel.Aggregates.FileAgg;
 using System;
+using DomainModel.Aggregates.GalleryAgg;
 
 namespace Repository.Repositories
 {
@@ -28,9 +29,9 @@ namespace Repository.Repositories
             return Set.FirstOrDefault(n => n.FullPath == file);
         }
 
-        public IEnumerable<FileInfo> GetFilesByExtensions(string[] extensions)
+        public IEnumerable<FileInfo> GetPhotoFilesByExtensions(string[] extensions)
         {
-            return Set.Where(n => extensions.Contains(n.Extension)&& n.StatusCode== Library.ComponentModel.Model.StatusCode.Enabled);
+            return Set.Include("Photo").AsNoTracking().Where(n => extensions.Contains(n.Extension)&& n.StatusCode== Library.ComponentModel.Model.StatusCode.Enabled);
         }
     }
 }

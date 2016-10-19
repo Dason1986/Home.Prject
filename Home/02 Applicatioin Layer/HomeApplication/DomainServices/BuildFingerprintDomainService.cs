@@ -52,7 +52,7 @@ namespace HomeApplication.DomainServices
             if (photo == null) return;
 
 
-            CurrnetPhoto = CurrnetPhoto;
+            CurrnetPhoto = photo;
             CurrnetFile = CurrnetPhoto.File;
             DoAddAction();
             ModuleProvider.UnitOfWork.Commit();
