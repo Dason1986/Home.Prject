@@ -27,8 +27,9 @@ namespace HomeApplication.DomainServices
             //  System.IO.FileInfo fileinfo = new System.IO.FileInfo(CurrnetFile.FullPath);
             if (!System.IO.File.Exists(CurrnetFile.FullPath))
             {
-                Logger.Warn(CurrnetFile.FullPath + "|File not exist");
-                return;
+                Logger.Warn(string.Format("{0}|{1}",CurrnetFile.FullPath,Resources.DomainServiceResource.FileNotExist));
+                throw new PhotoDomainServiceException(Resources.DomainServiceResource.FileNotExist, new FileNotFoundException(CurrnetFile.FullPath));
+             
             }
             if (CurrnetPhoto == null)
             {

@@ -51,7 +51,7 @@ namespace DomainModel.Aggregates.FileAgg
         }
         public void CreatePhotoInfo()
         {
-            AddEvent(new AddPhotoDomainEventHandler(new PhotoItemEventArgs()));
+            AddEvent(new AddPhotoDomainEventHandler(new PhotoItemEventArgs(ID,File.Photo!=null?File.Photo.ID:Guid.Empty)));
 
         }
         public void BuildFingerprint()

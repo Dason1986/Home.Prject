@@ -6,11 +6,19 @@ namespace DomainModel.DomainServices
 {
     public class PhotoItemEventArgs : IDomainEventArgs
     {
+        public PhotoItemEventArgs(Guid fileID, Guid photoID)
+        {
+            FileID = fileID;
+            PhotoID = photoID;
+        }
+        public PhotoItemEventArgs()
+        {
 
+        }
 
-        public Guid FileID { get; set; }
+        public Guid FileID { get;protected set; }
 
-        public Guid PhotoID { get; set; }
+        public Guid PhotoID { get; protected set; }
     }
 
 

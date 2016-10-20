@@ -7,6 +7,17 @@ using DomainModel.Repositories;
 
 namespace HomeApplication.DomainServices
 {
+
+    [Serializable]
+    public class PhotoDomainServiceException : LogicException
+    {
+        public PhotoDomainServiceException() { }
+        public PhotoDomainServiceException(string message) : base(message) { }
+        public PhotoDomainServiceException(string message, Exception inner) : base(message, inner) { }
+        protected PhotoDomainServiceException(
+          System.Runtime.Serialization.SerializationInfo info,
+          System.Runtime.Serialization.StreamingContext context) : base(info, context) { }
+    }
     public abstract class PhotoDomainService : DomainService
     {
         public IGalleryModuleProvider ModuleProvider
@@ -34,8 +45,10 @@ namespace HomeApplication.DomainServices
 
         public void Handle(PhotoItemEventArgs args)
         {
-            if (args.PhotoID == Guid.Empty && args.FileID == Guid.Empty) throw new Exception("無效數據");
-            ModuleProvider = Bootstrap.Currnet.GetService<IGalleryModuleProvider>();
+            if (args==null) throw new PhotoDomainServiceException(Resources.DomainServiceResource.PhotoItemArgumentNull, new ArgumentException("args"));
+            if (args.PhotoID == Guid.Empty && args.FileID == Guid.Empty) throw new PhotoDomainServiceException(Resources.DomainServiceResource.PhotoItemArgsNull, new ArgumentException("args"));
+            if (ModuleProvider == null) throw new PhotoDomainServiceException(Resources.DomainServiceResource.ModuleProviderNull);
+
 
             if (args.PhotoID != Guid.Empty)
             {
@@ -44,9 +57,13 @@ namespace HomeApplication.DomainServices
             }
             if (args.FileID != Guid.Empty)
             {
-                CurrnetFile = FilesRepository.Get(args.FileID);
-                if (CurrnetFile == null) throw new Exception("參數無效");
-                CurrnetPhoto = CurrnetFile.Photo;
+
+                if (CurrnetFile == null)
+                {
+                    CurrnetFile = FilesRepository.Get(args.FileID);
+                    if (CurrnetFile == null) throw new PhotoDomainServiceException(Resources.DomainServiceResource.FileInfoNotExist);
+                    CurrnetPhoto = CurrnetFile.Photo;
+                }
             }
             DoAddAction();
             ModuleProvider.UnitOfWork.Commit();
