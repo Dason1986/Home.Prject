@@ -1,5 +1,8 @@
-﻿using Repository.EF.Mapping.FileAgg;
+﻿using Repository.EF.Mapping.AssetsAgg;
+using Repository.EF.Mapping.FileAgg;
 using Repository.EF.Mapping.GalleryAgg;
+using Repository.EF.Mapping.ProductAgg;
+using Repository.EF.Mapping.SystemAgg;
 using Repository.EF.Mapping.UserAgg;
 using System;
 using System.Collections.Generic;
@@ -18,19 +21,35 @@ namespace Repository.EF.Mapping
             UserAgg(modelBuilder);
             FileAgg(modelBuilder);
             GalleryAgg(modelBuilder);
-          
+            AssetsAgg(modelBuilder);
+            ProductAgg(modelBuilder);
         }
 
         private static void SystemAgg(DbModelBuilder modelBuilder)
         {
-           
+               modelBuilder.Configurations.Add(new SystemParameterEntityTypeConfiguration());
         }
         private static void FileAgg(DbModelBuilder modelBuilder)
         {
             modelBuilder.Configurations.Add(new FileInfoEntityTypeConfiguration());
 
         }
+        private static void ProductAgg(DbModelBuilder modelBuilder)
+        {
+            modelBuilder.Configurations.Add(new ProductItemEntityTypeConfiguration());
+            modelBuilder.Configurations.Add(new ProductAttachmentEntityTypeConfiguration()); 
 
+
+        }
+       private static void AssetsAgg(DbModelBuilder modelBuilder)
+        {
+         
+            modelBuilder.Configurations.Add(new AssetsItemEntityTypeConfiguration());
+            modelBuilder.Configurations.Add(new PurchaseLineItemEntityTypeConfiguration());
+            modelBuilder.Configurations.Add(new PurchaseOrderEntityTypeConfiguration()); 
+
+
+        }
         private static void GalleryAgg(DbModelBuilder modelBuilder)
         {
             modelBuilder.Configurations.Add(new AlbumEntityTypeConfiguration());

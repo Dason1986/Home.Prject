@@ -11,6 +11,7 @@ using DomainModel.Repositories;
 using DomainModel;
 using Library.Draw.SimilarImages;
 using Library;
+using Library.Comparable;
 
 namespace HomeApplication.DomainServices
 {
@@ -89,10 +90,7 @@ namespace HomeApplication.DomainServices
 
         }
 
-        void IDomainService.Handle(IDomainEventArgs args)
-        {
-            Handle(args as PhotoItemEventArgs);
-        }
+      
         protected virtual IList<PhotoFingerprint> GetComparerFingerprints(int beginindex, int endindex)
         {
 
@@ -123,7 +121,7 @@ namespace HomeApplication.DomainServices
                         RightPhotoID = rightitem.PhotoID
                     });
 
-                    photoSimilarRepository.UnitOfWork.Commit();
+                  //  photoSimilarRepository.UnitOfWork.Commit();
                 }
             }
             catch (Exception ex)
@@ -171,5 +169,7 @@ namespace HomeApplication.DomainServices
 
             }
         }
+
+   
     }
 }

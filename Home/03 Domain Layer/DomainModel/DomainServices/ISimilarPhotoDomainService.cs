@@ -15,9 +15,9 @@ namespace DomainModel.DomainServices
         {
         }
     }
-    public interface ISimilarPhotoDomainService : IDomainService, IDomainService<PhotoItemEventArgs>
+    public interface ISimilarPhotoDomainService : IPhotoDomainService
     {
-        IGalleryModuleProvider ModuleProvider { get; set; }
+      
         IList<PhotoFingerprint> Fingerprints { get; set; }
         double Similarity { get; set; }
         IList<PhotoFingerprint> ComparerFingerprints { get; set; }

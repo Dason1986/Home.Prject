@@ -1,22 +1,34 @@
 ﻿using DomainModel.DomainServices;
+using DomainModel.ModuleProviders;
 using Library.Domain;
 using Library.Domain.Data;
 using System;
-using Library.Domain.DomainEvents;
 
 namespace DomainModel.Aggregates.FileAgg
 {
 
-    public class FileAggregateRoot : IAggregateRoot
+    public class FileAggregateRoot : AggregateRoot
     {
         public FileAggregateRoot(Guid fileid)
         {
-
+            var fileRspository = Library.Bootstrap.Currnet.GetService<DomainModel.Repositories.IFileInfoRepository>();          
+            File = fileRspository.Get(fileid);
+            if (File == null) throw new Exception();
+            UnitOfWork = fileRspository.UnitOfWork;
+            PhotoArgs = new PhotoItemEventArgs(ID, File.Photo != null ? File.Photo.ID : Guid.Empty) { Tag=File};
         }
-        DomainEventBus bus = new DomainEventBus();
-        public FileInfo File { get; protected set; }
+        protected IUnitOfWork UnitOfWork { get; private set; }
+        protected PhotoItemEventArgs PhotoArgs { get; private set; }
+        public FileAggregateRoot(FileInfo file, IDbContext dbcontext)
+        {
+            UnitOfWork = dbcontext.CreateUnitOfWork();
+            File = file;
+            
+            PhotoArgs = new PhotoItemEventArgs(ID, File.Photo != null ? File.Photo.ID : Guid.Empty) { Tag = File };
+        }
+        public FileInfo File { get; set; }
 
-        public Guid ID
+        public override Guid ID
         {
             get
             {
@@ -26,42 +38,51 @@ namespace DomainModel.Aggregates.FileAgg
 
 
 
-        public void Commit()
+        public override void Commit()
         {
-
+            UnitOfWork.Commit();
         }
 
-        public void Modify()
-        {
-
+       
+        public void PublishPhotoDomain() {
+            IModuleProvider ModuleProvider = Library.Bootstrap.Currnet.GetService<IGalleryModuleProvider>();
+            CreatePhotoInfo();
+            BuildPhotoFaces();
+            BuildFingerprint();
+            SimilarPhoto();
+            this.Bus.ModuleProvider = ModuleProvider;
+            this.Bus.PublishAwait();
         }
 
-        public void Publish()
-        {
-            bus.Publish();
-            //bus.Publish<IAddPhotoDomainService>(new PhotoItemEventArgs());
-            //if (CanCreatePhotoInfo())
-            //{
-            //    CreatePhotoInfo();
-            //}
-        }
-        public bool CanCreatePhotoInfo()
-        {
-            return false;
-        }
         public void CreatePhotoInfo()
         {
-            AddEvent(new AddPhotoDomainEventHandler(new PhotoItemEventArgs(ID,File.Photo!=null?File.Photo.ID:Guid.Empty)));
+            AddEvent(new AddPhotoDomainEventHandler(PhotoArgs));
 
         }
         public void BuildFingerprint()
         {
-            //     AddEvent(new AddPhotoDomainEventHandler(new PhotoItemEventArgs()));
+            AddEvent(new BuildFingerprintDomainEventHandler(PhotoArgs));
 
         }
-        public void AddEvent(IDomainEventHandler eventHandler)
+        public void BuildPhotoFaces()
         {
-            bus.AddEvent(eventHandler);
+            AddEvent(new PhotoFacesDomainEventHandler(PhotoArgs));
+
+        }
+        public void SimilarPhoto()
+        {
+            AddEvent(new SimilarPhotoDomainEventHandler(PhotoArgs));
+
+        }
+
+        protected override void OnActivate()
+        {
+
+        }
+
+        protected override void OnDeactivate(bool close)
+        {
+           
         }
     }
 }

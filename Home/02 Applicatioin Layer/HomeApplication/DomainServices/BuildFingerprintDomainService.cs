@@ -41,11 +41,7 @@ namespace HomeApplication.DomainServices
             }
         }
 
-
-        void IDomainService.Handle(IDomainEventArgs args)
-        {
-            Handle(args as PhotoItemEventArgs);
-        }
+         
 
         public void Handle(Photo photo)
         {
@@ -55,7 +51,7 @@ namespace HomeApplication.DomainServices
             CurrnetPhoto = photo;
             CurrnetFile = CurrnetPhoto.File;
             DoAddAction();
-            ModuleProvider.UnitOfWork.Commit();
+        //    ModuleProvider.UnitOfWork.Commit();
 
         }
         protected override void CreateRepository(IGalleryModuleProvider moduleProvider)
@@ -68,18 +64,18 @@ namespace HomeApplication.DomainServices
         {
             Photo photo = CurrnetPhoto;
             if (photoFingerprintRepository.Exist(photo.ID, Algorithm)) return;
-            Logger.Trace(photo.File.FileName);
+            Logger.Trace(CurrnetFile.FileName);
             #region MyRegion
             Image image = null;
             try
             {
-                image = Image.FromFile(photo.File.FullPath);
+                image = Image.FromFile(CurrnetFile.FullPath);
                 if (image.Width < 256) return;
             }
             catch (Exception ex)
             {
                 // Console.WriteLine(ex);
-                Logger.Error(ex, photo.File.FullPath + "文件不能以图像形式打开！");
+                Logger.Error(ex, CurrnetFile.FullPath + "文件不能以图像形式打开！");
                 return;
 
             }

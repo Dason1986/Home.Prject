@@ -1,37 +1,47 @@
 ﻿using DomainModel.DomainServices;
 using System;
 using DomainModel.Aggregates.GalleryAgg;
-using Library;
 using DomainModel.ModuleProviders;
 using DomainModel.Repositories;
+using Library.Domain.Data;
+using Library.Domain.DomainEvents;
 
 namespace HomeApplication.DomainServices
 {
-
-    [Serializable]
-    public class PhotoDomainServiceException : LogicException
-    {
-        public PhotoDomainServiceException() { }
-        public PhotoDomainServiceException(string message) : base(message) { }
-        public PhotoDomainServiceException(string message, Exception inner) : base(message, inner) { }
-        protected PhotoDomainServiceException(
-          System.Runtime.Serialization.SerializationInfo info,
-          System.Runtime.Serialization.StreamingContext context) : base(info, context) { }
-    }
     public abstract class PhotoDomainService : DomainService
     {
+        //public PhotoDomainService(IGalleryModuleProvider moduleProvider)
+        //{
+        //    _moduleProvider = moduleProvider;
+        //    CreateRepository(_moduleProvider);
+        //}
         public IGalleryModuleProvider ModuleProvider
         {
             get { return _moduleProvider; }
+            set
+            {
+                _moduleProvider = value;
+                if (value != null)
+                {
+                    CreateRepository(value);
+                }
+            }
+
+        }
+        protected override IModuleProvider Provider
+        {
+            get
+            {
+                return ModuleProvider;
+            }
 
             set
             {
-                if (_moduleProvider == value) return;
-                _moduleProvider = value;
-                if (_moduleProvider != null) CreateRepository(value);
-
+                ModuleProvider = value as IGalleryModuleProvider;
             }
         }
+
+
         IGalleryModuleProvider _moduleProvider;
         public IPhotoRepository PhotoRepository { get; protected set; }
         public IFileInfoRepository FilesRepository { get; protected set; }
@@ -45,12 +55,21 @@ namespace HomeApplication.DomainServices
 
         public void Handle(PhotoItemEventArgs args)
         {
-            if (args==null) throw new PhotoDomainServiceException(Resources.DomainServiceResource.PhotoItemArgumentNull, new ArgumentException("args"));
-            if (args.PhotoID == Guid.Empty && args.FileID == Guid.Empty) throw new PhotoDomainServiceException(Resources.DomainServiceResource.PhotoItemArgsNull, new ArgumentException("args"));
+            if (args == null) throw new PhotoDomainServiceException(Resources.DomainServiceResource.PhotoItemArgumentNull, new ArgumentException("args"));
+            if (args.Tag is DomainModel.Aggregates.FileAgg.FileInfo == false)
+            {
+                if (args.PhotoID == Guid.Empty && args.FileID == Guid.Empty) throw new PhotoDomainServiceException(Resources.DomainServiceResource.PhotoItemArgsNull, new ArgumentException("args"));
+
+            }
+            else
+            {
+                CurrnetFile = args.Tag as DomainModel.Aggregates.FileAgg.FileInfo;
+                CurrnetPhoto = CurrnetFile.Photo;
+            }
             if (ModuleProvider == null) throw new PhotoDomainServiceException(Resources.DomainServiceResource.ModuleProviderNull);
 
 
-            if (args.PhotoID != Guid.Empty)
+            if (args.PhotoID != Guid.Empty && CurrnetPhoto == null)
             {
                 CurrnetPhoto = PhotoRepository.Get(args.PhotoID);
                 if (CurrnetPhoto != null) CurrnetFile = CurrnetPhoto.File;
@@ -62,11 +81,17 @@ namespace HomeApplication.DomainServices
                 {
                     CurrnetFile = FilesRepository.Get(args.FileID);
                     if (CurrnetFile == null) throw new PhotoDomainServiceException(Resources.DomainServiceResource.FileInfoNotExist);
-                    CurrnetPhoto = CurrnetFile.Photo;
+
                 }
+                if (CurrnetPhoto == null) CurrnetPhoto = CurrnetFile.Photo;
             }
+
             DoAddAction();
-            ModuleProvider.UnitOfWork.Commit();
+            //  ModuleProvider.UnitOfWork.Commit();
+        }
+        protected override void Handle(IDomainEventArgs args)
+        {
+            Handle(args as PhotoItemEventArgs);
         }
         protected abstract void DoAddAction();
 
@@ -77,7 +102,7 @@ namespace HomeApplication.DomainServices
                 if (this.ModuleProvider != null)
                 {
                     this.ModuleProvider.Dispose();
-                    this.ModuleProvider = null;
+
                 }
                 base.Dispose(disposing);
             }

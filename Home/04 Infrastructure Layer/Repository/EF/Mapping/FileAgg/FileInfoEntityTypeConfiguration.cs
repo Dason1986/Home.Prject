@@ -1,6 +1,4 @@
-﻿using DomainModel;
-using DomainModel.Aggregates.FileAgg;
-using DomainModel.ContactAgg;
+﻿using DomainModel.Aggregates.FileAgg;
 using System.Data.Entity.ModelConfiguration;
 
 namespace Repository.EF.Mapping.FileAgg

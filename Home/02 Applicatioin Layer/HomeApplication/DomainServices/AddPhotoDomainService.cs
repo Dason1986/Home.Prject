@@ -17,7 +17,7 @@ namespace HomeApplication.DomainServices
             CurrnetPhoto = photo;
             CurrnetFile = file;
             DoAddAction();
-            ModuleProvider.UnitOfWork.Commit();
+        //    ModuleProvider.UnitOfWork.Commit();
         }
 
 
@@ -85,12 +85,7 @@ namespace HomeApplication.DomainServices
 
 
 
-
-        void IDomainService.Handle(IDomainEventArgs args)
-        {
-            this.Handle(args as PhotoItemEventArgs);
-        }
-
+         
         protected void CreateThumbnail(Image image)
         {
             var photo = CurrnetPhoto;

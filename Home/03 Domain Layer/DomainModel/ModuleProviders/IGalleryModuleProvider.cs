@@ -21,5 +21,6 @@ namespace DomainModel.ModuleProviders
         IPhotoFingerprintRepository CreatePhotoFingerprint();
 
         IPhotoSimilarRepository CreatePhotoSimilar();
+        IPhotoFacesRepository CreatePhotoFaces();
     }
 }

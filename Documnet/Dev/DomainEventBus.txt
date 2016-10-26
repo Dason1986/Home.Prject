@@ -1,6 +1,7 @@
 ﻿
 
             Library.Domain.Data.DomainEventBus bus = new Library.Domain.Data.DomainEventBus();
+			bus.ModuleProvider = Library.Bootstrap.Currnet.GetService<IGalleryModuleProvider>();
     		var	eventarsg=new DomainModel.DomainServices.PhotoItemEventArgs(){ PhotoID=Guid.Parse("20d7991d-e28a-e611-9c1d-6c3be52dcaf8") };
             bus.Publish<DomainModel.DomainServices.IAddPhotoDomainService>(eventarsg);  	       
             bus.Publish<DomainModel.DomainServices.IBuildFingerprintDomainService>(eventarsg);
@@ -12,6 +13,7 @@
 
 
 			Library.Domain.Data.DomainEventBus bus = new Library.Domain.Data.DomainEventBus();
+			bus.ModuleProvider = Library.Bootstrap.Currnet.GetService<IGalleryModuleProvider>();
             var eventarsg=new DomainModel.DomainServices.PhotoItemEventArgs() { PhotoID=Guid.Parse("20d7991d-e28a-e611-9c1d-6c3be52dcaf8") };
             bus.AddEvent(new DomainModel.DomainServices.AddPhotoDomainEventHandler(eventarsg));
             bus.AddEvent(new DomainModel.DomainServices.BuildFingerprintDomainEventHandler(eventarsg));

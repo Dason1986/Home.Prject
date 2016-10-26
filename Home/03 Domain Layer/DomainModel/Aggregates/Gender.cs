@@ -18,4 +18,18 @@
         GrayHistogram,
         PerceptualHash
     }
+
+    public enum PayTpye
+    {
+        Cash,
+        CreditCard,
+    }
+
+    public enum CurrencyType
+    {
+        CNY,
+        HKD,
+        MOP
+
+    }
 }

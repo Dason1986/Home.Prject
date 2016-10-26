@@ -26,7 +26,7 @@ namespace Repository.Repositories
 
         public FileInfo GetByFullPath(string file)
         {
-            return Set.FirstOrDefault(n => n.FullPath == file);
+            return Set.Include("Photo").AsNoTracking().FirstOrDefault(n => n.FullPath == file);
         }
 
         public IEnumerable<FileInfo> GetPhotoFilesByExtensions(string[] extensions)

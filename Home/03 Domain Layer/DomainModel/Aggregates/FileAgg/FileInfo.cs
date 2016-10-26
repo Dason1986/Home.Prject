@@ -1,10 +1,11 @@
 ﻿using DomainModel.Aggregates.GalleryAgg;
 using Library.ComponentModel.Model;
+using Library.Domain;
 using System.ComponentModel.DataAnnotations;
 
 namespace DomainModel.Aggregates.FileAgg
 {
-    public class FileInfo : Entity
+    public class FileInfo : CreateEntity
     {
         public FileInfo()
         {

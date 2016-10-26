@@ -1,5 +1,4 @@
 ﻿using Library.Domain.DomainEvents;
-using DomainModel.ModuleProviders;
 
 namespace DomainModel.DomainServices
 {
@@ -9,9 +8,9 @@ namespace DomainModel.DomainServices
         {
         }
     }
-    public interface IBuildFingerprintDomainService : IDomainService, IDomainService<PhotoItemEventArgs>
+    public interface IBuildFingerprintDomainService : IPhotoDomainService, IDomainService<PhotoItemEventArgs>
     {
-        IGalleryModuleProvider ModuleProvider { get; set; }
+
 
         void Handle(Aggregates.GalleryAgg.Photo photo);
         void SetAlgorithm(SimilarAlgorithm type);

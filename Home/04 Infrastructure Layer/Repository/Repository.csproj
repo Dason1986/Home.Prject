@@ -67,10 +67,16 @@
   <ItemGroup>
     <Compile Include="EF\EFUnitOfWork.cs" />
     <Compile Include="EF\MainBoundedContext.cs" />
+    <Compile Include="EF\Mapping\AssetsAgg\AssetsItemEntityTypeConfiguration.cs" />
+    <Compile Include="EF\Mapping\ProductAgg\ProductAttachmentEntityTypeConfiguration.cs" />
+    <Compile Include="EF\Mapping\ProductAgg\ProductItemEntityTypeConfiguration.cs" />
+    <Compile Include="EF\Mapping\AssetsAgg\PurchaseLineItemEntityTypeConfiguration.cs" />
+    <Compile Include="EF\Mapping\AssetsAgg\PurchaseOrderEntityTypeConfiguration.cs" />
     <Compile Include="EF\Mapping\FileAgg\FileInfoEntityTypeConfiguration.cs" />
     <Compile Include="EF\Mapping\GalleryAgg\AlbumTypeConfiguration.cs" />
     <Compile Include="EF\Mapping\GalleryAgg\PhotoAttributeEntityTypeConfiguration.cs" />
     <Compile Include="EF\Mapping\GalleryAgg\PhotoEntityTypeConfiguration.cs" />
+    <Compile Include="EF\Mapping\SystemAgg\ProductItemEntityTypeConfiguration.cs" />
     <Compile Include="EF\Mapping\TypeConfiguration.cs" />
     <Compile Include="EF\Mapping\UserAgg\ContactProfileEntityTypeConfiguration.cs" />
     <Compile Include="EF\Mapping\UserAgg\FamilyRoleEntityTypeConfiguration.cs" />
@@ -86,6 +92,7 @@
     <Compile Include="Repositories\AlbumRepository.cs" />
     <Compile Include="Repositories\FileInfoRepository.cs" />
     <Compile Include="Repositories\PhotoAttributeRepository.cs" />
+    <Compile Include="Repositories\PhotoFacesRepository.cs" />
     <Compile Include="Repositories\PhotoFingerprintRepository.cs" />
     <Compile Include="Repositories\PhotoRepository.cs" />
     <Compile Include="Repositories\PhotoSimilarRepository.cs" />

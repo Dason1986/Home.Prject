@@ -1,4 +1,5 @@
 ﻿using Autofac;
+using Autofac.Core;
 using DomainModel.DomainServices;
 using DomainModel.ModuleProviders;
 using DomainModel.Repositories;
@@ -11,6 +12,7 @@ using NLog;
 using Repository;
 using Repository.ModuleProviders;
 using Repository.Repositories;
+using System;
 
 namespace HomeApplication
 {
@@ -34,7 +36,7 @@ namespace HomeApplication
         {
             Logger.Info("Ioc 注入");
             Logger.Info(" 注入 db");
-            _containerBuilder.RegisterType<MainBoundedContext>().As<EFContext>();
+            _containerBuilder.RegisterType<MainBoundedContext>().As<EFContext, IDbContext>();
 
             Logger.Info(" 注入 Repository");
             _containerBuilder.RegisterType<AlbumRepository>().As<IAlbumRepository>();
@@ -53,6 +55,7 @@ namespace HomeApplication
             _containerBuilder.RegisterType<AddPhotoDomainService>().As<IAddPhotoDomainService>();
             _containerBuilder.RegisterType<BuildFingerprintDomainService>().As<IBuildFingerprintDomainService>();
             _containerBuilder.RegisterType<SimilarPhotoDomainService>().As<ISimilarPhotoDomainService>();
+            _containerBuilder.RegisterType<PhotoFacesDomainService>().As<IPhotoFacesDomainService>();
             //   _containerBuilder.RegisterType<DomainEventBus>().Named<IDomainEventBus>("DomainEventBus").As<IDomainEventBus>();
 
             Logger.Info(" 注入 Jobs");
@@ -65,7 +68,24 @@ namespace HomeApplication
 
             return _container.Resolve<T>();
         }
-
+        public override  T GetService<T>(Type[] type, object[] obj)
+        {
+            Parameter[] pars = new Parameter[type.Length];
+            for (int i = 0; i < type.Length; i++)
+            {
+                pars[i] = new TypedParameter(type[i], obj[i]);
+            }
+            return _container.Resolve<T>(pars);
+        }
+        public override  T GetService<T>(string[] constantNames, object[] obj)
+        {
+            Parameter[] pars = new Parameter[constantNames.Length];
+            for (int i = 0; i < constantNames.Length; i++)
+            {
+                pars[i] = new NamedParameter(constantNames[i], obj[i]);
+            }
+            return _container.Resolve<T>(pars);
+        }
         public override T GetService<T>(string name)
         {
 

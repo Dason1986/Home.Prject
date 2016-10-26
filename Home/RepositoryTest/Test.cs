@@ -4,7 +4,7 @@ using Repository;
 using System;
 using Library.ComponentModel.Model;
 using Library;
-using DomainModel.ContactAgg;
+using DomainModel.Aggregates.ContactAgg;
 
 namespace RepositoryTest
 {
@@ -19,24 +19,24 @@ namespace RepositoryTest
 			var contactRole = dbcontext.Set<FamilyRole> ();
 			contactRole.Add (new FamilyRole () {
 				ID = roleId,
-				Created = DateTime.Now,
+			 
 				Name = "高祖父",
 				Six= Gender
     .Male,
 				Level = 4,
-				CreatedBy = "sqlscript",
+			 
 				StatusCode =StatusCode.Enabled
 			});
             roleId = IdentityGenerator.Next(roleId);
 
             contactRole.Add (new FamilyRole () {
 				ID = roleId,
-				Created = DateTime.Now,
+				 
 				Name = "高祖母",
 				Six= Gender
     .Female,
 				Level = 4,
-				CreatedBy = "sqlscript",
+		 
 				StatusCode =StatusCode.Enabled
 			});
             roleId = IdentityGenerator.Next(roleId);

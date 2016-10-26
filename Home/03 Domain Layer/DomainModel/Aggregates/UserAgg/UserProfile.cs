@@ -1,9 +1,10 @@
-﻿using DomainModel.ContactAgg;
+﻿using DomainModel.Aggregates.ContactAgg;
+using Library.Domain;
 using System;
 
 namespace DomainModel.UserAgg
 {
-    public class UserProfile : Entity
+    public class UserProfile : AuditedEntity
     {
         public UserProfile()
         {

@@ -1,10 +1,11 @@
-﻿using System;
+﻿using Library.Domain;
+using System;
 using System.ComponentModel.DataAnnotations;
 
-namespace DomainModel.ContactAgg
+namespace DomainModel.Aggregates.ContactAgg
 {
 
-    public class ContactProfile : Entity
+    public class ContactProfile : AuditedEntity
     {
         public ContactProfile()
         {

@@ -12,6 +12,8 @@ using DomainModel.Repositories;
 using Library.ComponentModel.Logic;
 using DomainModel.DomainServices;
 using Library.Infrastructure.Application;
+using Library.Comparable;
+using Library.Domain.Data;
 
 namespace HomeApplication.Logic.IO
 {
@@ -74,18 +76,17 @@ namespace HomeApplication.Logic.IO
 
 
 
-
         //  IList<PhotoFingerprint> Fingerprints;
-        protected virtual IList<PhotoFingerprint> ThreadProssSize(int beginindex, int endindex)
+        protected virtual IList<PhotoFingerprint> ThreadProssSize(IPhotoFingerprintRepository photoFingerprintRepository, int beginindex, int endindex)
         {
 
             Logger.Trace(string.Format("beginindex:{0} endindex:{1}", beginindex, endindex), 4);
-            using (var provider = Bootstrap.Currnet.GetService<IGalleryModuleProvider>())
+            //using (var provider = Bootstrap.Currnet.GetService<IGalleryModuleProvider>())
             {
-                var _photoRepository = provider.CreatePhotoFingerprint();
+                //var _photoRepository = provider.CreatePhotoFingerprint();
 
                 var take = endindex - beginindex;
-                var list = _photoRepository.GetList(Option.AlgorithmType, beginindex, endindex);
+                var list = photoFingerprintRepository.GetList(Option.AlgorithmType, beginindex, endindex);
 
 
                 return list;
@@ -113,26 +114,29 @@ namespace HomeApplication.Logic.IO
             {
                 using (var domainservice = Bootstrap.Currnet.GetService<ISimilarPhotoDomainService>())
                 {
-                    domainservice.ModuleProvider = provider;
-
+                    domainservice.ModuleProvider=provider;
+                    var photoFingerprint = provider.CreatePhotoFingerprint();
                     domainservice.Similarity = this.Option.Similarity;
 
                     foreach (var leftitem in ranges)
                     {
-                        var leftlist = ThreadProssSize(leftitem.Begin, leftitem.End);
+                        var leftlist = ThreadProssSize(photoFingerprint, leftitem.Begin, leftitem.End);
                         domainservice.Fingerprints = leftlist;
                         domainservice.InteriorComparer();
                         for (int i = 0; i < ranges.Count; i++)
                         {
                             if (i <= row) continue;
                             var rangeitem = ranges[i];
-                            var reghtlist = ThreadProssSize(rangeitem.Begin, rangeitem.End);
+                            var reghtlist = ThreadProssSize(photoFingerprint, rangeitem.Begin, rangeitem.End);
                             domainservice.ComparerFingerprints = reghtlist;
                             domainservice.ExternalComparer();
                         }
+
+                        domainservice.ModuleProvider.UnitOfWork.Commit();
                         row++;
                         // arr.Add(list);
                     }
+
                 }
             }
         }
@@ -162,7 +166,7 @@ namespace HomeApplication.Logic.IO
                 return;
             }
             Console.WriteLine();
-            LabCmd:
+        LabCmd:
             Console.Write("輸入圖像正確率：");
             var path = Console.ReadLine();
             if (string.IsNullOrEmpty(path))

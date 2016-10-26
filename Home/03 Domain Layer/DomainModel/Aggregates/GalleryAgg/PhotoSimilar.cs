@@ -1,10 +1,11 @@
 ﻿using Library.ComponentModel.Model;
+using Library.Domain;
 using System;
 
 namespace DomainModel.Aggregates.GalleryAgg
 {
 
-    public class PhotoSimilar : Entity
+    public class PhotoSimilar : CreateEntity
     {
         public PhotoSimilar()
         {

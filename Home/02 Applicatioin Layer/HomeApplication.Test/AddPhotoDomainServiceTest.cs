@@ -5,6 +5,7 @@ using DomainModel.DomainServices;
 using DomainModel.ModuleProviders;
 using DomainModel.Repositories;
 using HomeApplication.DomainServices;
+using Library;
 using Library.Domain.Data;
 using Library.Domain.DomainEvents;
 using Moq;
@@ -39,6 +40,7 @@ namespace HomeApplication.Test
             mokprovider.Setup(x => x.UnitOfWork).Returns(mock.Create<IUnitOfWork>());
             mock.Provide<IAddPhotoDomainService, AddPhotoDomainService>();
         }
+     
         [Test]
         public void TestPhotoDomainServiceError()
         {

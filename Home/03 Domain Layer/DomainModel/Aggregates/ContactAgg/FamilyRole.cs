@@ -1,9 +1,10 @@
-﻿using System.ComponentModel.DataAnnotations;
+﻿using Library.Domain;
+using System.ComponentModel.DataAnnotations;
 
-namespace DomainModel.ContactAgg
+namespace DomainModel.Aggregates.ContactAgg
 {
 
-    public class FamilyRole : Entity
+    public class FamilyRole : CreateEntity
     {
         [StringLength(20)]
         public string Name { get; set; }

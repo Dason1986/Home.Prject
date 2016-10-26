@@ -8,13 +8,14 @@ namespace HomeApplication.Test
 {
     class AddPhotoDomainServiceUnderTest
     {
-        private readonly IGalleryModuleProvider _moduleProvider;
+       
         private readonly IAddPhotoDomainService _domainService;
         private readonly IDomainEventArgs _args;
+        IGalleryModuleProvider _moduleProvider;
 
-        public AddPhotoDomainServiceUnderTest(IGalleryModuleProvider moduleProvider, IAddPhotoDomainService domainService, IDomainEventArgs args)
+        public AddPhotoDomainServiceUnderTest(IGalleryModuleProvider moduleProvider,  IAddPhotoDomainService domainService, IDomainEventArgs args)
         {
-            this._moduleProvider = moduleProvider;
+            _moduleProvider = moduleProvider;
             this._domainService = domainService;
             _args = args;
         }

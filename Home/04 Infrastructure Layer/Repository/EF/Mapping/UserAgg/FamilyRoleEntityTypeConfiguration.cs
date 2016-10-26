@@ -1,5 +1,4 @@
-﻿using DomainModel;
-using DomainModel.ContactAgg;
+﻿using DomainModel.Aggregates.ContactAgg;
 using System.Data.Entity.ModelConfiguration;
 
 namespace Repository.EF.Mapping.UserAgg

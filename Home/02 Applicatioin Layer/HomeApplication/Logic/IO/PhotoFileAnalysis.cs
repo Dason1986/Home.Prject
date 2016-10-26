@@ -1,9 +1,11 @@
-﻿using DomainModel.Aggregates.GalleryAgg;
+﻿using DomainModel.Aggregates.FileAgg;
+using DomainModel.Aggregates.GalleryAgg;
 using DomainModel.DomainServices;
 using DomainModel.ModuleProviders;
 using DomainModel.Repositories;
 using Library;
 using Library.ComponentModel.Logic;
+using Library.Domain.Data;
 using Library.Infrastructure.Application;
 using NLog.Fluent;
 using Repository;
@@ -144,15 +146,18 @@ namespace HomeApplication.Logic.IO
 
                 using (var provider = Bootstrap.Currnet.GetService<IGalleryModuleProvider>())
                 {
-                    IFileInfoRepository _filesRepository = provider.CreateFileInfo();
+                    // IFileInfoRepository _filesRepository = provider.CreateFileInfo();
 
 
-                    var photolist = _filesRepository.GetPhotoFilesByExtensions(Analysis.Option.ImageTypes).Skip(beginindex).Take(take).ToList();
                     var domainService = Bootstrap.Currnet.GetService<IAddPhotoDomainService>();
                     domainService.ModuleProvider = provider;
+                    //      domainService.SetDbConexnt(provider);
+                    IFileInfoRepository _filesRepository = domainService.ModuleProvider.CreateFileInfo();
+                    var photolist = _filesRepository.GetPhotoFilesByExtensions(Analysis.Option.ImageTypes).Skip(beginindex).Take(take).ToList();
                     foreach (var item in photolist)
                     {
                         domainService.Handle(item.Photo, item);
+                        domainService.ModuleProvider.UnitOfWork.Commit();
                     }
                     GC.Collect();
                 }
@@ -173,22 +178,34 @@ namespace HomeApplication.Logic.IO
 
 
                 var take = Analysis.BatchSize;
-                using (var provider = Bootstrap.Currnet.GetService<IGalleryModuleProvider>())
+                using (var provider = Bootstrap.Currnet.GetService<IDbContext>())
                 {
-                    IFileInfoRepository _filesRepository = provider.CreateFileInfo();
+
                     var files = Filenames.Skip(beginindex).Take(take).ToList();
-                    var domainService = Bootstrap.Currnet.GetService<IAddPhotoDomainService>();
-                    domainService.ModuleProvider = provider;
+
+                    IFileInfoRepository _filesRepository = Bootstrap.Currnet.GetService<IFileInfoRepository>(new string[] { "context" }, new object[] { provider });
                     //index = index + size;
                     foreach (var file in files)
                     {
                         DomainModel.Aggregates.FileAgg.FileInfo item = _filesRepository.GetByFullPath(file);
+
                         if (item == null)
                         {
-                            Analysis.Logger.Warn("記錄不存在！" + file);
-                            continue;
+                            Analysis.Logger.Warn("記錄不存在！添加文件信息" + file);
+                            var fileinfo = new DomainModel.Aggregates.FileAgg.FileInfo(CreatedInfo.ScanderPhysical);
+                            System.IO.FileInfo sysInfo = new System.IO.FileInfo(file);
+                            fileinfo.Extension = sysInfo.Extension;
+                            fileinfo.FullPath = file;
+                            fileinfo.FileName = sysInfo.Name;
+                            fileinfo.MD5 = Library.HelperUtility.FileUtility.FileMD5(file);
+                            if (sysInfo.Exists) fileinfo.FileSize = sysInfo.Length;
+                            else continue;
+                            _filesRepository.Add(fileinfo);
+                            item = fileinfo;
+                            _filesRepository.UnitOfWork.Commit();
                         }
-                        domainService.Handle(item.Photo, item);
+                        FileAggregateRoot fileagg = new FileAggregateRoot(item, provider);
+                        fileagg.PublishPhotoDomain();
 
                     }
                     provider.Dispose();
@@ -267,7 +284,7 @@ namespace HomeApplication.Logic.IO
             }
 
             {
-                LabSource:
+            LabSource:
 
                 Console.Write("圖像文件來源（0:db,1:txt文件,2:目錄）：");
                 var sourcetype = Console.ReadLine();
@@ -294,7 +311,7 @@ namespace HomeApplication.Logic.IO
 
                             return;
                         }
-                        LabCmd:
+                    LabCmd:
                         Console.Write("輸入圖像類型（,分隔）：");
                         var path = Console.ReadLine();
                         if (string.IsNullOrEmpty(path))
@@ -309,7 +326,7 @@ namespace HomeApplication.Logic.IO
 
                 case PhotoFileAnalysisSrouceType.File:
                     {
-                        LabCmd:
+                    LabCmd:
                         Console.Write("輸入文件列表路徑：");
                         var path = Console.ReadLine();
                         if (string.IsNullOrEmpty(path))
@@ -328,7 +345,7 @@ namespace HomeApplication.Logic.IO
 
                 case PhotoFileAnalysisSrouceType.Dir:
                     {
-                        LabCmd:
+                    LabCmd:
                         Console.Write("輸入指定掃描目標：");
                         var path = Console.ReadLine();
                         if (string.IsNullOrEmpty(path))
@@ -352,7 +369,7 @@ namespace HomeApplication.Logic.IO
 
                             return;
                         }
-                        LabImageTypes:
+                    LabImageTypes:
                         Console.Write("輸入圖像類型（,分隔）：");
                         var imageTypes = Console.ReadLine();
                         if (string.IsNullOrEmpty(imageTypes))

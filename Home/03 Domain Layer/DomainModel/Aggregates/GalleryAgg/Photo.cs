@@ -1,4 +1,5 @@
 ﻿using Library.ComponentModel.Model;
+using Library.Domain;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
@@ -6,7 +7,7 @@ using System.ComponentModel.DataAnnotations;
 namespace DomainModel.Aggregates.GalleryAgg
 {
 
-    public class Photo : Entity
+    public class Photo : AuditedEntity
     {
         public Photo()
         {

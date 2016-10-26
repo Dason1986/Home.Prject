@@ -1,11 +1,12 @@
 ﻿using Library.ComponentModel.Model;
+using Library.Domain;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 
 namespace DomainModel.Aggregates.GalleryAgg
 {
-    public class Album : Entity
+    public class Album : AuditedEntity
     {
         public Album()
         {

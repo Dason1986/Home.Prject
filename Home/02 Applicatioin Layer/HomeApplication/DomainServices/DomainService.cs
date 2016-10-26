@@ -1,17 +1,25 @@
 ﻿using System;
+using Library.Domain.Data;
 using Library.Domain.DomainEvents;
 using NLog;
 
 namespace HomeApplication.DomainServices
 {
-    public abstract class DomainService : IDisposable
+    public abstract class DomainService : IDomainService, IDisposable
     {
         public DomainService()
         {
-            Logger = LogManager.GetCurrentClassLogger();
+            Logger = NLog.LogManager.GetLogger(this.GetType().FullName);
         }
         protected NLog.ILogger Logger { get; private set; }
 
+        protected abstract IModuleProvider Provider { get; set; }
+        IModuleProvider IDomainService.ModuleProvider { get { return Provider; } set { Provider = value; } }
+        protected abstract void Handle(IDomainEventArgs args);
+        void IDomainService.Handle(IDomainEventArgs args)
+        {
+            this.Handle(args);
+        }
         #region IDisposable Support
         private bool disposedValue = false; // 要检测冗余调用
 
@@ -46,6 +54,8 @@ namespace HomeApplication.DomainServices
             // TODO: 如果在以上内容中替代了终结器，则取消注释以下行。
             //GC.SuppressFinalize(this);
         }
+       
+
         #endregion
     }
 }

@@ -1,11 +1,12 @@
 ﻿using Library.ComponentModel.Model;
+using Library.Domain;
 using System;
 using System.ComponentModel.DataAnnotations;
 
 namespace DomainModel.Aggregates.GalleryAgg
 {
 
-    public class PhotoAttribute : Entity
+    public class PhotoAttribute : AuditedEntity
     {
         public PhotoAttribute()
         {
