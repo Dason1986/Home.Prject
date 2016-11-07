@@ -3,7 +3,8 @@ using DomainModel.ModuleProviders;
 
 namespace DomainModel.DomainServices
 {
-    public interface IPhotoDomainService :IDomainService, IDomainService<PhotoItemEventArgs>{
-        IGalleryModuleProvider ModuleProvider { get; set; }
+    public interface IPhotoDomainService : IDomainService, IDomainService<PhotoItemEventArgs>
+    {
+        new IGalleryModuleProvider ModuleProvider { get; set; }
     }
 }

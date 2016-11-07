@@ -14,7 +14,11 @@ namespace HomeApplication.DomainServices
         protected NLog.ILogger Logger { get; private set; }
 
         protected abstract IModuleProvider Provider { get; set; }
-        IModuleProvider IDomainService.ModuleProvider { get { return Provider; } set { Provider = value; } }
+        IModuleProvider IDomainService.ModuleProvider
+        {
+            get { return Provider; }
+            set { Provider = value; }
+        }
         protected abstract void Handle(IDomainEventArgs args);
         void IDomainService.Handle(IDomainEventArgs args)
         {
@@ -54,7 +58,7 @@ namespace HomeApplication.DomainServices
             // TODO: 如果在以上内容中替代了终结器，则取消注释以下行。
             //GC.SuppressFinalize(this);
         }
-       
+
 
         #endregion
     }

@@ -77,7 +77,7 @@ namespace HomeApplication.Logic.IO
         int batchCount = 50;
         protected override void OnDowrok()
         {
-            Logger.Info("開始");
+            
             if (string.IsNullOrEmpty(Option.Path)) throw new Exception("路徑爲空");
             path = Option.Path;
             if (path[0] == '\'' || path[0] == '"') path = path.Substring(1, Option.Path.Length - 2);
@@ -96,7 +96,7 @@ namespace HomeApplication.Logic.IO
             {
                 count++;
 
-                Logger.Trace(item);
+                Logger.Trace(string.Format("Scan file|{0}", item));
                 if (_filesRepository.FileExists(item)) continue;
                 var fileinfo = new DomainModel.Aggregates.FileAgg.FileInfo(CreatedInfo.ScanderPhysical);
                 System.IO.FileInfo sysInfo = new System.IO.FileInfo(item);

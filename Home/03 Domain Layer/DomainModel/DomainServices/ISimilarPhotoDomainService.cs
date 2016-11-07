@@ -9,7 +9,7 @@ namespace DomainModel.DomainServices
 
 
 
-    public class SimilarPhotoDomainEventHandler : DomainEventHandler<IAddPhotoDomainService>
+    public class SimilarPhotoDomainEventHandler : DomainEventHandler<ISimilarPhotoDomainService>
     {
         public SimilarPhotoDomainEventHandler(PhotoItemEventArgs args) : base(args)
         {

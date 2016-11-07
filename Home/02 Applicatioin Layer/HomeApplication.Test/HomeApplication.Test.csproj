@@ -80,6 +80,8 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="AddPhotoDomainServiceTest.cs" />
+    <Compile Include="GalleryServiceImplTest.cs" />
+    <Compile Include="SubRepository.cs" />
     <Compile Include="UnderTest\AddPhotoDomainServiceUnderTest.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -93,6 +95,10 @@
     <ProjectReference Include="..\..\03 Domain Layer\DomainModel\DomainModel.csproj">
       <Project>{f253ee76-a606-42a6-b654-e5ad30edd47d}</Project>
       <Name>DomainModel</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\HomeApplication.Dto\HomeApplication.Dto.csproj">
+      <Project>{948ac8b7-b26c-47df-8232-4cf31c94fc0d}</Project>
+      <Name>HomeApplication.Dto</Name>
     </ProjectReference>
     <ProjectReference Include="..\HomeApplication\HomeApplication.csproj">
       <Project>{bc1f66f3-6ea5-4008-b5b2-ce931d7b79d7}</Project>

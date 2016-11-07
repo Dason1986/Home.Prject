@@ -1,4 +1,4 @@
-﻿namespace HomeApplication.Dto
+﻿namespace HomeApplication.Dtos
 {
     public class FileInfoDto: Dto
     {

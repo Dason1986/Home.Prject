@@ -136,7 +136,7 @@ namespace HomeApplication.Logic.IO
 
             public override void ThreadProssSize(int beginindex, int endindex)
             {
-                Analysis.Logger.Trace(string.Format("beginindex:{0} endindex:{1}", beginindex, endindex), 4);
+                Analysis.Logger.Trace(string.Format("beginindex endindex:{0}-{1}", beginindex, endindex));
                 #region MyRegion
 
 
@@ -173,7 +173,7 @@ namespace HomeApplication.Logic.IO
             protected string[] Filenames { get; set; }
             public override void ThreadProssSize(int beginindex, int endindex)
             {
-                Analysis.Logger.Trace(string.Format("beginindex:{0} endindex:{1}", beginindex, endindex), 4);
+                Analysis.Logger.Trace(string.Format("beginindex endindex:{0}-{1}", beginindex, endindex));
                 #region MyRegion
 
 
@@ -187,24 +187,30 @@ namespace HomeApplication.Logic.IO
                     //index = index + size;
                     foreach (var file in files)
                     {
-                        DomainModel.Aggregates.FileAgg.FileInfo item = _filesRepository.GetByFullPath(file);
+                        if (!System.IO.File.Exists(file))
+                        {
+                            Analysis.Logger.Warn("File not exitst!|"+ file);
+                            continue;
+                        }
+                        FileInfo item = _filesRepository.GetByFullPath(file);
 
                         if (item == null)
                         {
-                            Analysis.Logger.Warn("記錄不存在！添加文件信息" + file);
-                            var fileinfo = new DomainModel.Aggregates.FileAgg.FileInfo(CreatedInfo.ScanderPhysical);
+                            Analysis.Logger.Info("fileinfo not exist,create fileinfo|"+ file  );
+                            var fileinfo = new FileInfo(CreatedInfo.ScanderPhysical);
                             System.IO.FileInfo sysInfo = new System.IO.FileInfo(file);
                             fileinfo.Extension = sysInfo.Extension;
                             fileinfo.FullPath = file;
                             fileinfo.FileName = sysInfo.Name;
                             fileinfo.MD5 = Library.HelperUtility.FileUtility.FileMD5(file);
-                            if (sysInfo.Exists) fileinfo.FileSize = sysInfo.Length;
-                            else continue;
+                            fileinfo.FileSize = sysInfo.Length;
+                            if (_filesRepository.FileExists(fileinfo.MD5, fileinfo.FileSize)) fileinfo.StatusCode = Library.ComponentModel.Model.StatusCode.Disabled;
                             _filesRepository.Add(fileinfo);
                             item = fileinfo;
                             _filesRepository.UnitOfWork.Commit();
                         }
-                        FileAggregateRoot fileagg = new FileAggregateRoot(item, provider);
+                        if (item.StatusCode == Library.ComponentModel.Model.StatusCode.Disabled) continue;
+                        FileAggregateRoot fileagg = new FileAggregateRoot(item, _filesRepository);
                         fileagg.PublishPhotoDomain();
 
                     }
@@ -284,7 +290,7 @@ namespace HomeApplication.Logic.IO
             }
 
             {
-            LabSource:
+                LabSource:
 
                 Console.Write("圖像文件來源（0:db,1:txt文件,2:目錄）：");
                 var sourcetype = Console.ReadLine();
@@ -311,7 +317,7 @@ namespace HomeApplication.Logic.IO
 
                             return;
                         }
-                    LabCmd:
+                        LabCmd:
                         Console.Write("輸入圖像類型（,分隔）：");
                         var path = Console.ReadLine();
                         if (string.IsNullOrEmpty(path))
@@ -326,7 +332,7 @@ namespace HomeApplication.Logic.IO
 
                 case PhotoFileAnalysisSrouceType.File:
                     {
-                    LabCmd:
+                        LabCmd:
                         Console.Write("輸入文件列表路徑：");
                         var path = Console.ReadLine();
                         if (string.IsNullOrEmpty(path))
@@ -345,7 +351,7 @@ namespace HomeApplication.Logic.IO
 
                 case PhotoFileAnalysisSrouceType.Dir:
                     {
-                    LabCmd:
+                        LabCmd:
                         Console.Write("輸入指定掃描目標：");
                         var path = Console.ReadLine();
                         if (string.IsNullOrEmpty(path))
@@ -369,7 +375,7 @@ namespace HomeApplication.Logic.IO
 
                             return;
                         }
-                    LabImageTypes:
+                        LabImageTypes:
                         Console.Write("輸入圖像類型（,分隔）：");
                         var imageTypes = Console.ReadLine();
                         if (string.IsNullOrEmpty(imageTypes))

@@ -42,8 +42,8 @@ namespace HomeApplication.Logic.IO
         IList<string> md5s;
         protected override void ThreadProssSize(int beginindex, int endindex)
         {
-            Logger.Info(string.Format("beginindex:{0} endindex:{1}", beginindex, endindex), 4);
-           // using (MainBoundedContext dbcontext = new MainBoundedContext())
+            Logger.Trace(string.Format("beginindex endindex:{0}-{1}", beginindex, endindex));
+            // using (MainBoundedContext dbcontext = new MainBoundedContext())
             {
                 var take = endindex - beginindex;
                 var provider = Bootstrap.Currnet.GetService<IGalleryModuleProvider>();

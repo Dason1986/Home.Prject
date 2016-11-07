@@ -7,7 +7,7 @@
     <ProjectGuid>{948AC8B7-B26C-47DF-8232-4CF31C94FC0D}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>HomeApplication.Dto</RootNamespace>
+    <RootNamespace>HomeApplication</RootNamespace>
     <AssemblyName>HomeApplication.Dto</AssemblyName>
     <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
@@ -32,6 +32,7 @@
   <ItemGroup>
     <Reference Include="System" />
     <Reference Include="System.Core" />
+    <Reference Include="System.ServiceModel" />
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Data.DataSetExtensions" />
     <Reference Include="Microsoft.CSharp" />
@@ -40,8 +41,10 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Dtos\AlbumDto.cs" />
     <Compile Include="Dto.cs" />
-    <Compile Include="FileInfoDto.cs" />
+    <Compile Include="Dtos\FileInfoDto.cs" />
+    <Compile Include="Services\IGalleryService.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

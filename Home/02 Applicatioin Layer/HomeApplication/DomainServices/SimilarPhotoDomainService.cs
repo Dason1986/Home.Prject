@@ -127,8 +127,8 @@ namespace HomeApplication.DomainServices
             catch (Exception ex)
             {
 
-                var message = ExceptionProvider.ProvideFault(ex);
-                Logger.Error(ex, string.Format("比較失敗!{0}", message));
+            
+                Logger.Error(ex, "比較失敗!");
             }
         }
 

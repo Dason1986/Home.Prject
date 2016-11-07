@@ -1,11 +1,11 @@
 ﻿using System;
 
-namespace HomeApplication.Dto
+namespace HomeApplication
 {
     public class Dto
     {
         public Guid ID { get; set; }
 
-        
+
     }
 }

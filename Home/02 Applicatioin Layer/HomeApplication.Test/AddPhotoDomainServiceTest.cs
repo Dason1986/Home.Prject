@@ -22,18 +22,20 @@ namespace HomeApplication.Test
     {
 
         AutoMock mock;
-        Guid photoid = Guid.Parse("00f73871-afe7-431a-a9ec-df44b1dcb736");
-        Guid fileid = Guid.Parse("00f73871-afe7-431a-a9ec-df44b1dcb736");
+     
         [NUnit.Framework.SetUp]
         public void Init()
         {
             mock = AutoMock.GetLoose();
 
-            Bitmap image = new Bitmap(100, 100);
-            IList<Photo> photos = new List<Photo> { new Photo() { ID = photoid, File = new DomainModel.Aggregates.FileAgg.FileInfo() { ID = fileid } } };
-            mock.Mock<IUnitOfWork>();
-            mock.Mock<IPhotoRepository>().Setup(x => x.Get(It.IsAny<Guid>())).Returns<Guid>(x => photos.FirstOrDefault(n => n.ID == x));
+      
+
+            SubRepository res = new SubRepository();
+            res.InitPhoto();
             mock.Mock<IFileInfoRepository>();
+            mock.Mock<IUnitOfWork>(); 
+            mock.Mock<IPhotoRepository>().Setup(x => x.Get(It.IsAny<Guid>())).Returns<Guid>(x => res.GetALLPhtots().FirstOrDefault(n => n.ID == x));
+            mock.Mock<IFileInfoRepository>().Setup(x => x.Get(It.IsAny<Guid>())).Returns<Guid>(x => res.GetALLFiles().FirstOrDefault(n => n.ID == x));
             var mokprovider = mock.Mock<IGalleryModuleProvider>();
             mokprovider.Setup(x => x.CreateFileInfo()).Returns(mock.Create<IFileInfoRepository>());
             mokprovider.Setup(x => x.CreatePhoto()).Returns(mock.Create<IPhotoRepository>());
@@ -56,20 +58,20 @@ namespace HomeApplication.Test
             {
                 var service = mock.Create<AddPhotoDomainServiceUnderTest>(
                new TypedParameter(typeof(IGalleryModuleProvider), null),
-               new TypedParameter(typeof(IDomainEventArgs), new PhotoItemEventArgs(fileid, photoid))
+               new TypedParameter(typeof(IDomainEventArgs), new PhotoItemEventArgs(SubRepository.fileid, SubRepository.photoid))
                );
                 service.ModuleProviderIsEmpty();
             }
             {
                 var service = mock.Create<AddPhotoDomainServiceUnderTest>(
-               new TypedParameter(typeof(IDomainEventArgs), new PhotoItemEventArgs(fileid, Guid.Empty))
+               new TypedParameter(typeof(IDomainEventArgs), new PhotoItemEventArgs(Guid.NewGuid(), Guid.Empty))
                );
                 service.FileInfoNotExist();
             }
 
             {
                 var service = mock.Create<AddPhotoDomainServiceUnderTest>(
-               new TypedParameter(typeof(IDomainEventArgs), new PhotoItemEventArgs(fileid, photoid))
+               new TypedParameter(typeof(IDomainEventArgs), new PhotoItemEventArgs(SubRepository.fileid, SubRepository.photoid))
                );
                 service.FileNotExist();
             }

@@ -48,7 +48,7 @@ namespace HomeApplication.Logic.IO
 
         protected override void ThreadProssSize(int beginindex, int endindex)
         {
-            Logger.Info(string.Format("beginindex:{0} endindex:{1}", beginindex, endindex), 4);
+            Logger.Trace(string.Format("beginindex endindex:{0}-{1}", beginindex, endindex));
 
 
 
