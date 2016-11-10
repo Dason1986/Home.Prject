@@ -9,17 +9,17 @@ namespace HomeApplication
     public class ConsoleAppBootstrap : Bootstrap
     {
 
-        public ConsoleAppBootstrap() : base()
+        public ConsoleAppBootstrap()
         {
 
-            _containerBuilder = new Autofac.ContainerBuilder();
+            _containerBuilder = new ContainerBuilder();
             Logger = LogManager.GetCurrentClassLogger();
         }
 
-        Autofac.IContainer _container;
+        private IContainer _container;
 
-        Autofac.ContainerBuilder _containerBuilder;
-        protected NLog.ILogger Logger { get; set; }
+        private readonly ContainerBuilder _containerBuilder;
+        protected ILogger Logger { get; set; }
 
 
 
@@ -27,16 +27,16 @@ namespace HomeApplication
         {
             AutoMap.AutoMapProfile.Reg();
 
-            Logger.Info("Ioc 注入");
-            Logger.Info(" 注入 db");
+            Logger.Info("Ioc");
+            Logger.Info(" injection db");
             _containerBuilder.RegisterModule<RepositoryModule>();
 
-            Logger.Info(" 注入 DomainService");
+            Logger.Info(" injection DomainService");
 
             _containerBuilder.RegisterModule<DomainServiceModule>();
 
 
-            Logger.Info(" 注入 Jobs");
+            Logger.Info(" injection Jobs");
 
             _containerBuilder.RegisterModule<TimerJobModule>();
 
