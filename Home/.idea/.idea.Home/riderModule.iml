@@ -1,15 +1,59 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <module type="RIDER_MODULE" version="4">
   <component name="NewModuleRootManager">
+    <content url="file://$MODULE_DIR$/../../../Documnet/Dev/DomainEventBus.txt">
+      <sourceFolder url="file://$MODULE_DIR$/../../../Documnet/Dev/DomainEventBus.txt" isTestSource="false" />
+    </content>
+    <content url="file://$MODULE_DIR$/../../../Documnet/Dev/EF.txt">
+      <sourceFolder url="file://$MODULE_DIR$/../../../Documnet/Dev/EF.txt" isTestSource="false" />
+    </content>
+    <content url="file://$MODULE_DIR$/../../../Documnet/Requirement/33382_1408895233wXYf.png">
+      <sourceFolder url="file://$MODULE_DIR$/../../../Documnet/Requirement/33382_1408895233wXYf.png" isTestSource="false" />
+    </content>
+    <content url="file://$MODULE_DIR$/../../../Documnet/Requirement/所有亲戚关系称呼.jpg">
+      <sourceFolder url="file://$MODULE_DIR$/../../../Documnet/Requirement/所有亲戚关系称呼.jpg" isTestSource="false" />
+    </content>
+    <content url="file://$MODULE_DIR$/../../../Documnet/Requirement/聯繫人.txt">
+      <sourceFolder url="file://$MODULE_DIR$/../../../Documnet/Requirement/聯繫人.txt" isTestSource="false" />
+    </content>
     <content url="file://$MODULE_DIR$/../..">
-      <sourceFolder url="file://$MODULE_DIR$/../../01 Presentation  Layer/02 DistributedServices/DistributedServices" isTestSource="false" />
-      <sourceFolder url="file://$MODULE_DIR$/../../01 Presentation  Layer/01 App/WebApplication" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/../../01 Presentation  Layer/01 App/Home.AppGtk" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/../../01 Presentation  Layer/01 App/Home.AppWeb" isTestSource="false" />
       <sourceFolder url="file://$MODULE_DIR$/../../01 Presentation  Layer/01 App/HomeApp" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/../../01 Presentation  Layer/DistributedServices" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/../../02 Applicatioin Layer/HomeApplication" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/../../02 Applicatioin Layer/HomeApplication.Dto" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/../../02 Applicatioin Layer/HomeApplication.Owin" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/../../02 Applicatioin Layer/HomeApplication.Test" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/../../02 Applicatioin Layer/HomeTool.Console" isTestSource="false" />
       <sourceFolder url="file://$MODULE_DIR$/../../03 Domain Layer/DomainModel" isTestSource="false" />
       <sourceFolder url="file://$MODULE_DIR$/../../04 Infrastructure Layer/Repository" isTestSource="false" />
-      <sourceFolder url="file://$MODULE_DIR$/../../04 Infrastructure Layer/Infrastructure" isTestSource="false" />
-      <sourceFolder url="file://$MODULE_DIR$/../../02 Applicatioin Layer/HomeApplication.Dto" isTestSource="false" />
-      <sourceFolder url="file://$MODULE_DIR$/../../02 Applicatioin Layer/HomeApplication" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/../../RepositoryTest" isTestSource="false" />
+      <excludeFolder url="file://$MODULE_DIR$/../../01 Presentation  Layer/01 App/Home.AppGtk/bin" />
+      <excludeFolder url="file://$MODULE_DIR$/../../01 Presentation  Layer/01 App/Home.AppGtk/obj" />
+      <excludeFolder url="file://$MODULE_DIR$/../../01 Presentation  Layer/01 App/Home.AppWeb/bin" />
+      <excludeFolder url="file://$MODULE_DIR$/../../01 Presentation  Layer/01 App/Home.AppWeb/obj" />
+      <excludeFolder url="file://$MODULE_DIR$/../../01 Presentation  Layer/01 App/HomeApp/bin" />
+      <excludeFolder url="file://$MODULE_DIR$/../../01 Presentation  Layer/01 App/HomeApp/obj" />
+      <excludeFolder url="file://$MODULE_DIR$/../../01 Presentation  Layer/DistributedServices/bin" />
+      <excludeFolder url="file://$MODULE_DIR$/../../01 Presentation  Layer/DistributedServices/obj" />
+      <excludeFolder url="file://$MODULE_DIR$/../../02 Applicatioin Layer/HomeApplication.Dto/bin" />
+      <excludeFolder url="file://$MODULE_DIR$/../../02 Applicatioin Layer/HomeApplication.Dto/obj" />
+      <excludeFolder url="file://$MODULE_DIR$/../../02 Applicatioin Layer/HomeApplication.Owin/bin" />
+      <excludeFolder url="file://$MODULE_DIR$/../../02 Applicatioin Layer/HomeApplication.Owin/obj" />
+      <excludeFolder url="file://$MODULE_DIR$/../../02 Applicatioin Layer/HomeApplication.Test/bin" />
+      <excludeFolder url="file://$MODULE_DIR$/../../02 Applicatioin Layer/HomeApplication.Test/obj" />
+      <excludeFolder url="file://$MODULE_DIR$/../../02 Applicatioin Layer/HomeApplication/bin" />
+      <excludeFolder url="file://$MODULE_DIR$/../../02 Applicatioin Layer/HomeApplication/obj" />
+      <excludeFolder url="file://$MODULE_DIR$/../../02 Applicatioin Layer/HomeTool.Console/bin" />
+      <excludeFolder url="file://$MODULE_DIR$/../../02 Applicatioin Layer/HomeTool.Console/obj" />
+      <excludeFolder url="file://$MODULE_DIR$/../../03 Domain Layer/DomainModel/bin" />
+      <excludeFolder url="file://$MODULE_DIR$/../../03 Domain Layer/DomainModel/obj" />
+      <excludeFolder url="file://$MODULE_DIR$/../../04 Infrastructure Layer/Repository/bin" />
+      <excludeFolder url="file://$MODULE_DIR$/../../04 Infrastructure Layer/Repository/obj" />
+      <excludeFolder url="file://$MODULE_DIR$/../../RepositoryTest/bin" />
+      <excludeFolder url="file://$MODULE_DIR$/../../RepositoryTest/obj" />
+      <excludeFolder url="file://$MODULE_DIR$/../../packages" />
     </content>
     <orderEntry type="sourceFolder" forTests="false" />
   </component>
