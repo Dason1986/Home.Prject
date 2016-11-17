@@ -10,6 +10,7 @@ namespace Home.WebApplication.Controllers
     {
         public IActionResult Index()
         {
+          //  Autofac.Builder
             return View();
         }
 

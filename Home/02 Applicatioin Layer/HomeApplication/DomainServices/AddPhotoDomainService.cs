@@ -7,6 +7,7 @@ using DomainModel.Aggregates.GalleryAgg;
 using System.Drawing.Imaging;
 using System.Drawing;
 using System.IO;
+using Library.Infrastructure.Application;
 
 namespace HomeApplication.DomainServices
 {
@@ -27,13 +28,14 @@ namespace HomeApplication.DomainServices
             //  System.IO.FileInfo fileinfo = new System.IO.FileInfo(CurrnetFile.FullPath);
             if (!System.IO.File.Exists(CurrnetFile.FullPath))
             {
-                Logger.Warn(string.Format("{0}|{1}",CurrnetFile.FullPath,Resources.DomainServiceResource.FileNotExist));
+                Logger.WarnByContent(Resources.DomainServiceResource.FileNotExist , CurrnetFile.FullPath);
                 throw new PhotoDomainServiceException(Resources.DomainServiceResource.FileNotExist, new FileNotFoundException(CurrnetFile.FullPath));
              
             }
             if (CurrnetPhoto == null)
             {
-                Logger.Trace(CurrnetFile.FullPath + "|Create Photo Entity");
+                Logger.TraceByContent("Create Photo Entity",CurrnetFile.FullPath );
+                
                 CurrnetPhoto = new Photo(CreatedInfo.PhotoFileAnalysis)
                 {
                     ID= CurrnetFile.ID,
@@ -47,7 +49,8 @@ namespace HomeApplication.DomainServices
             }
             if (CurrnetPhoto.Attributes != null && CurrnetPhoto.Attributes.Count > 0) return;
      //       this.FilesRepository.Attach(CurrnetFile);
-            Logger.Trace(CurrnetFile.FullPath + "|Analysis");
+         
+            Logger.TraceByContent("Analysis", CurrnetFile.FullPath);
             Image image;
 
             Stream fs = null;
@@ -58,8 +61,8 @@ namespace HomeApplication.DomainServices
             }
             catch (Exception ex)
             {
-                // Console.WriteLine(ex);
-                Logger.Error(ex, CurrnetFile.FullPath + "|File can not open！");
+              
+                Logger.ErrorByContent(ex,"File can not open！", CurrnetFile.FullPath);
                 return;
 
             }
@@ -73,8 +76,8 @@ namespace HomeApplication.DomainServices
             DoImageExif(exifInfo);
             if (exifInfo == null || !image.PropertyIdList.Contains((int)Library.Draw.ImageExif.PropertyTagId.ThumbnailData))
             {
-                Logger.Trace(CurrnetFile.FullPath + "|Create Thumbnail");
-
+                
+                Logger.TraceByContent("Create Thumbnail", CurrnetFile.FullPath);
                 CreateThumbnail(image);
 
             }
@@ -125,7 +128,8 @@ namespace HomeApplication.DomainServices
 
         protected void DoImageExif(Library.Draw.ImageExif exif)
         {
-            Logger.Trace(CurrnetFile.FullPath + "|Create exif");
+            Logger.TraceByContent("Create exif", CurrnetFile.FullPath);
+           
             var photo = CurrnetPhoto;
             ICollection<PhotoAttribute> attributes = photo.Attributes;
 

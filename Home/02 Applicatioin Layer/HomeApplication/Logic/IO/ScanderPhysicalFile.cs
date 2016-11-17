@@ -96,7 +96,7 @@ namespace HomeApplication.Logic.IO
             {
                 count++;
 
-                Logger.Trace(string.Format("Scan file|{0}", item));
+                Logger.TraceByContent("Scan file", item);
                 if (_filesRepository.FileExists(item)) continue;
                 var fileinfo = new DomainModel.Aggregates.FileAgg.FileInfo(CreatedInfo.ScanderPhysical);
                 System.IO.FileInfo sysInfo = new System.IO.FileInfo(item);

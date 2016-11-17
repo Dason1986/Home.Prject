@@ -3,6 +3,7 @@ using Autofac.Core;
 using Library;
 using NLog;
 using System;
+using System.Collections.Generic;
 
 namespace HomeApplication
 {
@@ -27,8 +28,11 @@ namespace HomeApplication
         {
             AutoMap.AutoMapProfile.Reg();
 
+           
             Logger.Info("Ioc");
             Logger.Info(" injection db");
+            _containerBuilder.RegisterAssemblyModules(AppDomain.CurrentDomain.GetAssemblies());
+            /*
             _containerBuilder.RegisterModule<RepositoryModule>();
 
             Logger.Info(" injection DomainService");
@@ -39,7 +43,7 @@ namespace HomeApplication
             Logger.Info(" injection Jobs");
 
             _containerBuilder.RegisterModule<TimerJobModule>();
-
+            */
             _container = _containerBuilder.Build();
         }
         public override T GetService<T>()

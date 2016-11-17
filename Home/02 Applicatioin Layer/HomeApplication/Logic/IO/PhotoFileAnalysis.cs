@@ -136,7 +136,7 @@ namespace HomeApplication.Logic.IO
 
             public override void ThreadProssSize(int beginindex, int endindex)
             {
-                Analysis.Logger.Trace(string.Format("beginindex endindex:{0}-{1}", beginindex, endindex));
+          
                 #region MyRegion
 
 
@@ -173,7 +173,7 @@ namespace HomeApplication.Logic.IO
             protected string[] Filenames { get; set; }
             public override void ThreadProssSize(int beginindex, int endindex)
             {
-                Analysis.Logger.Trace(string.Format("beginindex endindex:{0}-{1}", beginindex, endindex));
+               
                 #region MyRegion
 
 
@@ -189,14 +189,14 @@ namespace HomeApplication.Logic.IO
                     {
                         if (!System.IO.File.Exists(file))
                         {
-                            Analysis.Logger.Warn("File not exitst!|"+ file);
+                            Analysis.Logger.WarnByContent("File not exitst!", file);
                             continue;
                         }
                         FileInfo item = _filesRepository.GetByFullPath(file);
 
                         if (item == null)
                         {
-                            Analysis.Logger.Info("fileinfo not exist,create fileinfo|"+ file  );
+                            Analysis.Logger.WarnByContent("fileinfo not exist,create fileinfo", file  );
                             var fileinfo = new FileInfo(CreatedInfo.ScanderPhysical);
                             System.IO.FileInfo sysInfo = new System.IO.FileInfo(file);
                             fileinfo.Extension = sysInfo.Extension;

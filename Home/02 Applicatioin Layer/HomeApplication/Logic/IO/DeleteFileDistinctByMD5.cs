@@ -42,7 +42,7 @@ namespace HomeApplication.Logic.IO
         IList<string> md5s;
         protected override void ThreadProssSize(int beginindex, int endindex)
         {
-            Logger.Trace(string.Format("beginindex endindex:{0}-{1}", beginindex, endindex));
+        
             // using (MainBoundedContext dbcontext = new MainBoundedContext())
             {
                 var take = endindex - beginindex;

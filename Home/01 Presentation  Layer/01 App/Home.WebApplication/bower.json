@@ -4,9 +4,9 @@
   "dependencies": {
     "bootstrap": "3.3.6",
     "jquery": "2.2.0",
-    "jquery-validation": "1.14.0",
     "jquery-validation-unobtrusive": "3.2.6",
-    "angular": "1.5.5",
-    "photoswipe": "4.1.1"
+    "photoswipe": "4.1.1",
+    "jquery-validation": "1.15.0",
+    "angular": "1.5.5"
   }
 }

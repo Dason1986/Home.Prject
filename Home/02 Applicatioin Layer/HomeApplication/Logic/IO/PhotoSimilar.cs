@@ -80,7 +80,7 @@ namespace HomeApplication.Logic.IO
         protected virtual IList<PhotoFingerprint> ThreadProssSize(IPhotoFingerprintRepository photoFingerprintRepository, int beginindex, int endindex)
         {
 
-            Logger.Trace(string.Format("beginindex endindex:{0}-{1}", beginindex, endindex));
+        
             //using (var provider = Bootstrap.Currnet.GetService<IGalleryModuleProvider>())
             {
                 //var _photoRepository = provider.CreatePhotoFingerprint();
