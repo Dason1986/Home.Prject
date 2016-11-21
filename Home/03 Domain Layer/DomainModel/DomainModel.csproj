@@ -88,6 +88,7 @@
     <Compile Include="Repositories\IPhotoFingerprintRepository.cs" />
     <Compile Include="Repositories\IPhotoRepository.cs" />
     <Compile Include="Repositories\IPhotoSimilarRepository.cs" />
+    <Compile Include="Repositories\ISystemParameterRepository.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />

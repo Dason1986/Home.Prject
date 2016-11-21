@@ -96,6 +96,7 @@
     <Compile Include="Repositories\PhotoFingerprintRepository.cs" />
     <Compile Include="Repositories\PhotoRepository.cs" />
     <Compile Include="Repositories\PhotoSimilarRepository.cs" />
+    <Compile Include="Repositories\SystemParameterRepository.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

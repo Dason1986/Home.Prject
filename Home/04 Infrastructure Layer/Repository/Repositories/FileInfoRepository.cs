@@ -29,7 +29,13 @@ namespace Repository.Repositories
             return Set.Include("Photo").AsNoTracking().FirstOrDefault(n => n.FullPath == file);
         }
 
-        public IEnumerable<FileInfo> GetPhotoFilesByExtensions(string[] extensions)
+		public IList<string> GetFileDistinctByMD5()
+		{
+			return 	EfContext.Database.SqlQuery<string>("SELECT md5 FROM (SELECT MD5,count(0) 'aa' FROM fileinfo GROUP BY MD5) t1 WHERE aa > 1").ToList();
+		 
+		}
+
+		public IEnumerable<FileInfo> GetPhotoFilesByExtensions(string[] extensions)
         {
             return Set.Include("Photo").AsNoTracking().Where(n => extensions.Contains(n.Extension)&& n.StatusCode== Library.ComponentModel.Model.StatusCode.Enabled);
         }

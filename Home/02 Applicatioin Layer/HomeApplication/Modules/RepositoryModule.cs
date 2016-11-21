@@ -22,8 +22,8 @@ namespace HomeApplication
             builder.RegisterType<PhotoAttributeRepository>().As<IPhotoAttributeRepository>();
             builder.RegisterType<PhotoFingerprintRepository>().As<IPhotoFingerprintRepository>();
             builder.RegisterType<PhotoRepository>().As<IPhotoRepository>();
-            builder.RegisterType<PhotoSimilarRepository>().As<IPhotoSimilarRepository>();
-
+			builder.RegisterType<SystemParameterRepository>().As<ISystemParameterRepository>();
+			builder.RegisterType<PhotoSimilarRepository>().As<IPhotoSimilarRepository>();
 
             builder.RegisterType<GalleryModuleProvider>().As<IGalleryModuleProvider>();
 

@@ -22,5 +22,6 @@ namespace DomainModel.ModuleProviders
 
         IPhotoSimilarRepository CreatePhotoSimilar();
         IPhotoFacesRepository CreatePhotoFaces();
+		ISystemParameterRepository CreateSystemParameter();
     }
 }

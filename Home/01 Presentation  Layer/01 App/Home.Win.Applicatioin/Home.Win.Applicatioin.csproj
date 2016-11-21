@@ -33,6 +33,7 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Views\ISheetMainView.cs" />
     <Compile Include="Views\ILoginView.cs" />
+    <Compile Include="Views\IView.cs" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Views\" />

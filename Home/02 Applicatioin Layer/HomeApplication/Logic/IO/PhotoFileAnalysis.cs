@@ -151,6 +151,7 @@ namespace HomeApplication.Logic.IO
 
                     var domainService = Bootstrap.Currnet.GetService<IAddPhotoDomainService>();
                     domainService.ModuleProvider = provider;
+
                     //      domainService.SetDbConexnt(provider);
                     IFileInfoRepository _filesRepository = domainService.ModuleProvider.CreateFileInfo();
                     var photolist = _filesRepository.GetPhotoFilesByExtensions(Analysis.Option.ImageTypes).Skip(beginindex).Take(take).ToList();

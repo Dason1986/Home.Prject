@@ -145,6 +145,7 @@
     <Compile Include="Services\GalleryServiceImpl.cs" />
     <Compile Include="Services\ServiceImpl.cs" />
     <Compile Include="Modules\TimerJobModule.cs" />
+    <Compile Include="DomainServices\IPhotoEnvironment.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />

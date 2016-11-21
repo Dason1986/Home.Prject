@@ -85,7 +85,7 @@ namespace HomeApplication.Logic.IO
             {
                 //var _photoRepository = provider.CreatePhotoFingerprint();
 
-                var take = endindex - beginindex;
+             //   var take = endindex - beginindex;
                 var list = photoFingerprintRepository.GetList(Option.AlgorithmType, beginindex, endindex);
 
 

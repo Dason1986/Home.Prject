@@ -24,7 +24,7 @@ namespace Repository.Repositories
             cmd.ExecuteSqlCommand(string.Format("delete from photosimilar  where LeftPhotoID='{0}'", id));
 
             cmd.ExecuteSqlCommand(string.Format("delete from photo  where id='{0}'", id));
-
+		 
         }
 
         public int GetAllPhotoTotal()
@@ -32,7 +32,12 @@ namespace Repository.Repositories
             return GetAll().Where(n => n.StatusCode == StatusCode.Enabled).Count();
         }
 
-        public IList<Photo> GetList(int beginindex, int take)
+		public Photo GetByFileId(Guid id)
+		{
+			return CreateSet().FirstOrDefault(n => n.FileID == id);
+		}
+
+		public IList<Photo> GetList(int beginindex, int take)
         {
             var photos = CreateSet().Include("File").Include("ParentAlbum").Include("Attributes").AsNoTracking().OrderBy(n => n.Created).Skip(beginindex).Take(take).ToList();
             return photos;

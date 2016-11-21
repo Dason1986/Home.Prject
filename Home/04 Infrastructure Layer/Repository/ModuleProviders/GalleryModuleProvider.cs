@@ -1,4 +1,4 @@
-﻿using DomainModel.ModuleProviders;
+using DomainModel.ModuleProviders;
 using Library.Domain.Data.EF;
 using System;
 using System.Collections.Generic;
@@ -50,5 +50,10 @@ namespace Repository.ModuleProviders
         {
             return new PhotoSimilarRepository(this.Context);
         }
-    }
+
+		public ISystemParameterRepository CreateSystemParameter()
+		{
+			return new SystemParameterRepository(this.Context);
+		}
+	}
 }

@@ -1,6 +1,7 @@
-﻿using DomainModel.Aggregates.FileAgg;
+using DomainModel.Aggregates.FileAgg;
 using Library.Domain.Data;
 using System.Collections.Generic;
+using System;
 
 namespace DomainModel.Repositories
 {
@@ -10,5 +11,6 @@ namespace DomainModel.Repositories
         IEnumerable<FileInfo> GetPhotoFilesByExtensions(string[] extensions);
         bool FileExists(string mD5, long fileSize);
         FileInfo GetByFullPath(string file);
-    }
+		IList<string> GetFileDistinctByMD5();
+	}
 }

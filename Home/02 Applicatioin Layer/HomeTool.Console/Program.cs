@@ -22,6 +22,10 @@ namespace HomeTool.Console
             cmd.Run();
 
             System.Console.ReadLine();
+			while (true)
+			{
+				System.Threading.Thread.Sleep(1000);
+			}
         }
     }
 }
