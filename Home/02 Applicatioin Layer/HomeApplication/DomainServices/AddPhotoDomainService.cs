@@ -185,7 +185,7 @@ namespace HomeApplication.DomainServices
                 attributes.Add(CreateAtt("DateTimeOriginal", exif.DateTimeOriginal.Value.ToString("yyyy-MM-dd HH:mm:ss")));
             if (!string.IsNullOrWhiteSpace(exif.EquipmentMake)) attributes.Add(CreateAtt("EquipmentMake", exif.EquipmentMake));
             if (!string.IsNullOrWhiteSpace(exif.EquipmentModel)) attributes.Add(CreateAtt("EquipmentModel", exif.EquipmentModel));
-            if (!string.IsNullOrWhiteSpace(exif.Description) && exif.Description.Trim().Length > 0) attributes.Add(CreateAtt("Description", exif.Description.Trim()));
+            if (!string.IsNullOrWhiteSpace(exif.Description) ) attributes.Add(CreateAtt("Description", exif.Description.Trim()));
             if (!string.IsNullOrWhiteSpace(exif.Keyword)) attributes.Add(CreateAtt("Keyword", exif.Keyword));
             if (string.IsNullOrWhiteSpace(exif.Title)) exif.Title = CurrnetFile.FileName;
             attributes.Add(CreateAtt("Title", exif.Title));
