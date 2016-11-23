@@ -1,12 +1,14 @@
-﻿using Autofac;
+using Autofac;
 using Autofac.Core;
 using Library;
 using NLog;
 using System;
 using System.Collections.Generic;
+using System.Reflection;
 
 namespace HomeApplication
 {
+	
     public class ConsoleAppBootstrap : Bootstrap
     {
 
@@ -17,9 +19,9 @@ namespace HomeApplication
             Logger = LogManager.GetCurrentClassLogger();
         }
 
-        private IContainer _container;
+        protected IContainer _container;
 
-        private readonly ContainerBuilder _containerBuilder;
+        protected readonly ContainerBuilder _containerBuilder;
         protected ILogger Logger { get; set; }
 
 
@@ -32,6 +34,7 @@ namespace HomeApplication
             Logger.Info("Ioc");
             Logger.Info(" injection db");
             _containerBuilder.RegisterAssemblyModules(AppDomain.CurrentDomain.GetAssemblies());
+
             /*
             _containerBuilder.RegisterModule<RepositoryModule>();
 
