@@ -188,7 +188,8 @@ namespace HomeApplication.DomainServices
 			if (exif.GPS != null) attributes.Add(CreateAtt("GPS", exif.GPS.ToString()));
 			if (!string.IsNullOrWhiteSpace(exif.Author)) attributes.Add(CreateAtt("Author", exif.Author));
 			if (!string.IsNullOrWhiteSpace(exif.Comment)) attributes.Add(CreateAtt("Comment", exif.Comment));
-			attributes.Add(CreateAtt("Orientation", exif.Orientation.ToString()));
+			if (exif.Orientation.GetHashCode() != 0)
+				attributes.Add(CreateAtt("Orientation", exif.Orientation.ToString()));
 			imageOrientation = exif.Orientation;
 
 		}
