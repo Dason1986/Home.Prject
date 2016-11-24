@@ -27,7 +27,7 @@ namespace Repository.EF.Mapping
 
         private static void SystemAgg(DbModelBuilder modelBuilder)
         {
-               modelBuilder.Configurations.Add(new SystemParameterEntityTypeConfiguration());
+            modelBuilder.Configurations.Add(new SystemParameterEntityTypeConfiguration());
         }
         private static void FileAgg(DbModelBuilder modelBuilder)
         {
@@ -37,16 +37,16 @@ namespace Repository.EF.Mapping
         private static void ProductAgg(DbModelBuilder modelBuilder)
         {
             modelBuilder.Configurations.Add(new ProductItemEntityTypeConfiguration());
-            modelBuilder.Configurations.Add(new ProductAttachmentEntityTypeConfiguration()); 
+            modelBuilder.Configurations.Add(new ProductAttachmentEntityTypeConfiguration());
 
 
         }
-       private static void AssetsAgg(DbModelBuilder modelBuilder)
+        private static void AssetsAgg(DbModelBuilder modelBuilder)
         {
-         
+
             modelBuilder.Configurations.Add(new AssetsItemEntityTypeConfiguration());
             modelBuilder.Configurations.Add(new PurchaseLineItemEntityTypeConfiguration());
-            modelBuilder.Configurations.Add(new PurchaseOrderEntityTypeConfiguration()); 
+            modelBuilder.Configurations.Add(new PurchaseOrderEntityTypeConfiguration());
 
 
         }
@@ -64,9 +64,9 @@ namespace Repository.EF.Mapping
         {
             modelBuilder.Configurations.Add(new UserProfileEntityTypeConfiguration());
             modelBuilder.Configurations.Add(new ContactProfileEntityTypeConfiguration());
-         //   modelBuilder.Configurations.Add(new ContactRelationEntityTypeConfiguration());
+            //   modelBuilder.Configurations.Add(new ContactRelationEntityTypeConfiguration());
             modelBuilder.Configurations.Add(new FamilyRoleEntityTypeConfiguration());
-           // modelBuilder.Configurations.Add(new ContactRelationRightEntityTypeConfiguration());
+            // modelBuilder.Configurations.Add(new ContactRelationRightEntityTypeConfiguration());
 
         }
     }

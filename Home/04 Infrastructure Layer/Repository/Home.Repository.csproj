@@ -7,8 +7,8 @@
     <ProjectGuid>{28EE81F9-857E-4451-AF91-AD842ECEE48C}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>Repository</RootNamespace>
-    <AssemblyName>Repository</AssemblyName>
+    <RootNamespace>Home.Repository</RootNamespace>
+    <AssemblyName>Home.Repository</AssemblyName>
     <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
   </PropertyGroup>
@@ -68,12 +68,12 @@
     <Compile Include="EF\EFUnitOfWork.cs" />
     <Compile Include="EF\MainBoundedContext.cs" />
     <Compile Include="EF\Mapping\AssetsAgg\AssetsItemEntityTypeConfiguration.cs" />
+    <Compile Include="EF\Mapping\GalleryAgg\AlbumTypeConfiguration.cs" />
     <Compile Include="EF\Mapping\ProductAgg\ProductAttachmentEntityTypeConfiguration.cs" />
     <Compile Include="EF\Mapping\ProductAgg\ProductItemEntityTypeConfiguration.cs" />
     <Compile Include="EF\Mapping\AssetsAgg\PurchaseLineItemEntityTypeConfiguration.cs" />
     <Compile Include="EF\Mapping\AssetsAgg\PurchaseOrderEntityTypeConfiguration.cs" />
     <Compile Include="EF\Mapping\FileAgg\FileInfoEntityTypeConfiguration.cs" />
-    <Compile Include="EF\Mapping\GalleryAgg\AlbumTypeConfiguration.cs" />
     <Compile Include="EF\Mapping\GalleryAgg\PhotoAttributeEntityTypeConfiguration.cs" />
     <Compile Include="EF\Mapping\GalleryAgg\PhotoEntityTypeConfiguration.cs" />
     <Compile Include="EF\Mapping\SystemAgg\ProductItemEntityTypeConfiguration.cs" />
@@ -81,9 +81,9 @@
     <Compile Include="EF\Mapping\UserAgg\ContactProfileEntityTypeConfiguration.cs" />
     <Compile Include="EF\Mapping\UserAgg\FamilyRoleEntityTypeConfiguration.cs" />
     <Compile Include="EF\Mapping\UserAgg\UserProfileEntityTypeConfiguration.cs" />
-    <Compile Include="Migrations\201609140928372_V1.cs" />
-    <Compile Include="Migrations\201609140928372_V1.Designer.cs">
-      <DependentUpon>201609140928372_V1.cs</DependentUpon>
+    <Compile Include="Migrations\201611240634251_V1.cs" />
+    <Compile Include="Migrations\201611240634251_V1.Designer.cs">
+      <DependentUpon>201611240634251_V1.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Migrations\InitializeDB\V1.cs" />
@@ -111,18 +111,18 @@
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\..\03 Domain Layer\DomainModel\DomainModel.csproj">
+    <ProjectReference Include="..\..\03 Domain Layer\DomainModel\Home.DomainModel.csproj">
       <Project>{F253EE76-A606-42A6-B654-E5AD30EDD47D}</Project>
-      <Name>DomainModel</Name>
+      <Name>Home.DomainModel</Name>
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="Migrations\201609140928372_V1.resx">
-      <DependentUpon>201609140928372_V1.cs</DependentUpon>
-    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\InitializeDB\CreateView.sql" />
   </ItemGroup>
-  <ItemGroup />
   <ItemGroup>
+    <EmbeddedResource Include="Migrations\201611240634251_V1.resx">
+      <DependentUpon>201611240634251_V1.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Migrations\InitializeDB\init.sql" />
   </ItemGroup>
 </Project>

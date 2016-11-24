@@ -1,47 +1,15 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.IO;
-using System.Linq;
 using System.Net;
 using System.Net.Http;
 using System.Net.Http.Headers;
 using System.Text;
-using System.Threading.Tasks;
 using System.Web;
 using System.Web.Http;
 
 namespace HomeApplication.Owin.API
 {
-	[AllowAnonymous]
-	public class GalleryController : ApiController
-	{
-		public GalleryController()
-		{
-
-		}
-		[HttpGet]
-		public IEnumerable<GalleryType> GetAllGallery()
-		{
-
-			yield return new GalleryType { Name = "TimeLine", Count = 11 };
-			yield return new GalleryType { Name = "EquipmentMake", Count = 12 };
-			yield return new GalleryType { Name = "RawFormat", Count = 12 };
-		}
-	}
-	public class GalleryType
-	{
-
-		public String Name
-		{
-			get;
-			set;
-		}
-		public int Count
-		{
-			get;
-			set;
-		}
-	}
+	
 
 	[AllowAnonymous]
 	public class PhotoController : ApiController

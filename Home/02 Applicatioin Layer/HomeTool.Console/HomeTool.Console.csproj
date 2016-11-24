@@ -83,13 +83,13 @@
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\..\03 Domain Layer\DomainModel\DomainModel.csproj">
+    <ProjectReference Include="..\..\03 Domain Layer\DomainModel\Home.DomainModel.csproj">
       <Project>{f253ee76-a606-42a6-b654-e5ad30edd47d}</Project>
-      <Name>DomainModel</Name>
+      <Name>Home.DomainModel</Name>
     </ProjectReference>
-    <ProjectReference Include="..\..\04 Infrastructure Layer\Repository\Repository.csproj">
+    <ProjectReference Include="..\..\04 Infrastructure Layer\Repository\Home.Repository.csproj">
       <Project>{28ee81f9-857e-4451-af91-ad842ecee48c}</Project>
-      <Name>Repository</Name>
+      <Name>Home.Repository</Name>
     </ProjectReference>
     <ProjectReference Include="..\HomeApplication.Dto\HomeApplication.Dto.csproj">
       <Project>{948ac8b7-b26c-47df-8232-4cf31c94fc0d}</Project>

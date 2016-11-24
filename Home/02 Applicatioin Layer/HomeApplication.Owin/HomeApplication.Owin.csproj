@@ -40,8 +40,16 @@
       <HintPath>..\..\packages\Autofac.Extras.DynamicProxy.4.1.0\lib\net45\Autofac.Extras.DynamicProxy.dll</HintPath>
       <Private>True</Private>
     </Reference>
-    <Reference Include="Autofac.Integration.WebApi, Version=3.0.0.0, Culture=neutral, PublicKeyToken=17863af14b0044da, processorArchitecture=MSIL">
-      <HintPath>..\..\packages\Autofac.WebApi.3.1.0\lib\net40\Autofac.Integration.WebApi.dll</HintPath>
+    <Reference Include="Autofac.Integration.Owin, Version=4.0.0.0, Culture=neutral, PublicKeyToken=17863af14b0044da, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\Autofac.Owin.4.0.0\lib\net45\Autofac.Integration.Owin.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Autofac.Integration.WebApi, Version=4.0.0.0, Culture=neutral, PublicKeyToken=17863af14b0044da, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\Autofac.WebApi2.4.0.0\lib\net45\Autofac.Integration.WebApi.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Autofac.Integration.WebApi.Owin, Version=4.0.0.0, Culture=neutral, PublicKeyToken=17863af14b0044da, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\Autofac.WebApi2.Owin.4.0.0\lib\net45\Autofac.Integration.WebApi.Owin.dll</HintPath>
       <Private>True</Private>
     </Reference>
     <Reference Include="AutoMapper, Version=5.1.1.0, Culture=neutral, PublicKeyToken=be96cd2c38ef1005, processorArchitecture=MSIL">
@@ -155,11 +163,15 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="API\GalleryController.cs" />
+    <Compile Include="API\GalleryMakeController.cs" />
+    <Compile Include="API\GalleryRawController.cs" />
+    <Compile Include="API\GalleryTimelineController.cs" />
     <Compile Include="API\PhotoController.cs" />
+    <Compile Include="OwinAppBootstrap.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Startup1.cs" />
-    <Compile Include="OwinAppBootstrap.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
@@ -169,21 +181,21 @@
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\..\03 Domain Layer\DomainModel\DomainModel.csproj">
+    <ProjectReference Include="..\..\03 Domain Layer\DomainModel\Home.DomainModel.csproj">
       <Project>{F253EE76-A606-42A6-B654-E5AD30EDD47D}</Project>
-      <Name>DomainModel</Name>
+      <Name>Home.DomainModel</Name>
     </ProjectReference>
-    <ProjectReference Include="..\..\04 Infrastructure Layer\Repository\Repository.csproj">
+    <ProjectReference Include="..\..\04 Infrastructure Layer\Repository\Home.Repository.csproj">
       <Project>{28ee81f9-857e-4451-af91-ad842ecee48c}</Project>
-      <Name>Repository</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\HomeApplication\HomeApplication.csproj">
-      <Project>{BC1F66F3-6EA5-4008-B5B2-CE931D7B79D7}</Project>
-      <Name>HomeApplication</Name>
+      <Name>Home.Repository</Name>
     </ProjectReference>
     <ProjectReference Include="..\HomeApplication.Dto\HomeApplication.Dto.csproj">
-      <Project>{948AC8B7-B26C-47DF-8232-4CF31C94FC0D}</Project>
+      <Project>{948ac8b7-b26c-47df-8232-4cf31c94fc0d}</Project>
       <Name>HomeApplication.Dto</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\HomeApplication\HomeApplication.csproj">
+      <Project>{bc1f66f3-6ea5-4008-b5b2-ce931d7b79d7}</Project>
+      <Name>HomeApplication</Name>
     </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

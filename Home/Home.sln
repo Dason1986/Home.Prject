@@ -28,9 +28,9 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Requirement", "Requirement"
 		..\Documnet\Requirement\聯繫人.txt = ..\Documnet\Requirement\聯繫人.txt
 	EndProjectSection
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DomainModel", "03 Domain Layer\DomainModel\DomainModel.csproj", "{F253EE76-A606-42A6-B654-E5AD30EDD47D}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Home.DomainModel", "03 Domain Layer\DomainModel\Home.DomainModel.csproj", "{F253EE76-A606-42A6-B654-E5AD30EDD47D}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Repository", "04 Infrastructure Layer\Repository\Repository.csproj", "{28EE81F9-857E-4451-AF91-AD842ECEE48C}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Home.Repository", "04 Infrastructure Layer\Repository\Home.Repository.csproj", "{28EE81F9-857E-4451-AF91-AD842ECEE48C}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "HomeApplication.Dto", "02 Applicatioin Layer\HomeApplication.Dto\HomeApplication.Dto.csproj", "{948AC8B7-B26C-47DF-8232-4CF31C94FC0D}"
 EndProject
