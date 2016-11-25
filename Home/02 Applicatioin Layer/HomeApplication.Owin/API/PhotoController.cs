@@ -12,8 +12,8 @@ namespace HomeApplication.Owin.API
 	
 
 	[AllowAnonymous]
-	public class PhotoController : ApiController
-	{
+	public class PhotoController : WebAPI
+    {
 		[HttpGet]
 		public HttpResponseMessage GetFile(string id)
 		{

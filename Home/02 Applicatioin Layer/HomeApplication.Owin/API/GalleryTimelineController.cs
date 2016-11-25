@@ -8,7 +8,7 @@ namespace HomeApplication.Owin.API
 {
     [AllowAnonymous]
     [RoutePrefix("api/GalleryTimeline")]
-    public class GalleryTimelineController : ApiController
+    public class GalleryTimelineController : WebAPI
     {
         IGalleryService _service;
 

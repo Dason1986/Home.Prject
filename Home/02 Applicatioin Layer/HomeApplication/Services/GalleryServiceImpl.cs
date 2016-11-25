@@ -32,8 +32,9 @@ namespace HomeApplication.Services
             List<GalleryType> list = new List<GalleryType>()
             {
             new GalleryType { Name = "TimeLine", Count = attres.GetCount("DateTimeDigitized") },
-            new GalleryType { Name = "EquipmentMake", Count = attres.GetCount("EquipmentMake") },
-            new GalleryType { Name = "RawFormat", Count = attres.GetCount("RawFormat") }
+            new GalleryType { Name = "EquipmentMake", Count =Get("EquipmentMake").Count },
+            new GalleryType { Name = "RawFormat", Count = Get("RawFormat").Count },
+            new GalleryType { Name = "Selfie", Count = attres.GetCount("Selfie") }
             };
             return list;
         }
@@ -72,10 +73,10 @@ namespace HomeApplication.Services
 
         //    return list;
         //}
-        public IList<GalleryType> GetEquipmentMake(string make=null)
+        public IList<GalleryType> GetEquipmentMake(string make = null)
         {
-         
-            return Get("EquipmentMake"); 
+
+            return Get("EquipmentMake");
         }
         public IList<GalleryType> GetEquipmentModel()
         {
@@ -103,7 +104,7 @@ namespace HomeApplication.Services
         }
         public IList<GalleryType> GetRawFormat()
         {
-          
+
             return Get("RawFormat");
         }
     }

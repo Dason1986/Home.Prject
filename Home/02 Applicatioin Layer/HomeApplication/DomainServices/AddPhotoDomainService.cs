@@ -185,7 +185,7 @@ namespace HomeApplication.DomainServices
                 attributes.Add(CreateAtt("DateTimeOriginal", exif.DateTimeOriginal.Value.ToString("yyyy-MM-dd HH:mm:ss")));
             if (!string.IsNullOrWhiteSpace(exif.EquipmentMake)) attributes.Add(CreateAtt("EquipmentMake", exif.EquipmentMake));
             if (!string.IsNullOrWhiteSpace(exif.EquipmentModel)) attributes.Add(CreateAtt("EquipmentModel", exif.EquipmentModel));
-            if (!string.IsNullOrWhiteSpace(exif.Description) ) attributes.Add(CreateAtt("Description", exif.Description.Trim()));
+            if (!string.IsNullOrWhiteSpace(exif.Description)) attributes.Add(CreateAtt("Description", exif.Description.Trim()));
             if (!string.IsNullOrWhiteSpace(exif.Keyword)) attributes.Add(CreateAtt("Keyword", exif.Keyword));
             if (string.IsNullOrWhiteSpace(exif.Title)) exif.Title = CurrnetFile.FileName;
             attributes.Add(CreateAtt("Title", exif.Title));
@@ -193,10 +193,12 @@ namespace HomeApplication.DomainServices
             if (exif.GPS != null) attributes.Add(CreateAtt("GPS", exif.GPS.ToString()));
             if (!string.IsNullOrWhiteSpace(exif.Author)) attributes.Add(CreateAtt("Author", exif.Author));
             if (!string.IsNullOrWhiteSpace(exif.Comment)) attributes.Add(CreateAtt("Comment", exif.Comment));
+            if (!string.IsNullOrEmpty(exif.EquipmentMake) && CurrnetFile.FileSize < mbSize) attributes.Add(CreateAtt("Selfie", "1"));
             imageOrientation = exif.Orientation;
             if ((int)imageOrientation != 0)
                 attributes.Add(CreateAtt("Orientation", exif.Orientation.ToString()));
 
         }
+        const int mbSize = 1024 * 1024;
     }
 }

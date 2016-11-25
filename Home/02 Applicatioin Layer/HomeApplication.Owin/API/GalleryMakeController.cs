@@ -7,7 +7,7 @@ namespace HomeApplication.Owin.API
 {
     [AllowAnonymous]
     [RoutePrefix("api/GalleryMake")]
-    public class GalleryMakeController : ApiController
+    public class GalleryMakeController : WebAPI
     {
         IGalleryService _service;
 

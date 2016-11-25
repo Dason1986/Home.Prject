@@ -6,6 +6,7 @@ using System;
 using System.Collections.Generic;
 using System.Reflection;
 using System.Web.Http;
+using System.Web.Http.Cors;
 
 namespace HomeApplication
 {
@@ -36,6 +37,8 @@ namespace HomeApplication
 
         void WebConfig()
         {
+            var cors = new EnableCorsAttribute("*", "*", "*");
+            config.EnableCors();
 
 
             //     config.Routes.MapHttpRoute("Default", "{controller}/{action}", new { controller = "Home",action="Index" });
