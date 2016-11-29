@@ -1,7 +1,7 @@
 ﻿using Library.Domain;
 using System.Collections.Generic;
 
-namespace DomainModel.Aggregates.ProductAgg
+namespace Home.DomainModel.Aggregates.ProductAgg
 {
     public class ProductItem : AuditedEntity
     {

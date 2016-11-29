@@ -1,16 +1,16 @@
-using DomainModel.DomainServices;
+using Home.DomainModel.DomainServices;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using Library.Domain.DomainEvents;
-using DomainModel.Aggregates.GalleryAgg;
+using Home.DomainModel.Aggregates.GalleryAgg;
 using System.Drawing.Imaging;
 using System.Drawing;
 using System.IO;
 using Library.Infrastructure.Application;
 using Library.HelperUtility;
 using System.Drawing.Drawing2D;
-using DomainModel.Repositories;
+using Home.DomainModel.Repositories;
 
 namespace HomeApplication.DomainServices
 {

@@ -1,9 +1,10 @@
 ﻿using System;
-using DomainModel.Aggregates.GalleryAgg;
 using Library.Domain.Data;
 using System.Collections.Generic;
+using Home.DomainModel.Aggregates.GalleryAgg;
+using Home.DomainModel;
 
-namespace DomainModel.Repositories
+namespace Home.DomainModel.Repositories
 {
     public interface IPhotoFingerprintRepository : IRepository<PhotoFingerprint>
     {

@@ -1,9 +1,9 @@
-﻿using DomainModel.Aggregates.GalleryAgg;
+﻿using Home.DomainModel.Aggregates.GalleryAgg;
 using Library.ComponentModel.Model;
 using Library.Domain;
 using System.ComponentModel.DataAnnotations;
 
-namespace DomainModel.Aggregates.FileAgg
+namespace Home.DomainModel.Aggregates.FileAgg
 {
     public class FileInfo : CreateEntity
     {

@@ -1,14 +1,14 @@
-using DomainModel.ModuleProviders;
+using Home.DomainModel.ModuleProviders;
 using Library.Domain.Data.EF;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using DomainModel.Repositories;
-using Repository.Repositories;
+using Home.DomainModel.Repositories; 
+using Home.Repository.Repositories;
 
-namespace Repository.ModuleProviders
+namespace Home.Repository.ModuleProviders
 {
     public class GalleryModuleProvider : ModuleProvider, IGalleryModuleProvider
     {

@@ -1,9 +1,9 @@
-﻿using DomainModel.ModuleProviders;
+﻿using Home.DomainModel.ModuleProviders;
 using Library;
 using Library.ComponentModel.Logic;
 using Library.Infrastructure.Application;
-using Repository;
-using Repository.ModuleProviders;
+using Home.Repository;
+using Home.Repository.ModuleProviders;
 using System.Collections.Generic;
 using System.Linq;
 using HomeApplication.DomainServices;
@@ -98,7 +98,7 @@ namespace HomeApplication.Logic.IO
 			}
 		}
 
-		void DeleFile(DomainModel.Aggregates.FileAgg.FileInfo fileinfo,string key)
+		void DeleFile(Home.DomainModel.Aggregates.FileAgg.FileInfo fileinfo,string key)
 		{
 			var Thumbnail = fileinfo.Photo.Attributes.FirstOrDefault(n => n.AttKey == "Thumbnail");
 			if (Thumbnail != null)

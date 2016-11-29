@@ -1,5 +1,5 @@
-﻿using DomainModel.Aggregates.FileAgg;
-using DomainModel.Aggregates.GalleryAgg;
+﻿using Home.DomainModel.Aggregates.FileAgg;
+using Home.DomainModel.Aggregates.GalleryAgg;
 using System;
 using System.Collections.Generic;
 using System.Drawing;

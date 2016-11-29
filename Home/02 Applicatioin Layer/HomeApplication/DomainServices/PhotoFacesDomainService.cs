@@ -1,12 +1,12 @@
-﻿using DomainModel.DomainServices;
+﻿using Home.DomainModel.DomainServices;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using Library.Domain.DomainEvents;
-using DomainModel.ModuleProviders;
-using DomainModel.Repositories;
+using Home.DomainModel.ModuleProviders;
+using Home.DomainModel.Repositories;
 
 namespace HomeApplication.DomainServices
 {

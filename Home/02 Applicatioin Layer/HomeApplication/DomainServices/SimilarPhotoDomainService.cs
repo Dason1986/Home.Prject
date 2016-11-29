@@ -1,14 +1,14 @@
-﻿using DomainModel.DomainServices;
+﻿using Home.DomainModel.DomainServices;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using Library.Domain.DomainEvents;
-using DomainModel.Aggregates.GalleryAgg;
-using DomainModel.ModuleProviders;
-using DomainModel.Repositories;
-using DomainModel;
+using Home.DomainModel.Aggregates.GalleryAgg;
+using Home.DomainModel.ModuleProviders;
+using Home.DomainModel.Repositories;
+using Home.DomainModel;
 using Library.Draw.SimilarImages;
 using Library;
 using Library.Comparable;
@@ -20,7 +20,7 @@ namespace HomeApplication.DomainServices
         public SimilarPhotoDomainService()
         {
             BatchSize = 500;
-            SetAlgorithm(DomainModel.SimilarAlgorithm.PerceptualHash);
+            SetAlgorithm(Home.DomainModel.SimilarAlgorithm.PerceptualHash);
         }
         private Library.Draw.SimilarImages.SimilarAlgorithm _similarImages;
 
@@ -28,7 +28,7 @@ namespace HomeApplication.DomainServices
 
         public IList<PhotoFingerprint> ComparerFingerprints { get; set; }
 
-        public DomainModel.SimilarAlgorithm Algorithm { get; private set; }
+        public Home.DomainModel.SimilarAlgorithm Algorithm { get; private set; }
 
         public int BatchSize { get; set; }
         public double Similarity
@@ -46,15 +46,15 @@ namespace HomeApplication.DomainServices
 
         IPhotoSimilarRepository photoSimilarRepository;
         IPhotoFingerprintRepository photoFingerprintRepository;
-        public void SetAlgorithm(DomainModel.SimilarAlgorithm type)
+        public void SetAlgorithm(Home.DomainModel.SimilarAlgorithm type)
         {
             Algorithm = type;
             switch (Algorithm)
             {
-                case DomainModel.SimilarAlgorithm.GrayHistogram:
+                case Home.DomainModel.SimilarAlgorithm.GrayHistogram:
                     _similarImages = new Library.Draw.SimilarImages.GrayHistogram();
                     break;
-                case DomainModel.SimilarAlgorithm.PerceptualHash:
+                case Home.DomainModel.SimilarAlgorithm.PerceptualHash:
                     _similarImages = new Library.Draw.SimilarImages.PerceptualHash();
                     break;
                 default:
@@ -115,7 +115,7 @@ namespace HomeApplication.DomainServices
                 {
                     if (photoSimilarRepository.Exist(leftitem.PhotoID, rightitem.PhotoID)) return;
                     Logger.Info("same:{0} - {1}", leftitem.Owner.File.FileName, rightitem.Owner.File.FileName);
-                    photoSimilarRepository.Add(new DomainModel.Aggregates.GalleryAgg.PhotoSimilar(CreatedInfo.PhotoSimilar)
+                    photoSimilarRepository.Add(new PhotoSimilar(CreatedInfo.PhotoSimilar)
                     {
                         LeftPhotoID = leftitem.PhotoID,
                         RightPhotoID = rightitem.PhotoID

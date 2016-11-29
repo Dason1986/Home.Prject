@@ -5,7 +5,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace DomainModel.Aggregates.FileAgg
+namespace Home.DomainModel.Aggregates.FileAgg
 {
     public abstract class Attachment : CreateEntity
     {

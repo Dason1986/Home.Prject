@@ -11,7 +11,7 @@
     <AssemblyName>Home.WebUI</AssemblyName>
     <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
     <FileUpgradeFlags>40</FileUpgradeFlags>
-    <UpgradeBackupLocation>D:\Code\Home.Prject\Home\Backup1\</UpgradeBackupLocation>
+    <UpgradeBackupLocation>D:\Code\Home.Prject\Home\Backup\</UpgradeBackupLocation>
     <OldToolsVersion>4.0</OldToolsVersion>
     <UseIISExpress>true</UseIISExpress>
     <IISExpressSSLPort />

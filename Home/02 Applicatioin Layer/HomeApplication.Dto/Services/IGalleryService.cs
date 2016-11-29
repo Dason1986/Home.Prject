@@ -1,7 +1,7 @@
 ﻿using System.Collections.Generic;
 
 using HomeApplication.Dtos;
-using DomainModel.Repositories;
+using Home.DomainModel.Repositories;
 
 namespace HomeApplication.Services
 {

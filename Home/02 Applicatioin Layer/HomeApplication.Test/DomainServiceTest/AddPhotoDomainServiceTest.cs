@@ -1,18 +1,14 @@
 ﻿using Autofac;
 using Autofac.Extras.Moq;
-using DomainModel.Aggregates.GalleryAgg;
-using DomainModel.DomainServices;
-using DomainModel.ModuleProviders;
-using DomainModel.Repositories;
+using Home.DomainModel.DomainServices;
+using Home.DomainModel.ModuleProviders;
+using Home.DomainModel.Repositories;
 using HomeApplication.DomainServices;
-using Library;
 using Library.Domain.Data;
 using Library.Domain.DomainEvents;
 using Moq;
 using NUnit.Framework;
 using System;
-using System.Collections.Generic;
-using System.Drawing;
 using System.Linq;
 
 namespace HomeApplication.Test

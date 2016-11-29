@@ -1,7 +1,7 @@
-﻿using DomainModel.Aggregates.GalleryAgg;
+﻿using Home.DomainModel.Aggregates.GalleryAgg;
 using Library.Domain.Data;
 
-namespace DomainModel.Repositories
+namespace Home.DomainModel.Repositories
 {
 
     public interface IAlbumRepository : IRepository<Album>

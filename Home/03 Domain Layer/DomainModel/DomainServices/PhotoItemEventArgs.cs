@@ -1,7 +1,7 @@
 ﻿using Library.Domain.DomainEvents;
 using System;
 
-namespace DomainModel.DomainServices
+namespace Home.DomainModel.DomainServices
 {
     public class PhotoItemEventArgs : IDomainEventArgs
     {

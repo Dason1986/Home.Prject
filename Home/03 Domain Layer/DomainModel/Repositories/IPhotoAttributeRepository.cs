@@ -1,8 +1,8 @@
-﻿using DomainModel.Aggregates.GalleryAgg;
+﻿using Home.DomainModel.Aggregates.GalleryAgg;
 using Library.Domain.Data;
 using System.Collections.Generic;
 
-namespace DomainModel.Repositories
+namespace Home.DomainModel.Repositories
 {
 
     public interface IPhotoAttributeRepository : IRepository<PhotoAttribute>

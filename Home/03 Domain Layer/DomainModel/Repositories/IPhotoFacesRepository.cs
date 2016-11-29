@@ -1,13 +1,9 @@
-﻿
-using DomainModel.Aggregates.GalleryAgg;
+﻿using Home.DomainModel.Aggregates.GalleryAgg;
 using Library.Domain.Data;
 using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
-namespace DomainModel.Repositories
+namespace Home.DomainModel.Repositories
 {
     public interface IPhotoFacesRepository : IRepository<PhotoFace>
     {

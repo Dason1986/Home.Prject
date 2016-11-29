@@ -1,4 +1,4 @@
-﻿using DomainModel.Aggregates.ProductAgg;
+﻿using Home.DomainModel.Aggregates.ProductAgg;
 using System.Data.Entity.ModelConfiguration;
 
 namespace Repository.EF.Mapping.ProductAgg

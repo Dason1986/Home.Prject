@@ -1,6 +1,6 @@
 ﻿
-using DomainModel.Aggregates.GalleryAgg;
-using DomainModel.Repositories;
+using Home.DomainModel.Aggregates.GalleryAgg;
+using Home.DomainModel.Repositories;
 using Library.Domain.Data.EF;
 using System;
 using System.Collections.Generic;
@@ -8,7 +8,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Repository.Repositories
+namespace Home.Repository.Repositories
 {
     public class PhotoFacesRepository : Repository<PhotoFace>, IPhotoFacesRepository
     {

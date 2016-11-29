@@ -1,10 +1,10 @@
 ﻿using System;
-using DomainModel.Aggregates.GalleryAgg;
-using DomainModel.Repositories;
+using Home.DomainModel.Aggregates.GalleryAgg;
+using Home.DomainModel.Repositories;
 using Library.Domain.Data.EF;
 using System.Linq;
 
-namespace Repository.Repositories
+namespace Home.Repository.Repositories
 {
     public class PhotoSimilarRepository : Repository<PhotoSimilar>, IPhotoSimilarRepository
     {

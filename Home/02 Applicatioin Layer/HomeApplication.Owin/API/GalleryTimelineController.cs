@@ -1,4 +1,4 @@
-﻿using DomainModel.Repositories;
+﻿using Home.DomainModel.Repositories;
 using HomeApplication.Dtos;
 using HomeApplication.Services;
 using System.Collections.Generic;

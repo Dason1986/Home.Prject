@@ -1,7 +1,7 @@
 ﻿using Library.Domain.DomainEvents;
-using DomainModel.ModuleProviders;
+using Home.DomainModel.ModuleProviders;
 
-namespace DomainModel.DomainServices
+namespace Home.DomainModel.DomainServices
 {
     public interface IPhotoDomainService : IDomainService, IDomainService<PhotoItemEventArgs>
     {

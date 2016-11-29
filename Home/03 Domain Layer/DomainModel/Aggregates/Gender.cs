@@ -1,4 +1,4 @@
-﻿namespace DomainModel
+﻿namespace Home.DomainModel
 {
 
     public enum Gender

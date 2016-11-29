@@ -1,9 +1,9 @@
 using System;
 using System.Collections.Generic;
-using DomainModel.Aggregates.GalleryAgg;
 using Library.Domain.Data;
+using Home.DomainModel.Aggregates.GalleryAgg;
 
-namespace DomainModel.Repositories
+namespace Home.DomainModel.Repositories
 {
     public interface IPhotoRepository : IRepository<Photo>
     {

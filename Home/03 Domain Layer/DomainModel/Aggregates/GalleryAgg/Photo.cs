@@ -4,7 +4,7 @@ using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 
-namespace DomainModel.Aggregates.GalleryAgg
+namespace Home.DomainModel.Aggregates.GalleryAgg
 {
 
     public class Photo : AuditedEntity
@@ -21,7 +21,7 @@ namespace DomainModel.Aggregates.GalleryAgg
 
         public Guid AlbumID { get; set; }
         public virtual Album ParentAlbum { get; set; }
-        public virtual FileAgg.FileInfo File { get; set; }
+        public virtual DomainModel.Aggregates.FileAgg.FileInfo File { get; set; }
         [StringLength(100)]
         public string Tags { get; set; }
 

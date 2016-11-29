@@ -1,4 +1,5 @@
-﻿using DomainModel.Aggregates.FileAgg;
+﻿
+using Home.DomainModel.Aggregates.FileAgg;
 using System.Data.Entity.ModelConfiguration;
 
 namespace Repository.EF.Mapping.FileAgg

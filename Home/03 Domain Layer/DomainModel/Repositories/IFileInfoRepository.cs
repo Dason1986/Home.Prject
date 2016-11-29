@@ -1,9 +1,8 @@
-using DomainModel.Aggregates.FileAgg;
 using Library.Domain.Data;
 using System.Collections.Generic;
-using System;
+using Home.DomainModel.Aggregates.FileAgg;
 
-namespace DomainModel.Repositories
+namespace Home.DomainModel.Repositories
 {
     public interface IFileInfoRepository : IRepository<FileInfo>
     {

@@ -2,7 +2,7 @@
 using Library.Domain;
 using System;
 
-namespace DomainModel.Aggregates.GalleryAgg
+namespace Home.DomainModel.Aggregates.GalleryAgg
 {
 
     public class PhotoFingerprint : CreateEntity

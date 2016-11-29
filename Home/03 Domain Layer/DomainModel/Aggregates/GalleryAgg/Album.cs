@@ -4,7 +4,7 @@ using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 
-namespace DomainModel.Aggregates.GalleryAgg
+namespace Home.DomainModel.Aggregates.GalleryAgg
 {
     public class Album : AuditedEntity
     {

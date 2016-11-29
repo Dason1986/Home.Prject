@@ -1,14 +1,14 @@
-﻿using DomainModel.DomainServices;
+﻿using Home.DomainModel.DomainServices;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using DomainModel.Aggregates.GalleryAgg;
-using DomainModel.ModuleProviders;
+using Home.DomainModel.Aggregates.GalleryAgg;
+using Home.DomainModel.ModuleProviders;
 using Library.Domain.DomainEvents;
-using DomainModel.Repositories;
-using DomainModel;
+using Home.DomainModel.Repositories;
+using Home.DomainModel;
 using System.Drawing;
 using Library;
 

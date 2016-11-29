@@ -1,12 +1,12 @@
-﻿using DomainModel.DomainServices;
-using DomainModel.ModuleProviders;
-using DomainModel.Repositories;
+﻿using Home.DomainModel.DomainServices;
+using Home.DomainModel.ModuleProviders;
+using Home.DomainModel.Repositories;
 using Library.Domain;
 using Library.Domain.Data;
 using System;
 using System.Linq;
 
-namespace DomainModel.Aggregates.FileAgg
+namespace Home.DomainModel.Aggregates.FileAgg
 {
 
     public class FileAggregateRoot : AggregateRoot

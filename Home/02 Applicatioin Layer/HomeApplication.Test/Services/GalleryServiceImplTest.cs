@@ -1,6 +1,6 @@
 ﻿using Autofac.Extras.Moq;
-using DomainModel.ModuleProviders;
-using DomainModel.Repositories;
+using Home.DomainModel.ModuleProviders;
+using Home.DomainModel.Repositories;
 using HomeApplication.Services;
 using Library.Domain.Data;
 using Moq;

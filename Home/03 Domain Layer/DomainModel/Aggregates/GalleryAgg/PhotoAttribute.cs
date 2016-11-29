@@ -3,7 +3,7 @@ using Library.Domain;
 using System;
 using System.ComponentModel.DataAnnotations;
 
-namespace DomainModel.Aggregates.GalleryAgg
+namespace Home.DomainModel.Aggregates.GalleryAgg
 {
 
     public class PhotoAttribute : AuditedEntity

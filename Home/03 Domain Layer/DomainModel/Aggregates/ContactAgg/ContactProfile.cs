@@ -2,7 +2,7 @@
 using System;
 using System.ComponentModel.DataAnnotations;
 
-namespace DomainModel.Aggregates.ContactAgg
+namespace Home.DomainModel.Aggregates.ContactAgg
 {
 
     public class ContactProfile : AuditedEntity

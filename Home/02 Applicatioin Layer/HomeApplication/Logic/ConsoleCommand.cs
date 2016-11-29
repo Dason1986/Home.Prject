@@ -2,8 +2,8 @@
 using HomeApplication.Logic.IO;
 using Library.ComponentModel.Logic;
 using NLog;
-using Repository;
-using Repository.ModuleProviders;
+using Home.Repository;
+using Home.Repository.ModuleProviders;
 using System;
 using System.Collections.Generic;
 using System.Linq;

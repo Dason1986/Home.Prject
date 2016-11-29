@@ -1,4 +1,4 @@
-﻿using DomainModel.Aggregates.AssetsAgg;
+﻿using Home.DomainModel.Aggregates.AssetsAgg;
 using System.Data.Entity.ModelConfiguration;
 
 namespace Repository.EF.Mapping.AssetsAgg

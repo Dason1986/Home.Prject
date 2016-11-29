@@ -1,5 +1,5 @@
-﻿using DomainModel.DomainServices;
-using DomainModel.ModuleProviders;
+﻿using Home.DomainModel.DomainServices;
+using Home.DomainModel.ModuleProviders;
 using HomeApplication.DomainServices;
 using Library.Domain.DomainEvents;
 using NUnit.Framework;

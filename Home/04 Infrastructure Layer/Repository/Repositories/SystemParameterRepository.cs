@@ -1,8 +1,8 @@
-﻿using DomainModel.Aggregates.SystemAgg;
-using DomainModel.Repositories;
+﻿using Home.DomainModel.Aggregates.SystemAgg;
+using Home.DomainModel.Repositories;
 using Library.Domain.Data.EF;
 
-namespace Repository.Repositories
+namespace Home.Repository.Repositories
 {
 	public class SystemParameterRepository : Repository<SystemParameter>, ISystemParameterRepository
 	{

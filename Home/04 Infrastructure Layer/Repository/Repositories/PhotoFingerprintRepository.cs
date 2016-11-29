@@ -1,12 +1,12 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using DomainModel;
-using DomainModel.Aggregates.GalleryAgg;
-using DomainModel.Repositories;
+using Home.DomainModel;
+using Home.DomainModel.Aggregates.GalleryAgg;
+using Home.DomainModel.Repositories;
 using Library.Domain.Data.EF;
 
-namespace Repository.Repositories
+namespace Home.Repository.Repositories
 {
 
     public class PhotoFingerprintRepository : Repository<PhotoFingerprint>, IPhotoFingerprintRepository

@@ -1,14 +1,16 @@
-﻿namespace HomeApplication.Interceptors
+﻿using Home.DomainModel.Aggregates.UserAgg;
+
+namespace HomeApplication.Interceptors
 {
     public interface IUserManager
     {
-        DomainModel.UserAgg.UserProfile GetCurrentUser();
+        UserProfile GetCurrentUser();
     }
     public class UserManager : IUserManager
     {
-        public DomainModel.UserAgg.UserProfile GetCurrentUser()
+        public  UserProfile GetCurrentUser()
         {
-            return new DomainModel.UserAgg.UserProfile();
+            return new  UserProfile();
         }
     }
 }

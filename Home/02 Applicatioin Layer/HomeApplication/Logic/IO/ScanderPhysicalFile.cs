@@ -1,11 +1,11 @@
-﻿using DomainModel.ModuleProviders;
-using DomainModel.Repositories;
+﻿using Home.DomainModel.ModuleProviders;
+using Home.DomainModel.Repositories;
 using Library;
 using Library.ComponentModel.Logic;
 using Library.Domain.Data.EF;
 using Library.Infrastructure.Application;
-using Repository;
-using Repository.ModuleProviders;
+using Home.Repository;
+using Home.Repository.ModuleProviders;
 using System;
 using System.Linq;
 
@@ -100,7 +100,7 @@ namespace HomeApplication.Logic.IO
 
 				Logger.TraceByContent("Scan file", item);
 				if (_filesRepository.FileExists(item)) continue;
-				var fileinfo = new DomainModel.Aggregates.FileAgg.FileInfo(CreatedInfo.ScanderPhysical);
+				var fileinfo = new Home.DomainModel.Aggregates.FileAgg.FileInfo(CreatedInfo.ScanderPhysical);
 				System.IO.FileInfo sysInfo = new System.IO.FileInfo(item);
 				if (filterfile.Any(ff => sysInfo.Name.EndsWith(ff, StringComparison.OrdinalIgnoreCase))) continue;
 				fileinfo.Extension = sysInfo.Extension;

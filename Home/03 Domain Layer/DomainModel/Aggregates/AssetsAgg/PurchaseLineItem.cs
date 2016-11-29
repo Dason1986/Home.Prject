@@ -1,12 +1,8 @@
-﻿using DomainModel.Aggregates.ProductAgg;
+﻿using Home.DomainModel.Aggregates.ProductAgg;
 using Library.Domain;
 using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
-namespace DomainModel.Aggregates.AssetsAgg
+namespace Home.DomainModel.Aggregates.AssetsAgg
 {
     public class PurchaseLineItem: CreateEntity
     {

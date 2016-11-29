@@ -1,8 +1,8 @@
-﻿using DomainModel.Aggregates.GalleryAgg;
-using DomainModel.Repositories;
+﻿using Home.DomainModel.Aggregates.GalleryAgg;
+using Home.DomainModel.Repositories;
 using Library.Domain.Data.EF;
 
-namespace Repository.Repositories
+namespace Home.Repository.Repositories
 {
 
     public class AlbumRepository : Library.Domain.Data.EF.Repository<Album>, IAlbumRepository

@@ -1,5 +1,5 @@
 ﻿using Autofac;
-using DomainModel.DomainServices;
+using Home.DomainModel.DomainServices;
 using HomeApplication.DomainServices;
 using HomeApplication.Services;
 using Library.Domain.Data;

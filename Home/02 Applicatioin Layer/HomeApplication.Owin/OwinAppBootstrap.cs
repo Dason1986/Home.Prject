@@ -33,12 +33,13 @@ namespace HomeApplication
             var resolver = new AutofacWebApiDependencyResolver(_container);
             config.DependencyResolver = resolver;
             WebConfig();
+            Jobs.IOJobPlugin.Regter.RegJobs();
         }
 
         void WebConfig()
         {
             var cors = new EnableCorsAttribute("*", "*", "*");
-            config.EnableCors();
+            config.EnableCors(cors);
 
 
             //     config.Routes.MapHttpRoute("Default", "{controller}/{action}", new { controller = "Home",action="Index" });

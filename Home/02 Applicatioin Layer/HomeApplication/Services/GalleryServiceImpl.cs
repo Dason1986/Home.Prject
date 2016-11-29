@@ -1,5 +1,5 @@
-﻿using DomainModel.Aggregates.GalleryAgg;
-using DomainModel.Repositories;
+﻿using Home.DomainModel.Aggregates.GalleryAgg;
+using Home.DomainModel.Repositories;
 using HomeApplication.AutoMap;
 using HomeApplication.Dtos;
 using System;
@@ -11,11 +11,11 @@ namespace HomeApplication.Services
 
     public class GalleryServiceImpl : ServiceImpl, IGalleryService
     {
-        public GalleryServiceImpl(DomainModel.ModuleProviders.IGalleryModuleProvider provider)
+        public GalleryServiceImpl(Home.DomainModel.ModuleProviders.IGalleryModuleProvider provider)
         {
             _provider = provider;
         }
-        DomainModel.ModuleProviders.IGalleryModuleProvider _provider;
+        Home.DomainModel.ModuleProviders.IGalleryModuleProvider _provider;
         public override string ServiceName { get { return "Gallery Service"; } }
 
         public int GetAllPhotoTotal()

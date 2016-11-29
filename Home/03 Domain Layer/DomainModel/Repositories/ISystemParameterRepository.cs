@@ -1,9 +1,9 @@
-﻿using DomainModel.Aggregates.SystemAgg;
+﻿using Home.DomainModel.Aggregates.SystemAgg;
 using Library.Domain.Data;
 
-namespace DomainModel.Repositories
+namespace Home.DomainModel.Repositories
 {
-	public interface ISystemParameterRepository: IRepository<SystemParameter>
+    public interface ISystemParameterRepository: IRepository<SystemParameter>
 	{
 	}
 }

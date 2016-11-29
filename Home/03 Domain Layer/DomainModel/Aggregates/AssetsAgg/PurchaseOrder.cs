@@ -5,7 +5,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace DomainModel.Aggregates.AssetsAgg
+namespace Home.DomainModel.Aggregates.AssetsAgg
 {
     public  class PurchaseOrder: CreateEntity
     {

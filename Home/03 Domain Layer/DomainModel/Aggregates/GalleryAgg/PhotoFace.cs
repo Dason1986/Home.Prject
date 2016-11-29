@@ -6,7 +6,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace DomainModel.Aggregates.GalleryAgg
+namespace Home.DomainModel.Aggregates.GalleryAgg
 {
     public class PhotoFace : AuditedEntity
     {

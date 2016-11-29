@@ -47,7 +47,9 @@ namespace HomeApplication
 
             _containerBuilder.RegisterModule<TimerJobModule>();
             */
+         
             _container = _containerBuilder.Build();
+            Jobs.IOJobPlugin.Regter.RegJobs();
         }
         public override T GetService<T>()
         {

@@ -1,4 +1,4 @@
-﻿using DomainModel.Aggregates.GalleryAgg;
+﻿using Home.DomainModel.Aggregates.GalleryAgg;
 using System.Data.Entity.ModelConfiguration;
 
 namespace Repository.EF.Mapping.GalleryAgg

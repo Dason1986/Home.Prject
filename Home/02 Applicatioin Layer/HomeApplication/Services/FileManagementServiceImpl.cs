@@ -1,5 +1,5 @@
-﻿using DomainModel.Aggregates.FileAgg;
-using DomainModel.Repositories;
+﻿using Home.DomainModel.Aggregates.FileAgg;
+using Home.DomainModel.Repositories;
 using HomeApplication.Dtos;
 using System;
 

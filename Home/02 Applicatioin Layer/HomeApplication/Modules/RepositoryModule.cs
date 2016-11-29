@@ -1,11 +1,11 @@
 ﻿using Autofac;
-using DomainModel.ModuleProviders;
-using DomainModel.Repositories;
+using Home.DomainModel.ModuleProviders;
+using Home.DomainModel.Repositories;
 using Library.Domain.Data;
 using Library.Domain.Data.EF;
 using Repository;
-using Repository.ModuleProviders;
-using Repository.Repositories;
+using Home.Repository.ModuleProviders;
+using Home.Repository.Repositories;
 
 namespace HomeApplication
 {

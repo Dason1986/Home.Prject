@@ -1,16 +1,17 @@
-﻿using DomainModel.DomainServices;
+﻿using Home.DomainModel.DomainServices;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using Library.Domain.DomainEvents;
-using DomainModel.Aggregates.GalleryAgg;
+using Home.DomainModel.Aggregates.GalleryAgg;
 using System.Drawing.Imaging;
 using System.Drawing;
 using System.IO;
 using Library.Infrastructure.Application;
 using Library.HelperUtility;
 using System.Drawing.Drawing2D;
-using DomainModel.Repositories;
+using Home.DomainModel.Repositories;
+using Home.DomainModel;
 
 namespace HomeApplication.DomainServices
 {
@@ -20,7 +21,7 @@ namespace HomeApplication.DomainServices
     public class AddPhotoDomainService : PhotoDomainService, IAddPhotoDomainService
     {
 
-        public void Handle(Photo photo, DomainModel.Aggregates.FileAgg.FileInfo file)
+        public void Handle(Photo photo, Home.DomainModel.Aggregates.FileAgg. FileInfo file)
         {
             CurrnetPhoto = photo;
             CurrnetFile = file;
@@ -51,7 +52,7 @@ namespace HomeApplication.DomainServices
                     ID = CurrnetFile.ID,
                     FileID = CurrnetFile.ID,
                     //       File = CurrnetFile,
-                    PhotoType = DomainModel.PhotoType.Graphy,
+                    PhotoType =  PhotoType.Graphy,
                 };
                 PhotoRepository.Add(CurrnetPhoto);
                 CurrnetFile.Photo = CurrnetPhoto;

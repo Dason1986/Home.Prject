@@ -1,4 +1,4 @@
-﻿using DomainModel.Aggregates.GalleryAgg;
+﻿using Home.DomainModel.Aggregates.GalleryAgg;
 using HomeApplication.Dtos;
 using System;
 using System.Collections.Generic;

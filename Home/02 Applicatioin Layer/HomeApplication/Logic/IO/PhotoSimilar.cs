@@ -1,16 +1,16 @@
-﻿using Repository;
-using Repository.ModuleProviders;
+﻿using Home.Repository;
+using Home.Repository.ModuleProviders;
 using System;
 using System.Linq;
 using Library.Draw.SimilarImages;
-using DomainModel.Aggregates.GalleryAgg;
+using Home.DomainModel.Aggregates.GalleryAgg;
 using System.Collections.Generic;
-using DomainModel.ModuleProviders;
+using Home.DomainModel.ModuleProviders;
 using Library;
 using System.Collections;
-using DomainModel.Repositories;
+using Home.DomainModel.Repositories;
 using Library.ComponentModel.Logic;
-using DomainModel.DomainServices;
+using Home.DomainModel.DomainServices;
 using Library.Infrastructure.Application;
 using Library.Comparable;
 using Library.Domain.Data;
@@ -21,7 +21,7 @@ namespace HomeApplication.Logic.IO
     {
         public double Similarity { get; set; }
 
-        public DomainModel.SimilarAlgorithm AlgorithmType { get; set; }
+        public Home.DomainModel.SimilarAlgorithm AlgorithmType { get; set; }
     }
     public class PhotoSimilar : BaseLogicService
     {
@@ -160,7 +160,7 @@ namespace HomeApplication.Logic.IO
             if (key.Key == ConsoleKey.Y)
             {
                 Console.WriteLine();
-                _option.AlgorithmType = DomainModel.SimilarAlgorithm.PerceptualHash;
+                _option.AlgorithmType = Home.DomainModel.SimilarAlgorithm.PerceptualHash;
                 _option.Similarity = 5;
 
                 return;

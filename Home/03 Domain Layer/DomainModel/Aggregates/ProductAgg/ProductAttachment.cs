@@ -1,7 +1,7 @@
-﻿using DomainModel.Aggregates.FileAgg;
+﻿using Home.DomainModel.Aggregates.FileAgg;
 using System;
 
-namespace DomainModel.Aggregates.ProductAgg
+namespace Home.DomainModel.Aggregates.ProductAgg
 {
     public class ProductAttachment : Attachment
     {

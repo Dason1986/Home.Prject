@@ -1,4 +1,6 @@
 ﻿using Autofac;
+using Home.DomainModel.JobServices;
+using HomeApplication.Jobs;
 
 namespace HomeApplication
 {
@@ -6,6 +8,7 @@ namespace HomeApplication
     {
         protected override void Load(ContainerBuilder builder)
         {
+            builder.RegisterType<CopyFileService>().As<ICopyFileService>();
         }
     }
 }

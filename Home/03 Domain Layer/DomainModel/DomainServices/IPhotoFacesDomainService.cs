@@ -5,7 +5,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace DomainModel.DomainServices
+namespace Home.DomainModel.DomainServices
 {
     public class PhotoFacesDomainEventHandler : DomainEventHandler<IPhotoFacesDomainService>
     {

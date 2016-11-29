@@ -1,6 +1,6 @@
 ﻿using Library.Domain.DomainEvents;
 
-namespace DomainModel.DomainServices
+namespace Home.DomainModel.DomainServices
 {
 
 

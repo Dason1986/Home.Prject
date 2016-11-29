@@ -1,10 +1,10 @@
-﻿using DomainModel.Aggregates.GalleryAgg;
-using DomainModel.ModuleProviders;
+﻿using Home.DomainModel.Aggregates.GalleryAgg;
+using Home.DomainModel.ModuleProviders;
 using Library.Domain.DomainEvents;
 using System;
 using System.Collections.Generic;
 
-namespace DomainModel.DomainServices
+namespace Home.DomainModel.DomainServices
 {
 
 

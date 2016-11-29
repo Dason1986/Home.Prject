@@ -1,14 +1,14 @@
-﻿using DomainModel.Repositories;
+﻿using Home.DomainModel.Repositories;
 using System.Collections.Generic;
 using System.Linq;
 using Library.Domain.Data.EF;
-using DomainModel.Aggregates.FileAgg;
+using Home.DomainModel.Aggregates.FileAgg;
 using System;
-using DomainModel.Aggregates.GalleryAgg;
+using Home.DomainModel.Aggregates.GalleryAgg;
 
-namespace Repository.Repositories
+namespace Home.Repository.Repositories
 {
-    public class FileInfoRepository : Library.Domain.Data.EF.Repository<DomainModel.Aggregates.FileAgg.FileInfo>, IFileInfoRepository
+    public class FileInfoRepository : Library.Domain.Data.EF.Repository< FileInfo>, IFileInfoRepository
     {
         public FileInfoRepository(EFContext context) : base(context)
         {
