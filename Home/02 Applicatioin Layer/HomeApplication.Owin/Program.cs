@@ -5,6 +5,7 @@ using System.Net.Http;
 using System.Text;
 using System.Threading.Tasks;
 using Microsoft.Owin.Hosting;
+using System.ServiceProcess;
 
 namespace HomeApplication.Owin
 {
@@ -12,35 +13,36 @@ namespace HomeApplication.Owin
     {
         static void Main(string[] args)
         {
-            var settingPort = System.Configuration.ConfigurationManager.AppSettings["Port"];
-            var port = Library.HelperUtility.StringUtility.TryCast(settingPort, 9000).Value;
-            var option = new StartOptions("http://localhost:" + port)
+            if (System.Environment.UserInteractive)
             {
-                ServerFactory = "Microsoft.Owin.Host.HttpListener"
-            };
-            option.Urls.Add(string.Format("http://{0}:{1}", "127.0.0.1", port));
-            var hostname = System.Net.Dns.GetHostName();
+                StartOptions option = OwinAppBootstrap.CraeteStratOptions();
 
-            option.Urls.Add(string.Format("http://{0}:{1}", hostname, port));
-            foreach (var address in System.Net.Dns.GetHostAddresses(hostname))
-            {
-                if (address.AddressFamily == System.Net.Sockets.AddressFamily.InterNetwork)
-                    option.Urls.Add(string.Format("http://{0}:{1}", address, port));
-            }
-
-            using (WebApp.Start<Startup1>(option))
-            {
-
-                foreach (var item in option.Urls)
+                using (WebApp.Start(option))
                 {
-                    Console.WriteLine(item);
+
+                    foreach (var item in option.Urls)
+                    {
+                        Console.WriteLine(item);
+                    }
+                    Console.WriteLine("Press [enter] to quit...");
+                    Console.ReadLine();
+
+
                 }
-                Console.WriteLine("Press [enter] to quit...");
-                Console.ReadLine();
+            }
+            else
+            {
+                ServiceBase[] ServicesToRun;
+                ServicesToRun = new ServiceBase[]
+                {
+                      new HomeOwinService()
+                };
+                ServiceBase.Run(ServicesToRun);
 
 
             }
-
         }
+
+
     }
 }

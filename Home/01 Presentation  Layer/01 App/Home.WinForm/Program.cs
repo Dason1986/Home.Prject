@@ -17,7 +17,7 @@ namespace HomeApp
         {
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
-            Application.Run(new GalleryView());
+            Application.Run(new Home.WinForm.Views.GalleryView());
         }
     }
 }

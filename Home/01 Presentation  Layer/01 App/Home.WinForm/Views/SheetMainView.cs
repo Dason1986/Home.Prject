@@ -8,11 +8,11 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
-namespace Home.WinForm
+namespace Home.WinForm.Views
 {
-    public partial class GalleryView : Form
+    public partial class SheetMainView : Form
     {
-        public GalleryView()
+        public SheetMainView()
         {
             InitializeComponent();
         }

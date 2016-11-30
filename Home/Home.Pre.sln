@@ -19,8 +19,6 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Home.MVCWeb", "01 Presentat
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "MAC", "MAC", "{C0F1AA03-6FF3-43E8-899A-6F27B84EB298}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Home.WebUI", "01 Presentation  Layer\01 App\Home.WebUI\Home.WebUI.csproj", "{7772226A-96C3-4EFF-92FF-9227A16AF759}"
-EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Home.Mac", "01 Presentation  Layer\01 App\Home.Mac\Home.Mac.csproj", "{D3C9B8BB-87FF-4DDA-B575-7B6842B9A8A2}"
 EndProject
 Project("{8BB2217D-0F2D-49D1-97BC-3654ED321F3B}") = "Home.Client", "01 Presentation  Layer\01 App\Home.Client\Home.Client.xproj", "{BE2CE6E8-7D34-449C-AC58-6EC1B7FC59D4}"
@@ -30,6 +28,26 @@ EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Home.Win.Applicatioin", "01 Presentation  Layer\01 App\Home.Win.Applicatioin\Home.Win.Applicatioin.csproj", "{4E0AC00D-5B67-4BD8-B5E6-11C50EFB85D4}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Home.WPF", "01 Presentation  Layer\01 App\Home.WPF\Home.WPF.csproj", "{D02A3764-C67C-4CE4-A876-D68946B3EE23}"
+EndProject
+Project("{E24C65DC-7377-472B-9ABA-BC803B73C61A}") = "Home.WebUI(2)", "01 Presentation  Layer\01 App\Home.WebUI\", "{3DC582AE-6496-4045-91B9-B00F05D60EAB}"
+	ProjectSection(WebsiteProperties) = preProject
+		TargetFrameworkMoniker = ".NETFramework,Version%3Dv4.5"
+		Debug.AspNetCompiler.VirtualPath = "/localhost_64675"
+		Debug.AspNetCompiler.PhysicalPath = "01 Presentation  Layer\01 App\Home.WebUI\"
+		Debug.AspNetCompiler.TargetPath = "PrecompiledWeb\localhost_64675\"
+		Debug.AspNetCompiler.Updateable = "true"
+		Debug.AspNetCompiler.ForceOverwrite = "true"
+		Debug.AspNetCompiler.FixedNames = "false"
+		Debug.AspNetCompiler.Debug = "True"
+		Release.AspNetCompiler.VirtualPath = "/localhost_64675"
+		Release.AspNetCompiler.PhysicalPath = "01 Presentation  Layer\01 App\Home.WebUI\"
+		Release.AspNetCompiler.TargetPath = "PrecompiledWeb\localhost_64675\"
+		Release.AspNetCompiler.Updateable = "true"
+		Release.AspNetCompiler.ForceOverwrite = "true"
+		Release.AspNetCompiler.FixedNames = "false"
+		Release.AspNetCompiler.Debug = "False"
+		VWDPort = "64675"
+	EndProjectSection
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -65,18 +83,6 @@ Global
 		{CE44C8E6-553B-4888-9908-0FC21F27F096}.Release|iPhone.Build.0 = Release|Any CPU
 		{CE44C8E6-553B-4888-9908-0FC21F27F096}.Release|iPhoneSimulator.ActiveCfg = Release|Any CPU
 		{CE44C8E6-553B-4888-9908-0FC21F27F096}.Release|iPhoneSimulator.Build.0 = Release|Any CPU
-		{7772226A-96C3-4EFF-92FF-9227A16AF759}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{7772226A-96C3-4EFF-92FF-9227A16AF759}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{7772226A-96C3-4EFF-92FF-9227A16AF759}.Debug|iPhone.ActiveCfg = Debug|Any CPU
-		{7772226A-96C3-4EFF-92FF-9227A16AF759}.Debug|iPhone.Build.0 = Debug|Any CPU
-		{7772226A-96C3-4EFF-92FF-9227A16AF759}.Debug|iPhoneSimulator.ActiveCfg = Debug|Any CPU
-		{7772226A-96C3-4EFF-92FF-9227A16AF759}.Debug|iPhoneSimulator.Build.0 = Debug|Any CPU
-		{7772226A-96C3-4EFF-92FF-9227A16AF759}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{7772226A-96C3-4EFF-92FF-9227A16AF759}.Release|Any CPU.Build.0 = Release|Any CPU
-		{7772226A-96C3-4EFF-92FF-9227A16AF759}.Release|iPhone.ActiveCfg = Release|Any CPU
-		{7772226A-96C3-4EFF-92FF-9227A16AF759}.Release|iPhone.Build.0 = Release|Any CPU
-		{7772226A-96C3-4EFF-92FF-9227A16AF759}.Release|iPhoneSimulator.ActiveCfg = Release|Any CPU
-		{7772226A-96C3-4EFF-92FF-9227A16AF759}.Release|iPhoneSimulator.Build.0 = Release|Any CPU
 		{D3C9B8BB-87FF-4DDA-B575-7B6842B9A8A2}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{D3C9B8BB-87FF-4DDA-B575-7B6842B9A8A2}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{D3C9B8BB-87FF-4DDA-B575-7B6842B9A8A2}.Debug|iPhone.ActiveCfg = Debug|Any CPU
@@ -129,6 +135,18 @@ Global
 		{D02A3764-C67C-4CE4-A876-D68946B3EE23}.Release|iPhone.Build.0 = Release|Any CPU
 		{D02A3764-C67C-4CE4-A876-D68946B3EE23}.Release|iPhoneSimulator.ActiveCfg = Release|Any CPU
 		{D02A3764-C67C-4CE4-A876-D68946B3EE23}.Release|iPhoneSimulator.Build.0 = Release|Any CPU
+		{3DC582AE-6496-4045-91B9-B00F05D60EAB}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{3DC582AE-6496-4045-91B9-B00F05D60EAB}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{3DC582AE-6496-4045-91B9-B00F05D60EAB}.Debug|iPhone.ActiveCfg = Debug|Any CPU
+		{3DC582AE-6496-4045-91B9-B00F05D60EAB}.Debug|iPhone.Build.0 = Debug|Any CPU
+		{3DC582AE-6496-4045-91B9-B00F05D60EAB}.Debug|iPhoneSimulator.ActiveCfg = Debug|Any CPU
+		{3DC582AE-6496-4045-91B9-B00F05D60EAB}.Debug|iPhoneSimulator.Build.0 = Debug|Any CPU
+		{3DC582AE-6496-4045-91B9-B00F05D60EAB}.Release|Any CPU.ActiveCfg = Debug|Any CPU
+		{3DC582AE-6496-4045-91B9-B00F05D60EAB}.Release|Any CPU.Build.0 = Debug|Any CPU
+		{3DC582AE-6496-4045-91B9-B00F05D60EAB}.Release|iPhone.ActiveCfg = Debug|Any CPU
+		{3DC582AE-6496-4045-91B9-B00F05D60EAB}.Release|iPhone.Build.0 = Debug|Any CPU
+		{3DC582AE-6496-4045-91B9-B00F05D60EAB}.Release|iPhoneSimulator.ActiveCfg = Debug|Any CPU
+		{3DC582AE-6496-4045-91B9-B00F05D60EAB}.Release|iPhoneSimulator.Build.0 = Debug|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -138,11 +156,11 @@ Global
 		{E83E9E4F-9A91-449F-8B8A-7D40FF2C9AD6} = {09EB09A3-C6A3-4934-AD72-384F519DA20D}
 		{BF5E5ED0-D7E7-4305-96BB-AAF9FF9B2219} = {09EB09A3-C6A3-4934-AD72-384F519DA20D}
 		{CE44C8E6-553B-4888-9908-0FC21F27F096} = {C64BFCD3-AA32-45BA-A98C-2011F2500170}
-		{7772226A-96C3-4EFF-92FF-9227A16AF759} = {C64BFCD3-AA32-45BA-A98C-2011F2500170}
 		{D3C9B8BB-87FF-4DDA-B575-7B6842B9A8A2} = {C0F1AA03-6FF3-43E8-899A-6F27B84EB298}
 		{BE2CE6E8-7D34-449C-AC58-6EC1B7FC59D4} = {5B6CE494-8E90-4D31-B2C5-81579EBF1951}
 		{007C3314-55A1-456E-B85D-1066D4D91287} = {5B6CE494-8E90-4D31-B2C5-81579EBF1951}
 		{4E0AC00D-5B67-4BD8-B5E6-11C50EFB85D4} = {09EB09A3-C6A3-4934-AD72-384F519DA20D}
 		{D02A3764-C67C-4CE4-A876-D68946B3EE23} = {BF5E5ED0-D7E7-4305-96BB-AAF9FF9B2219}
+		{3DC582AE-6496-4045-91B9-B00F05D60EAB} = {C64BFCD3-AA32-45BA-A98C-2011F2500170}
 	EndGlobalSection
 EndGlobal
