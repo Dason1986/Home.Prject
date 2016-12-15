@@ -155,7 +155,6 @@
     <Compile Include="AutoMap\AutoMapProfile.cs" />
     <Compile Include="AutoMap\ToDtoProfile.cs" />
     <Compile Include="AutoMap\ToEntityProfile.cs" />
-    <Compile Include="ConsoleAppBootstrap.cs" />
     <Compile Include="CreatedInfo.cs" />
     <Compile Include="Cores\IUserManager.cs" />
     <Compile Include="ComponentModel\IO\PhotoStorageBuilder.cs" />
@@ -174,7 +173,6 @@
     <Compile Include="DomainServices\SimilarPhotoDomainService.cs" />
     <Compile Include="Logic\IO\DeleteFileDistinctByMD5.cs" />
     <Compile Include="Logic\IO\PhotoFileAnalysis.cs" />
-    <Compile Include="Logic\ConsoleCommand.cs" />
     <Compile Include="Logic\IO\PhotoSimilar.cs" />
     <Compile Include="Logic\IO\PhotoSimilarBuildFingerprint.cs" />
     <Compile Include="Logic\IO\ScanderPhysicalFile.cs" />

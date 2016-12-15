@@ -2,10 +2,7 @@
 using Home.DomainModel.Repositories;
 using Library;
 using Library.ComponentModel.Logic;
-using Library.Domain.Data.EF;
 using Library.Infrastructure.Application;
-using Home.Repository;
-using Home.Repository.ModuleProviders;
 using System;
 using System.Linq;
 
@@ -15,36 +12,6 @@ namespace HomeApplication.Logic.IO
 	{
 		public string Path { get; set; }
 
-	}
-	public class ScanderPhysicalFileOptionCommandBuilder : IOptionCommandBuilder<ScanderPhysicalFileOption>
-	{
-		public ScanderPhysicalFileOption GetOption()
-		{
-			return _option;
-		}
-		ScanderPhysicalFileOption _option;
-		IOption IOptionCommandBuilder.GetOption()
-		{
-			return _option;
-		}
-		public void RumCommandLine()
-		{
-			_option = new ScanderPhysicalFileOption();
-		LabCmd:
-			Console.Write("輸入指定掃描目標：");
-			var path = Console.ReadLine();
-			if (string.IsNullOrEmpty(path))
-			{
-				Console.WriteLine("不能爲空");
-				goto LabCmd;
-			}
-			if (!System.IO.Directory.Exists(path))
-			{
-				Console.WriteLine("目錄不存在");
-				goto LabCmd;
-			}
-			_option.Path = path;
-		}
 	}
 
 	public class ScanderPhysicalFile : BaseLogicService

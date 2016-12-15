@@ -1,5 +1,4 @@
 ﻿using Home.DomainModel.Aggregates.FileAgg;
-using Home.DomainModel.Aggregates.GalleryAgg;
 using Home.DomainModel.DomainServices;
 using Home.DomainModel.ModuleProviders;
 using Home.DomainModel.Repositories;
@@ -7,16 +6,8 @@ using Library;
 using Library.ComponentModel.Logic;
 using Library.Domain.Data;
 using Library.Infrastructure.Application;
-using NLog.Fluent;
-using Home.Repository;
-using Home.Repository.ModuleProviders;
 using System;
-using System.Collections.Generic;
-using System.Drawing;
-using System.Drawing.Imaging;
 using System.Linq;
-using System.Runtime.InteropServices;
-using System.Threading;
 //using static Library.Draw.ImageExif;
 
 namespace HomeApplication.Logic.IO
@@ -257,143 +248,13 @@ namespace HomeApplication.Logic.IO
         public string FileListPath { get; set; }
         public PhotoFileAnalysisSrouceType SourceType { get; set; }
         public string[] ImageTypes { get; set; }
-        public string DirPath { get; internal set; }
+        public string DirPath { get;  set; }
     }
     public enum PhotoFileAnalysisSrouceType
     {
         Db,
         File,
         Dir
-    }
-    public class PhotoFileAnalysisOptionCommandBuilder : IOptionCommandBuilder<PhotoFileAnalysisOption>
-    {
-        public PhotoFileAnalysisOption GetOption()
-        {
-            return _option;
-        }
-        PhotoFileAnalysisOption _option;
-        IOption IOptionCommandBuilder.GetOption()
-        {
-            return _option;
-        }
-        public void RumCommandLine()
-        {
-            _option = new PhotoFileAnalysisOption();
-            Console.Write("是否使用默认条件（Y）：");
-            var key = Console.ReadKey();
-            Console.WriteLine();
-            if (key.Key == ConsoleKey.Y)
-            {
-                //  Console.WriteLine();
-                _option.ImageTypes = new string[] { ".jpg", ".png", ".gif", ".jpeg", ".bmp" };
-                _option.SourceType = PhotoFileAnalysisSrouceType.Db;
-                return;
-            }
-
-            {
-                LabSource:
-
-                Console.Write("圖像文件來源（0:db,1:txt文件,2:目錄）：");
-                var sourcetype = Console.ReadLine();
-                switch (sourcetype)
-                {
-                    case "0": _option.SourceType = PhotoFileAnalysisSrouceType.Db; break;
-                    case "1": _option.SourceType = PhotoFileAnalysisSrouceType.File; break;
-                    case "2": _option.SourceType = PhotoFileAnalysisSrouceType.Dir; break;
-                    default:
-                        goto LabSource;
-                }
-
-            }
-            switch (_option.SourceType)
-            {
-                case PhotoFileAnalysisSrouceType.Db:
-                    {
-                        Console.Write("是否使用默认条件（Y）：");
-
-                        if (Console.ReadKey().Key == ConsoleKey.Y)
-                        {
-                            //  Console.WriteLine();
-                            _option.ImageTypes = new string[] { ".jpg", ".png", ".gif", ".jpeg", ".bmp" };
-
-                            return;
-                        }
-                        LabCmd:
-                        Console.Write("輸入圖像類型（,分隔）：");
-                        var path = Console.ReadLine();
-                        if (string.IsNullOrEmpty(path))
-                        {
-                            Console.WriteLine("不能爲空！");
-                            goto LabCmd;
-                        }
-
-                        _option.ImageTypes = path.Split(',');
-                        break;
-                    }
-
-                case PhotoFileAnalysisSrouceType.File:
-                    {
-                        LabCmd:
-                        Console.Write("輸入文件列表路徑：");
-                        var path = Console.ReadLine();
-                        if (string.IsNullOrEmpty(path))
-                        {
-                            Console.WriteLine("不能爲空！");
-                            goto LabCmd;
-                        }
-                        if (!System.IO.File.Exists(path))
-                        {
-                            Console.WriteLine("文件不存在！");
-                            goto LabCmd;
-                        }
-                        _option.FileListPath = path;
-                        break;
-                    }
-
-                case PhotoFileAnalysisSrouceType.Dir:
-                    {
-                        LabCmd:
-                        Console.Write("輸入指定掃描目標：");
-                        var path = Console.ReadLine();
-                        if (string.IsNullOrEmpty(path))
-                        {
-                            Console.WriteLine("不能爲空");
-                            goto LabCmd;
-                        }
-                        if (!System.IO.Directory.Exists(path))
-                        {
-                            Console.WriteLine("目錄不存在");
-                            goto LabCmd;
-                        }
-                        _option.DirPath = path;
-
-                        Console.Write("是否使用默认文件類型（Y）：");
-
-                        if (Console.ReadKey().Key == ConsoleKey.Y)
-                        {
-                            //  Console.WriteLine();
-                            _option.ImageTypes = new string[] { ".jpg", ".png", ".gif", ".jpeg", ".bmp" };
-
-                            return;
-                        }
-                        LabImageTypes:
-                        Console.Write("輸入圖像類型（,分隔）：");
-                        var imageTypes = Console.ReadLine();
-                        if (string.IsNullOrEmpty(imageTypes))
-                        {
-                            Console.WriteLine("不能爲空！");
-                            goto LabImageTypes;
-                        }
-
-                        _option.ImageTypes = imageTypes.Split(',');
-                        break;
-                    }
-                default:
-                    break;
-            }
-
-
-        }
     }
 
 }

@@ -1,19 +1,13 @@
-﻿using Home.Repository;
-using Home.Repository.ModuleProviders;
-using System;
-using System.Linq;
-using Library.Draw.SimilarImages;
+﻿using System.Linq;
 using Home.DomainModel.Aggregates.GalleryAgg;
 using System.Collections.Generic;
 using Home.DomainModel.ModuleProviders;
 using Library;
-using System.Collections;
 using Home.DomainModel.Repositories;
 using Library.ComponentModel.Logic;
 using Home.DomainModel.DomainServices;
 using Library.Infrastructure.Application;
 using Library.Comparable;
-using Library.Domain.Data;
 
 namespace HomeApplication.Logic.IO
 {
@@ -139,54 +133,6 @@ namespace HomeApplication.Logic.IO
 
                 }
             }
-        }
-    }
-    public class PhotoSimilarOptionCommandBuilder : IOptionCommandBuilder<PhotoSimilarOption>
-    {
-        public PhotoSimilarOption GetOption()
-        {
-            return _option;
-        }
-        PhotoSimilarOption _option;
-        IOption IOptionCommandBuilder.GetOption()
-        {
-            return _option;
-        }
-        public void RumCommandLine()
-        {
-            _option = new PhotoSimilarOption();
-            Console.Write("是否使用默认条件（Y）：");
-            var key = Console.ReadKey();
-            if (key.Key == ConsoleKey.Y)
-            {
-                Console.WriteLine();
-                _option.AlgorithmType = Home.DomainModel.SimilarAlgorithm.PerceptualHash;
-                _option.Similarity = 5;
-
-                return;
-            }
-            Console.WriteLine();
-        LabCmd:
-            Console.Write("輸入圖像正確率：");
-            var path = Console.ReadLine();
-            if (string.IsNullOrEmpty(path))
-            {
-                Console.WriteLine("不能爲空");
-                goto LabCmd;
-            }
-            var dimilarity = Library.HelperUtility.StringUtility.TryCast<double>(path);
-            if (dimilarity.HasError)
-            {
-                Console.WriteLine("無效輸入");
-                goto LabCmd;
-            }
-            if (dimilarity.Value > 100 || dimilarity.Value < 50)
-            {
-                Console.WriteLine("正確率不能少於50並大於100");
-                goto LabCmd;
-            }
-            _option.Similarity = dimilarity.Value;
-
         }
     }
 }

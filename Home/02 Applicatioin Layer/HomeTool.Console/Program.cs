@@ -11,21 +11,29 @@ namespace HomeTool.Console
 {
     class Program
     {
-        static Program()
+
+        static int Main(string[] args)
         {
+            if (args == null || args.Length == 0) return 0;
             ConsoleAppBootstrap boot = new ConsoleAppBootstrap();
             boot.Run();
-        }
-        static void Main(string[] args)
-        {
-            ConsoleCommand cmd = new ConsoleCommand(args);
-            cmd.Run();
+            var arg1 = args[0];
+            switch (arg1)
+            {
+                case "-x":
+                    {
+                        ConsoleCommand cmd = new ConsoleCommand(args);
+                        cmd.Run();
 
-            System.Console.ReadLine();
-			while (true)
-			{
-				System.Threading.Thread.Sleep(1000);
-			}
+
+                        break;
+                    }
+                default:
+                    break;
+            }
+
+            return 0;
+
         }
     }
 }

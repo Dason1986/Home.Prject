@@ -50,7 +50,7 @@ namespace HomeApplication
             */
          
             _container = _containerBuilder.Build();
-            Jobs.IOJobPlugin.Regter.RegJobs();
+          //  Jobs.IOJobPlugin.Regter.RegJobs();
         }
         public override T GetService<T>()
         {

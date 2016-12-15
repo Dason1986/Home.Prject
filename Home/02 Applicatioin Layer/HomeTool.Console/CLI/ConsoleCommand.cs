@@ -20,7 +20,7 @@ namespace HomeApplication.Logic
         {
             AppDomain.CurrentDomain.UnhandledException += CurrentDomain_UnhandledException;
             this.args = args;
-           
+
         }
 
         private void CurrentDomain_UnhandledException(object sender, UnhandledExceptionEventArgs e)
@@ -34,12 +34,8 @@ namespace HomeApplication.Logic
 
         public void Run()
         {
-            if (args == null || args.Length == 0)
-            {
-                BuindMenu(_menus);
-
-            }
-
+            IsRunning = true;
+            BuindMenu(_menus);
 
 
         }
@@ -82,10 +78,13 @@ namespace HomeApplication.Logic
                 CommandClassType = typeof(DeleteFileDistinctByMD5),
                 OptionBuilderType = typeof(EmptyOptionCommandBuilder)
             }};
+
+        public bool IsRunning { get; private set; }
+
         class CommandMenu
         {
             public string Name { get; set; }
-			public string Key { get; set; }
+            public string Key { get; set; }
             public Type CommandClassType { get; set; }
             public Type OptionBuilderType { get; set; }
         }
@@ -107,12 +106,14 @@ namespace HomeApplication.Logic
             builder.AppendLine("--------------------------------");
             builder.Append("輸入:");
             Console.Write(builder.ToString());
-		LabInput:
-			var inputkey = Console.ReadLine();
+        LabInput:
+            var inputkey = Console.ReadLine();
             Console.WriteLine();
             if (inputkey == "exit")
             {
-                BuindMenu(_menus);
+                IsRunning = false;
+                return;
+          //      BuindMenu(_menus);
             }
             var itemmenu = menus.FirstOrDefault(n => n.Key == inputkey);
             if (itemmenu == null)
@@ -131,10 +132,12 @@ namespace HomeApplication.Logic
                 {
                     try
                     {
-                        var optionBuilder = Library.HelperUtility.FastReflectionExtensions.CreateInstance<IOptionCommandBuilder>(itemmenu.OptionBuilderType);
+                        var optionBuilder = Library.HelperUtility.FastReflectionExtensions.CreateInstance<OptionCommandBuilder>(itemmenu.OptionBuilderType);
                         var logicService = Library.HelperUtility.FastReflectionExtensions.CreateInstance<ILogicService>(itemmenu.CommandClassType);
+                        optionBuilder.In = Console.In;
+                        optionBuilder.Out = Console.Out;
                         optionBuilder.RumCommandLine();
-                        logicService.Option = optionBuilder.GetOption();
+                        logicService.Option = ((IOptionCommandBuilder)optionBuilder).GetOption();
                         logicService.Start();
                         Console.Write("執行完成，按任意鍵繼續。");
                     }
@@ -153,6 +156,6 @@ namespace HomeApplication.Logic
             }
         }
 
-		 
+
     }
 }
