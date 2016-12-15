@@ -1,4 +1,4 @@
-using Autofac;
+﻿using Autofac;
 using Autofac.Core;
 using Library;
 using NLog;
@@ -28,6 +28,7 @@ namespace HomeApplication
 
         protected override void Register()
         {
+        
             AutoMap.AutoMapProfile.Reg();
 
            

@@ -1,6 +1,6 @@
-﻿namespace Home.WinForm.Views
+﻿namespace Home.WinForm.Views.Gallery
 {
-    partial class GalleryView
+    partial class GalleryWaterfallView
     {
         /// <summary>
         /// Required designer variable.
@@ -30,40 +30,52 @@
         {
             this.components = new System.ComponentModel.Container();
             System.Windows.Forms.ListViewItem listViewItem1 = new System.Windows.Forms.ListViewItem("1", 0);
-            System.Windows.Forms.ListViewItem listViewItem2 = new System.Windows.Forms.ListViewItem("2", 1);
-            System.Windows.Forms.ListViewItem listViewItem3 = new System.Windows.Forms.ListViewItem("4", 2);
-            System.Windows.Forms.ListViewItem listViewItem4 = new System.Windows.Forms.ListViewItem("5", 3);
-            System.Windows.Forms.ListViewItem listViewItem5 = new System.Windows.Forms.ListViewItem("", 3);
-            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(GalleryView));
+            System.Windows.Forms.ListViewItem listViewItem2 = new System.Windows.Forms.ListViewItem("2", 0);
+            System.Windows.Forms.ListViewItem listViewItem3 = new System.Windows.Forms.ListViewItem("3", 0);
+            System.Windows.Forms.ListViewItem listViewItem4 = new System.Windows.Forms.ListViewItem("4", 1);
+            System.Windows.Forms.ListViewItem listViewItem5 = new System.Windows.Forms.ListViewItem("5", 1);
+            System.Windows.Forms.ListViewItem listViewItem6 = new System.Windows.Forms.ListViewItem("6", "2");
+            System.Windows.Forms.ListViewItem listViewItem7 = new System.Windows.Forms.ListViewItem("7", "2");
+            System.Windows.Forms.ListViewItem listViewItem8 = new System.Windows.Forms.ListViewItem("8", "2");
+            System.Windows.Forms.ListViewItem listViewItem9 = new System.Windows.Forms.ListViewItem("9", "2");
+            System.Windows.Forms.ListViewItem listViewItem10 = new System.Windows.Forms.ListViewItem("10");
+            System.Windows.Forms.ListViewItem listViewItem11 = new System.Windows.Forms.ListViewItem("11", "4");
+            System.Windows.Forms.ListViewItem listViewItem12 = new System.Windows.Forms.ListViewItem("12");
+            System.Windows.Forms.ListViewItem listViewItem13 = new System.Windows.Forms.ListViewItem("13");
+            System.Windows.Forms.ListViewItem listViewItem14 = new System.Windows.Forms.ListViewItem("14");
+            System.Windows.Forms.ListViewItem listViewItem15 = new System.Windows.Forms.ListViewItem("15");
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(GalleryWaterfallView));
             this.listView1 = new System.Windows.Forms.ListView();
-            this.columnHeader1 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
-            this.columnHeader2 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.imageList1 = new System.Windows.Forms.ImageList(this.components);
-            this.pictureBox1 = new System.Windows.Forms.PictureBox();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             this.SuspendLayout();
             // 
             // listView1
             // 
             this.listView1.Activation = System.Windows.Forms.ItemActivation.OneClick;
-            this.listView1.Columns.AddRange(new System.Windows.Forms.ColumnHeader[] {
-            this.columnHeader1,
-            this.columnHeader2});
+            this.listView1.Dock = System.Windows.Forms.DockStyle.Fill;
             this.listView1.Items.AddRange(new System.Windows.Forms.ListViewItem[] {
             listViewItem1,
             listViewItem2,
             listViewItem3,
             listViewItem4,
-            listViewItem5});
+            listViewItem5,
+            listViewItem6,
+            listViewItem7,
+            listViewItem8,
+            listViewItem9,
+            listViewItem10,
+            listViewItem11,
+            listViewItem12,
+            listViewItem13,
+            listViewItem14,
+            listViewItem15});
             this.listView1.LargeImageList = this.imageList1;
-            this.listView1.Location = new System.Drawing.Point(81, 366);
+            this.listView1.Location = new System.Drawing.Point(0, 0);
+            this.listView1.MultiSelect = false;
             this.listView1.Name = "listView1";
-            this.listView1.Size = new System.Drawing.Size(416, 80);
-            this.listView1.SmallImageList = this.imageList1;
-            this.listView1.TabIndex = 1;
+            this.listView1.Size = new System.Drawing.Size(792, 589);
+            this.listView1.TabIndex = 4;
             this.listView1.UseCompatibleStateImageBehavior = false;
-            this.listView1.View = System.Windows.Forms.View.List;
-            this.listView1.SelectedIndexChanged += new System.EventHandler(this.listView1_SelectedIndexChanged);
             // 
             // imageList1
             // 
@@ -74,24 +86,14 @@
             this.imageList1.Images.SetKeyName(2, "3");
             this.imageList1.Images.SetKeyName(3, "4");
             // 
-            // pictureBox1
-            // 
-            this.pictureBox1.Location = new System.Drawing.Point(59, 53);
-            this.pictureBox1.Name = "pictureBox1";
-            this.pictureBox1.Size = new System.Drawing.Size(480, 261);
-            this.pictureBox1.TabIndex = 2;
-            this.pictureBox1.TabStop = false;
-            // 
-            // GalleryView
+            // GalleryWaterfallView
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(661, 458);
-            this.Controls.Add(this.pictureBox1);
+            this.ClientSize = new System.Drawing.Size(792, 589);
             this.Controls.Add(this.listView1);
-            this.Name = "GalleryView";
-            this.Text = "GalleryView";
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
+            this.Name = "GalleryWaterfallView";
+            this.Text = "GalleryWaterfallView";
             this.ResumeLayout(false);
 
         }
@@ -99,9 +101,6 @@
         #endregion
 
         private System.Windows.Forms.ListView listView1;
-        private System.Windows.Forms.ColumnHeader columnHeader1;
-        private System.Windows.Forms.ColumnHeader columnHeader2;
         private System.Windows.Forms.ImageList imageList1;
-        private System.Windows.Forms.PictureBox pictureBox1;
     }
 }

@@ -83,8 +83,14 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="ComponentModelTest\PhotoStorageBuilderTest.cs" />
     <Compile Include="DomainServiceTest\AddPhotoDomainServiceTest.cs" />
     <Compile Include="InterceptorsTest\RoleInterceptorTest.cs" />
+    <Compile Include="Properties\Resources.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Resources.resx</DependentUpon>
+    </Compile>
     <Compile Include="Services\GalleryServiceImplTest.cs" />
     <Compile Include="Subs\SubRepository.cs" />
     <Compile Include="UnderTest\AddPhotoDomainServiceUnderTest.cs" />
@@ -101,6 +107,10 @@
       <Project>{f253ee76-a606-42a6-b654-e5ad30edd47d}</Project>
       <Name>Home.DomainModel</Name>
     </ProjectReference>
+    <ProjectReference Include="..\..\Home.Infrastructure\Home.Infrastructure.csproj">
+      <Project>{10662661-00CF-4AB6-8608-4D392CFEC63F}</Project>
+      <Name>Home.Infrastructure</Name>
+    </ProjectReference>
     <ProjectReference Include="..\HomeApplication.Dto\HomeApplication.Dto.csproj">
       <Project>{948ac8b7-b26c-47df-8232-4cf31c94fc0d}</Project>
       <Name>HomeApplication.Dto</Name>
@@ -112,6 +122,33 @@
   </ItemGroup>
   <ItemGroup>
     <Service Include="{82A7F48D-3B50-4B1E-B82E-3ADA8210C358}" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Properties\Resources.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>Resources.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\7885160345939777053.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\IMG_6170.JPG" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\IMG052.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\original_7dAp_4c9a0000171a125d.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\rgb.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\捕获.PNG" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\下載.jpg" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

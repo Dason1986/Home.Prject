@@ -1,17 +1,13 @@
 ﻿using Home.DomainModel.DomainServices;
 using System;
 using System.Collections.Generic;
-using System.Linq;
-using Library.Domain.DomainEvents;
 using Home.DomainModel.Aggregates.GalleryAgg;
-using System.Drawing.Imaging;
 using System.Drawing;
 using System.IO;
 using Library.Infrastructure.Application;
-using Library.HelperUtility;
-using System.Drawing.Drawing2D;
-using Home.DomainModel.Repositories;
 using Home.DomainModel;
+using Library.Draw;
+using HomeApplication.ComponentModel.IO;
 
 namespace HomeApplication.DomainServices
 {
@@ -21,7 +17,7 @@ namespace HomeApplication.DomainServices
     public class AddPhotoDomainService : PhotoDomainService, IAddPhotoDomainService
     {
 
-        public void Handle(Photo photo, Home.DomainModel.Aggregates.FileAgg. FileInfo file)
+        public void Handle(Photo photo, Home.DomainModel.Aggregates.FileAgg.FileInfo file)
         {
             CurrnetPhoto = photo;
             CurrnetFile = file;
@@ -52,7 +48,7 @@ namespace HomeApplication.DomainServices
                     ID = CurrnetFile.ID,
                     FileID = CurrnetFile.ID,
                     //       File = CurrnetFile,
-                    PhotoType =  PhotoType.Graphy,
+                    PhotoType = PhotoType.Graphy,
                 };
                 PhotoRepository.Add(CurrnetPhoto);
                 CurrnetFile.Photo = CurrnetPhoto;
@@ -84,84 +80,34 @@ namespace HomeApplication.DomainServices
                 ICollection<PhotoAttribute> attributes = new List<PhotoAttribute>();
                 CurrnetPhoto.Attributes = attributes;
             }
-            DoImageExif(exifInfo);
+            DoImageExif(image, exifInfo);
 
-
-            Logger.TraceByContent("Create Thumbnail", CurrnetFile.FullPath);
-            CreateImage(image, Path.Combine(PhotoEnvironment.ThumbnailPath, Guid.NewGuid().ToString() + ".jpg"), ThumbnailSize, true);
-            Logger.TraceByContent("Create Effect Image ", CurrnetFile.FullPath);
-            CreateImage(image, Path.Combine(PhotoEnvironment.EffectImagePath, Guid.NewGuid().ToString() + ".jpg"), EffectImageSize, false);
+            BuildImage(image);
 
             fs.Dispose();
             image.Dispose();
 
         }
-        Size ThumbnailSize = new Size(250, 250);
-        Size EffectImageSize = new Size(1024, 780);
 
-
-        protected void CreateImage(Image image, string path, Size size, bool imageType = true)
+        private void BuildImage(Image image)
         {
+
+
+            Logger.TraceByContent("Create Image", CurrnetFile.FullPath);
+            var builder = new PhotoStorageBuilder()
+            {
+                SourceImage = image,
+                Storage = this.PhotoEnvironment.CreateImageStorage(this.CurrnetPhoto.ID),
+                IsPanoramic = isPanoramic,
+                Orientation = imageOrientation
+            };
+
+            var maxLive = builder.Build();
             var photo = CurrnetPhoto;
             ICollection<PhotoAttribute> attributes = photo.Attributes;
-            var ThumbnailWidth = 0;
-            var ThumbnailHeight = 0;
-            if (image.Width < size.Width && image.Height < size.Height)
-            {
-                ThumbnailWidth = image.Width;
-                ThumbnailHeight = image.Height;
-            }
-            else if (image.Width > image.Height)
-            {
-                var per = (decimal)size.Width / image.Width;
-                ThumbnailWidth = size.Width;
-
-                ThumbnailHeight = (int)(image.Height * per);
-            }
-            else
-            {
-                var per = (decimal)size.Height / image.Height;
-                ThumbnailHeight = size.Height;
-
-                ThumbnailWidth = (int)(image.Width * per);
-            }
-
-            Bitmap thumbnailImage = new Bitmap(ThumbnailWidth, ThumbnailHeight, PixelFormat.Format64bppArgb);
-
-
-            Graphics g = Graphics.FromImage(thumbnailImage);
-            // 插值算法的质量
-            g.InterpolationMode = InterpolationMode.HighQualityBicubic;
-            //    g.TranslateTransform(ThumbnailWidth / 2, ThumbnailHeight / 2);
-
-            g.DrawImage(image, new Rectangle(0, 0, ThumbnailWidth, ThumbnailHeight), new Rectangle(0, 0, image.Width, image.Height), GraphicsUnit.Pixel);
-
-
-
-            g.Dispose();
-            switch (imageOrientation)
-            {
-                case Library.Draw.Orientation.Rotate180:
-                    thumbnailImage.RotateFlip(RotateFlipType.Rotate180FlipX);
-                    break;
-                case Library.Draw.Orientation.Rotate270CW:
-                    thumbnailImage.RotateFlip(RotateFlipType.Rotate270FlipX);
-                    break;
-                case Library.Draw.Orientation.Rotate90CW:
-                    thumbnailImage.RotateFlip(RotateFlipType.Rotate90FlipX);
-                    break;
-                default:
-                    break;
-            }
-            thumbnailImage.Save(path, ImageFormat.Jpeg);
-            attributes.Add(new PhotoAttribute(CreatedInfo.PhotoFileAnalysis)
-            {
-                PhotoID = photo.ID,
-                AttKey = imageType ? "Thumbnail" : "EffectImage",
-                AttValue = Path.GetFileName(path)
-            });
-            thumbnailImage.Dispose();
+            attributes.Add(CreateAtt("ImageLevel", maxLive.ToString()));
         }
+
 
         private PhotoAttribute CreateAtt(string key, string value)
         {
@@ -174,7 +120,7 @@ namespace HomeApplication.DomainServices
             return additemExif;
         }
         Library.Draw.Orientation imageOrientation;
-        protected void DoImageExif(Library.Draw.ImageExif exif)
+        protected void DoImageExif(Image image, Library.Draw.ImageExif exif)
         {
             Logger.TraceByContent("Create exif", CurrnetFile.FullPath);
 
@@ -184,8 +130,7 @@ namespace HomeApplication.DomainServices
                 attributes.Add(CreateAtt("DateTimeDigitized", exif.DateTimeDigitized.Value.ToString("yyyy-MM-dd HH:mm:ss")));
             if (exif.DateTimeOriginal != null)
                 attributes.Add(CreateAtt("DateTimeOriginal", exif.DateTimeOriginal.Value.ToString("yyyy-MM-dd HH:mm:ss")));
-            if (!string.IsNullOrWhiteSpace(exif.EquipmentMake)) attributes.Add(CreateAtt("EquipmentMake", exif.EquipmentMake));
-            if (!string.IsNullOrWhiteSpace(exif.EquipmentModel)) attributes.Add(CreateAtt("EquipmentModel", exif.EquipmentModel));
+
             if (!string.IsNullOrWhiteSpace(exif.Description)) attributes.Add(CreateAtt("Description", exif.Description.Trim()));
             if (!string.IsNullOrWhiteSpace(exif.Keyword)) attributes.Add(CreateAtt("Keyword", exif.Keyword));
             if (string.IsNullOrWhiteSpace(exif.Title)) exif.Title = CurrnetFile.FileName;
@@ -194,12 +139,30 @@ namespace HomeApplication.DomainServices
             if (exif.GPS != null) attributes.Add(CreateAtt("GPS", exif.GPS.ToString()));
             if (!string.IsNullOrWhiteSpace(exif.Author)) attributes.Add(CreateAtt("Author", exif.Author));
             if (!string.IsNullOrWhiteSpace(exif.Comment)) attributes.Add(CreateAtt("Comment", exif.Comment));
-            if (!string.IsNullOrEmpty(exif.EquipmentMake) && CurrnetFile.FileSize < mbSize) attributes.Add(CreateAtt("Selfie", "1"));
+
             imageOrientation = exif.Orientation;
             if ((int)imageOrientation != 0)
                 attributes.Add(CreateAtt("Orientation", exif.Orientation.ToString()));
 
+            if (!string.IsNullOrWhiteSpace(exif.EquipmentModel)) attributes.Add(CreateAtt("EquipmentModel", exif.EquipmentModel));
+            if (!string.IsNullOrEmpty(exif.EquipmentMake))
+            {
+                attributes.Add(CreateAtt("EquipmentMake", exif.EquipmentMake));
+                if (image.Height > image.Width && ((double)image.Height / image.Width) < 0.5)
+                {
+                    attributes.Add(CreateAtt("Panoramic", "1"));
+                    isPanoramic = true;
+                }
+
+                attributes.Add(CreateAtt("AspectRatio", AspectRatio.FormSize(image.Size).ToString()));
+
+                
+            }
+
         }
+        bool isPanoramic = false;
+
         const int mbSize = 1024 * 1024;
     }
 }
+

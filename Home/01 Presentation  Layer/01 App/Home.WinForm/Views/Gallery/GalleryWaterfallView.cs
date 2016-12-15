@@ -8,18 +8,13 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
-namespace Home.WinForm.Views
+namespace Home.WinForm.Views.Gallery
 {
-    public partial class GalleryView : Form
+    public partial class GalleryWaterfallView : Form
     {
-        public GalleryView()
+        public GalleryWaterfallView()
         {
             InitializeComponent();
-        }
-
-        private void listView1_SelectedIndexChanged(object sender, EventArgs e)
-        {
-
         }
     }
 }
