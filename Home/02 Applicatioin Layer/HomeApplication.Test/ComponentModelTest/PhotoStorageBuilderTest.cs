@@ -15,20 +15,21 @@ namespace HomeApplication.Test.ComponentModelTest
     [TestFixture]
     public class PhotoStorageBuilderTest
     {
-        string GalleryPath = AppDomain.CurrentDomain.BaseDirectory + "GalleryPath";
+        private string GalleryPath = AppDomain.CurrentDomain.BaseDirectory + "GalleryPath";
+
         [Test, TestCaseSource(typeof(PhotoStorageBuilderTest), "TestCases3", Category = "圖片生成")]
         public void BuildTest(TestPhotoObj obj)
         {
-            var path = FileStoryHelper.InitPath(GalleryPath, obj.ID);
+            FileStoryHelper.InitPath(GalleryPath);
             PhotoStorageBuilder builder = new PhotoStorageBuilder()
             {
-                Storage = new ImageStorage(obj.ID, new PhysicalImageStorageProvider(path)),
+                Storage = new ImageStorage(new PhysicalImageStorageProvider(GalleryPath), obj.ID),
                 SourceImage = obj.Image,
                 IsPanoramic = obj.IsPanoramic,
             };
             builder.Build();
         }
-        
+
         public static IEnumerable TestCases3
         {
             get
@@ -40,10 +41,10 @@ namespace HomeApplication.Test.ComponentModelTest
                 yield return new TestCaseData(new TestPhotoObj { Image = HomeApplication.Test.Properties.Resources.t5, ID = Guid.Parse("b4e7943a-b683-42e6-9b3c-0e2ed2078f8e") }).SetName("T5");
                 yield return new TestCaseData(new TestPhotoObj { Image = HomeApplication.Test.Properties.Resources.t6, ID = Guid.Parse("b5e7943a-b683-42e6-9b3c-0e2ed2078f8e") }).SetName("T6");
                 yield return new TestCaseData(new TestPhotoObj { Image = HomeApplication.Test.Properties.Resources.t7, ID = Guid.Parse("b6e7943a-b683-42e6-9b3c-0e2ed2078f8e") }).SetName("T7");
-
             }
         }
     }
+
     public class TestPhotoObj
     {
         public Guid ID { get; internal set; }

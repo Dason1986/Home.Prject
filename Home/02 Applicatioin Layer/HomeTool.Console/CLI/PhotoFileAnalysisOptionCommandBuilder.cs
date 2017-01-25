@@ -9,34 +9,37 @@ namespace HomeApplication.Logic.IO
         public TextReader In { get; protected internal set; }
         public TextWriter Out { get; protected internal set; }
 
-
         public abstract void RumCommandLine();
 
         IOption IOptionCommandBuilder.GetOption()
         {
             return GetOptionImpl();
         }
-        protected abstract IOption GetOptionImpl();
 
+        protected abstract IOption GetOptionImpl();
     }
+
     public class PhotoFileAnalysisOptionCommandBuilder : OptionCommandBuilder, IOptionCommandBuilder<PhotoFileAnalysisOption>
     {
         public PhotoFileAnalysisOption GetOption()
         {
             return _option;
         }
-        PhotoFileAnalysisOption _option;
+
+        private PhotoFileAnalysisOption _option;
+
         protected override IOption GetOptionImpl()
         {
             return _option;
         }
+
         public override void RumCommandLine()
         {
             _option = new PhotoFileAnalysisOption();
             Out.Write("是否使用默认条件（Y）：");
             var key = In.ReadLine();
             Out.WriteLine();
-            if (key == "Y")
+            if (key.ToUpper() == "Y")
             {
                 //  Console.WriteLine();
                 _option.ImageTypes = new string[] { ".jpg", ".png", ".gif", ".jpeg", ".bmp" };
@@ -57,7 +60,6 @@ namespace HomeApplication.Logic.IO
                     default:
                         goto LabSource;
                 }
-
             }
             switch (_option.SourceType)
             {
@@ -65,7 +67,7 @@ namespace HomeApplication.Logic.IO
                     {
                         Out.Write("是否使用默认条件（Y）：");
 
-                        if (In.ReadLine() == "Y")
+                        if (In.ReadLine().ToUpper() == "Y")
                         {
                             //  Console.WriteLine();
                             _option.ImageTypes = new string[] { ".jpg", ".png", ".gif", ".jpeg", ".bmp" };
@@ -123,7 +125,7 @@ namespace HomeApplication.Logic.IO
 
                         Out.Write("是否使用默认文件類型（Y）：");
 
-                        if (In.ReadLine() == "Y")
+                        if (In.ReadLine().ToUpper() == "Y")
                         {
                             //  Console.WriteLine();
                             _option.ImageTypes = new string[] { ".jpg", ".png", ".gif", ".jpeg", ".bmp" };
@@ -145,10 +147,6 @@ namespace HomeApplication.Logic.IO
                 default:
                     break;
             }
-
-
         }
-
-
     }
 }

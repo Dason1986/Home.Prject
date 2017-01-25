@@ -28,6 +28,8 @@ namespace HomeTool.Console
 
                         break;
                     }
+                case "-version": break;
+                case "-help": break;
                 default:
                     break;
             }

@@ -1,5 +1,4 @@
-﻿
-using HomeApplication.Logic.IO;
+﻿using HomeApplication.Logic.IO;
 using Library.ComponentModel.Logic;
 using NLog;
 using Home.Repository;
@@ -20,7 +19,6 @@ namespace HomeApplication.Logic
         {
             AppDomain.CurrentDomain.UnhandledException += CurrentDomain_UnhandledException;
             this.args = args;
-
         }
 
         private void CurrentDomain_UnhandledException(object sender, UnhandledExceptionEventArgs e)
@@ -36,10 +34,9 @@ namespace HomeApplication.Logic
         {
             IsRunning = true;
             BuindMenu(_menus);
-
-
         }
-        static CommandMenu[] _menus = new CommandMenu[] {
+
+        private static CommandMenu[] _menus = new CommandMenu[] {
             new CommandMenu() {
                 Name = "掃描物理文件",
                 Key = "1",
@@ -81,17 +78,19 @@ namespace HomeApplication.Logic
 
         public bool IsRunning { get; private set; }
 
-        class CommandMenu
+        private class CommandMenu
         {
             public string Name { get; set; }
             public string Key { get; set; }
             public Type CommandClassType { get; set; }
             public Type OptionBuilderType { get; set; }
         }
-        class ChildCommandMenu : CommandMenu
+
+        private class ChildCommandMenu : CommandMenu
         {
             public CommandMenu[] Menus { get; set; }
         }
+
         private void BuindMenu(CommandMenu[] menus)
         {
             Console.Clear();
@@ -113,7 +112,7 @@ namespace HomeApplication.Logic
             {
                 IsRunning = false;
                 return;
-          //      BuindMenu(_menus);
+                //      BuindMenu(_menus);
             }
             var itemmenu = menus.FirstOrDefault(n => n.Key == inputkey);
             if (itemmenu == null)
@@ -143,7 +142,6 @@ namespace HomeApplication.Logic
                     }
                     catch (Exception ex)
                     {
-
                         var Logger = LogManager.GetCurrentClassLogger();
                         Logger.Error(ex);
                         Console.Write("按任意鍵繼續。");
@@ -151,11 +149,7 @@ namespace HomeApplication.Logic
                     }
                     BuindMenu(menus);
                 }
-
-
             }
         }
-
-
     }
 }

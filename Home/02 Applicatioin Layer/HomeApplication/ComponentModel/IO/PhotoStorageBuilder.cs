@@ -4,20 +4,18 @@ using System.Drawing;
 using System.IO;
 using System.Drawing.Drawing2D;
 using Library.Draw;
-using Library.IO.Storage.Image;
 using Library.HelperUtility;
+using Library.Storage.Image;
 
 namespace HomeApplication.ComponentModel.IO
 {
-
-
     public class PhotoStorageBuilder
     {
-
         public PhotoStorageBuilder()
         {
             ThumbnailHasBorder = true;
         }
+
         public Image SourceImage { get; set; }
         public bool IsPanoramic { get; set; }
         public bool ThumbnailHasBorder { get; set; }
@@ -25,7 +23,7 @@ namespace HomeApplication.ComponentModel.IO
 
         public IImageStorage Storage { get; set; }
 
-        Size[] LvSizes = new[] { new Size(1024, 780), new Size(2400, 1920) };
+        private Size[] LvSizes = new[] { new Size(1024, 780), new Size(2400, 1920) };
 
         public int Build()
         {
@@ -33,13 +31,13 @@ namespace HomeApplication.ComponentModel.IO
             int maxLive = 0;
             {
                 var lv = CreateImageThumbnail(SourceImage);
-                Storage.Update(lv, 0);
+                Storage.AddThumbnail(lv);
             }
             if (IsPanoramic)
             {
                 maxLive = 1;
                 var lv = CreateImagePanoramic(SourceImage);
-                Storage.Update(lv, maxLive);
+                Storage.Add(lv, maxLive);
             }
             else
             {
@@ -50,38 +48,38 @@ namespace HomeApplication.ComponentModel.IO
                     {
                         maxLive = i + 1;
                         var lv = CreateImage(SourceImage, item);
-                        Storage.Update(lv, maxLive);
+                        Storage.Add(lv, maxLive);
                     }
                 }
                 if (maxLive == 0)
                 {
                     maxLive = 1;
                     var lv = CreateImage(SourceImage, LvSizes[0]);
-                    Storage.Update(lv, maxLive);
+                    Storage.Add(lv, maxLive);
                 }
             }
             return maxLive;
         }
 
-        int compar(Size x, Size y)
+        private int compar(Size x, Size y)
         {
             if (x.Width == y.Width && x.Height == y.Height) return 0;
             return (x.Width * x.Height).CompareTo(y.Width * y.Height);
         }
-        const int MamarginLR=10;
-        const int MamarginTB=230;
-        static readonly RectangleF ThumbnailFillRectangle = new RectangleF(MamarginLR, MamarginLR, MamarginTB, MamarginTB);
-        const int ThumbnailPixels = 234;
 
-        Rectangle SourceRectangle;
+        private const int MamarginLR = 10;
+        private const int MamarginTB = 230;
+        private static readonly RectangleF ThumbnailFillRectangle = new RectangleF(MamarginLR, MamarginLR, MamarginTB, MamarginTB);
+        private const int ThumbnailPixels = 234;
 
+        private Rectangle SourceRectangle;
 
         protected Stream CreateImageThumbnail(Image image)
         {
             var min = Math.Min(image.Width, image.Height);
             var max = Math.Max(image.Width, image.Height);
             Bitmap tempImage = new Bitmap(250, 250, PixelFormat.Format64bppArgb);
-             
+
             Graphics g = Graphics.FromImage(tempImage);
             g.Clear(Color.White);
             g.InterpolationMode = InterpolationMode.HighQualityBicubic;
@@ -92,8 +90,6 @@ namespace HomeApplication.ComponentModel.IO
             }
             if (min < 250)
             {
-
-
                 if (min == image.Width)
                 {
                     if (max > ThumbnailPixels)
@@ -105,7 +101,7 @@ namespace HomeApplication.ComponentModel.IO
                         var per = (decimal)ThumbnailPixels / image.Height;
                         var tempWidth = (int)(image.Width * per);
                         var paddingleft = (ThumbnailPixels - tempWidth) / 2;
-                        g.DrawImage(image, new Rectangle(paddingleft,12,  tempWidth, 226), SourceRectangle, GraphicsUnit.Pixel);
+                        g.DrawImage(image, new Rectangle(paddingleft, 12, tempWidth, 226), SourceRectangle, GraphicsUnit.Pixel);
                     }
                 }
                 else
@@ -118,19 +114,15 @@ namespace HomeApplication.ComponentModel.IO
                     {
                         var per = (decimal)ThumbnailPixels / image.Width;
 
-
                         var tempHeight = (int)(image.Height * per);
                         var paddingTop = (ThumbnailPixels - tempHeight) / 2;
                         g.DrawImage(image, new Rectangle(12, paddingTop, 226, tempHeight), SourceRectangle, GraphicsUnit.Pixel);
                     }
                 }
-
             }
             else
             {
-
                 g.DrawImage(image, ThumbnailFillRectangle, SizeUtility.GetSquareRectangle(image.Size), GraphicsUnit.Pixel);
-
             }
 
             g.Dispose();
@@ -140,12 +132,15 @@ namespace HomeApplication.ComponentModel.IO
                 case Library.Draw.Orientation.Rotate180:
                     tempImage.RotateFlip(RotateFlipType.Rotate180FlipX);
                     break;
+
                 case Library.Draw.Orientation.Rotate270CW:
                     tempImage.RotateFlip(RotateFlipType.Rotate270FlipX);
                     break;
+
                 case Library.Draw.Orientation.Rotate90CW:
                     tempImage.RotateFlip(RotateFlipType.Rotate90FlipX);
                     break;
+
                 default:
                     break;
             }
@@ -154,45 +149,38 @@ namespace HomeApplication.ComponentModel.IO
 
             tempImage.Dispose();
             return ms;
-
         }
+
         protected Stream CreateImage(Image image, Size size)
         {
-
             Size endPoint = image.Size;
             if ((image.Width < size.Width && image.Height < size.Height) == false)
             {
-
-
-
                 endPoint = SizeUtility.ZoomSizeByPixels(endPoint, image.Width > image.Height ? size.Height : size.Width);
-
             }
 
-
-
             Bitmap tempImage = new Bitmap(endPoint.Width, endPoint.Height, PixelFormat.Format64bppArgb);
-
 
             Graphics g = Graphics.FromImage(tempImage);
             g.InterpolationMode = InterpolationMode.HighQualityBicubic;
 
             g.DrawImage(image, new Rectangle(Point.Empty, endPoint), SourceRectangle, GraphicsUnit.Pixel);
 
-
-
             g.Dispose();
             switch (Orientation)
             {
                 case Library.Draw.Orientation.Rotate180:
                     tempImage.RotateFlip(RotateFlipType.Rotate180FlipX);
                     break;
+
                 case Library.Draw.Orientation.Rotate270CW:
                     tempImage.RotateFlip(RotateFlipType.Rotate270FlipX);
                     break;
+
                 case Library.Draw.Orientation.Rotate90CW:
                     tempImage.RotateFlip(RotateFlipType.Rotate90FlipX);
                     break;
+
                 default:
                     break;
             }
@@ -202,6 +190,7 @@ namespace HomeApplication.ComponentModel.IO
             tempImage.Dispose();
             return ms;
         }
+
         protected Stream CreateImagePanoramic(Image image)
         {
             const int fixHeight = 1080;
@@ -209,7 +198,6 @@ namespace HomeApplication.ComponentModel.IO
             var per = (decimal)tempheight / image.Height;
             var tempWidth = (int)(image.Width * per);
             Bitmap tempImage = new Bitmap(tempWidth, tempheight, PixelFormat.Format64bppArgb);
-
 
             Graphics g = Graphics.FromImage(tempImage);
             g.DrawImage(image, new RectangleF(0, 0, tempWidth, tempheight), SourceRectangle, GraphicsUnit.Pixel);

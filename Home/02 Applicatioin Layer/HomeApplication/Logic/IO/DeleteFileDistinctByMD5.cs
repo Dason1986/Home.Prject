@@ -13,9 +13,9 @@ namespace HomeApplication.Logic.IO
 {
     public class DeleteFileDistinctByMD5 : BaseMultiThreadingLogicService
     {
+        private IPhotoEnvironment PhotoEnvironment = new PhotoEnvironment();
+        private EmptyOption _option;
 
-        IPhotoEnvironment PhotoEnvironment = new PhotoEnvironment();
-        EmptyOption _option;
         protected override IOption ServiceOption
         {
             get
@@ -29,10 +29,8 @@ namespace HomeApplication.Logic.IO
             }
         }
 
-
         protected override int GetTotalRecord()
         {
-
             {
                 var provider = Bootstrap.Currnet.GetService<IGalleryModuleProvider>();
                 var _photoRepository = provider.CreateFileInfo();
@@ -41,10 +39,11 @@ namespace HomeApplication.Logic.IO
                 return md5s.Count;
             }
         }
-        IList<string> md5s;
+
+        private IList<string> md5s;
+
         protected override void ThreadProssSize(int beginindex, int endindex)
         {
-
             {
                 var take = endindex - beginindex;
                 var provider = Bootstrap.Currnet.GetService<IGalleryModuleProvider>();
@@ -69,7 +68,6 @@ namespace HomeApplication.Logic.IO
                         {
                             _fileInfoRepository.Remove(fileinfo);
                         }
-
                         else
                         {
                             Logger.Trace("删除文件！");
@@ -82,35 +80,28 @@ namespace HomeApplication.Logic.IO
                             try
                             {
                                 System.IO.File.Delete(fileinfo.FileName);
-
                             }
                             catch (System.Exception)
                             {
-
                                 Logger.WarnByContent("删除文件失败！", fileinfo.FileName);
                             }
                         }
                         provider.UnitOfWork.Commit();
-
                     }
-
-
                 }
             }
         }
 
-        void DeleFile(Home.DomainModel.Aggregates.FileAgg.FileInfo fileinfo, string key)
+        private void DeleFile(Home.DomainModel.Aggregates.FileAgg.FileInfo fileinfo, string key)
         {
             var Thumbnail = fileinfo.Photo.Attributes.FirstOrDefault(n => n.AttKey == "Thumbnail");
             if (Thumbnail != null)
             {
-
                 var filestorage = PhotoEnvironment.CreateImageStorage(fileinfo.ID);
 
                 try
                 {
-                    filestorage.Delete();
-
+                    //  filestorage.Delete();
                 }
                 catch (System.Exception)
                 {

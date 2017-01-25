@@ -9,18 +9,20 @@ namespace HomeApplication.Logic.IO
         {
             return _option;
         }
-        PhotoSimilarOption _option;
+
+        private PhotoSimilarOption _option;
 
         protected override IOption GetOptionImpl()
         {
             return _option;
         }
+
         public override void RumCommandLine()
         {
             _option = new PhotoSimilarOption();
             Out.Write("是否使用默认条件（Y）：");
             var key = In.ReadLine();
-            if (key == "Y")
+            if (key.ToUpper() == "Y")
             {
                 Out.WriteLine();
                 _option.AlgorithmType = Home.DomainModel.SimilarAlgorithm.PerceptualHash;
@@ -49,7 +51,6 @@ namespace HomeApplication.Logic.IO
                 goto LabCmd;
             }
             _option.Similarity = dimilarity.Value;
-
         }
     }
 }

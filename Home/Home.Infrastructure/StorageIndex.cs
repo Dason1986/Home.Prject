@@ -2,55 +2,342 @@
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+using System.Runtime.Serialization;
 
-namespace Library.IO.Storage
+namespace Library.Storage
 {
-    public abstract class StorageIndex
+    /// <summary>
+    ///
+    /// </summary>
+    public interface IFileIndexServiceProvider
     {
+        /// <summary>
+        ///
+        /// </summary>
+        /// <returns></returns>
+        IQueryable<FileStorageInfo> CreateSet();
+    }
+
+    /// <summary>
+    ///
+    /// </summary>
+    public interface IFileStorageServiceProvider
+    {
+        /// <summary>
+        ///
+        /// </summary>
+        /// <param name="id"></param>
+        /// <returns></returns>
+        FileStorage Get(Guid id);
+    }
+
+    /// <summary>
+    ///
+    /// </summary>
+    public interface IStorageStory
+    {
+        /// <summary>
+        ///
+        /// </summary>
+        /// <param name="id"></param>
+        /// <returns></returns>
+        FileStorage GetFileStorage(Guid id);
+
+        /// <summary>
+        ///
+        /// </summary>
+        /// <param name="id"></param>
+        /// <returns></returns>
+        FileVersionStorage GetFileVerionStorage(Guid id);
+    }
+
+    /// <summary>
+    ///
+    /// </summary>
+    public interface IFileStorageBlock
+    {
+        int BlockSize { get; }
+    }
+
+    [Serializable]
+    public class FileStorageNotFoundException : Exception
+    {
+        //
+        // For guidelines regarding the creation of new exception types, see
+        //    http://msdn.microsoft.com/library/default.asp?url=/library/en-us/cpgenref/html/cpconerrorraisinghandlingguidelines.asp
+        // and
+        //    http://msdn.microsoft.com/library/default.asp?url=/library/en-us/dncscol/html/csharp07192001.asp
+        //
+
+        public FileStorageNotFoundException()
+        {
+        }
+
+        public FileStorageNotFoundException(string message) : base(message)
+        {
+        }
+
+        public FileStorageNotFoundException(string message, Exception inner) : base(message, inner)
+        {
+        }
+
+        protected FileStorageNotFoundException(
+            SerializationInfo info,
+            StreamingContext context) : base(info, context)
+        {
+        }
+    }
+
+    [Serializable]
+    public class FileStorageInfoNotFoundException : Exception
+    {
+        //
+        // For guidelines regarding the creation of new exception types, see
+        //    http://msdn.microsoft.com/library/default.asp?url=/library/en-us/cpgenref/html/cpconerrorraisinghandlingguidelines.asp
+        // and
+        //    http://msdn.microsoft.com/library/default.asp?url=/library/en-us/dncscol/html/csharp07192001.asp
+        //
+
+        public FileStorageInfoNotFoundException()
+        {
+        }
+
+        public FileStorageInfoNotFoundException(string message) : base(message)
+        {
+        }
+
+        public FileStorageInfoNotFoundException(string message, Exception inner) : base(message, inner)
+        {
+        }
+
+        protected FileStorageInfoNotFoundException(
+            SerializationInfo info,
+            StreamingContext context) : base(info, context)
+        {
+        }
+    }
+
+    /// <summary>
+    ///
+    /// </summary>
+    public abstract class StorageStoryContext
+    {
+        protected StorageStoryContext(IFileIndexServiceProvider indexProvider, IFileStorageServiceProvider storageProvider)
+        {
+            _indexProvider = indexProvider;
+            _storageProvider = storageProvider;
+        }
+
+        private readonly IFileIndexServiceProvider _indexProvider;
+        private readonly IFileStorageServiceProvider _storageProvider;
+
+        /// <summary>
+        ///
+        /// </summary>
+        /// <param name="id"></param>
+        /// <returns></returns>
+        public virtual FileStorageInfo GetFile(Guid id)
+        {
+            IQueryable<FileStorageInfo> set = _indexProvider.CreateSet();
+            return set.FirstOrDefault(n => n.ID == id);
+        }
+
+        /// <summary>
+        ///
+        /// </summary>
+        /// <param name="filename"></param>
+        /// <returns></returns>
+        public virtual FileStorageInfo GetFile(string filename)
+        {
+            IQueryable<FileStorageInfo> set = _indexProvider.CreateSet();
+            return set.FirstOrDefault(n => n.Name == filename);
+        }
+
+        /// <summary>
+        ///
+        /// </summary>
+        /// <param name="predicate"></param>
+        /// <param name="stratindex"></param>
+        /// <param name="endindex"></param>
+        /// <param name="total"></param>
+        /// <returns></returns>
+        protected internal FileStorageInfo[] GetFiles(Func<FileStorageInfo, bool> predicate, int stratindex, int endindex, out long total)
+        {
+            IQueryable<FileStorageInfo> set = _indexProvider.CreateSet();
+            var source = set.Where(predicate);
+            total = source.Count();
+            var take = endindex - stratindex;
+            var items = source.Skip(stratindex).Take(take).ToArray();
+            return items;
+        }
+
+        /// <summary>
+        ///
+        /// </summary>
+        /// <param name="filename"></param>
+        /// <returns></returns>
+        public byte[] GetFileBytes(string filename)
+        {
+            var stream = GetFileStream(filename);
+
+            var reader = new BinaryReader(stream);
+            byte[] buffer = reader.ReadBytes((int)stream.Length);
+            return buffer;
+        }
+
+        /// <summary>
+        ///
+        /// </summary>
+        /// <param name="id"></param>
+        /// <returns></returns>
+        public byte[] GetFileBytes(Guid id)
+        {
+            var stream = GetFileStream(id);
+
+            var reader = new BinaryReader(stream);
+            byte[] buffer = reader.ReadBytes((int)stream.Length);
+            return buffer;
+        }
+
+        /// <summary>
+        ///
+        /// </summary>
+        /// <param name="filename"></param>
+        /// <returns></returns>
+        public Stream GetFileStream(string filename)
+        {
+            var fileinfo = GetFile(filename);
+            if (fileinfo == null) throw new FileStorageInfoNotFoundException("", new FileNotFoundException("", filename));
+            FileStorage storage = _storageProvider.Get(fileinfo.ID);
+            return storage.Get();
+        }
+
+        /// <summary>
+        ///
+        /// </summary>
+        /// <param name="id"></param>
+        /// <returns></returns>
+        public Stream GetFileStream(Guid id)
+        {
+            var fileinfo = GetFile(id);
+            if (fileinfo == null) throw new FileStorageInfoNotFoundException("");
+            FileStorage storage = _storageProvider.Get(fileinfo.ID);
+            return storage.Get();
+        }
+
+        /// <summary>
+        ///
+        /// </summary>
+        /// <param name="id"></param>
+        /// <param name="filename"></param>
+        /// <returns></returns>
+        public virtual FileStorage CreateFile(Guid id, string filename)
+        {
+            var info = FileStorageInfo.Create(filename);
+            throw new NotImplementedException();
+        }
+    }
+
+    /// <summary>
+    ///
+    /// </summary>
+    public interface IFileStorage
+    {
+        /// <summary>
+        ///
+        /// </summary>
+        Guid ID { get; }
+
+        /// <summary>
+        ///
+        /// </summary>
+        /// <returns></returns>
+        Stream Get();
+
+        /// <summary>
+        ///
+        /// </summary>
+        /// <param name="index"></param>
+        /// <param name="size"></param>
+        /// <returns></returns>
+        byte[] GetRange(int index, int size);
+    }
+
+    /// <summary>
+    ///
+    /// </summary>
+    public abstract class StorageInfo
+    {
+        /// <summary>
+        ///
+        /// </summary>
         public Guid ID { get; set; }
+
+        /// <summary>
+        ///
+        /// </summary>
         public DateTime Created { get; set; }
 
+        /// <summary>
+        ///
+        /// </summary>
         public string Name { get; set; }
 
+        /// <summary>
+        ///
+        /// </summary>
         internal const int NameSizeBuffer = 100;
     }
+
     public class FileStorage
     {
-        protected internal FileStorageIndex Index { get; set; }
+        protected internal FileStorageInfo Index { get; set; }
         protected internal IFileStorageProvider Provider { get; set; }
-        public FileStorage(IFileStorageProvider provider)
+        public Guid ID { get; private set; }
+
+        public bool CanDelete { get { return Provider.CanDelete; } }
+        public bool CanUpdate { get { return Provider.CanUpdate; } }
+
+        public FileStorage(IFileStorageProvider provider, Guid fileid)
         {
+            ID = fileid;
             Provider = provider;
+            Index = provider.GetIndex(fileid);
         }
+
         public Stream Get()
         {
-            return Provider.Get(Index.ID);
+            return Provider.Get(ID);
         }
 
         public virtual void Update(Stream stream)
         {
-            throw new NotImplementedException();
+            Provider.Update(ID, stream);
         }
 
         public void Delete()
         {
-            throw new NotImplementedException();
+            Provider.Delete(ID);
         }
     }
 
-
     public class FileVersionStorage : FileStorage
     {
-        public FileVersionStorage(IFileStorageProvider provider) : base(provider)
+        public FileVersionStorage(IFileVersionStorageProvider provider, Guid fileid) : base(provider, fileid)
         {
+            VersionProvider = provider;
+        }
+
+        protected internal IFileVersionStorageProvider VersionProvider { get; set; }
+
+        public int[] GetVersions()
+        {
+            throw new NotImplementedException();
         }
 
         public Stream Get(int version)
         {
-
-            return Provider.Get(Index.ID, version);
+            return VersionProvider.Get(Index.ID, version);
         }
 
         public override void Update(Stream stream)
@@ -59,27 +346,26 @@ namespace Library.IO.Storage
             throw new NotImplementedException();
         }
     }
-    public class FileStorageIndex : StorageIndex
+
+    public class FileStorageInfo : StorageInfo
     {
         public DateTime Modified { get; set; }
-        public static FileStorageIndex Create(string name)
+
+        public static FileStorageInfo Create(string name)
         {
-            return new FileStorageIndex { Name = name, Created = DateTime.Now, ID = Guid.NewGuid() };
+            return new FileStorageInfo { Name = name, Created = DateTime.Now, ID = Guid.NewGuid() };
         }
     }
-    public class DirectoryStorageIndex : StorageIndex
+
+    public class DirectoryStorageInfo : StorageInfo
     {
-
-
     }
 
     public static class FileStoryHelper
     {
-
         public static void InitPath(string path)
         {
             if (!Directory.Exists(path)) Directory.CreateDirectory(path);
-
         }
 
         public static string InitPath(string galleryPath, Guid id)
@@ -90,46 +376,49 @@ namespace Library.IO.Storage
         }
     }
 
-    public interface ISingleLayerFileStory
+    public class SingleLayerFileStory : IStorageStory
     {
-        FileStorage GetFileStorage(Guid id);
-        FileStorage GetFileVerionStorage(Guid id);
-    }
-    public class SingleLayerFileStory : ISingleLayerFileStory
-    {
-
         public SingleLayerFileStory(IFileStorageProvider provider)
         {
-
         }
+
         public FileStorage GetFileStorage(Guid id)
         {
             throw new NotImplementedException();
         }
 
-        public FileStorage GetFileVerionStorage(Guid id)
+        public FileVersionStorage GetFileVerionStorage(Guid id)
         {
             throw new NotImplementedException();
         }
     }
 
-    class StorageIndexCache
+    internal class StorageIndexCache
     {
-
+        private IndexWriter writer;
+        private IndexReader reader;
     }
 
-    public class FileIndexWriter
+    public interface IndexWriter
     {
-        System.IO.BinaryWriter writer;
+    }
+
+    public interface IndexReader
+    {
+    }
+
+    public class FileIndexWriter : IndexWriter
+    {
+        private System.IO.BinaryWriter writer;
+
         public FileIndexWriter(System.IO.Stream stream)
         {
             if (!stream.CanWrite) throw new System.Exception();
             if (!stream.CanSeek) throw new System.Exception();
             writer = new System.IO.BinaryWriter(stream);
-
         }
 
-        public void Writer(StorageIndex index)
+        public void Writer(StorageInfo index)
         {
             if (index == null) throw new Exception();
             if (string.IsNullOrEmpty(index.Name)) throw new Exception();
@@ -137,44 +426,39 @@ namespace Library.IO.Storage
             writer.Write(index.Created.ToOADate());
             var name = index.Name ?? string.Empty;
             var namebytes = System.Text.Encoding.UTF8.GetBytes(name);
-            var span = StorageIndex.NameSizeBuffer - namebytes.Length;
+            var span = StorageInfo.NameSizeBuffer - namebytes.Length;
 
             if (span > 0)
             {
                 writer.Write(namebytes.Length);
                 writer.Write(namebytes);
-
             }
             else
             {
-                writer.Write(StorageIndex.NameSizeBuffer);
-                writer.Write(namebytes, 0, StorageIndex.NameSizeBuffer);
+                writer.Write(StorageInfo.NameSizeBuffer);
+                writer.Write(namebytes, 0, StorageInfo.NameSizeBuffer);
             }
         }
-
     }
 
-    public interface IFileStorageProvider
+    public class FileIndexReader : IndexReader
     {
-        Stream Get(Guid id);
-        Stream Get(Guid id, int version);
-    }
-    public class FileIndexReader
-    {
-        System.IO.BinaryReader reader;
+        private System.IO.BinaryReader reader;
+
         public FileIndexReader(System.IO.Stream stream)
         {
             if (!stream.CanRead) throw new System.Exception();
             if (!stream.CanSeek) throw new System.Exception();
             if (stream.Position != 0) stream.Seek(0, System.IO.SeekOrigin.Begin);
             reader = new System.IO.BinaryReader(stream);
-
         }
+
         public bool IsEnd
         {
             get { return reader.BaseStream.Position == reader.BaseStream.Length; }
         }
-        public StorageIndex Read()
+
+        public StorageInfo Read()
         {
             if (IsEnd) return null;
             var guidbytes = reader.ReadBytes(16);
@@ -183,15 +467,11 @@ namespace Library.IO.Storage
             var length = reader.ReadInt32();
             var namebytes = reader.ReadBytes(length);
 
-            return new FileStorageIndex() { ID = new Guid(guidbytes), Created = DateTime.FromOADate(oaDate), Name = System.Text.Encoding.UTF8.GetString(namebytes).Replace("\0", string.Empty).Trim() };
-
+            return new FileStorageInfo() { ID = new Guid(guidbytes), Created = DateTime.FromOADate(oaDate), Name = System.Text.Encoding.UTF8.GetString(namebytes).Replace("\0", string.Empty).Trim() };
         }
+
         public IEnumerable<Guid> ReadAllID()
         {
-
-
-
-
             while (!IsEnd)
             {
                 var guidbytes = reader.ReadBytes(16);
@@ -203,17 +483,12 @@ namespace Library.IO.Storage
                 var length = reader.ReadInt32();
                 reader.BaseStream.Seek(length, System.IO.SeekOrigin.Current);
                 yield return id;
-
-
-
             }
-
         }
-        public IEnumerable<StorageIndex> ReadToEnd()
+
+        public IEnumerable<StorageInfo> ReadToEnd()
         {
-
-
-            StorageIndex index = Read();
+            StorageInfo index = Read();
 
             while (index != null)
             {
@@ -221,43 +496,125 @@ namespace Library.IO.Storage
 
                 index = Read();
             }
+        }
+    }
 
+    public interface IFileVersionStorageProvider : IFileStorageProvider
+    {
+        int[] GetVersions();
+
+        Stream Get(Guid id, int version);
+    }
+
+    public interface IFileStorageProvider
+    {
+        bool CanDelete { get; }
+        bool CanUpdate { get; }
+
+        void Delete(Guid id);
+
+        Stream Get(Guid id);
+
+        FileStorageInfo GetIndex(Guid id);
+
+        void Update(Guid id, Stream stream);
+    }
+
+    public class Physical64MStorageProvider : IFileStorageProvider
+    {
+        public Physical64MStorageProvider()
+        {
+        }
+
+        public bool CanDelete
+        {
+            get
+            {
+                return false;
+            }
+        }
+
+        public bool CanUpdate
+        {
+            get
+            {
+                return false;
+            }
+        }
+
+        public void Delete(Guid iD)
+        {
+            throw new NotImplementedException();
+        }
+
+        public Stream Get(Guid id)
+        {
+            throw new NotImplementedException();
+        }
+
+        public Stream Get(Guid id, int version)
+        {
+            throw new NotImplementedException();
+        }
+
+        public FileStorageInfo GetIndex(Guid id)
+        {
+            throw new NotImplementedException();
+        }
+
+        public void Update(Guid iD, Stream stream)
+        {
+            throw new NotImplementedException();
         }
     }
 }
 
-
-namespace Library.IO.Storage.Image
+namespace Library.Storage.Video
 {
-
-
-    public interface IImageStorage
+    public interface IVideoStorage : IFileStorage, Image.IImageThumbnailStorage
     {
-        Guid ID { get; }
+        void AddVideo(Stream stream);
+    }
+}
 
-        int[] Diagonals { get; }
+namespace Library.Storage.Image
+{
+    public interface IImageThumbnailStorage
+    {
         bool HasThumbnail { get; }
 
-        void Update(Stream stream, int level);
-        Stream Get(int level);
-        Stream GetThumbnail();
-        void UpdateThumbnail(Stream stream);
+        void AddThumbnail(Stream stream);
 
-        void Delete();
+        Stream GetThumbnail();
     }
-    public interface IImageStorageProvider
+
+    public interface IImageStorage : IFileStorage, IImageThumbnailStorage
     {
+        int[] Diagonals { get; }
+
+        void Add(Stream stream, int level);
+
         Stream Get(int level);
-        bool Exist(int level);
-        void Update(Stream stream, int level);
     }
+
+    public interface IImageStorageProvider : IFileStorageProvider
+    {
+        Stream Get(Guid ID, int level);
+
+        bool Exist(Guid ID, int level);
+
+        void Add(Guid ID, Stream stream, int level);
+
+        byte[] GetRange(Guid iD, int index, int size);
+    }
+
     public class PhysicalImageStorageProvider : IImageStorageProvider
     {
-
         public PhysicalImageStorageProvider(string path)
         {
             setPath(path);
         }
+
         public string StoragePath
         {
             get { return _path; }
@@ -266,94 +623,147 @@ namespace Library.IO.Storage.Image
                 setPath(value);
             }
         }
-        string rawFormat = ".jpeg";
-        string _path;
-        void setPath(string path)
+
+        bool IFileStorageProvider.CanDelete
+        {
+            get
+            {
+                throw new NotImplementedException();
+            }
+        }
+
+        bool IFileStorageProvider.CanUpdate
+        {
+            get
+            {
+                throw new NotImplementedException();
+            }
+        }
+
+        private string rawFormat = ".jpeg";
+        private string _path;
+
+        private void setPath(string path)
         {
             if (_path == path) return;
             if (string.Equals(_path, path, StringComparison.OrdinalIgnoreCase)) return;
             _path = path;
         }
-        string GetfilePath(int level)
-        {
-            return Path.Combine(_path, level.ToString() + rawFormat);
 
-        }
-        public Stream Get(int level)
+        private string GetfilePath(Guid id, int level)
         {
-            var file = GetfilePath(level);
+            return Path.Combine(_path, id.ToString(), level.ToString() + rawFormat);
+        }
+
+        public Stream Get(Guid id, int level)
+        {
+            var file = GetfilePath(id, level);
             if (File.Exists(file))
             {
                 return File.Open(file, FileMode.Open, FileAccess.Read);
             }
             throw new FileNotFoundException(file);
         }
-        public bool Exist(int level)
+
+        public bool Exist(Guid id, int level)
         {
-            return File.Exists(GetfilePath(level));
+            return File.Exists(GetfilePath(id, level));
         }
 
-        public void Update(Stream stream, int level)
+        public void Add(Guid id, Stream stream, int level)
         {
-            var file = GetfilePath(level);
-            if (File.Exists(file))
-            {
-                File.Delete(file);
-            }
+            var file = GetfilePath(id, level);
+            var dir = Path.GetDirectoryName(file);
+            if (!Directory.Exists(dir)) Directory.CreateDirectory(dir);
+            if (File.Exists(file)) File.Delete(file);
             stream.Seek(0, SeekOrigin.Begin);
             FileStream writer = new FileStream(file, FileMode.CreateNew, FileAccess.ReadWrite);
             stream.CopyTo(writer);
             writer.Close();
             writer.Dispose();
         }
+
+        public byte[] GetRange(Guid id, int index, int size)
+        {
+            var file = Get(id, 0);
+            file.Seek(index, SeekOrigin.Begin);
+            byte[] buffer = new byte[size];
+            file.Read(buffer, 0, size);
+            return buffer;
+        }
+
+        void IFileStorageProvider.Delete(Guid id)
+        {
+            throw new NotImplementedException();
+        }
+
+        Stream IFileStorageProvider.Get(Guid id)
+        {
+            throw new NotImplementedException();
+        }
+
+        FileStorageInfo IFileStorageProvider.GetIndex(Guid id)
+        {
+            throw new NotImplementedException();
+        }
+
+        void IFileStorageProvider.Update(Guid id, Stream stream)
+        {
+            throw new NotImplementedException();
+        }
     }
+
     public static class IamgeType
     {
         public const int Thumbnail = 0;
     }
-    public class ImageStorage : IImageStorage
-    {
 
-        public ImageStorage(Guid id, IImageStorageProvider provider)
+    public class ImageStorage : FileStorage, IImageStorage
+    {
+        public ImageStorage(IImageStorageProvider provider, Guid id) : base(provider, id)
         {
             _provider = provider;
-            ID = id;
         }
-        IImageStorageProvider _provider;
-        public int[] Diagonals { get; private set; }
 
-        public Guid ID { get; private set; }
+        private IImageStorageProvider _provider;
+        public int[] Diagonals { get; private set; }
 
         public bool HasThumbnail
         {
             get
             {
-                return _provider.Exist(0);
+                return _provider.Exist(ID, 0);
             }
         }
 
         public Stream Get(int diagonal)
         {
-            return _provider.Get(diagonal);
+            return _provider.Get(ID, diagonal);
         }
 
         public Stream GetThumbnail()
         {
-            return _provider.Get((int)IamgeType.Thumbnail);
-        }
-        public void UpdateThumbnail(Stream stream)
-        {
-            _provider.Update(stream, IamgeType.Thumbnail);
-        }
-        public void Update(Stream stream, int diagonal)
-        {
-            _provider.Update(stream, diagonal);
+            return _provider.Get(ID, IamgeType.Thumbnail);
         }
 
-        public void Delete()
+        public void Add(Stream stream, int diagonal)
         {
-            throw new NotImplementedException();
+            _provider.Add(ID, stream, diagonal);
+        }
+
+        public void AddThumbnail(Stream stream)
+        {
+            _provider.Add(ID, stream, IamgeType.Thumbnail);
+        }
+
+        public Stream Get()
+        {
+            return _provider.Get(ID, Diagonals == null ? 0 : Diagonals.Max());
+        }
+
+        public byte[] GetRange(int index, int size)
+        {
+            return _provider.GetRange(ID, index, size);
         }
     }
 }
-
