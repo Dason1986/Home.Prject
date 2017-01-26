@@ -1,5 +1,4 @@
 ﻿using HomeApplication.ComponentModel.IO;
-using Library.IO.Storage.Image;
 using NUnit.Framework;
 using System;
 using System.Collections;
@@ -8,7 +7,8 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Drawing;
-using Library.IO.Storage;
+using Library.Storage;
+using Library.Storage.Image;
 
 namespace HomeApplication.Test.ComponentModelTest
 {

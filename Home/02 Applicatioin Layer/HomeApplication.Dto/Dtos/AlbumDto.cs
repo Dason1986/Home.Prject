@@ -2,11 +2,10 @@
 
 namespace HomeApplication.Dtos
 {
-
-    public class AlbumDto: Dto
+    public class AlbumDto : Dto
     {
-
     }
+
     [System.Runtime.Serialization.DataContract]
     public class GalleryType
     {
@@ -16,11 +15,19 @@ namespace HomeApplication.Dtos
             get;
             set;
         }
+
         [DataMember(Order = 2)]
         public int Count
         {
             get;
             set;
         }
+    }
+
+    public class FileProfile
+    {
+        public string Name { get; set; }
+        public byte[] FileBuffer { get; set; }
+        public string Extension { get; set; }
     }
 }

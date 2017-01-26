@@ -11,12 +11,8 @@ using HomeApplication.ComponentModel.IO;
 
 namespace HomeApplication.DomainServices
 {
-
-
-
     public class AddPhotoDomainService : PhotoDomainService, IAddPhotoDomainService
     {
-
         public void Handle(Photo photo, Home.DomainModel.Aggregates.FileAgg.FileInfo file)
         {
             CurrnetPhoto = photo;
@@ -24,20 +20,19 @@ namespace HomeApplication.DomainServices
             DoAddAction();
             //    ModuleProvider.UnitOfWork.Commit();
         }
-        IPhotoEnvironment PhotoEnvironment = new PhotoEnvironment();
 
+        private readonly IPhotoEnvironment _photoEnvironment = new PhotoEnvironment();
 
         protected override void DoAddAction()
         {
             if (CurrnetFile == null) return;
-            if (!PhotoEnvironment.Isloadconfig) PhotoEnvironment.LoadConfig(ModuleProvider.CreateSystemParameter());
-            Logger.Trace("AddPhotoDomainService", CurrnetFile.FullPath);
+            if (!_photoEnvironment.Isloadconfig) _photoEnvironment.LoadConfig(ModuleProvider.CreateSystemParameter());
+            Logger.Trace("AddPhotoDomainService:{0}", CurrnetFile.FullPath);
             //  System.IO.FileInfo fileinfo = new System.IO.FileInfo(CurrnetFile.FullPath);
             if (!System.IO.File.Exists(CurrnetFile.FullPath))
             {
                 Logger.WarnByContent(Resources.DomainServiceResource.FileNotExist, CurrnetFile.FullPath);
                 throw new PhotoDomainServiceException(Resources.DomainServiceResource.FileNotExist, new FileNotFoundException(CurrnetFile.FullPath));
-
             }
             if (CurrnetPhoto == null)
             {
@@ -52,7 +47,6 @@ namespace HomeApplication.DomainServices
                 };
                 PhotoRepository.Add(CurrnetPhoto);
                 CurrnetFile.Photo = CurrnetPhoto;
-
             }
             if (CurrnetPhoto.Attributes != null && CurrnetPhoto.Attributes.Count > 0) return;
             //       this.FilesRepository.Attach(CurrnetFile);
@@ -68,10 +62,8 @@ namespace HomeApplication.DomainServices
             }
             catch (Exception ex)
             {
-
                 Logger.ErrorByContent(ex, "File can not open！", CurrnetFile.FullPath);
                 return;
-
             }
 
             var exifInfo = Library.Draw.ImageExif.GetExifInfo(image);
@@ -86,18 +78,15 @@ namespace HomeApplication.DomainServices
 
             fs.Dispose();
             image.Dispose();
-
         }
 
         private void BuildImage(Image image)
         {
-
-
             Logger.TraceByContent("Create Image", CurrnetFile.FullPath);
             var builder = new PhotoStorageBuilder()
             {
                 SourceImage = image,
-                Storage = this.PhotoEnvironment.CreateImageStorage(this.CurrnetPhoto.ID),
+                Storage = this._photoEnvironment.CreateImageStorage(this.CurrnetPhoto.ID),
                 IsPanoramic = isPanoramic,
                 Orientation = imageOrientation
             };
@@ -107,7 +96,6 @@ namespace HomeApplication.DomainServices
             ICollection<PhotoAttribute> attributes = photo.Attributes;
             attributes.Add(CreateAtt("ImageLevel", maxLive.ToString()));
         }
-
 
         private PhotoAttribute CreateAtt(string key, string value)
         {
@@ -119,7 +107,9 @@ namespace HomeApplication.DomainServices
             };
             return additemExif;
         }
-        Library.Draw.Orientation imageOrientation;
+
+        private Library.Draw.Orientation imageOrientation;
+
         protected void DoImageExif(Image image, Library.Draw.ImageExif exif)
         {
             Logger.TraceByContent("Create exif", CurrnetFile.FullPath);
@@ -155,14 +145,11 @@ namespace HomeApplication.DomainServices
                 }
 
                 attributes.Add(CreateAtt("AspectRatio", AspectRatio.FormSize(image.Size).ToString()));
-
-                
             }
-
         }
-        bool isPanoramic = false;
 
-        const int mbSize = 1024 * 1024;
+        private bool isPanoramic = false;
+
+        private const int mbSize = 1024 * 1024;
     }
 }
-

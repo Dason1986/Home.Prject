@@ -302,7 +302,7 @@ namespace Library.Storage
         {
             ID = fileid;
             Provider = provider;
-            Index = provider.GetIndex(fileid);
+            //  Index = provider.GetIndex(fileid);
         }
 
         public Stream Get()
@@ -660,7 +660,7 @@ namespace Library.Storage.Image
             var file = GetfilePath(id, level);
             if (File.Exists(file))
             {
-                return File.Open(file, FileMode.Open, FileAccess.Read);
+                return File.Open(file, FileMode.Open, FileAccess.Read, FileShare.ReadWrite);
             }
             throw new FileNotFoundException(file);
         }

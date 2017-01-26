@@ -20,8 +20,8 @@ namespace HomeApplication.Test
             var mock = AutoMock.GetLoose();
             mock.Mock<IUnitOfWork>();
             SubRepository res = new SubRepository();
-           
-            mock.Mock<IAlbumRepository>().Setup(x => x.GetAll()).Returns(res.GetALLAlbums());
+
+            mock.Mock<IAlbumRepository>().Setup(x => x.GetAll(Library.ComponentModel.Model.StatusCode.Enabled)).Returns(res.GetALLAlbums());
             mock.Mock<IPhotoRepository>().Setup(x => x.Get(It.IsAny<Guid>())).Returns<Guid>(x => res.GetALLPhtots().FirstOrDefault(n => n.ID == x));
             mock.Mock<IFileInfoRepository>();
             var mokprovider = mock.Mock<IGalleryModuleProvider>();

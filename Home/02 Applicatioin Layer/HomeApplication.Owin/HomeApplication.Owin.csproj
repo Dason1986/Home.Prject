@@ -200,12 +200,16 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Core\ClinetLanguageAttribute.cs" />
+    <Compile Include="Core\CompressAttribute.cs" />
+    <Compile Include="Core\CustomExceptionFilterAttribute.cs" />
     <Compile Include="API\GalleryController.cs" />
     <Compile Include="API\GalleryMakeController.cs" />
     <Compile Include="API\GalleryRawController.cs" />
     <Compile Include="API\GalleryTimelineController.cs" />
     <Compile Include="API\PhotoController.cs" />
-    <Compile Include="API\WebAPI.cs" />
+    <Compile Include="Core\RequestFilterAttribute.cs" />
+    <Compile Include="Core\WebAPI.cs" />
     <Compile Include="HomeOwinService.cs">
       <SubType>Component</SubType>
     </Compile>

@@ -27,8 +27,7 @@ namespace HomeApplication.DomainServices
 
         public IImageStorage CreateImageStorage(Guid id)
         {
-            var path = FileStoryHelper.InitPath(GalleryPath, id);
-            return new ImageStorage(new PhysicalImageStorageProvider(path), id);
+            return new ImageStorage(new PhysicalImageStorageProvider(GalleryPath), id);
         }
 
         public void LoadConfig(ISystemParameterRepository systemParRepository)

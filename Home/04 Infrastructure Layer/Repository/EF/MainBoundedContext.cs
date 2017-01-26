@@ -1,5 +1,4 @@
-﻿
-using Library.Domain.Data;
+﻿using Library.Domain.Data;
 using Library.Domain.Data.EF;
 using Repository.Migrations;
 using System;
@@ -13,7 +12,7 @@ using System.Threading.Tasks;
 
 namespace Repository
 {
-    [DbConfigurationType(typeof(MySql.Data.Entity.MySqlEFConfiguration))]
+    // [DbConfigurationType(typeof(MySql.Data.Entity.MySqlEFConfiguration))]
     public class MainBoundedContext : EFContext, IDbContext
     {
         static MainBoundedContext()
@@ -36,11 +35,8 @@ namespace Repository
         {
         }
 
-      
-
         protected override void OnModelCreating(DbModelBuilder modelBuilder)
         {
-
             //刪除未使用的約定
             modelBuilder.Conventions.Remove<OneToManyCascadeDeleteConvention>();
             EF.Mapping.TypeConfiguration.ModelCreating(modelBuilder);
