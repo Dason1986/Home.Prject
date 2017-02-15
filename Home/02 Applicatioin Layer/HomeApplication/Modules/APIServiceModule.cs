@@ -7,10 +7,8 @@ namespace HomeApplication
     {
         protected override void Load(ContainerBuilder builder)
         {
-
             builder.RegisterType<GalleryServiceImpl>().As<IGalleryService>();
-
-
+            builder.RegisterType<PMSServiceImpl>().As<IPMSService>();
         }
     }
 }

@@ -14,5 +14,7 @@ namespace Home.DomainModel.Repositories
         IList<Photo> GetList(int beginindex, int take);
 
         Photo GetByFileId(Guid iD);
+
+        Photo GetBySerialNumber(string serialNumber);
     }
 }

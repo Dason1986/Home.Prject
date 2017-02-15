@@ -5,17 +5,17 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using Home.DomainModel.Repositories; 
+using Home.DomainModel.Repositories;
 using Home.Repository.Repositories;
 
 namespace Home.Repository.ModuleProviders
 {
-    public class GalleryModuleProvider : ModuleProvider, IGalleryModuleProvider
+    public class GalleryModuleProvider : DomainModuleProvider, IGalleryModuleProvider
     {
         public GalleryModuleProvider(EFContext context) : base(context)
         {
-
         }
+
         public IAlbumRepository CreateAlbum()
         {
             return new AlbumRepository(this.Context);
@@ -51,9 +51,9 @@ namespace Home.Repository.ModuleProviders
             return new PhotoSimilarRepository(this.Context);
         }
 
-		public ISystemParameterRepository CreateSystemParameter()
-		{
-			return new SystemParameterRepository(this.Context);
-		}
-	}
+        public ISystemParameterRepository CreateSystemParameter()
+        {
+            return new SystemParameterRepository(this.Context);
+        }
+    }
 }

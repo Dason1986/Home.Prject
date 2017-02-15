@@ -30,4 +30,11 @@ namespace HomeApplication.Dtos
         public byte[] FileBuffer { get; set; }
         public string Extension { get; set; }
     }
+
+    public class PhotoAttributeDto
+    {
+        public string AttKey { get; set; }
+
+        public string AttValue { get; set; }
+    }
 }

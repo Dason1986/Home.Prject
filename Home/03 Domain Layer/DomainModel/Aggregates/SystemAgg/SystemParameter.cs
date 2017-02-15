@@ -21,6 +21,7 @@ namespace Home.DomainModel.Aggregates.SystemAgg
 
         void IParameter.SetValue(string value)
         {
+            if (IsReadOnly) throw new LogicException("不能修改只讀的設置");
             Value = value;
         }
     }

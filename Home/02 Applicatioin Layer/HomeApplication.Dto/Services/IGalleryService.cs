@@ -1,5 +1,7 @@
-﻿using System.Collections.Generic;
-
+﻿using System;
+using System.Collections.Generic;
+using System.Collections.Specialized;
+using Home.DomainModel.Aggregates.GalleryAgg;
 using HomeApplication.Dtos;
 using Home.DomainModel.Repositories;
 
@@ -66,9 +68,24 @@ namespace HomeApplication.Services
         /// <summary>
         ///
         /// </summary>
+        /// <returns></returns>
+        [System.ServiceModel.OperationContract]
+        IDictionary<string, string> GetExifBySerialNumber(string serialNumber);
+
+        /// <summary>
+        ///
+        /// </summary>
         /// <param name="id"></param>
         /// <returns></returns>
         [System.ServiceModel.OperationContract]
-        FileProfile GetPhoto(string id);
+        FileProfile GetPhoto(Guid id);
+
+        /// <summary>
+        ///
+        /// </summary>
+        /// <param name="serialNumber"></param>
+        /// <returns></returns>
+        [System.ServiceModel.OperationContract]
+        FileProfile GetPhotoBySerialNumber(string serialNumber);
     }
 }

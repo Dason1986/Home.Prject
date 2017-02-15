@@ -5,25 +5,19 @@ using System.Web.Http;
 
 namespace HomeApplication.Owin.API
 {
-    [AllowAnonymous]
     [RoutePrefix("api/GalleryRaw")]
     public class GalleryRawController : WebAPI
     {
-        IGalleryService _service;
+        private readonly IGalleryService _service;
 
         public GalleryRawController(IGalleryService service)
         {
             _service = service;
-
         }
 
         public IEnumerable<GalleryType> Get()
         {
-
-
-
             return _service.GetRawFormat();
-
         }
     }
 }

@@ -27,9 +27,9 @@ namespace HomeApplication.DomainServices
                     CreateRepository(value);
                 }
             }
-
         }
-        protected override IModuleProvider Provider
+
+        protected override IDomainModuleProvider Provider
         {
             get
             {
@@ -42,15 +42,16 @@ namespace HomeApplication.DomainServices
             }
         }
 
-
-        IGalleryModuleProvider _moduleProvider;
+        private IGalleryModuleProvider _moduleProvider;
         protected IPhotoRepository PhotoRepository { get; set; }
         protected IFileInfoRepository FilesRepository { get; set; }
+
         protected virtual void CreateRepository(IGalleryModuleProvider moduleProvider)
         {
             PhotoRepository = ModuleProvider.CreatePhoto();
             FilesRepository = ModuleProvider.CreateFileInfo();
         }
+
         public Photo CurrnetPhoto { get; protected set; }
         public FileInfo CurrnetFile { get; protected set; }
 
@@ -72,32 +73,27 @@ namespace HomeApplication.DomainServices
                 CurrnetPhoto = CurrnetFile.Photo;
             }
 
-
             if (args.PhotoID != Guid.Empty && CurrnetPhoto == null)
             {
                 CurrnetPhoto = PhotoRepository.Get(args.PhotoID);
                 if (CurrnetPhoto != null) CurrnetFile = CurrnetPhoto.File;
             }
 
-
             DoAddAction();
-
         }
+
         protected override void Handle(IDomainEventArgs args)
         {
             Handle(args as PhotoItemEventArgs);
         }
+
         protected abstract void DoAddAction();
 
         protected override void OnDispose()
         {
-
             if (this.ModuleProvider == null) return;
 
             this.ModuleProvider.Dispose();
-
-
-
         }
     }
 }

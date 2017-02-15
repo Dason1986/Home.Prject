@@ -5,6 +5,7 @@ using Library.Domain.Data.EF;
 using System.Linq;
 using Library.ComponentModel.Model;
 using System.Collections.Generic;
+using Library.Domain.Data.Linq;
 
 namespace Home.Repository.Repositories
 {
@@ -24,20 +25,24 @@ namespace Home.Repository.Repositories
             cmd.ExecuteSqlCommand(string.Format("delete from photosimilar  where LeftPhotoID='{0}'", id));
 
             cmd.ExecuteSqlCommand(string.Format("delete from photo  where id='{0}'", id));
-		 
         }
 
         public int GetAllPhotoTotal()
         {
-            return GetAll().Where(n => n.StatusCode == StatusCode.Enabled).Count();
+            return GetAll().Count();
         }
 
-		public Photo GetByFileId(Guid id)
-		{
-			return CreateSet().FirstOrDefault(n => n.FileID == id);
-		}
+        public Photo GetByFileId(Guid id)
+        {
+            return CreateSet().FirstOrDefault(n => n.FileID == id);
+        }
 
-		public IList<Photo> GetList(int beginindex, int take)
+        public Photo GetBySerialNumber(string serialNumber)
+        {
+            return CreateSet().FirstOrDefault(n => n.Attributes.AsQueryable().Any(ff => ff.AttKey == "SerialNumber" && ff.AttValue == serialNumber));
+        }
+
+        public IList<Photo> GetList(int beginindex, int take)
         {
             var photos = CreateSet().Include("File").Include("ParentAlbum").Include("Attributes").AsNoTracking().OrderBy(n => n.Created).Skip(beginindex).Take(take).ToList();
             return photos;

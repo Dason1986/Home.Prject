@@ -4,6 +4,7 @@ using HomeApplication.AutoMap;
 using HomeApplication.Dtos;
 using System;
 using System.Collections.Generic;
+using System.Collections.Specialized;
 using System.IO;
 using System.Linq;
 using HomeApplication.DomainServices;
@@ -140,10 +141,11 @@ namespace HomeApplication.Services
             return file;
         }
 
-        public FileProfile GetPhoto(string id)
+        public FileProfile GetPhotoBySerialNumber(string serialNumber)
         {
             var photoRepository = _provider.CreatePhoto();
-            var photo = photoRepository.Get(Guid.Parse(id));
+            var photo = photoRepository.GetBySerialNumber(serialNumber);
+            if (photo == null) return null;
             FileProfile file = new FileProfile
             {
                 Name = photo.File.FileName,
@@ -151,6 +153,30 @@ namespace HomeApplication.Services
                 Extension = photo.File.Extension,
             };
             return file;
+        }
+
+        public FileProfile GetPhoto(Guid id)
+        {
+            var photoRepository = _provider.CreatePhoto();
+            var photo = photoRepository.Get(id);
+            if (photo == null) return null;
+            FileProfile file = new FileProfile
+            {
+                Name = photo.File.FileName,
+                FileBuffer = File.ReadAllBytes(photo.File.FullPath),
+                Extension = photo.File.Extension,
+            };
+            return file;
+        }
+
+        public IDictionary<string, string> GetExifBySerialNumber(string serialNumber)
+        {
+            var photoRepository = _provider.CreatePhoto();
+            var photo = photoRepository.GetBySerialNumber(serialNumber);
+            if (photo == null) return null;
+            var dic = photo.Attributes.ToDictionary(n => n.AttKey, n => n.AttValue);
+
+            return dic;
         }
     }
 }

@@ -8,11 +8,12 @@ using System.Threading.Tasks;
 
 namespace HomeApplication.AutoMap
 {
-    class ToDtoProfile: AutoMapper.Profile
+    internal class ToDtoProfile : AutoMapper.Profile
     {
         public ToDtoProfile()
         {
             CreateMap<Album, AlbumDto>();
+            CreateMap<PhotoAttribute, PhotoAttributeDto>();
         }
     }
 }

@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 
 namespace Home.DomainModel.ModuleProviders
 {
-    public interface IGalleryModuleProvider : IModuleProvider
+    public interface IGalleryModuleProvider : IDomainModuleProvider
     {
         IPhotoRepository CreatePhoto();
 
@@ -21,7 +21,9 @@ namespace Home.DomainModel.ModuleProviders
         IPhotoFingerprintRepository CreatePhotoFingerprint();
 
         IPhotoSimilarRepository CreatePhotoSimilar();
+
         IPhotoFacesRepository CreatePhotoFaces();
-		ISystemParameterRepository CreateSystemParameter();
+
+        ISystemParameterRepository CreateSystemParameter();
     }
 }
