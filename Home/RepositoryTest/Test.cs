@@ -1,5 +1,7 @@
-﻿using Home.DomainModel;using NUnit.Framework;using Repository;using System;using Library.ComponentModel.Model;using Library;using Home.DomainModel.Aggregates.ContactAgg;namespace RepositoryTest{
-    [TestFixture()]
+﻿using Home.DomainModel;using NUnit.Framework;using Repository;using System;using Library.ComponentModel.Model;using Library;using Home.DomainModel.Aggregates.ContactAgg;using DomainModel;
+
+namespace RepositoryTest{
+    [TestFixture(Category ="數據庫-初始化")]
     public class Test
     {
         [Test()]
@@ -452,86 +454,12 @@
                 StatusCode = StatusCode.Enabled
             });
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+            
 
             /*                        contactRole.Add(new ContactRole() { ID = Guid.Parse("10bee159-a76e-4864-b151-73082da3cb18"), Created = DateTime.Now, Name = "来孙", CreatedBy = "sqlscript", StatusCode =StatusCode.Enabled });                        contactRole.Add(new ContactRole() { ID = Guid.Parse("10bee159-a76e-4864-b151-73082da3cb18"), Created = DateTime.Now, Name = "来孙女", CreatedBy = "sqlscript", StatusCode =StatusCode.Enabled });                        contactRole.Add(new ContactRole() { ID = Guid.Parse("10bee159-a76e-4864-b151-73082da3cb18"), Created = DateTime.Now, Name = "晜孙", CreatedBy = "sqlscript", StatusCode =StatusCode.Enabled });                        contactRole.Add(new ContactRole() { ID = Guid.Parse("10bee159-a76e-4864-b151-73082da3cb18"), Created = DateTime.Now, Name = "晜孙女", CreatedBy = "sqlscript", StatusCode =StatusCode.Enabled });            */
 
 
-            /*            var contactRelation = dbcontext.Set<ContactRelation>();            contactRelation.Add(new ContactRelation() { ID = Guid.Parse("10bee159-a76e-4864-b151-73082da3cb18"), Created = DateTime.Now, Name = "夫妻", Line = RelationLine.None, Range = 0, CreatedBy = "sqlscript", StatusCode =StatusCode.Enabled });            contactRelation.Add(new ContactRelation() { ID = Guid.Parse("11bee159-a76e-4864-b151-73082da3cb18"), Created = DateTime.Now, Name = "父子", Line = RelationLine.Paternal, CreatedBy = "sqlscript", Range = 1, StatusCode =StatusCode.Enabled });            contactRelation.Add(new ContactRelation() { ID = Guid.Parse("12bee159-a76e-4864-b151-73082da3cb18"), Created = DateTime.Now, Name = "父女", Line = RelationLine.Paternal, CreatedBy = "sqlscript", Range = 1, StatusCode =StatusCode.Enabled });            contactRelation.Add(new ContactRelation() { ID = Guid.Parse("13bee159-a76e-4864-b151-73082da3cb18"), Created = DateTime.Now, Name = "母子", Line = RelationLine.Paternal, CreatedBy = "sqlscript", Range = 1, StatusCode =StatusCode.Enabled });            contactRelation.Add(new ContactRelation() { ID = Guid.Parse("14bee159-a76e-4864-b151-73082da3cb18"), Created = DateTime.Now, Name = "母女", Line = RelationLine.Paternal, CreatedBy = "sqlscript", Range = 1, StatusCode =StatusCode.Enabled });            contactRelation.Add(new ContactRelation() { ID = Guid.Parse("15bee159-a76e-4864-b151-73082da3cb18"), Created = DateTime.Now, Name = "爺孫", Line = RelationLine.Paternal, CreatedBy = "sqlscript", Range = 2, StatusCode =StatusCode.Enabled });            contactRelation.Add(new ContactRelation() { ID = Guid.Parse("16bee159-a76e-4864-b151-73082da3cb18"), Created = DateTime.Now, Name = "爺孫女", Line = RelationLine.Paternal, CreatedBy = "sqlscript", Range = 2, StatusCode =StatusCode.Enabled });            contactRelation.Add(new ContactRelation() { ID = Guid.Parse("17bee159-a76e-4864-b151-73082da3cb18"), Created = DateTime.Now, Name = "婆孫", Line = RelationLine.Paternal, CreatedBy = "sqlscript", Range = 2, StatusCode =StatusCode.Enabled });            contactRelation.Add(new ContactRelation() { ID = Guid.Parse("18bee159-a76e-4864-b151-73082da3cb18"), Created = DateTime.Now, Name = "婆孫女", Line = RelationLine.Paternal, CreatedBy = "sqlscript", Range = 2, StatusCode =StatusCode.Enabled });            contactRelation.Add(new ContactRelation() { ID = Guid.Parse("19bee159-a76e-4864-b151-73082da3cb18"), Created = DateTime.Now, Name = "外爺孫", Line = RelationLine.Maternal, CreatedBy = "sqlscript", Range = 2, StatusCode =StatusCode.Enabled });            contactRelation.Add(new ContactRelation() { ID = Guid.Parse("1Abee159-a76e-4864-b151-73082da3cb18"), Created = DateTime.Now, Name = "外爺孫女", Line = RelationLine.Maternal, CreatedBy = "sqlscript", Range = 2, StatusCode =StatusCode.Enabled });            contactRelation.Add(new ContactRelation() { ID = Guid.Parse("1Bbee159-a76e-4864-b151-73082da3cb18"), Created = DateTime.Now, Name = "外婆孫", Line = RelationLine.Maternal, CreatedBy = "sqlscript", Range = 2, StatusCode =StatusCode.Enabled });            contactRelation.Add(new ContactRelation() { ID = Guid.Parse("1Cbee159-a76e-4864-b151-73082da3cb18"), Created = DateTime.Now, Name = "外婆孫女", Line = RelationLine.Maternal, CreatedBy = "sqlscript", Range = 2, StatusCode =StatusCode.Enabled });            contactRelation.Add(new ContactRelation() { ID = Guid.Parse("1Dbee159-a76e-4864-b151-73082da3cb18"), Created = DateTime.Now, Name = "兄弟", Line = RelationLine.Paternal, CreatedBy = "sqlscript", StatusCode =StatusCode.Enabled });            contactRelation.Add(new ContactRelation() { ID = Guid.Parse("1ebee159-a76e-4864-b151-73082da3cb18"), Created = DateTime.Now, Name = "兄妹", Line = RelationLine.Paternal, CreatedBy = "sqlscript", StatusCode =StatusCode.Enabled });            contactRelation.Add(new ContactRelation() { ID = Guid.Parse("1fbee159-a76e-4864-b151-73082da3cb18"), Created = DateTime.Now, Name = "姐妹", Line = RelationLine.Paternal, CreatedBy = "sqlscript", StatusCode =StatusCode.Enabled });            contactRelation.Add(new ContactRelation() { ID = Guid.Parse("20bee159-a76e-4864-b151-73082da3cb18"), Created = DateTime.Now, Name = "姐弟", Line = RelationLine.Paternal, CreatedBy = "sqlscript", StatusCode =StatusCode.Enabled });            contactRelation.Add(new ContactRelation() { ID = Guid.Parse("21bee159-a76e-4864-b151-73082da3cb18"), Created = DateTime.Now, Name = "堂兄弟", Line = RelationLine.Paternal, CreatedBy = "sqlscript", StatusCode =StatusCode.Enabled });            contactRelation.Add(new ContactRelation() { ID = Guid.Parse("22bee159-a76e-4864-b151-73082da3cb18"), Created = DateTime.Now, Name = "堂兄妹", Line = RelationLine.Paternal, CreatedBy = "sqlscript", StatusCode =StatusCode.Enabled });            contactRelation.Add(new ContactRelation() { ID = Guid.Parse("23bee159-a76e-4864-b151-73082da3cb18"), Created = DateTime.Now, Name = "堂姐妹", Line = RelationLine.Paternal, CreatedBy = "sqlscript", StatusCode =StatusCode.Enabled });            contactRelation.Add(new ContactRelation() { ID = Guid.Parse("24bee159-a76e-4864-b151-73082da3cb18"), Created = DateTime.Now, Name = "堂姐弟", Line = RelationLine.Paternal, CreatedBy = "sqlscript", StatusCode =StatusCode.Enabled });            contactRelation.Add(new ContactRelation() { ID = Guid.Parse("25bee159-a76e-4864-b151-73082da3cb18"), Created = DateTime.Now, Name = "表兄弟", Line = RelationLine.Maternal, CreatedBy = "sqlscript", StatusCode =StatusCode.Enabled });            contactRelation.Add(new ContactRelation() { ID = Guid.Parse("26bee159-a76e-4864-b151-73082da3cb18"), Created = DateTime.Now, Name = "表兄妹", Line = RelationLine.Maternal, CreatedBy = "sqlscript", StatusCode =StatusCode.Enabled });            contactRelation.Add(new ContactRelation() { ID = Guid.Parse("27bee159-a76e-4864-b151-73082da3cb18"), Created = DateTime.Now, Name = "表姐妹", Line = RelationLine.Maternal, CreatedBy = "sqlscript", StatusCode =StatusCode.Enabled });            contactRelation.Add(new ContactRelation() { ID = Guid.Parse("28bee159-a76e-4864-b151-73082da3cb18"), Created = DateTime.Now, Name = "表姐弟", Line = RelationLine.Maternal, CreatedBy = "sqlscript", StatusCode =StatusCode.Enabled });            contactRelation.Add(new ContactRelation() { ID = Guid.Parse("28bee159-a76e-4864-b151-73082da3cb18"), Created = DateTime.Now, Name = "伯侄", Line = RelationLine.Maternal, CreatedBy = "sqlscript", StatusCode =StatusCode.Enabled });            contactRelation.Add(new ContactRelation() { ID = Guid.Parse("28bee159-a76e-4864-b151-73082da3cb18"), Created = DateTime.Now, Name = "叔侄", Line = RelationLine.Maternal, CreatedBy = "sqlscript", StatusCode =StatusCode.Enabled });            */
+                     var contactRelation = dbcontext.Set<ContactRelation>();            contactRelation.Add(new ContactRelation() { ID = Guid.Parse("10bee159-a76e-4864-b151-73082da3cb18"), Created = DateTime.Now, Name = "夫妻",   CreatedBy = "sqlscript", StatusCode =StatusCode.Enabled });            contactRelation.Add(new ContactRelation() { ID = Guid.Parse("11bee159-a76e-4864-b151-73082da3cb18"), Created = DateTime.Now, Name = "父子",  CreatedBy = "sqlscript",  StatusCode =StatusCode.Enabled });            contactRelation.Add(new ContactRelation() { ID = Guid.Parse("12bee159-a76e-4864-b151-73082da3cb18"), Created = DateTime.Now, Name = "父女", CreatedBy = "sqlscript",  StatusCode =StatusCode.Enabled });            contactRelation.Add(new ContactRelation() { ID = Guid.Parse("13bee159-a76e-4864-b151-73082da3cb18"), Created = DateTime.Now, Name = "母子", CreatedBy = "sqlscript",  StatusCode =StatusCode.Enabled });            contactRelation.Add(new ContactRelation() { ID = Guid.Parse("14bee159-a76e-4864-b151-73082da3cb18"), Created = DateTime.Now, Name = "母女", CreatedBy = "sqlscript",  StatusCode =StatusCode.Enabled });            contactRelation.Add(new ContactRelation() { ID = Guid.Parse("15bee159-a76e-4864-b151-73082da3cb18"), Created = DateTime.Now, Name = "爺孫", CreatedBy = "sqlscript",  StatusCode =StatusCode.Enabled });            contactRelation.Add(new ContactRelation() { ID = Guid.Parse("16bee159-a76e-4864-b151-73082da3cb18"), Created = DateTime.Now, Name = "爺孫女", CreatedBy = "sqlscript",  StatusCode =StatusCode.Enabled });            contactRelation.Add(new ContactRelation() { ID = Guid.Parse("17bee159-a76e-4864-b151-73082da3cb18"), Created = DateTime.Now, Name = "婆孫", CreatedBy = "sqlscript",  StatusCode =StatusCode.Enabled });            contactRelation.Add(new ContactRelation() { ID = Guid.Parse("18bee159-a76e-4864-b151-73082da3cb18"), Created = DateTime.Now, Name = "婆孫女", CreatedBy = "sqlscript",  StatusCode =StatusCode.Enabled });            contactRelation.Add(new ContactRelation() { ID = Guid.Parse("19bee159-a76e-4864-b151-73082da3cb18"), Created = DateTime.Now, Name = "外爺孫", CreatedBy = "sqlscript",  StatusCode =StatusCode.Enabled });            contactRelation.Add(new ContactRelation() { ID = Guid.Parse("1Abee159-a76e-4864-b151-73082da3cb18"), Created = DateTime.Now, Name = "外爺孫女", CreatedBy = "sqlscript",  StatusCode =StatusCode.Enabled });            contactRelation.Add(new ContactRelation() { ID = Guid.Parse("1Bbee159-a76e-4864-b151-73082da3cb18"), Created = DateTime.Now, Name = "外婆孫", CreatedBy = "sqlscript",  StatusCode =StatusCode.Enabled });            contactRelation.Add(new ContactRelation() { ID = Guid.Parse("1Cbee159-a76e-4864-b151-73082da3cb18"), Created = DateTime.Now, Name = "外婆孫女", CreatedBy = "sqlscript",  StatusCode =StatusCode.Enabled });            contactRelation.Add(new ContactRelation() { ID = Guid.Parse("1Dbee159-a76e-4864-b151-73082da3cb18"), Created = DateTime.Now, Name = "兄弟", CreatedBy = "sqlscript", StatusCode =StatusCode.Enabled });            contactRelation.Add(new ContactRelation() { ID = Guid.Parse("1ebee159-a76e-4864-b151-73082da3cb18"), Created = DateTime.Now, Name = "兄妹", CreatedBy = "sqlscript", StatusCode =StatusCode.Enabled });            contactRelation.Add(new ContactRelation() { ID = Guid.Parse("1fbee159-a76e-4864-b151-73082da3cb18"), Created = DateTime.Now, Name = "姐妹", CreatedBy = "sqlscript", StatusCode =StatusCode.Enabled });            contactRelation.Add(new ContactRelation() { ID = Guid.Parse("20bee159-a76e-4864-b151-73082da3cb18"), Created = DateTime.Now, Name = "姐弟", CreatedBy = "sqlscript", StatusCode =StatusCode.Enabled });            contactRelation.Add(new ContactRelation() { ID = Guid.Parse("21bee159-a76e-4864-b151-73082da3cb18"), Created = DateTime.Now, Name = "堂兄弟", CreatedBy = "sqlscript", StatusCode =StatusCode.Enabled });            contactRelation.Add(new ContactRelation() { ID = Guid.Parse("22bee159-a76e-4864-b151-73082da3cb18"), Created = DateTime.Now, Name = "堂兄妹", CreatedBy = "sqlscript", StatusCode =StatusCode.Enabled });            contactRelation.Add(new ContactRelation() { ID = Guid.Parse("23bee159-a76e-4864-b151-73082da3cb18"), Created = DateTime.Now, Name = "堂姐妹", CreatedBy = "sqlscript", StatusCode =StatusCode.Enabled });            contactRelation.Add(new ContactRelation() { ID = Guid.Parse("24bee159-a76e-4864-b151-73082da3cb18"), Created = DateTime.Now, Name = "堂姐弟", CreatedBy = "sqlscript", StatusCode =StatusCode.Enabled });            contactRelation.Add(new ContactRelation() { ID = Guid.Parse("25bee159-a76e-4864-b151-73082da3cb18"), Created = DateTime.Now, Name = "表兄弟", CreatedBy = "sqlscript", StatusCode =StatusCode.Enabled });            contactRelation.Add(new ContactRelation() { ID = Guid.Parse("26bee159-a76e-4864-b151-73082da3cb18"), Created = DateTime.Now, Name = "表兄妹", CreatedBy = "sqlscript", StatusCode =StatusCode.Enabled });            contactRelation.Add(new ContactRelation() { ID = Guid.Parse("27bee159-a76e-4864-b151-73082da3cb18"), Created = DateTime.Now, Name = "表姐妹", CreatedBy = "sqlscript", StatusCode =StatusCode.Enabled });            contactRelation.Add(new ContactRelation() { ID = Guid.Parse("28bee159-a76e-4864-b151-73082da3cb18"), Created = DateTime.Now, Name = "表姐弟", CreatedBy = "sqlscript", StatusCode =StatusCode.Enabled });            contactRelation.Add(new ContactRelation() { ID = Guid.Parse("29bee159-a76e-4864-b151-73082da3cb18"), Created = DateTime.Now, Name = "伯侄", CreatedBy = "sqlscript", StatusCode =StatusCode.Enabled });            contactRelation.Add(new ContactRelation() { ID = Guid.Parse("2abee159-a76e-4864-b151-73082da3cb18"), Created = DateTime.Now, Name = "叔侄", CreatedBy = "sqlscript", StatusCode =StatusCode.Enabled });           
 
             //var contactProfile = dbcontext.Set<ContactProfile>();
             //contactProfile.Add(new ContactProfile() { ID = Guid.NewGuid(), Created = DateTime.Now, CreatedBy = "sqlscript", StatusCode =StatusCode.Enabled });

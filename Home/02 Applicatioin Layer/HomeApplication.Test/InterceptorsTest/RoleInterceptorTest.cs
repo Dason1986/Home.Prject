@@ -12,7 +12,7 @@ using System.Threading.Tasks;
 
 namespace HomeApplication.Test.InterceptorsTest
 {
-    [TestFixture]
+    [TestFixture(Category = "樣例"), Category("ICO注入")]
     public class RoleInterceptorTest
     {
         [Intercept(typeof(RoleInterceptor))]
@@ -47,9 +47,9 @@ namespace HomeApplication.Test.InterceptorsTest
                 throw new NotImplementedException();
             }
         }
- 
 
-        [Test]
+
+        [Test, Category("ICO注入")]
         public void DetectsNonInterfaceServices()
         {
             var builder = new ContainerBuilder();
@@ -61,7 +61,7 @@ namespace HomeApplication.Test.InterceptorsTest
             Assert.IsInstanceOf<InvalidOperationException>(dx.InnerException);
         }
 
-        [Test]
+        [Test, Category("ICO注入")]
         public void FindsInterceptionAttributeOnReflectionComponent()
         {
             var builder = new ContainerBuilder();
@@ -73,7 +73,7 @@ namespace HomeApplication.Test.InterceptorsTest
             Assert.AreEqual(10, cpt.GetI()); // proxied
         }
 
-        [Test]
+        [Test, Category("ICO注入")]
         public void FindsInterceptionAttributeOnExpressionComponent()
         {
             var builder = new ContainerBuilder();
@@ -85,7 +85,7 @@ namespace HomeApplication.Test.InterceptorsTest
             Assert.AreEqual(10, cpt.GetI()); // proxied
         }
 
-        [Test]
+        [Test, Category("ICO注入")]
         public void InterceptsReflectionBasedComponent()
         {
             var builder = new ContainerBuilder();
@@ -96,9 +96,9 @@ namespace HomeApplication.Test.InterceptorsTest
             var i = 10;
             var c = container.Resolve<C>(TypedParameter.From(i));
             var got = c.GetI();
-            Assert.AreEqual(i , got);
+            Assert.AreEqual(i, got);
         }
-        [Test(Description = "sdfd")]
+        [Test(), Category("ICO注入")]
         public void DoesNotInterceptInternalInterfaces()
         {
             // DynamicProxy2 only supports visible interfaces so internal won't work.
@@ -111,18 +111,19 @@ namespace HomeApplication.Test.InterceptorsTest
                 .InterceptedBy(typeof(RoleInterceptor))
                 .As<IPublicInterface>();
             var container = builder.Build();
-            var dre = Assert.Throws<NotImplementedException>(() => {
+            var dre = Assert.Throws<NotImplementedException>(() =>
+            {
 
                 var obj = container.Resolve<IPublicInterface>();
                 obj.PublicMethod();
             });
             Assert.IsInstanceOf<NotImplementedException>(dre);
-           
-   
+
+
             //   Assert.IsInstanceOf<InvalidOperationException>(dre.InnerException, "The inner exception should explain about public interfaces being required.");
         }
- 
-        [Test(Description ="sdfd")]
+
+        [Test,Category("ICO注入")]
         public void InterceptsWhenUsingExtendedPropertyAndType()
         {
             var builder = new ContainerBuilder();

@@ -64,7 +64,7 @@ namespace Repository.EF.Mapping
         {
             modelBuilder.Configurations.Add(new UserProfileEntityTypeConfiguration());
             modelBuilder.Configurations.Add(new ContactProfileEntityTypeConfiguration());
-            //   modelBuilder.Configurations.Add(new ContactRelationEntityTypeConfiguration());
+            modelBuilder.Configurations.Add(new ContactRelationEntityTypeConfiguration());
             modelBuilder.Configurations.Add(new FamilyRoleEntityTypeConfiguration());
             // modelBuilder.Configurations.Add(new ContactRelationRightEntityTypeConfiguration());
 

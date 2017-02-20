@@ -1,4 +1,5 @@
-﻿using Home.DomainModel.Aggregates.ContactAgg;
+﻿using DomainModel;
+using Home.DomainModel.Aggregates.ContactAgg;
 using System.Data.Entity.ModelConfiguration;
 
 namespace Repository.EF.Mapping.UserAgg
@@ -9,6 +10,14 @@ namespace Repository.EF.Mapping.UserAgg
         {
 
             ToTable("FamilyRole");
+        }
+    }
+    internal class ContactRelationEntityTypeConfiguration : EntityTypeConfiguration<ContactRelation>
+    {
+        public ContactRelationEntityTypeConfiguration()
+        {
+
+            ToTable("ContactRelation");
         }
     }
 }

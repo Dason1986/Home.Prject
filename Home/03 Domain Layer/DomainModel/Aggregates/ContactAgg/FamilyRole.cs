@@ -4,7 +4,7 @@ using System.ComponentModel.DataAnnotations;
 
 namespace Home.DomainModel.Aggregates.ContactAgg
 {
-
+    
     public class FamilyRole : CreateEntity
     {
         public FamilyRole()
