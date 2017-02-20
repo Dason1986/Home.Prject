@@ -5,6 +5,8 @@ Add-Migration "MigrationName" -Force  -Verbose
 Update-Database -TargetMigration "MigrationName" -Verbose  -force
 
 
+enable-migrations -ContextTypeName "Repository.MainBoundedContext" -MigrationsDirectory:"HOME_SQL"
+Add-Migration -configuration 'Home.Repository.HOME_SQL.Configuration'  "V1" -Force  -Verbose
 
 CMD by  administrator
 

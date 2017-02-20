@@ -81,6 +81,12 @@
     <Compile Include="EF\Mapping\UserAgg\ContactProfileEntityTypeConfiguration.cs" />
     <Compile Include="EF\Mapping\UserAgg\FamilyRoleEntityTypeConfiguration.cs" />
     <Compile Include="EF\Mapping\UserAgg\UserProfileEntityTypeConfiguration.cs" />
+    <Compile Include="HOME_SQL\201702201524102_V1.cs" />
+    <Compile Include="HOME_SQL\201702201524102_V1.Designer.cs">
+      <DependentUpon>201702201524102_V1.cs</DependentUpon>
+    </Compile>
+    <Compile Include="HOME_SQL\Configuration.cs" />
+    <Compile Include="HOME_SQL\InitializeDB\V1.cs" />
     <Compile Include="Migrations\201611240634251_V1.cs" />
     <Compile Include="Migrations\201611240634251_V1.Designer.cs">
       <DependentUpon>201611240634251_V1.cs</DependentUpon>
@@ -117,6 +123,9 @@
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
+    <EmbeddedResource Include="HOME_SQL\201702201524102_V1.resx">
+      <DependentUpon>201702201524102_V1.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Migrations\InitializeDB\CreateView.sql" />
   </ItemGroup>
   <ItemGroup>
@@ -124,5 +133,11 @@
       <DependentUpon>201611240634251_V1.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\InitializeDB\init.sql" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="HOME_SQL\InitializeDB\CreateView.sql" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="HOME_SQL\InitializeDB\init.sql" />
   </ItemGroup>
 </Project>

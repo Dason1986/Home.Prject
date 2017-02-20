@@ -17,7 +17,7 @@ namespace Repository
     {
         static MainBoundedContext()
         {
-            Database.SetInitializer(new MigrateDatabaseToLatestVersion<MainBoundedContext, Configuration>());
+            Database.SetInitializer(new MigrateDatabaseToLatestVersion<MainBoundedContext, Home.Repository.HOME_SQL. Configuration>());
         }
 
         public MainBoundedContext()

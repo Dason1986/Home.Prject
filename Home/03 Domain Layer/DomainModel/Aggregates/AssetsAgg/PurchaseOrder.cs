@@ -1,14 +1,20 @@
-﻿using Library.Domain;
+﻿using Library.ComponentModel.Model;
+using Library.Domain;
 using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace Home.DomainModel.Aggregates.AssetsAgg
 {
     public  class PurchaseOrder: CreateEntity
     {
+        public PurchaseOrder()
+        {
+
+        }
+        public PurchaseOrder(ICreatedInfo createinfo) : base(createinfo)
+        {
+
+        }
         public IList<PurchaseLineItem> Items { get; set; }
 
         public PayTpye PayType { get; set; }

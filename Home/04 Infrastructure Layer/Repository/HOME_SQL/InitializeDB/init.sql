@@ -1,0 +1,1 @@
+﻿insert Album (id,StatusCode,Created,CreatedBy,Modified,ModifiedBy) values(N'00000000-0000-0000-0000-000000000000',0,getdate(),N'CreateScript',getdate(),N'CreateScript')

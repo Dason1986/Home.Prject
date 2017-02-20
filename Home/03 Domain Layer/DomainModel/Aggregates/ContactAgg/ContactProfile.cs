@@ -1,4 +1,5 @@
-﻿using Library.Domain;
+﻿using Library.ComponentModel.Model;
+using Library.Domain;
 using System;
 using System.ComponentModel.DataAnnotations;
 
@@ -10,7 +11,10 @@ namespace Home.DomainModel.Aggregates.ContactAgg
         public ContactProfile()
         {
         }
+        public ContactProfile(ICreatedInfo createinfo) : base(createinfo)
+        {
 
+        }
 
         [StringLength(20)]
         public string Name { get; set; }

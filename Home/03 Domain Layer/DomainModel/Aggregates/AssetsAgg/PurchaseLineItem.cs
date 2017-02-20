@@ -1,4 +1,5 @@
 ﻿using Home.DomainModel.Aggregates.ProductAgg;
+using Library.ComponentModel.Model;
 using Library.Domain;
 using System;
 
@@ -6,6 +7,14 @@ namespace Home.DomainModel.Aggregates.AssetsAgg
 {
     public class PurchaseLineItem: CreateEntity
     {
+        public PurchaseLineItem()
+        {
+
+        }
+        public PurchaseLineItem(ICreatedInfo createinfo) : base(createinfo)
+        {
+
+        }
         public Guid ProductID { get; set; }
 
         public virtual ProductItem Product { get; set; }
@@ -21,6 +30,14 @@ namespace Home.DomainModel.Aggregates.AssetsAgg
 
     public class AssetsItem:AuditedEntity
     {
+        public AssetsItem()
+        {
+
+        }
+        public AssetsItem(ICreatedInfo createinfo) : base(createinfo)
+        {
+
+        }
         public string SnCode { get; set; }
         
         public string Name { get; set; }

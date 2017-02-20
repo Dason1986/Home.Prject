@@ -15,9 +15,9 @@ namespace Home.DomainModel.Aggregates.FileAgg
         {
 
         }
-
+        [StringLength(100)]
         public string FileName { get; set; }
-
+        [StringLength(255)]
         public string FullPath { get; set; }
 
         public long FileSize { get; set; }
