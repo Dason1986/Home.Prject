@@ -3,7 +3,7 @@ using Library.Domain;
 using System;
 using System.ComponentModel.DataAnnotations;
 
-namespace DomainModel
+namespace Home.DomainModel.Aggregates.ContactAgg
 {
     public class ContactRelation : CreateEntity
     {

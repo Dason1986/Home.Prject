@@ -71,7 +71,7 @@
     <Compile Include="Aggregates\AssetsAgg\PurchaseLineItem.cs" />
     <Compile Include="Aggregates\AssetsAgg\PurchaseOrder.cs" />
     <Compile Include="Aggregates\SystemAgg\SystemParameter.cs" />
-    <Compile Include="Aggregates\UserAgg\ContactRelation.cs" />
+    <Compile Include="Aggregates\ContactAgg\ContactRelation.cs" />
     <Compile Include="DomainServices\IBuildFingerprintDomainService.cs" />
     <Compile Include="DomainServices\IPhotoAddDomainService.cs" />
     <Compile Include="DomainServices\IPhotoDomainService.cs" />

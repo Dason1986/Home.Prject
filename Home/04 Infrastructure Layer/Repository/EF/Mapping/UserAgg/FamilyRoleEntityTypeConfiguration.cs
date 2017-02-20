@@ -1,4 +1,4 @@
-﻿using DomainModel;
+﻿
 using Home.DomainModel.Aggregates.ContactAgg;
 using System.Data.Entity.ModelConfiguration;
 

@@ -1,4 +1,4 @@
-﻿using Home.DomainModel;using NUnit.Framework;using Repository;using System;using Library.ComponentModel.Model;using Library;using Home.DomainModel.Aggregates.ContactAgg;using DomainModel;
+﻿using Home.DomainModel;using NUnit.Framework;using Repository;using System;using Library.ComponentModel.Model;using Library;using Home.DomainModel.Aggregates.ContactAgg;
 
 namespace RepositoryTest{
     [TestFixture(Category ="數據庫-初始化")]
