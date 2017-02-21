@@ -13,23 +13,20 @@ using System.Linq;
 
 namespace HomeApplication.Test
 {
-    [TestFixture]
+    [TestFixture(Category = "圖像")]
     public class AddPhotoDomainServiceTest
     {
+        private AutoMock mock;
 
-        AutoMock mock;
-     
         [NUnit.Framework.SetUp]
         public void Init()
         {
             mock = AutoMock.GetLoose();
 
-      
-
             SubRepository res = new SubRepository();
             res.InitPhoto();
             mock.Mock<IFileInfoRepository>();
-            mock.Mock<IUnitOfWork>(); 
+            mock.Mock<IUnitOfWork>();
             mock.Mock<IPhotoRepository>().Setup(x => x.Get(It.IsAny<Guid>())).Returns<Guid>(x => res.GetALLPhtots().FirstOrDefault(n => n.ID == x));
             mock.Mock<IFileInfoRepository>().Setup(x => x.Get(It.IsAny<Guid>())).Returns<Guid>(x => res.GetALLFiles().FirstOrDefault(n => n.ID == x));
             var mokprovider = mock.Mock<IGalleryModuleProvider>();
@@ -38,7 +35,7 @@ namespace HomeApplication.Test
             mokprovider.Setup(x => x.UnitOfWork).Returns(mock.Create<IUnitOfWork>());
             mock.Provide<IAddPhotoDomainService, AddPhotoDomainService>();
         }
-     
+
         [Test]
         public void TestPhotoDomainServiceError()
         {

@@ -5,6 +5,7 @@ using System;
 using System.Collections.Generic;
 using System.Data.Common;
 using System.Data.Entity;
+using System.Data.Entity.Migrations;
 using System.Data.Entity.ModelConfiguration.Conventions;
 using System.Linq;
 using System.Text;
@@ -17,7 +18,16 @@ namespace Repository
     {
         static MainBoundedContext()
         {
-            Database.SetInitializer(new MigrateDatabaseToLatestVersion<MainBoundedContext, Home.Repository.HOME_SQL. Configuration>());
+            var dbbtype = System.Configuration.ConfigurationManager.AppSettings.Get("DBType") ?? "MSSQL";
+
+            switch (dbbtype.ToUpper())
+            {
+                case "MYSQL":
+                    Database.SetInitializer(new MigrateDatabaseToLatestVersion<MainBoundedContext, Repository.Migrations.Configuration>()); break;
+                default:
+                    Database.SetInitializer(new MigrateDatabaseToLatestVersion<MainBoundedContext, Home.Repository.HOME_SQL.Configuration>());
+                    break;
+            }
         }
 
         public MainBoundedContext()

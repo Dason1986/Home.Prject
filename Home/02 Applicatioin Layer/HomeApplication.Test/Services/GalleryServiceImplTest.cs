@@ -10,7 +10,7 @@ using System.Linq;
 
 namespace HomeApplication.Test
 {
-    [TestFixture]
+    [TestFixture(Category = "圖像")]
     public class GalleryServiceImplTest
     {
         [Test]

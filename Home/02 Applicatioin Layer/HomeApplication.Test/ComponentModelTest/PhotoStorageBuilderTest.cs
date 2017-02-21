@@ -12,7 +12,7 @@ using Library.Storage.Image;
 
 namespace HomeApplication.Test.ComponentModelTest
 {
-    [TestFixture]
+    [TestFixture(Category = "圖像")]
     public class PhotoStorageBuilderTest
     {
         private string GalleryPath = AppDomain.CurrentDomain.BaseDirectory + "GalleryPath";

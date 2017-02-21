@@ -12,11 +12,11 @@ namespace Repository.Migrations
                 c => new
                 {
                     ID = c.Guid(nullable: false),
-                    Description = c.String(unicode: false),
-                    Group = c.String(unicode: false),
+                    Description = c.String(maxLength: 255, storeType: "nvarchar"),
+                    Group = c.String(maxLength: 50, storeType: "nvarchar"),
                     IsReadOnly = c.Boolean(nullable: false),
-                    Key = c.String(unicode: false),
-                    Value = c.String(unicode: false),
+                    Key = c.String(maxLength: 50, storeType: "nvarchar"),
+                    Value = c.String(maxLength: 255, storeType: "nvarchar"),
                     Modified = c.DateTime(nullable: false, precision: 0),
                     ModifiedBy = c.String(nullable: false, maxLength: 20, storeType: "nvarchar"),
                     Created = c.DateTime(nullable: false, precision: 0),
@@ -58,6 +58,19 @@ namespace Repository.Migrations
                 .PrimaryKey(t => t.ID);
 
             CreateTable(
+                "dbo.ContactRelation",
+                c => new
+                {
+                    ID = c.Guid(nullable: false),
+                    Name = c.String(maxLength: 20, storeType: "nvarchar"),
+                    Remark = c.String(maxLength: 100, storeType: "nvarchar"),
+                    Created = c.DateTime(nullable: false, precision: 0),
+                    CreatedBy = c.String(nullable: false, maxLength: 20, storeType: "nvarchar"),
+                    StatusCode = c.Int(nullable: false),
+                })
+                .PrimaryKey(t => t.ID);
+
+            CreateTable(
                 "dbo.FamilyRole",
                 c => new
                 {
@@ -77,8 +90,8 @@ namespace Repository.Migrations
                 c => new
                 {
                     ID = c.Guid(nullable: false),
-                    FileName = c.String(unicode: false),
-                    FullPath = c.String(unicode: false),
+                    FileName = c.String(maxLength: 100, storeType: "nvarchar"),
+                    FullPath = c.String(maxLength: 255, storeType: "nvarchar"),
                     FileSize = c.Long(nullable: false),
                     MD5 = c.String(maxLength: 32, storeType: "nvarchar"),
                     Extension = c.String(maxLength: 50, storeType: "nvarchar"),
@@ -248,12 +261,12 @@ namespace Repository.Migrations
                 c => new
                 {
                     ID = c.Guid(nullable: false),
-                    Name = c.String(unicode: false),
-                    Modle = c.String(unicode: false),
+                    Name = c.String(maxLength: 50, storeType: "nvarchar"),
+                    Modle = c.String(maxLength: 50, storeType: "nvarchar"),
                     Value = c.Decimal(nullable: false, precision: 18, scale: 2),
-                    BarCode = c.String(unicode: false),
-                    Tag = c.String(unicode: false),
-                    Company = c.String(unicode: false),
+                    BarCode = c.String(maxLength: 50, storeType: "nvarchar"),
+                    Tag = c.String(maxLength: 50, storeType: "nvarchar"),
+                    Company = c.String(maxLength: 50, storeType: "nvarchar"),
                     Modified = c.DateTime(nullable: false, precision: 0),
                     ModifiedBy = c.String(nullable: false, maxLength: 20, storeType: "nvarchar"),
                     Created = c.DateTime(nullable: false, precision: 0),
@@ -278,6 +291,7 @@ namespace Repository.Migrations
                 .ForeignKey("dbo.ProductItem", t => t.ProductID)
                 .Index(t => t.ProductID)
                 .Index(t => t.FileID);
+
             InitSql();
         }
 
@@ -327,6 +341,7 @@ namespace Repository.Migrations
             DropTable("dbo.Photo");
             DropTable("dbo.FileInfo");
             DropTable("dbo.FamilyRole");
+            DropTable("dbo.ContactRelation");
             DropTable("dbo.ContactProfile");
             DropTable("dbo.UserProfile");
             DropTable("dbo.SystemParameter");
