@@ -16,7 +16,6 @@ namespace Repository.Migrations
             SqlResource("Home.Repository.Migrations.InitializeDB.TimeLineByYYYY.sql");
             SqlResource("Home.Repository.Migrations.InitializeDB.TimeLineByYYYYMM.sql");
             SqlResource("Home.Repository.Migrations.InitializeDB.TimeLineByYYYYMMDD.sql");
-            SqlResource("Home.Repository.Migrations.InitializeDB.CreateView.sql");
         }
     }
 

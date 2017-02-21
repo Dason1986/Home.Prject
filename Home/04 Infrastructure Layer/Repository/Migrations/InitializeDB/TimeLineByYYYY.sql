@@ -1,12 +1,9 @@
-﻿create view TimeLineByYYYY
+﻿create OR REPLACE view TimeLineByYYYY
 as
  
- SELECT    TimeLine,   COUNT(0) AS 'Count'
-FROM      (SELECT       left (AttValue , 5) TimeLine
+SELECT  left(AttValue ,4) TimeLine ,count(0) 'Count'
                  FROM      PhotoAttribute
-                 WHERE   (AttKey = 'DateTimeDigitized' and AttValue !='unknown')) AS a1 
-GROUP BY   a1.TimeLine
-
+                 WHERE   (AttKey = 'DateTimeDigitized' and AttValue !='unknown')
 Union 
 select 'unknown'   TimeLine, count(0)   'Count'
                  FROM      PhotoAttribute

@@ -4,7 +4,7 @@ namespace Repository.Migrations
     using System.Data.Entity;
     using System.Data.Entity.Migrations;
     using System.Linq;
-
+   // [DbConfigurationType(typeof(MySql.Data.Entity.MySqlEFConfiguration))]
     internal sealed class Configuration : DbMigrationsConfiguration<Repository.MainBoundedContext>
     {
         public Configuration()
