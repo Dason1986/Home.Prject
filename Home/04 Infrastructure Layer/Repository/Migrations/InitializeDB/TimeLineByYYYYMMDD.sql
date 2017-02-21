@@ -1,8 +1,13 @@
 ﻿create view TimeLineByYYYYMMDD
 as
  
- SELECT    TimeLine,   COUNT(0) AS count
+ SELECT    TimeLine,   COUNT(0)   'Count'
 FROM      (SELECT       left (AttValue , 11) TimeLine
                  FROM      PhotoAttribute
-                 WHERE   (AttKey = 'DateTimeDigitized')) AS a1 
+                 WHERE   (AttKey = 'DateTimeDigitized' and AttValue !='unknown')) AS a1 
 GROUP BY   a1.TimeLine
+
+Union 
+select 'unknown'   TimeLine, count(0)   'Count'
+                 FROM      PhotoAttribute
+                 WHERE   (AttKey = 'DateTimeDigitized' and AttValue='unknown')

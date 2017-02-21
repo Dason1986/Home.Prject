@@ -47,22 +47,22 @@ namespace HomeApplication.Services
             List<GalleryType> list = new List<GalleryType>();
             foreach (var item in attres)
             {
-                list.Add(new GalleryType { Name = item.Key, Count = item.Value });
+                list.Add(new GalleryType { Name = item.TimeLine, Count = item.Count });
             }
 
             return list;
         }
 
-        public IList<GalleryType> GetTimeLineMonthByYear(string year)
-        {
-            var attres = _provider.CreatePhotoAttribute().GetTimeLineMonthByYear(year);
-            List<GalleryType> list = new List<GalleryType>();
-            foreach (var item in attres)
-            {
-                list.Add(new GalleryType { Name = item.Key, Count = item.Value });
-            }
-            return list;
-        }
+        //public IList<GalleryType> GetTimeLineMonthByYear(string year)
+        //{
+        //    var attres = _provider.CreatePhotoAttribute().GetTimeLineByformat(year);
+        //    List<GalleryType> list = new List<GalleryType>();
+        //    foreach (var item in attres)
+        //    {
+        //        list.Add(new GalleryType { Name = item.Key, Count = item.Value });
+        //    }
+        //    return list;
+        //}
 
         //public IList<GalleryType> GetEquipmentMakeModel(string make)
         //{
@@ -78,7 +78,7 @@ namespace HomeApplication.Services
         //}
         public IList<GalleryType> GetEquipmentMake(string make = null)
         {
-            return Get("EquipmentMake");
+            return Get("EquipmentMake", make);
         }
 
         public IList<GalleryType> GetEquipmentModel()
@@ -88,16 +88,16 @@ namespace HomeApplication.Services
             List<GalleryType> list = new List<GalleryType>();
             foreach (var item in dic)
             {
-                list.Add(new GalleryType { Name = item.Key, Count = item.Value });
+                list.Add(new GalleryType { Name = item.Make + item.Model, Count = item.Count });
             }
 
             return list;
         }
 
-        private IList<GalleryType> Get(string key)
+        private IList<GalleryType> Get(string key, string filter = null)
         {
             var attres = _provider.CreatePhotoAttribute();
-            var dic = attres.GetCountByValue(key);
+            var dic = attres.GetCountByValue(key, filter);
             List<GalleryType> list = new List<GalleryType>();
             foreach (var item in dic)
             {

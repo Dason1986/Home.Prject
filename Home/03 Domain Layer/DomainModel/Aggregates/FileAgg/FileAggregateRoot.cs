@@ -52,26 +52,27 @@ namespace Home.DomainModel.Aggregates.FileAgg
 
         public void PublishPhotoDomain()
         {
-            IDomainModuleProvider ModuleProvider = Library.Bootstrap.Currnet.GetService<IGalleryModuleProvider>();
+            if (!IsImageFile()) return;
+            IDomainModuleProvider moduleProvider = Library.Bootstrap.Currnet.GetService<IGalleryModuleProvider>();
             CreatePhotoInfo();
             BuildPhotoFaces();
             BuildFingerprint();
-            this.Bus.DomainModuleProvider = ModuleProvider;
+            this.Bus.DomainModuleProvider = moduleProvider;
             this.Bus.PublishAwait();
         }
 
-        private string[] imageExtension = { ".bmp", ".jpg", ".png", ".jpeg" };
+        private readonly string[] _imageExtension = { ".bmp", ".jpg", ".png", ".jpeg" };
 
         public bool IsImageFile()
         {
-            return IsFileExtension(File.Extension, imageExtension);
+            return IsFileExtension(File.Extension, _imageExtension);
         }
 
-        private string[] officeExtension = { ".doc", ".docx", ".xls", ".xlsx", ".ppt", ".pptx" };
+        private readonly string[] _officeExtension = { ".doc", ".docx", ".xls", ".xlsx", ".ppt", ".pptx" };
 
         public bool IsOfficeFile()
         {
-            return IsFileExtension(File.Extension, officeExtension);
+            return IsFileExtension(File.Extension, _officeExtension);
         }
 
         private bool IsFileExtension(string extension, string[] extensions)

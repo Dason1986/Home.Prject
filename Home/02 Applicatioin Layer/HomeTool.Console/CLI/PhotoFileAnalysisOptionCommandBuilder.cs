@@ -43,10 +43,22 @@ namespace HomeApplication.Logic.IO
             {
                 //  Console.WriteLine();
                 _option.ImageTypes = new string[] { ".jpg", ".png", ".gif", ".jpeg", ".bmp" };
-                _option.SourceType = PhotoFileAnalysisSrouceType.Db;
+                /*   _option.SourceType = PhotoFileAnalysisSrouceType.Db;*/
                 return;
             }
 
+            LabCmd:
+            Out.Write("輸入圖像類型（,分隔）：");
+            var path = Console.ReadLine();
+            if (string.IsNullOrEmpty(path))
+            {
+                Console.WriteLine("不能爲空！");
+                goto LabCmd;
+            }
+
+            _option.ImageTypes = path.Split(',');
+
+            /*
             {
                 LabSource:
 
@@ -146,7 +158,7 @@ namespace HomeApplication.Logic.IO
                     }
                 default:
                     break;
-            }
+            }*/
         }
     }
 }

@@ -7,8 +7,8 @@
     <ProjectGuid>{7A010597-82E2-43B4-8019-222DF7203B81}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>Library.StorageProvider.EF</RootNamespace>
-    <AssemblyName>Library.StorageProvider.EF</AssemblyName>
+    <RootNamespace>Library.Storage.FileEngineProvider.EF</RootNamespace>
+    <AssemblyName>Library.Storage.FileEngineProvider.EF</AssemblyName>
     <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
   </PropertyGroup>

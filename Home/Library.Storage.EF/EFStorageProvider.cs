@@ -1,8 +1,7 @@
 ﻿using System;
 using System.IO;
-using Library.Storage;
 
-namespace Library.StorageProvider.EF
+namespace Library.Storage.FileEngineProvider.EF
 {
     public class EFStorageProvider : IFileStorageProvider
     {

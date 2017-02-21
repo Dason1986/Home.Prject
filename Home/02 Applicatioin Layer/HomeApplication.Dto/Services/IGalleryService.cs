@@ -43,13 +43,13 @@ namespace HomeApplication.Services
         [System.ServiceModel.OperationContract]
         IList<GalleryType> GetEquipmentModel();
 
-        /// <summary>
-        ///
-        /// </summary>
-        /// <param name="year"></param>
-        /// <returns></returns>
-        [System.ServiceModel.OperationContract]
-        IList<GalleryType> GetTimeLineMonthByYear(string year);
+        ///// <summary>
+        /////
+        ///// </summary>
+        ///// <param name="year"></param>
+        ///// <returns></returns>
+        //[System.ServiceModel.OperationContract]
+        //IList<GalleryType> GetTimeLineMonthByYear(string year);
 
         /// <summary>
         ///

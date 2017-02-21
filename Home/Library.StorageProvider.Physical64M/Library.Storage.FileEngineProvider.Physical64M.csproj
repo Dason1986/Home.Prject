@@ -7,8 +7,8 @@
     <ProjectGuid>{4CF648BE-084E-41A8-AD80-3B0DEAF81669}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>Library.StorageProvider.Physical64M</RootNamespace>
-    <AssemblyName>Library.StorageProvider.Physical64M</AssemblyName>
+    <RootNamespace>Library.Storage.FileEngineProvider.Physical64M</RootNamespace>
+    <AssemblyName>Library.Storage.FileEngineProvider.Physical64M</AssemblyName>
     <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
   </PropertyGroup>

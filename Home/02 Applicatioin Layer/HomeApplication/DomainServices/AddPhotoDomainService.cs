@@ -116,11 +116,12 @@ namespace HomeApplication.DomainServices
 
             var photo = CurrnetPhoto;
             ICollection<PhotoAttribute> attributes = photo.Attributes;
-            if (exif.DateTimeDigitized != null)
-                attributes.Add(CreateAtt("DateTimeDigitized", exif.DateTimeDigitized.Value.ToString("yyyy-MM-dd HH:mm:ss")));
-            if (exif.DateTimeOriginal != null)
-                attributes.Add(CreateAtt("DateTimeOriginal", exif.DateTimeOriginal.Value.ToString("yyyy-MM-dd HH:mm:ss")));
-
+            attributes.Add(exif.DateTimeDigitized != null
+                ? CreateAtt("DateTimeDigitized", exif.DateTimeDigitized.Value.ToString("yyyy-MM-dd HH:mm:ss"))
+                : CreateAtt("DateTimeDigitized", "unknown"));
+            attributes.Add(exif.DateTimeOriginal != null
+                ? CreateAtt("DateTimeOriginal", exif.DateTimeOriginal.Value.ToString("yyyy-MM-dd HH:mm:ss"))
+                : CreateAtt("DateTimeOriginal", "unknown"));
             if (!string.IsNullOrWhiteSpace(exif.Description)) attributes.Add(CreateAtt("Description", exif.Description.Trim()));
             if (!string.IsNullOrWhiteSpace(exif.Keyword)) attributes.Add(CreateAtt("Keyword", exif.Keyword));
             if (string.IsNullOrWhiteSpace(exif.Title)) exif.Title = CurrnetFile.FileName;

@@ -1,8 +1,7 @@
 ﻿using System;
 using System.IO;
-using Library.Storage;
 
-namespace Library.StorageProvider.Physical64M
+namespace Library.Storage.FileEngineProvider.Physical64M
 {
     public class Physical64MStorageProvider : IFileStorageProvider
     {

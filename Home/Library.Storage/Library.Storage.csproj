@@ -50,10 +50,10 @@
     <Compile Include="FileStoryHelper.cs" />
     <Compile Include="FileVersionStorage.cs" />
     <Compile Include="Image\IamgeType.cs" />
-    <Compile Include="Core\IFileIndexServiceProvider.cs" />
+    <Compile Include="Core\IIndexEngineProvider.cs" />
     <Compile Include="Core\IFileStorageBlock.cs" />
     <Compile Include="Core\IFileStorageProvider.cs" />
-    <Compile Include="Core\IFileStorageServiceProvider.cs" />
+    <Compile Include="Core\IFileEngineProvider.cs" />
     <Compile Include="Core\IFileVersionStorageProvider.cs" />
     <Compile Include="Image\IImageStorage.cs" />
     <Compile Include="Image\IImageStorageProvider.cs" />

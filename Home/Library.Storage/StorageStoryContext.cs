@@ -4,20 +4,19 @@ using System.Linq;
 
 namespace Library.Storage
 {
-
     /// <summary>
     ///
     /// </summary>
     public abstract class StorageStoryContext
     {
-        protected StorageStoryContext(IFileIndexServiceProvider indexProvider, IFileStorageServiceProvider storageProvider)
+        protected StorageStoryContext(IIndexEngineProvider indexProvider, IFileEngineProvider provider)
         {
             _indexProvider = indexProvider;
-            _storageProvider = storageProvider;
+            _provider = provider;
         }
 
-        private readonly IFileIndexServiceProvider _indexProvider;
-        private readonly IFileStorageServiceProvider _storageProvider;
+        private readonly IIndexEngineProvider _indexProvider;
+        private readonly IFileEngineProvider _provider;
 
         /// <summary>
         ///
@@ -96,7 +95,7 @@ namespace Library.Storage
         {
             var fileinfo = GetFile(filename);
             if (fileinfo == null) throw new FileStorageInfoNotFoundException("", new FileNotFoundException("", filename));
-            FileStorage storage = _storageProvider.Get(fileinfo.ID);
+            FileStorage storage = _provider.Get(fileinfo.ID);
             return storage.Get();
         }
 
@@ -109,7 +108,7 @@ namespace Library.Storage
         {
             var fileinfo = GetFile(id);
             if (fileinfo == null) throw new FileStorageInfoNotFoundException("");
-            FileStorage storage = _storageProvider.Get(fileinfo.ID);
+            FileStorage storage = _provider.Get(fileinfo.ID);
             return storage.Get();
         }
 

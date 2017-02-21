@@ -22,9 +22,9 @@ namespace HomeApplication.Owin.API
         }
 
         [ActionName("year")]
-        public IEnumerable<GalleryType> GetTimeLineByYear([FromUri(Name = "id")]string year)
+        public IEnumerable<GalleryType> GetTimeLineByYear([FromUri(Name = "filter")]string filter)
         {
-            return _service.GetTimeLineMonthByYear(year);
+            return _service.GetTimeLineByformat(TimeFormat.YYYY, filter);
         }
 
         [ActionName("yyyymm")]
@@ -46,19 +46,19 @@ namespace HomeApplication.Owin.API
         }
 
         [ActionName("yyyymm")]
-        public IEnumerable<GalleryType> GetTimeLineByYYYYMM([FromUri(Name = "id")]string filter)
+        public IEnumerable<GalleryType> GetTimeLineByYYYYMM([FromUri(Name = "filter")]string filter)
         {
             return _service.GetTimeLineByformat(TimeFormat.YYYYMM, filter);
         }
 
         [ActionName("yyyy")]
-        public IEnumerable<GalleryType> GetTimeLineByYYYY([FromUri(Name = "id")]string filter)
+        public IEnumerable<GalleryType> GetTimeLineByYYYY([FromUri(Name = "filter")]string filter)
         {
             return _service.GetTimeLineByformat(TimeFormat.YYYY, filter);
         }
 
         [ActionName("yyyymmdd")]
-        public IEnumerable<GalleryType> GetTimeLineByYYYYMMDD([FromUri(Name = "id")]string filter)
+        public IEnumerable<GalleryType> GetTimeLineByYYYYMMDD([FromUri(Name = "filter")]string filter)
         {
             return _service.GetTimeLineByformat(TimeFormat.YYYYMMDD, filter);
         }

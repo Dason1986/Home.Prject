@@ -5,7 +5,7 @@ namespace Library.Storage
     /// <summary>
     ///
     /// </summary>
-    public interface IFileIndexServiceProvider
+    public interface IIndexEngineProvider
     {
         /// <summary>
         ///

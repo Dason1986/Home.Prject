@@ -43,20 +43,20 @@ namespace HomeApplication.Logic.IO
 
         protected override bool OnVerification()
         {
-            switch (Option.SourceType)
-            {
-                case PhotoFileAnalysisSrouceType.Db:
-                    _photoFileAnalysisProvider = new PhotoFileAnalysisByDb(this);
-                    break;
+            //switch (Option.SourceType)
+            //{
+            //    case PhotoFileAnalysisSrouceType.Db:
+            _photoFileAnalysisProvider = new PhotoFileAnalysisByDb(this);
+            //        break;
 
-                case PhotoFileAnalysisSrouceType.File:
-                    _photoFileAnalysisProvider = new PhotoFileAnalysisByFileList(this);
-                    break;
+            //    case PhotoFileAnalysisSrouceType.File:
+            //        _photoFileAnalysisProvider = new PhotoFileAnalysisByFileList(this);
+            //        break;
 
-                case PhotoFileAnalysisSrouceType.Dir:
-                    _photoFileAnalysisProvider = new PhotoFileAnalysisByDir(this);
-                    break;
-            }
+            //    case PhotoFileAnalysisSrouceType.Dir:
+            //        _photoFileAnalysisProvider = new PhotoFileAnalysisByDir(this);
+            //        break;
+            //}
 
             return base.OnVerification();
         }
@@ -85,6 +85,7 @@ namespace HomeApplication.Logic.IO
             public abstract void ThreadProssSize(int beginindex, int endindex);
         }
 
+        /*
         private class PhotoFileAnalysisByDir : PhotoFileAnalysisByFilePath
         {
             public PhotoFileAnalysisByDir(PhotoFileAnalysis analysis) : base(analysis)
@@ -101,7 +102,7 @@ namespace HomeApplication.Logic.IO
                 }
                 return 0;
             }
-        }
+        }*/
 
         private class PhotoFileAnalysisByDb : PhotoFileAnalysisProvider
         {
@@ -143,6 +144,7 @@ namespace HomeApplication.Logic.IO
             }
         }
 
+        /*
         private abstract class PhotoFileAnalysisByFilePath : PhotoFileAnalysisProvider
         {
             protected PhotoFileAnalysisByFilePath(PhotoFileAnalysis analysis) : base(analysis)
@@ -214,21 +216,22 @@ namespace HomeApplication.Logic.IO
                 }
                 return 0;
             }
-        }
+        }*/
     }
 
     public struct PhotoFileAnalysisOption : IOption
     {
-        public string FileListPath { get; set; }
-        public PhotoFileAnalysisSrouceType SourceType { get; set; }
+        //  public string FileListPath { get; set; }
+        //   public PhotoFileAnalysisSrouceType SourceType { get; set; }
         public string[] ImageTypes { get; set; }
-        public string DirPath { get; set; }
+
+        //   public string DirPath { get; set; }
     }
 
-    public enum PhotoFileAnalysisSrouceType
-    {
-        Db,
-        File,
-        Dir
-    }
+    //public enum PhotoFileAnalysisSrouceType
+    //{
+    //    Db,
+    //    File,
+    //    Dir
+    //}
 }

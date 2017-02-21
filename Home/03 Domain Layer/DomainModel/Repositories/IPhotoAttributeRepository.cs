@@ -4,17 +4,15 @@ using System.Collections.Generic;
 
 namespace Home.DomainModel.Repositories
 {
-
     public interface IPhotoAttributeRepository : IRepository<PhotoAttribute>
     {
         int GetCount(string key);
 
-        IDictionary<string, int> GetTimeLineByformat(TimeFormat format, string filtertime = null);
+        TimeLineItem[] GetTimeLineByformat(TimeFormat format, string filtertime = null);
 
         IDictionary<string, int> GetCountByValue(string key, string filter = null);
-        IDictionary<string, int> GetTimeLineMonthByYear(string year);
 
-        IDictionary<string, int> GetModelCountByMake();
+        EequipmentItem[] GetModelCountByMake();
     }
 
     public enum TimeFormat
@@ -22,6 +20,5 @@ namespace Home.DomainModel.Repositories
         YYYY,
         YYYYMM,
         YYYYMMDD
-
     }
 }

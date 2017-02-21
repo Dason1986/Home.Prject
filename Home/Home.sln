@@ -50,11 +50,11 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Home.Infrastructure", "Home
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Library.Storage", "Library.Storage\Library.Storage.csproj", "{E78B1970-F081-4746-AB30-0A49F0157EE7}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Library.StorageProvider.EF", "Library.Storage.EF\Library.StorageProvider.EF.csproj", "{7A010597-82E2-43B4-8019-222DF7203B81}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Library.Storage.FileEngineProvider.EF", "Library.Storage.EF\Library.Storage.FileEngineProvider.EF.csproj", "{7A010597-82E2-43B4-8019-222DF7203B81}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Library.StorageProvider.Physical64M", "Library.StorageProvider.Physical64M\Library.StorageProvider.Physical64M.csproj", "{4CF648BE-084E-41A8-AD80-3B0DEAF81669}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Library.Storage.FileEngineProvider.Physical64M", "Library.StorageProvider.Physical64M\Library.Storage.FileEngineProvider.Physical64M.csproj", "{4CF648BE-084E-41A8-AD80-3B0DEAF81669}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Library.StorageIndexProvider.EF", "Library.StorageIndexProvider.EF\Library.StorageIndexProvider.EF.csproj", "{1E2A452F-942A-40B4-92BC-25D0BE537EEC}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Library.Storage.IndexEngineProvider.EF", "Library.StorageIndexProvider.EF\Library.Storage.IndexEngineProvider.EF.csproj", "{1E2A452F-942A-40B4-92BC-25D0BE537EEC}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Storage", "Storage", "{F55A8A84-F9BE-4505-995F-C426544154F8}"
 EndProject
