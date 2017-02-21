@@ -105,7 +105,7 @@ namespace HomeApplication.Logic
             builder.AppendLine("--------------------------------");
             builder.Append("輸入:");
             Console.Write(builder.ToString());
-        LabInput:
+            LabInput:
             var inputkey = Console.ReadLine();
             Console.WriteLine();
             if (inputkey == "exit")
@@ -131,11 +131,16 @@ namespace HomeApplication.Logic
                 {
                     try
                     {
-                        var optionBuilder = Library.HelperUtility.FastReflectionExtensions.CreateInstance<OptionCommandBuilder>(itemmenu.OptionBuilderType);
+                        IOptionCommandBuilder optionBuilder = itemmenu.OptionBuilderType == typeof(EmptyOptionCommandBuilder) ? new EmptyOptionCommandBuilder() as IOptionCommandBuilder : Library.HelperUtility.FastReflectionExtensions.CreateInstance<OptionCommandBuilder>(itemmenu.OptionBuilderType) as IOptionCommandBuilder;
+
                         var logicService = Library.HelperUtility.FastReflectionExtensions.CreateInstance<ILogicService>(itemmenu.CommandClassType);
-                        optionBuilder.In = Console.In;
-                        optionBuilder.Out = Console.Out;
-                        optionBuilder.RumCommandLine();
+                        if (optionBuilder is OptionCommandBuilder)
+                        {
+                            var cmd = optionBuilder as OptionCommandBuilder;
+                            cmd.In = Console.In;
+                            cmd.Out = Console.Out;
+                            optionBuilder.RumCommandLine();
+                        }
                         logicService.Option = ((IOptionCommandBuilder)optionBuilder).GetOption();
                         logicService.Start();
                         Console.Write("執行完成，按任意鍵繼續。");

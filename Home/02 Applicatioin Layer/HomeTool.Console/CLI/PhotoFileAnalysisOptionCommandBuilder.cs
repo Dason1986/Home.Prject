@@ -48,7 +48,7 @@ namespace HomeApplication.Logic.IO
             }
 
             {
-            LabSource:
+                LabSource:
 
                 Out.Write("圖像文件來源（0:db,1:txt文件,2:目錄）：");
                 var sourcetype = In.ReadLine();
@@ -74,7 +74,7 @@ namespace HomeApplication.Logic.IO
 
                             return;
                         }
-                    LabCmd:
+                        LabCmd:
                         Out.Write("輸入圖像類型（,分隔）：");
                         var path = Console.ReadLine();
                         if (string.IsNullOrEmpty(path))
@@ -89,7 +89,7 @@ namespace HomeApplication.Logic.IO
 
                 case PhotoFileAnalysisSrouceType.File:
                     {
-                    LabCmd:
+                        LabCmd:
                         Out.Write("輸入文件列表路徑：");
                         var path = In.ReadLine();
                         if (string.IsNullOrEmpty(path))
@@ -108,7 +108,7 @@ namespace HomeApplication.Logic.IO
 
                 case PhotoFileAnalysisSrouceType.Dir:
                     {
-                    LabCmd:
+                        LabCmd:
                         Out.Write("輸入指定掃描目標：");
                         var path = In.ReadLine();
                         if (string.IsNullOrEmpty(path))
@@ -132,7 +132,7 @@ namespace HomeApplication.Logic.IO
 
                             return;
                         }
-                    LabImageTypes:
+                        LabImageTypes:
                         Out.Write("輸入圖像類型（,分隔）：");
                         var imageTypes = In.ReadLine();
                         if (string.IsNullOrEmpty(imageTypes))

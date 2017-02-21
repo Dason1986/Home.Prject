@@ -141,4 +141,22 @@
   <ItemGroup>
     <EmbeddedResource Include="HOME_SQL\InitializeDB\init.sql" />
   </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Migrations\InitializeDB\TimeLineByYYYYMMDD.sql" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Migrations\InitializeDB\TimeLineByYYYY.sql" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Migrations\InitializeDB\TimeLineByYYYYMM.sql" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="HOME_SQL\InitializeDB\TimeLineByYYYY.sql" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="HOME_SQL\InitializeDB\TimeLineByYYYYMM.sql" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="HOME_SQL\InitializeDB\TimeLineByYYYYMMDD.sql" />
+  </ItemGroup>
 </Project>

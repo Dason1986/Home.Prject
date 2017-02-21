@@ -7,18 +7,18 @@ using System.Threading.Tasks;
 
 namespace Home.Repository.HOME_SQL
 {
-    partial   class V1
+    partial class V1
     {
         private void InitSql()
         {
-            //        var migration = (System.Data.Entity.Migrations.Infrastructure.IDbMigration)this;
-            //        migration.AddOperation(new CreateViewOperation("EquipmentView", @"select a1.photoid, a1.attvalue 'Make',a2.attvalue as 'model'  from (select * from photoattribute where attkey='EquipmentMake') as  a1 ,
-            //(select * from photoattribute where attkey = 'EquipmentModel') as a2
-            //where a1.photoid = a2.photoid"));
-            SqlResource("Home.Repository.HOME_SQL.InitializeDB.CreateView.sql");
             SqlResource("Home.Repository.HOME_SQL.InitializeDB.init.sql");
+            SqlResource("Home.Repository.HOME_SQL.InitializeDB.CreateView.sql");
+            SqlResource("Home.Repository.HOME_SQL.InitializeDB.TimeLineByYYYY.sql");
+            SqlResource("Home.Repository.HOME_SQL.InitializeDB.TimeLineByYYYYMM.sql");
+            SqlResource("Home.Repository.HOME_SQL.InitializeDB.TimeLineByYYYYMMDD.sql");
         }
     }
+
     public class CreateViewOperation : MigrationOperation
     {
         public CreateViewOperation(string viewName, string viewQueryString)
@@ -27,8 +27,10 @@ namespace Home.Repository.HOME_SQL
             ViewName = viewName;
             ViewString = viewQueryString;
         }
+
         public string ViewName { get; private set; }
         public string ViewString { get; private set; }
+
         public override bool IsDestructiveChange
         {
             get { return false; }

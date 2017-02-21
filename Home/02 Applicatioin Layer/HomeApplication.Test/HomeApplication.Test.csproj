@@ -111,6 +111,10 @@
       <Project>{10662661-00CF-4AB6-8608-4D392CFEC63F}</Project>
       <Name>Home.Infrastructure</Name>
     </ProjectReference>
+    <ProjectReference Include="..\..\Library.Storage\Library.Storage.csproj">
+      <Project>{e78b1970-f081-4746-ab30-0a49f0157ee7}</Project>
+      <Name>Library.Storage</Name>
+    </ProjectReference>
     <ProjectReference Include="..\HomeApplication.Dto\HomeApplication.Dto.csproj">
       <Project>{948ac8b7-b26c-47df-8232-4cf31c94fc0d}</Project>
       <Name>HomeApplication.Dto</Name>
@@ -149,9 +153,6 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="Resources\下載.jpg" />
-  </ItemGroup>
-  <ItemGroup>
-    <Content Include="Program.vb" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

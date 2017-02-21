@@ -232,6 +232,10 @@
       <Project>{10662661-00cf-4ab6-8608-4d392cfec63f}</Project>
       <Name>Home.Infrastructure</Name>
     </ProjectReference>
+    <ProjectReference Include="..\..\Library.Storage\Library.Storage.csproj">
+      <Project>{e78b1970-f081-4746-ab30-0a49f0157ee7}</Project>
+      <Name>Library.Storage</Name>
+    </ProjectReference>
     <ProjectReference Include="..\HomeApplication.Dto\HomeApplication.Dto.csproj">
       <Project>{948AC8B7-B26C-47DF-8232-4CF31C94FC0D}</Project>
       <Name>HomeApplication.Dto</Name>
