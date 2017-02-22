@@ -173,10 +173,12 @@
     <Compile Include="CreatedInfo.cs" />
     <Compile Include="Cores\IUserManager.cs" />
     <Compile Include="ComponentModel\IO\PhotoStorageBuilder.cs" />
+    <Compile Include="FileSotrageHelper.cs" />
     <Compile Include="Interceptors\RoleInterceptor.cs" />
     <Compile Include="Jobs\CopyFileServiceJob.cs" />
     <Compile Include="Jobs\IOJobPlugin.cs" />
     <Compile Include="Jobs\ServiceJob.cs" />
+    <Compile Include="LocalFileStorage.cs" />
     <Compile Include="Modules\APIServiceModule.cs" />
     <Compile Include="Modules\DomainServiceModule.cs" />
     <Compile Include="DomainServices\AddPhotoDomainService.cs" />

@@ -13,6 +13,7 @@ namespace Library.Storage
         /// </summary>
         Guid ID { get; }
 
+        bool Exists { get; }
         /// <summary>
         ///
         /// </summary>

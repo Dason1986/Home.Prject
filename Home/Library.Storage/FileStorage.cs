@@ -13,6 +13,8 @@ namespace Library.Storage
         public bool CanDelete { get { return Provider.CanDelete; } }
         public bool CanUpdate { get { return Provider.CanUpdate; } }
 
+        public virtual bool Exists { get; protected internal set; }
+
         public FileStorage(IFileStorageProvider provider, Guid fileid)
         {
             ID = fileid;

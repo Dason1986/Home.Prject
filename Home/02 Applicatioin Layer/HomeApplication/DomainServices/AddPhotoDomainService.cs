@@ -27,9 +27,10 @@ namespace HomeApplication.DomainServices
         {
             if (CurrnetFile == null) return;
             if (!_photoEnvironment.Isloadconfig) _photoEnvironment.LoadConfig(ModuleProvider.CreateSystemParameter());
+            Library.Storage.IFileStorage storage = CurrnetFile.GetStorage();
             Logger.Trace("AddPhotoDomainService:{0}", CurrnetFile.FullPath);
             //  System.IO.FileInfo fileinfo = new System.IO.FileInfo(CurrnetFile.FullPath);
-            if (!System.IO.File.Exists(CurrnetFile.FullPath))
+            if (!storage.Exists)
             {
                 Logger.WarnByContent(Resources.DomainServiceResource.FileNotExist, CurrnetFile.FullPath);
                 throw new PhotoDomainServiceException(Resources.DomainServiceResource.FileNotExist, new FileNotFoundException(CurrnetFile.FullPath));
@@ -57,7 +58,7 @@ namespace HomeApplication.DomainServices
             Stream fs = null;
             try
             {
-                fs = System.IO.File.Open(CurrnetFile.FullPath, System.IO.FileMode.Open, System.IO.FileAccess.Read, System.IO.FileShare.ReadWrite);
+                fs = storage.Get();// System.IO.File.Open(CurrnetFile.FullPath, System.IO.FileMode.Open, System.IO.FileAccess.Read, System.IO.FileShare.ReadWrite);
                 image = new Bitmap(fs);
             }
             catch (Exception ex)

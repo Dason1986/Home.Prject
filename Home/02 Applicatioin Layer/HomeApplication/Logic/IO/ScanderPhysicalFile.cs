@@ -1,4 +1,5 @@
-﻿using Home.DomainModel.ModuleProviders;
+﻿using Home.DomainModel.Aggregates.FileAgg;
+using Home.DomainModel.ModuleProviders;
 using Home.DomainModel.Repositories;
 using Library;
 using Library.ComponentModel.Logic;
@@ -53,7 +54,7 @@ namespace HomeApplication.Logic.IO
             Scan(path);
             return base.OnVerification();
         }
-
+        IList<string> existMD5s = new List<string>();
         protected override void ThreadProssSize(int beginindex, int endindex)
         {
             var take = endindex - beginindex;
@@ -65,24 +66,37 @@ namespace HomeApplication.Logic.IO
                 {
                     Logger.TraceByContent("Scan file", item);
                     if (filesRepository.FileExists(item)) continue;
+                    var md5 = Library.HelperUtility.FileUtility.FileMD5(item);
+                    if (existMD5s.Contains(md5))
+                    {
+                        DeleteFile(item);
+                        continue;
+                    }
+                    existMD5s.Add(md5);
                     var fileinfo = new Home.DomainModel.Aggregates.FileAgg.FileInfo(CreatedInfo.ScanderPhysical);
                     System.IO.FileInfo sysInfo = new System.IO.FileInfo(item);
                     if (filterfile.Any(ff => sysInfo.Name.EndsWith(ff, StringComparison.OrdinalIgnoreCase))) continue;
                     fileinfo.Extension = sysInfo.Extension;
                     fileinfo.FullPath = item;
                     fileinfo.FileName = sysInfo.Name;
-                    fileinfo.MD5 = Library.HelperUtility.FileUtility.FileMD5(item);
-                    if (sysInfo.Exists) fileinfo.FileSize = sysInfo.Length;
-                    if (filesRepository.FileExists(fileinfo.MD5, fileinfo.FileSize))
+                    fileinfo.MD5 = md5;
+                    fileinfo.SourceType = Home.DomainModel.SourceType.ServerScand;
+
+
+                    if (sysInfo.Exists)
                     {
-                        try
-                        {
-                            System.IO.File.Delete(item);
-                        }
-                        catch (Exception ex)
-                        {
-                            Logger.WarnByContent("文件删除失败！", item);
-                        }
+                        fileinfo.FileSize = sysInfo.Length;
+
+                        System.Diagnostics.FileVersionInfo info = System.Diagnostics.FileVersionInfo.GetVersionInfo(item);
+                        var extend = new FileInfoExtend(CreatedInfo.ScanderPhysical);
+                        extend.Comments = info.Comments;
+                        fileinfo.Extend = extend;
+
+
+                    }
+                    if (filesRepository.FileExists(md5, fileinfo.FileSize))
+                    {
+                        DeleteFile(item);
 
                         continue;
                     }
@@ -95,6 +109,18 @@ namespace HomeApplication.Logic.IO
             {
                 Console.WriteLine(e);
                 throw;
+            }
+        }
+
+        private void DeleteFile(string item)
+        {
+            try
+            {
+                System.IO.File.Delete(item);
+            }
+            catch (Exception ex)
+            {
+                Logger.WarnByContent("文件删除失败！", item);
             }
         }
 

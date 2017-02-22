@@ -56,6 +56,7 @@
   <ItemGroup>
     <Compile Include="Aggregates\AssetsAgg\Money.cs" />
     <Compile Include="Aggregates\FileAgg\Attachment.cs" />
+    <Compile Include="Aggregates\FileAgg\FileInfoExtend.cs" />
     <Compile Include="Aggregates\GalleryAgg\PhotoFace.cs" />
     <Compile Include="Aggregates\FileAgg\FileAggregateRoot.cs" />
     <Compile Include="Aggregates\FileAgg\FileInfo.cs" />

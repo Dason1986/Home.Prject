@@ -1,6 +1,11 @@
 ﻿namespace Home.DomainModel
 {
-
+    public enum SourceType
+    {
+        ServerScand,
+        PC,
+        Mobile,
+    }
     public enum Gender
     {
         Male,

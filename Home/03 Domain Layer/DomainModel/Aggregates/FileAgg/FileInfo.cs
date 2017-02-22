@@ -1,6 +1,7 @@
 ﻿using Home.DomainModel.Aggregates.GalleryAgg;
 using Library.ComponentModel.Model;
 using Library.Domain;
+using System;
 using System.ComponentModel.DataAnnotations;
 
 namespace Home.DomainModel.Aggregates.FileAgg
@@ -25,7 +26,9 @@ namespace Home.DomainModel.Aggregates.FileAgg
         public string MD5 { get; set; }
         [StringLength(50)]
         public string Extension { get; set; }
-
+        public SourceType SourceType { get; set; }
+        public virtual FileInfoExtend Extend { get; set; }
         public virtual Photo Photo { get; set; }
     }
+
 }
