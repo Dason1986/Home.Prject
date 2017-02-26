@@ -6,7 +6,7 @@ namespace Library.Storage
     /// <summary>
     ///
     /// </summary>
-    public interface IFileStorage
+    public interface IFileStorage: IDisposable
     {
         /// <summary>
         ///

@@ -18,18 +18,28 @@ namespace HomeApplication.DomainServices
             CurrnetPhoto = photo;
             CurrnetFile = file;
             DoAddAction();
-            //    ModuleProvider.UnitOfWork.Commit();
         }
 
         private readonly IPhotoEnvironment _photoEnvironment = new PhotoEnvironment();
-
+        Library.Storage.IFileStorage storage;
+        Image image;
+        Stream fs ;
+        private Orientation imageOrientation;
+        protected override void OnDispose()
+        {
+            if (storage != null) storage.Dispose();
+            if (fs != null) fs.Dispose();
+            if (image != null) image.Dispose();
+            base.OnDispose();
+        }
         protected override void DoAddAction()
         {
             if (CurrnetFile == null) return;
             if (!_photoEnvironment.Isloadconfig) _photoEnvironment.LoadConfig(ModuleProvider.CreateSystemParameter());
-            Library.Storage.IFileStorage storage = CurrnetFile.GetStorage();
+            storage = CurrnetFile.GetStorage();
             Logger.Trace("AddPhotoDomainService:{0}", CurrnetFile.FullPath);
-            //  System.IO.FileInfo fileinfo = new System.IO.FileInfo(CurrnetFile.FullPath);
+
+
             if (!storage.Exists)
             {
                 Logger.WarnByContent(Resources.DomainServiceResource.FileNotExist, CurrnetFile.FullPath);
@@ -43,42 +53,32 @@ namespace HomeApplication.DomainServices
                 {
                     ID = CurrnetFile.ID,
                     FileID = CurrnetFile.ID,
-                    //       File = CurrnetFile,
                     PhotoType = PhotoType.Graphy,
                 };
                 PhotoRepository.Add(CurrnetPhoto);
                 CurrnetFile.Photo = CurrnetPhoto;
             }
             if (CurrnetPhoto.Attributes != null && CurrnetPhoto.Attributes.Count > 0) return;
-            //       this.FilesRepository.Attach(CurrnetFile);
 
             Logger.TraceByContent("Analysis", CurrnetFile.FullPath);
-            Image image;
 
-            Stream fs = null;
-            try
-            {
-                fs = storage.Get();// System.IO.File.Open(CurrnetFile.FullPath, System.IO.FileMode.Open, System.IO.FileAccess.Read, System.IO.FileShare.ReadWrite);
-                image = new Bitmap(fs);
-            }
-            catch (Exception ex)
-            {
-                Logger.ErrorByContent(ex, "File can not open！", CurrnetFile.FullPath);
-                return;
-            }
 
-            var exifInfo = Library.Draw.ImageExif.GetExifInfo(image);
+            fs = storage.Get();
+            image = new Bitmap(fs);
+
+
+            var exifInfo = ImageExif.GetExifInfo(image);
             if (CurrnetPhoto.Attributes == null)
             {
                 ICollection<PhotoAttribute> attributes = new List<PhotoAttribute>();
                 CurrnetPhoto.Attributes = attributes;
             }
             DoImageExif(image, exifInfo);
-
             BuildImage(image);
 
-            fs.Dispose();
-            image.Dispose();
+
+
+
         }
 
         private void BuildImage(Image image)
@@ -109,7 +109,6 @@ namespace HomeApplication.DomainServices
             return additemExif;
         }
 
-        private Library.Draw.Orientation imageOrientation;
 
         protected void DoImageExif(Image image, Library.Draw.ImageExif exif)
         {

@@ -41,5 +41,33 @@ namespace Library.Storage
         {
             throw new NotImplementedException();
         }
+
+        #region IDisposable Support
+        private bool disposedValue = false; // 要检测冗余调用
+
+        protected virtual void Dispose(bool disposing)
+        {
+            if (!disposedValue)
+            {
+                if (disposing)
+                {
+                  
+                }
+
+            
+
+                disposedValue = true;
+            }
+        }
+
+
+        public void Dispose()
+        {
+
+            Dispose(true);
+
+            GC.SuppressFinalize(this);
+        }
+        #endregion
     }
 }

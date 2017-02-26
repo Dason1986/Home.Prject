@@ -17,6 +17,26 @@
         Graphy,
         Scand
     }
+    public enum MemberAddress
+    {
+        None,
+        Husband,
+        Wife,
+        Father,
+        Mother,
+        ElderBrother,
+        YoungerBrother,
+        ElderSister,
+        YoungerSister,
+        Son,
+        Daughter
+    }
+    public enum AgeCompare
+    {
+        Younger=-1,
+        None=0,        
+        Elder=1,
+    }
 
     public enum SimilarAlgorithm
     {

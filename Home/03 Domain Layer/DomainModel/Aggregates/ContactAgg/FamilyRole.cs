@@ -25,6 +25,8 @@ namespace Home.DomainModel.Aggregates.ContactAgg
         public int Level { get; set; }
 
         public Gender Six { get; set; }
+        public void AddMemberAddress(MemberAddress[] members) {
 
+        }
     }
 }

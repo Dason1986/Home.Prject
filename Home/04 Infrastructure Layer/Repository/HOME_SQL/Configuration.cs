@@ -16,6 +16,7 @@ namespace Home.Repository.HOME_SQL
         public Configuration()
         {
             AutomaticMigrationsEnabled = true;
+            AutomaticMigrationDataLossAllowed = true;
             MigrationsDirectory = @"HOME_SQL";
             SetSqlGenerator("System.Data.SqlClient", new CustomSqlServerMigrationSqlGenerator());
         }

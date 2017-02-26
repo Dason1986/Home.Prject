@@ -87,10 +87,10 @@ namespace HomeApplication.Logic.IO
                     {
                         fileinfo.FileSize = sysInfo.Length;
 
-                        System.Diagnostics.FileVersionInfo info = System.Diagnostics.FileVersionInfo.GetVersionInfo(item);
-                        var extend = new FileInfoExtend(CreatedInfo.ScanderPhysical);
-                        extend.Comments = info.Comments;
-                        fileinfo.Extend = extend;
+                        //System.Diagnostics.FileVersionInfo info = System.Diagnostics.FileVersionInfo.GetVersionInfo(item);
+                        //var extend = new FileInfoExtend(CreatedInfo.ScanderPhysical);
+                        //extend.Comments = info.Comments;
+                        //fileinfo.Extend = extend;
 
 
                     }

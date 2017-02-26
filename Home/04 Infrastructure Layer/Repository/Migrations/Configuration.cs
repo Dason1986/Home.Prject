@@ -17,6 +17,7 @@ namespace Repository.Migrations
         public Configuration()
         {
             AutomaticMigrationsEnabled = true;
+            AutomaticMigrationDataLossAllowed = true;
             MigrationsDirectory = @"Migrations";
             SetSqlGenerator("MySql.Data.MySqlClient", new CustomMySqlMigrationSqlGenerator());
         }
@@ -76,7 +77,7 @@ namespace Repository.Migrations
                 column.DefaultValueSql = "'script'";
             if (column.IsNullable == false && string.Equals("Id", column.Name, StringComparison.OrdinalIgnoreCase))
             {
-                if (column.Type == PrimitiveTypeKind.Guid) column.DefaultValueSql = "uuid()";
+          //     if (column.Type == PrimitiveTypeKind.Guid) column.DefaultValueSql = "uuid()";
                 if (column.Type == PrimitiveTypeKind.Int32) column.IsIdentity = true;
             }
             if (string.Equals("StatusCode", column.Name, StringComparison.OrdinalIgnoreCase) && column.Type == PrimitiveTypeKind.Int32)

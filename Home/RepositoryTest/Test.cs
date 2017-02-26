@@ -8,973 +8,1024 @@ using Home.DomainModel.Aggregates.ContactAgg;
 
 namespace RepositoryTest
 {
+    class testCreate : ICreatedInfo
+    {
+        public DateTime Created
+        {
+            get
+            {
+                return time;
+            }
+        }
+        DateTime time = new DateTime(2012, 1, 1);
+        public string CreatedBy
+        {
+            get
+            {
+                return "CreateScript";
+            }
+        }
+    }
     [TestFixture(Category = "數據庫-初始化")]
     public class Test
     {
         [Test()]
         public void TestCase()
         {
+
+
             MainBoundedContext dbcontext = new MainBoundedContext();
             var roleId = Guid.Parse("00f73871-afe7-431a-a9ec-df44b1dcb736");
             var contactRole = dbcontext.Set<FamilyRole>();
-            contactRole.Add(new FamilyRole()
+            #region MyRegion
+            FamilyRole left, right;
+            FamilyRelation relation;
+            var crate = new testCreate();
+
+            var contactRelation = dbcontext.Set<FamilyRelation>();
+            var relationId = Guid.Parse("00bee159-a76e-4864-b151-73082da3cb18");
+            // /*
+
+            left = contactRole.Add(new FamilyRole(crate) { ID = roleId, Name = "老公", Six = Gender.Male });
+            roleId = IdentityGenerator.Next(roleId);
+            right = contactRole.Add(new FamilyRole(crate)
             {
                 ID = roleId,
+                Name = "老婆",
+                Six = Gender.Female,
+            });
+            relation = FamilyRelation.Create(crate, left, right);
+            relation.ID = relationId;
+            contactRelation.Add(relation);
 
+            roleId = IdentityGenerator.Next(roleId);
+            left = contactRole.Add(new FamilyRole(crate)
+            {
+                ID = roleId,
                 Name = "高祖父",
                 Six = Gender.Male,
                 Level = 4,
-                CreatedBy = "sqlscript",
-                Created = DateTime.Now,
-                StatusCode = StatusCode.Enabled
-            });
-            roleId = IdentityGenerator.Next(roleId);
 
-            contactRole.Add(new FamilyRole()
+            });
+            left.AddMemberAddress(new []{ MemberAddress.Father, MemberAddress.Father, MemberAddress.Father, MemberAddress.Father });
+            roleId = IdentityGenerator.Next(roleId);
+            right = contactRole.Add(new FamilyRole(crate)
             {
                 ID = roleId,
-
                 Name = "高祖母",
                 Six = Gender.Female,
                 Level = 4,
-                CreatedBy = "sqlscript",
-                Created = DateTime.Now,
-                StatusCode = StatusCode.Enabled
             });
-            roleId = IdentityGenerator.Next(roleId);
+            right.AddMemberAddress(new[] { MemberAddress.Father, MemberAddress.Father, MemberAddress.Father, MemberAddress.Mother });
+            relationId = IdentityGenerator.Next(relationId);
+            relation = FamilyRelation.Create(crate, left, right);
+            relation.ID = relationId;
+            contactRelation.Add(relation);
 
-            contactRole.Add(new FamilyRole()
+
+            roleId = IdentityGenerator.Next(roleId);
+            left = contactRole.Add(new FamilyRole(crate)
             {
                 ID = roleId,
-                Created = DateTime.Now,
                 Name = "外高祖父",
                 Six = Gender.Male,
                 Level = 4,
-                CreatedBy = "sqlscript",
-                StatusCode = StatusCode.Enabled
             });
+            left.AddMemberAddress(new[] { MemberAddress.Mother, MemberAddress.Father, MemberAddress.Father, MemberAddress.Father });
             roleId = IdentityGenerator.Next(roleId);
-
-            contactRole.Add(new FamilyRole()
+            right = contactRole.Add(new FamilyRole(crate)
             {
                 ID = roleId,
-                Created = DateTime.Now,
                 Name = "外高祖母",
                 Six = Gender.Female,
                 Level = 4,
-                CreatedBy = "sqlscript",
-                StatusCode = StatusCode.Enabled
             });
+            right.AddMemberAddress(new[] { MemberAddress.Mother, MemberAddress.Father, MemberAddress.Father, MemberAddress.Mother });
+            relationId = IdentityGenerator.Next(relationId);
+            relation = FamilyRelation.Create(crate, left, right);
+            relation.ID = relationId;
+            contactRelation.Add(relation);
 
             roleId = IdentityGenerator.Next(roleId);
-
-            contactRole.Add(new FamilyRole()
+            left = contactRole.Add(new FamilyRole(crate)
             {
                 ID = roleId,
-                Created = DateTime.Now,
                 Name = "曾祖父",
                 Six = Gender.Male,
                 Level = 3,
-                CreatedBy = "sqlscript",
-                StatusCode = StatusCode.Enabled
             });
+            left.AddMemberAddress(new[] { MemberAddress.Father, MemberAddress.Father, MemberAddress.Father });
             roleId = IdentityGenerator.Next(roleId);
-
-            contactRole.Add(new FamilyRole()
+            right = contactRole.Add(new FamilyRole(crate)
             {
                 ID = roleId,
-                Created = DateTime.Now,
                 Name = "曾祖母",
                 Six = Gender.Female,
                 Level = 3,
-                CreatedBy = "sqlscript",
-                StatusCode = StatusCode.Enabled
             });
-            roleId = IdentityGenerator.Next(roleId);
+            right.AddMemberAddress(new[] { MemberAddress.Father, MemberAddress.Father, MemberAddress.Mother });
+            relationId = IdentityGenerator.Next(relationId);
+            relation = FamilyRelation.Create(crate, left, right);
+            relation.ID = relationId;
+            contactRelation.Add(relation);
 
-            contactRole.Add(new FamilyRole()
+
+            roleId = IdentityGenerator.Next(roleId);
+            left = contactRole.Add(new FamilyRole(crate)
             {
                 ID = roleId,
-                Created = DateTime.Now,
                 Name = "外曾祖父",
-                Six = Gender
-    .Male,
+                Six = Gender.Male,
                 Level = 3,
-                CreatedBy = "sqlscript",
-                StatusCode = StatusCode.Enabled
             });
+            left.AddMemberAddress(new[] { MemberAddress.Mother, MemberAddress.Father, MemberAddress.Father });
             roleId = IdentityGenerator.Next(roleId);
-
-            contactRole.Add(new FamilyRole()
+            right = contactRole.Add(new FamilyRole(crate)
             {
                 ID = roleId,
-                Created = DateTime.Now,
                 Name = "外曾祖母",
                 Six = Gender.Female,
                 Level = 3,
-                CreatedBy = "sqlscript",
-                StatusCode = StatusCode.Enabled
             });
+            right.AddMemberAddress(new[] { MemberAddress.Mother, MemberAddress.Father, MemberAddress.Mother });
+            relationId = IdentityGenerator.Next(relationId);
+            relation = FamilyRelation.Create(crate, left, right);
+            relation.ID = relationId;
+            contactRelation.Add(relation);
 
             roleId = IdentityGenerator.Next(roleId);
-
-            contactRole.Add(new FamilyRole()
+            left = contactRole.Add(new FamilyRole(crate)
             {
                 ID = roleId,
-                Created = DateTime.Now,
                 Name = "爺爺",
                 Six = Gender.Male,
                 Level = 2,
-                CreatedBy = "sqlscript",
-                StatusCode = StatusCode.Enabled
             });
+            left.AddMemberAddress(new[] {MemberAddress.Father, MemberAddress.Father });
             roleId = IdentityGenerator.Next(roleId);
-
-            contactRole.Add(new FamilyRole()
+            right = contactRole.Add(new FamilyRole(crate)
             {
                 ID = roleId,
-                Created = DateTime.Now,
                 Name = "奶奶",
                 Six = Gender.Female,
                 Level = 2,
-                CreatedBy = "sqlscript",
-                StatusCode = StatusCode.Enabled
             });
-            roleId = IdentityGenerator.Next(roleId);
+            right.AddMemberAddress(new[] {  MemberAddress.Father, MemberAddress.Mother });
+            relationId = IdentityGenerator.Next(relationId);
+            relation = FamilyRelation.Create(crate, left, right);
+            relation.ID = relationId;
+            contactRelation.Add(relation);
 
-            contactRole.Add(new FamilyRole()
+
+            roleId = IdentityGenerator.Next(roleId);
+            left = contactRole.Add(new FamilyRole(crate)
             {
                 ID = roleId,
-                Created = DateTime.Now,
                 Name = "外公",
                 Six = Gender.Male,
                 Level = 2,
-                CreatedBy = "sqlscript",
-                StatusCode = StatusCode.Enabled
             });
+            left.AddMemberAddress(new[] { MemberAddress.Mother, MemberAddress.Father });
             roleId = IdentityGenerator.Next(roleId);
-
-            contactRole.Add(new FamilyRole()
+            right = contactRole.Add(new FamilyRole(crate)
             {
                 ID = roleId,
-                Created = DateTime.Now,
                 Name = "外婆",
                 Six = Gender.Female,
                 Level = 2,
-                CreatedBy = "sqlscript",
-                StatusCode = StatusCode.Enabled
             });
+            right.AddMemberAddress(new[] { MemberAddress.Mother,  MemberAddress.Mother });
+            relationId = IdentityGenerator.Next(relationId);
+            relation = FamilyRelation.Create(crate, left, right);
+            relation.ID = relationId;
+            contactRelation.Add(relation);
 
             roleId = IdentityGenerator.Next(roleId);
-
-            contactRole.Add(new FamilyRole()
+            left = contactRole.Add(new FamilyRole(crate)
             {
                 ID = roleId,
-                Created = DateTime.Now,
                 Name = "伯伯",
                 Six = Gender.Male,
                 Level = 1,
-                CreatedBy = "sqlscript",
-                StatusCode = StatusCode.Enabled
             });
+            left.AddMemberAddress(new[] { MemberAddress.Father, MemberAddress.ElderBrother });
             roleId = IdentityGenerator.Next(roleId);
-
-            contactRole.Add(new FamilyRole()
+            right = contactRole.Add(new FamilyRole(crate)
             {
                 ID = roleId,
-                Created = DateTime.Now,
                 Name = "伯娘",
                 Six = Gender.Female,
                 Level = 1,
-                CreatedBy = "sqlscript",
-                StatusCode = StatusCode.Enabled
             });
-            roleId = IdentityGenerator.Next(roleId);
+            right.AddMemberAddress(new[] { MemberAddress.Father, MemberAddress.ElderBrother,MemberAddress.Wife });
+            relationId = IdentityGenerator.Next(relationId);
+            relation = FamilyRelation.Create(crate, left, right);
+            relation.ID = relationId;
+            contactRelation.Add(relation);
 
-            contactRole.Add(new FamilyRole()
+            roleId = IdentityGenerator.Next(roleId);
+            right = contactRole.Add(new FamilyRole(crate)
             {
                 ID = roleId,
-                Created = DateTime.Now,
                 Name = "姑媽",
                 Six = Gender.Female,
                 Level = 1,
-                CreatedBy = "sqlscript",
-                StatusCode = StatusCode.Enabled
             });
+            right.AddMemberAddress(new[] { MemberAddress.Father, MemberAddress.ElderSister});
             roleId = IdentityGenerator.Next(roleId);
-
-            contactRole.Add(new FamilyRole()
+            left = contactRole.Add(new FamilyRole(crate)
             {
                 ID = roleId,
-                Created = DateTime.Now,
                 Name = "姑丈",
                 Six = Gender.Male,
                 Level = 1,
-                CreatedBy = "sqlscript",
-                StatusCode = StatusCode.Enabled
             });
-            roleId = IdentityGenerator.Next(roleId);
+            left.AddMemberAddress(new[] { MemberAddress.Father, MemberAddress.ElderSister, MemberAddress.Husband });
+            relationId = IdentityGenerator.Next(relationId);
+            relation = FamilyRelation.Create(crate, left, right);
+            relation.ID = relationId;
+            contactRelation.Add(relation);
 
-            contactRole.Add(new FamilyRole()
+            roleId = IdentityGenerator.Next(roleId);
+            contactRole.Add(new FamilyRole(crate)
             {
                 ID = roleId,
-                Created = DateTime.Now,
-                Name = "父亲",
-                Six = Gender.Male,
-                Level = 1,
-                CreatedBy = "sqlscript",
-                StatusCode = StatusCode.Enabled
-            });
-            roleId = IdentityGenerator.Next(roleId);
-
-            contactRole.Add(new FamilyRole()
-            {
-                ID = roleId,
-                Created = DateTime.Now,
-                Name = "母亲",
-                Six = Gender.Female,
-                Level = 1,
-                CreatedBy = "sqlscript",
-                StatusCode = StatusCode.Enabled
-            });
-            roleId = IdentityGenerator.Next(roleId);
-
-            contactRole.Add(new FamilyRole()
-            {
-                ID = roleId,
-                Created = DateTime.Now,
-                Name = "叔叔",
-                Six = Gender.Male,
-                Level = 1,
-                CreatedBy = "sqlscript",
-                StatusCode = StatusCode.Enabled
-            });
-            roleId = IdentityGenerator.Next(roleId);
-
-            contactRole.Add(new FamilyRole()
-            {
-                ID = roleId,
-                Created = DateTime.Now,
-                Name = "婶婶",
-                Six = Gender.Female,
-                Level = 1,
-                CreatedBy = "sqlscript",
-                StatusCode = StatusCode.Enabled
-            });
-            roleId = IdentityGenerator.Next(roleId);
-
-            contactRole.Add(new FamilyRole()
-            {
-                ID = roleId,
-                Created = DateTime.Now,
                 Name = "姑姐",
                 Six = Gender.Female,
                 Level = 1,
-                CreatedBy = "sqlscript",
-                StatusCode = StatusCode.Enabled
             });
+            right.AddMemberAddress(new[] { MemberAddress.Father, MemberAddress.YoungerSister });
+            roleId = IdentityGenerator.Next(roleId);
+            left = contactRole.Add(new FamilyRole(crate)
+            {
+                ID = roleId,
+                Name = "姑丈",
+                Six = Gender.Male,
+                Level = 1,
+            });
+            left.AddMemberAddress(new[] { MemberAddress.Father, MemberAddress.YoungerSister, MemberAddress.Husband });
+            relationId = IdentityGenerator.Next(relationId);
+            relation = FamilyRelation.Create(crate, left, right);
+            relation.ID = relationId;
+            contactRelation.Add(relation);
 
 
             roleId = IdentityGenerator.Next(roleId);
-
-            contactRole.Add(new FamilyRole()
+            left = contactRole.Add(new FamilyRole(crate)
             {
                 ID = roleId,
-                Created = DateTime.Now,
+                Name = "父亲",
+                Six = Gender.Male,
+                Level = 1,
+            });
+            left.AddMemberAddress(new[] { MemberAddress.Father });
+            roleId = IdentityGenerator.Next(roleId);
+            right = contactRole.Add(new FamilyRole(crate)
+            {
+                ID = roleId,
+                Name = "母亲",
+                Six = Gender.Female,
+                Level = 1,
+            });
+            right.AddMemberAddress(new[] { MemberAddress.Father,MemberAddress.Wife });
+            relationId = IdentityGenerator.Next(relationId);
+            relation = FamilyRelation.Create(crate, left, right);
+            relation.ID = relationId;
+            contactRelation.Add(relation);
+
+            roleId = IdentityGenerator.Next(roleId);
+            left = contactRole.Add(new FamilyRole(crate)
+            {
+                ID = roleId,
+                Name = "叔叔",
+                Six = Gender.Male,
+                Level = 1,
+            });
+            left.AddMemberAddress(new[] { MemberAddress.Father ,MemberAddress.YoungerBrother});
+            roleId = IdentityGenerator.Next(roleId);
+            right = contactRole.Add(new FamilyRole(crate)
+            {
+                ID = roleId,
+                Name = "婶婶",
+                Six = Gender.Female,
+                Level = 1,
+            });
+            right.AddMemberAddress(new[] { MemberAddress.Father, MemberAddress.YoungerBrother, MemberAddress.Wife });
+            relationId = IdentityGenerator.Next(relationId);
+            relation = FamilyRelation.Create(crate, left, right);
+            relation.ID = relationId;
+            contactRelation.Add(relation);
+
+
+
+
+            roleId = IdentityGenerator.Next(roleId);
+            left = contactRole.Add(new FamilyRole(crate)
+            {
+                ID = roleId,
+                Name = "家公",
+                Six = Gender.Male,
+                Level = 1,
+            });
+            left.AddMemberAddress(new[] { MemberAddress.Husband, MemberAddress.Father});
+            roleId = IdentityGenerator.Next(roleId);
+            right = contactRole.Add(new FamilyRole(crate)
+            {
+                ID = roleId,
+                Name = "家婆",
+                Six = Gender.Female,
+                Level = 1,
+            });
+            right.AddMemberAddress(new[] { MemberAddress.Husband, MemberAddress.Mother });
+            relationId = IdentityGenerator.Next(relationId);
+            relation = FamilyRelation.Create(crate, left, right);
+            relation.ID = relationId;
+            contactRelation.Add(relation);
+
+            roleId = IdentityGenerator.Next(roleId);
+            left = contactRole.Add(new FamilyRole(crate)
+            {
+                ID = roleId,
                 Name = "岳父",
-                Six = Gender
-    .Male,
+                Six = Gender.Male,
                 Level = 1,
-                CreatedBy = "sqlscript",
-                StatusCode = StatusCode.Enabled
             });
+            left.AddMemberAddress(new[] { MemberAddress.Wife, MemberAddress.Father });
             roleId = IdentityGenerator.Next(roleId);
-
-            contactRole.Add(new FamilyRole()
+            right = contactRole.Add(new FamilyRole(crate)
             {
                 ID = roleId,
-                Created = DateTime.Now,
                 Name = "岳母",
-                Six = Gender
-    .Female,
+                Six = Gender.Female,
                 Level = 1,
-                CreatedBy = "sqlscript",
-                StatusCode = StatusCode.Enabled
             });
-            roleId = IdentityGenerator.Next(roleId);
+            right.AddMemberAddress(new[] { MemberAddress.Wife, MemberAddress.Mother });
+            relationId = IdentityGenerator.Next(relationId);
+            relation = FamilyRelation.Create(crate, left, right);
+            relation.ID = relationId;
+            contactRelation.Add(relation);
 
-            contactRole.Add(new FamilyRole()
+            roleId = IdentityGenerator.Next(roleId);
+            left = contactRole.Add(new FamilyRole(crate)
             {
                 ID = roleId,
-                Created = DateTime.Now,
                 Name = "舅舅",
-                Six = Gender
-    .Male,
+                Six = Gender.Male,
                 Level = 1,
-                CreatedBy = "sqlscript",
-                StatusCode = StatusCode.Enabled
             });
+            left.AddMemberAddress(new[] { MemberAddress.Mother, MemberAddress.ElderBrother });
             roleId = IdentityGenerator.Next(roleId);
-
-            contactRole.Add(new FamilyRole()
+            right = contactRole.Add(new FamilyRole(crate)
             {
                 ID = roleId,
-                Created = DateTime.Now,
                 Name = "舅母",
-                Six = Gender
-    .Female,
+                Six = Gender.Female,
                 Level = 1,
-                CreatedBy = "sqlscript",
-                StatusCode = StatusCode.Enabled
             });
-            roleId = IdentityGenerator.Next(roleId);
+            right.AddMemberAddress(new[] { MemberAddress.Mother, MemberAddress.ElderBrother, MemberAddress.Wife });
+            relationId = IdentityGenerator.Next(relationId);
+            relation = FamilyRelation.Create(crate, left, right);
+            relation.ID = relationId;
+            contactRelation.Add(relation);
 
-            contactRole.Add(new FamilyRole()
+
+            roleId = IdentityGenerator.Next(roleId);
+            right = contactRole.Add(new FamilyRole(crate)
             {
                 ID = roleId,
-                Created = DateTime.Now,
                 Name = "姨妈",
-                Six = Gender
-    .Female,
+                Six = Gender.Female,
                 Level = 1,
-                CreatedBy = "sqlscript",
-                StatusCode = StatusCode.Enabled
             });
+            right.AddMemberAddress(new[] { MemberAddress.Mother, MemberAddress.ElderSister, MemberAddress.Wife });
             roleId = IdentityGenerator.Next(roleId);
-
-            contactRole.Add(new FamilyRole()
+            left = contactRole.Add(new FamilyRole(crate)
             {
                 ID = roleId,
-                Created = DateTime.Now,
                 Name = "姨丈",
-                Six = Gender
-    .Male,
+                Six = Gender.Male,
                 Level = 1,
-                CreatedBy = "sqlscript",
-                StatusCode = StatusCode.Enabled
             });
-
+            right.AddMemberAddress(new[] { MemberAddress.Mother, MemberAddress.ElderSister, MemberAddress.Husband });
+            relationId = IdentityGenerator.Next(relationId);
+            relation = FamilyRelation.Create(crate, left, right);
+            relation.ID = relationId;
+            contactRelation.Add(relation);
 
             roleId = IdentityGenerator.Next(roleId);
-
-            contactRole.Add(new FamilyRole()
+            left = contactRole.Add(new FamilyRole(crate)
             {
                 ID = roleId,
-                Created = DateTime.Now,
                 Name = "哥哥",
-                Six = Gender
-    .Male,
-                CreatedBy = "sqlscript",
-                StatusCode = StatusCode.Enabled
+                Six = Gender.Male,
             });
+            left.AddMemberAddress(new[] { MemberAddress.ElderBrother });
             roleId = IdentityGenerator.Next(roleId);
-
-            contactRole.Add(new FamilyRole()
+            right = contactRole.Add(new FamilyRole(crate)
             {
                 ID = roleId,
-                Created = DateTime.Now,
-                Name = "嫂",
-                Six = Gender
-    .Female,
-                CreatedBy = "sqlscript",
-                StatusCode = StatusCode.Enabled
+                Name = "嫂子",
+                Six = Gender.Female,
             });
-            roleId = IdentityGenerator.Next(roleId);
+            right.AddMemberAddress(new[] {   MemberAddress.ElderBrother, MemberAddress.Wife });
+            relationId = IdentityGenerator.Next(relationId);
+            relation = FamilyRelation.Create(crate, left, right);
+            relation.ID = relationId;
+            contactRelation.Add(relation);
 
-            contactRole.Add(new FamilyRole()
+            roleId = IdentityGenerator.Next(roleId);
+            right = contactRole.Add(new FamilyRole(crate)
             {
                 ID = roleId,
-                Created = DateTime.Now,
                 Name = "姐姐",
-                Six = Gender
-    .Female,
-                CreatedBy = "sqlscript",
-                StatusCode = StatusCode.Enabled
+                Six = Gender.Female,
             });
+            right.AddMemberAddress(new[] { MemberAddress.ElderSister,});
             roleId = IdentityGenerator.Next(roleId);
-
-            contactRole.Add(new FamilyRole()
+            left = contactRole.Add(new FamilyRole(crate)
             {
                 ID = roleId,
-                Created = DateTime.Now,
                 Name = "姐夫",
-                Six = Gender
-    .Male,
-                CreatedBy = "sqlscript",
-                StatusCode = StatusCode.Enabled
+                Six = Gender.Male,
             });
-            roleId = IdentityGenerator.Next(roleId);
+            left.AddMemberAddress(new[] { MemberAddress.ElderSister, MemberAddress.Husband });
+            relationId = IdentityGenerator.Next(relationId);
+            relation = FamilyRelation.Create(crate, left, right);
+            relation.ID = relationId;
+            contactRelation.Add(relation);
 
-            contactRole.Add(new FamilyRole()
+            roleId = IdentityGenerator.Next(roleId);
+            left = contactRole.Add(new FamilyRole(crate)
             {
                 ID = roleId,
-                Created = DateTime.Now,
                 Name = "弟弟",
-                Six = Gender
-    .Male,
-                CreatedBy = "sqlscript",
-                StatusCode = StatusCode.Enabled
+                Six = Gender.Male,
             });
-
+            left.AddMemberAddress(new[] { MemberAddress.YoungerBrother });
             roleId = IdentityGenerator.Next(roleId);
-
-            contactRole.Add(new FamilyRole()
+            right = contactRole.Add(new FamilyRole(crate)
             {
                 ID = roleId,
-                Created = DateTime.Now,
                 Name = "弟妹",
-                Six = Gender
-    .Female,
-                CreatedBy = "sqlscript",
-                StatusCode = StatusCode.Enabled
+                Six = Gender.Female,
             });
-            roleId = IdentityGenerator.Next(roleId);
+            right.AddMemberAddress(new[] { MemberAddress.YoungerBrother, MemberAddress.Wife });
+            relationId = IdentityGenerator.Next(relationId);
+            relation = FamilyRelation.Create(crate, left, right);
+            relation.ID = relationId;
+            contactRelation.Add(relation);
 
-            contactRole.Add(new FamilyRole()
+            roleId = IdentityGenerator.Next(roleId);
+            right = contactRole.Add(new FamilyRole(crate)
             {
                 ID = roleId,
-                Created = DateTime.Now,
                 Name = "妹妹",
-                Six = Gender
-    .Female,
-                CreatedBy = "sqlscript",
-                StatusCode = StatusCode.Enabled
-            });
+                Six = Gender.Female,
+            }); right.AddMemberAddress(new[] { MemberAddress.YoungerSister });
             roleId = IdentityGenerator.Next(roleId);
-
-            contactRole.Add(new FamilyRole()
+            left = contactRole.Add(new FamilyRole(crate)
             {
                 ID = roleId,
-                Created = DateTime.Now,
                 Name = "妹夫",
-                Six = Gender
-    .Male,
-                CreatedBy = "sqlscript",
-                StatusCode = StatusCode.Enabled
+                Six = Gender.Male,
             });
+            left.AddMemberAddress(new[] { MemberAddress.YoungerSister, MemberAddress.Husband });
+            relationId = IdentityGenerator.Next(relationId);
+            relation = FamilyRelation.Create(crate, left, right);
+            relation.ID = relationId;
+            contactRelation.Add(relation);
 
             roleId = IdentityGenerator.Next(roleId);
-
-            contactRole.Add(new FamilyRole()
+            left = contactRole.Add(new FamilyRole(crate)
             {
                 ID = roleId,
-                Created = DateTime.Now,
                 Name = "堂哥",
-                Six = Gender
-    .Male,
-                CreatedBy = "sqlscript",
-                StatusCode = StatusCode.Enabled
+                Six = Gender.Male,
             });
             roleId = IdentityGenerator.Next(roleId);
-
-            contactRole.Add(new FamilyRole()
+            right = contactRole.Add(new FamilyRole(crate)
             {
                 ID = roleId,
-                Created = DateTime.Now,
                 Name = "堂嫂",
-                Six = Gender
-    .Female,
-                CreatedBy = "sqlscript",
-                StatusCode = StatusCode.Enabled
+                Six = Gender.Female,
             });
-            roleId = IdentityGenerator.Next(roleId);
+            relationId = IdentityGenerator.Next(relationId);
+            relation = FamilyRelation.Create(crate, left, right);
+            relation.ID = relationId;
+            contactRelation.Add(relation);
 
-            contactRole.Add(new FamilyRole()
+            roleId = IdentityGenerator.Next(roleId);
+            right = contactRole.Add(new FamilyRole(crate)
             {
                 ID = roleId,
-                Created = DateTime.Now,
                 Name = "堂姐",
-                Six = Gender
-    .Female,
-                CreatedBy = "sqlscript",
-                StatusCode = StatusCode.Enabled
+                Six = Gender.Female,
             });
             roleId = IdentityGenerator.Next(roleId);
-
-            contactRole.Add(new FamilyRole()
+            left = contactRole.Add(new FamilyRole(crate)
             {
                 ID = roleId,
-                Created = DateTime.Now,
                 Name = "堂姐夫",
-                Six = Gender
-    .Male,
-                CreatedBy = "sqlscript",
-                StatusCode = StatusCode.Enabled
+                Six = Gender.Male,
             });
-            roleId = IdentityGenerator.Next(roleId);
+            relationId = IdentityGenerator.Next(relationId);
+            relation = FamilyRelation.Create(crate, left, right);
+            relation.ID = relationId;
+            contactRelation.Add(relation);
 
-            contactRole.Add(new FamilyRole()
+
+            roleId = IdentityGenerator.Next(roleId);
+            left = contactRole.Add(new FamilyRole(crate)
             {
                 ID = roleId,
-                Created = DateTime.Now,
                 Name = "堂弟",
-                Six = Gender
-    .Male,
-                CreatedBy = "sqlscript",
-                StatusCode = StatusCode.Enabled
+                Six = Gender.Male,
             });
             roleId = IdentityGenerator.Next(roleId);
-
-            contactRole.Add(new FamilyRole()
+            right = contactRole.Add(new FamilyRole(crate)
             {
                 ID = roleId,
-                Created = DateTime.Now,
                 Name = "堂弟妹",
-                Six = Gender
-    .Female,
-                CreatedBy = "sqlscript",
-                StatusCode = StatusCode.Enabled
+                Six = Gender.Female,
             });
-            roleId = IdentityGenerator.Next(roleId);
+            relationId = IdentityGenerator.Next(relationId);
+            relation = FamilyRelation.Create(crate, left, right);
+            relation.ID = relationId;
+            contactRelation.Add(relation);
 
-            contactRole.Add(new FamilyRole()
+            roleId = IdentityGenerator.Next(roleId);
+            right = contactRole.Add(new FamilyRole(crate)
             {
                 ID = roleId,
-                Created = DateTime.Now,
                 Name = "堂妹",
-                Six = Gender
-    .Female,
-                CreatedBy = "sqlscript",
-                StatusCode = StatusCode.Enabled
+                Six = Gender.Female,
             });
             roleId = IdentityGenerator.Next(roleId);
-
-            contactRole.Add(new FamilyRole()
+            left = contactRole.Add(new FamilyRole(crate)
             {
                 ID = roleId,
-                Created = DateTime.Now,
                 Name = "堂妹夫",
-                Six = Gender
-    .Male,
-                CreatedBy = "sqlscript",
-                StatusCode = StatusCode.Enabled
+                Six = Gender.Male,
             });
-            roleId = IdentityGenerator.Next(roleId);
+            relationId = IdentityGenerator.Next(relationId);
+            relation = FamilyRelation.Create(crate, left, right);
+            relation.ID = relationId;
+            contactRelation.Add(relation);
 
-            contactRole.Add(new FamilyRole()
+            roleId = IdentityGenerator.Next(roleId);
+            left = contactRole.Add(new FamilyRole(crate)
             {
                 ID = roleId,
-                Created = DateTime.Now,
                 Name = "表哥",
-                Six = Gender
-    .Male,
-                CreatedBy = "sqlscript",
-                StatusCode = StatusCode.Enabled
+                Six = Gender.Male,
             });
             roleId = IdentityGenerator.Next(roleId);
-
-            contactRole.Add(new FamilyRole()
+            contactRole.Add(new FamilyRole(crate)
             {
                 ID = roleId,
-                Created = DateTime.Now,
                 Name = "表嫂",
-                Six = Gender
-    .Female,
-                CreatedBy = "sqlscript",
-                StatusCode = StatusCode.Enabled
+                Six = Gender.Female,
             });
-            roleId = IdentityGenerator.Next(roleId);
+            relationId = IdentityGenerator.Next(relationId);
+            relation = FamilyRelation.Create(crate, left, right);
+            relation.ID = relationId;
+            contactRelation.Add(relation);
 
-            contactRole.Add(new FamilyRole()
+            roleId = IdentityGenerator.Next(roleId);
+            right = contactRole.Add(new FamilyRole(crate)
             {
                 ID = roleId,
-                Created = DateTime.Now,
                 Name = "表姐",
-                Six = Gender
-    .Female,
-                CreatedBy = "sqlscript",
-                StatusCode = StatusCode.Enabled
+                Six = Gender.Female,
             });
             roleId = IdentityGenerator.Next(roleId);
-
-            contactRole.Add(new FamilyRole()
+            left = contactRole.Add(new FamilyRole(crate)
             {
                 ID = roleId,
-                Created = DateTime.Now,
                 Name = "表姐夫",
-                Six = Gender
-    .Male,
-                CreatedBy = "sqlscript",
-                StatusCode = StatusCode.Enabled
+                Six = Gender.Male,
             });
-            roleId = IdentityGenerator.Next(roleId);
+            relationId = IdentityGenerator.Next(relationId);
+            relation = FamilyRelation.Create(crate, left, right);
+            relation.ID = relationId;
+            contactRelation.Add(relation);
 
-            contactRole.Add(new FamilyRole()
+            roleId = IdentityGenerator.Next(roleId);
+            left = contactRole.Add(new FamilyRole(crate)
             {
                 ID = roleId,
-                Created = DateTime.Now,
                 Name = "表弟",
-                Six = Gender
-    .Male,
-                CreatedBy = "sqlscript",
-                StatusCode = StatusCode.Enabled
+                Six = Gender.Male,
             });
             roleId = IdentityGenerator.Next(roleId);
-
-            contactRole.Add(new FamilyRole()
+            right = contactRole.Add(new FamilyRole(crate)
             {
                 ID = roleId,
-                Created = DateTime.Now,
                 Name = "表弟妹",
-                Six = Gender
-    .Female,
-                CreatedBy = "sqlscript",
-                StatusCode = StatusCode.Enabled
+                Six = Gender.Female,
             });
-            roleId = IdentityGenerator.Next(roleId);
+            relationId = IdentityGenerator.Next(relationId);
+            relation = FamilyRelation.Create(crate, left, right);
+            relation.ID = relationId;
+            contactRelation.Add(relation);
 
-            contactRole.Add(new FamilyRole()
+            roleId = IdentityGenerator.Next(roleId);
+            right = contactRole.Add(new FamilyRole(crate)
             {
                 ID = roleId,
-                Created = DateTime.Now,
                 Name = "表妹",
-                Six = Gender
-    .Female,
-                CreatedBy = "sqlscript",
-                StatusCode = StatusCode.Enabled
+                Six = Gender.Female,
             });
             roleId = IdentityGenerator.Next(roleId);
-
-            contactRole.Add(new FamilyRole()
+            left = contactRole.Add(new FamilyRole(crate)
             {
                 ID = roleId,
-                Created = DateTime.Now,
                 Name = "表妹夫",
-                Six = Gender
-    .Male,
-                CreatedBy = "sqlscript",
-                StatusCode = StatusCode.Enabled
+                Six = Gender.Male,
             });
+            relationId = IdentityGenerator.Next(relationId);
+            relation = FamilyRelation.Create(crate, left, right);
+            relation.ID = relationId;
+            contactRelation.Add(relation);
 
 
             roleId = IdentityGenerator.Next(roleId);
-
-            contactRole.Add(new FamilyRole()
+            left = contactRole.Add(new FamilyRole(crate)
             {
                 ID = roleId,
-                Created = DateTime.Now,
                 Name = "儿子",
-                Six = Gender
-    .Male,
+                Six = Gender.Male,
                 Level = -1,
-                CreatedBy = "sqlscript",
-                StatusCode = StatusCode.Enabled
             });
+            left.AddMemberAddress(new[] { MemberAddress.Son});
             roleId = IdentityGenerator.Next(roleId);
-
-            contactRole.Add(new FamilyRole()
+            right = contactRole.Add(new FamilyRole(crate)
             {
                 ID = roleId,
-                Created = DateTime.Now,
                 Name = "儿媳",
-                Six = Gender
-    .Female,
+                Six = Gender.Female,
                 Level = -1,
-                CreatedBy = "sqlscript",
-                StatusCode = StatusCode.Enabled
             });
+            right.AddMemberAddress(new[] { MemberAddress.Son, MemberAddress.Wife });
+            relationId = IdentityGenerator.Next(relationId);
+            relation = FamilyRelation.Create(crate, left, right);
+            relation.ID = relationId;
+            contactRelation.Add(relation);
 
             roleId = IdentityGenerator.Next(roleId);
-
-            contactRole.Add(new FamilyRole()
+            right = contactRole.Add(new FamilyRole(crate)
             {
                 ID = roleId,
-                Created = DateTime.Now,
                 Name = "女儿",
-                Six = Gender
-    .Female,
+                Six = Gender.Female,
                 Level = -1,
-                CreatedBy = "sqlscript",
-                StatusCode = StatusCode.Enabled
             });
+            right.AddMemberAddress(new[] { MemberAddress.Daughter});
             roleId = IdentityGenerator.Next(roleId);
-
-            contactRole.Add(new FamilyRole()
+            left = contactRole.Add(new FamilyRole(crate)
             {
                 ID = roleId,
-                Created = DateTime.Now,
                 Name = "女婿",
-                Six = Gender
-    .Male,
+                Six = Gender.Male,
                 Level = -1,
-                CreatedBy = "sqlscript",
-                StatusCode = StatusCode.Enabled
             });
+            left.AddMemberAddress(new[] { MemberAddress.Daughter, MemberAddress.Husband });
+            relationId = IdentityGenerator.Next(relationId);
+            relation = FamilyRelation.Create(crate, left, right);
+            relation.ID = relationId;
+            contactRelation.Add(relation);
 
             roleId = IdentityGenerator.Next(roleId);
-
-            contactRole.Add(new FamilyRole()
+            left = contactRole.Add(new FamilyRole(crate)
             {
                 ID = roleId,
-                Created = DateTime.Now,
                 Name = "侄子",
-                Six = Gender
-    .Male,
+                Six = Gender.Male,
                 Level = -1,
                 Remark = "称兄弟的儿子",
-                CreatedBy = "sqlscript",
-                StatusCode = StatusCode.Enabled
             });
+            left.AddMemberAddress(new[] { MemberAddress.YoungerBrother|MemberAddress.ElderBrother, MemberAddress.Son }); 
             roleId = IdentityGenerator.Next(roleId);
-
-            contactRole.Add(new FamilyRole()
+            right = contactRole.Add(new FamilyRole(crate)
             {
                 ID = roleId,
-                Created = DateTime.Now,
                 Name = "侄子媳",
-                Six = Gender
-    .Female,
+                Six = Gender.Female,
                 Level = -1,
-                CreatedBy = "sqlscript",
-                StatusCode = StatusCode.Enabled
             });
-            roleId = IdentityGenerator.Next(roleId);
+            right.AddMemberAddress(new[] {MemberAddress.YoungerBrother|MemberAddress.ElderBrother , MemberAddress.Son , MemberAddress.Wife });
 
-            contactRole.Add(new FamilyRole()
+            relationId = IdentityGenerator.Next(relationId);
+            relation = FamilyRelation.Create(crate, left, right);
+            relation.ID = relationId;
+            contactRelation.Add(relation);
+
+            roleId = IdentityGenerator.Next(roleId);
+            right = contactRole.Add(new FamilyRole(crate)
             {
                 ID = roleId,
-                Created = DateTime.Now,
                 Name = "侄女",
-                Six = Gender
-    .Female,
+                Six = Gender.Female,
                 Level = -1,
                 Remark = "称兄弟的女儿",
-                CreatedBy = "sqlscript",
-                StatusCode = StatusCode.Enabled
             });
+            right.AddMemberAddress(new[] { MemberAddress.YoungerBrother | MemberAddress.ElderBrother, MemberAddress.Daughter});
             roleId = IdentityGenerator.Next(roleId);
-
-            contactRole.Add(new FamilyRole()
+            left = contactRole.Add(new FamilyRole(crate)
             {
                 ID = roleId,
-                Created = DateTime.Now,
                 Name = "侄女婿",
-                Six = Gender
-    .Male,
+                Six = Gender.Male,
                 Level = -1,
-
-                CreatedBy = "sqlscript",
-                StatusCode = StatusCode.Enabled
             });
-            roleId = IdentityGenerator.Next(roleId);
+            left.AddMemberAddress(new[] { MemberAddress.YoungerBrother | MemberAddress.ElderBrother, MemberAddress.Daughter, MemberAddress.Husband });
+            relationId = IdentityGenerator.Next(relationId);
+            relation = FamilyRelation.Create(crate, left, right);
+            relation.ID = relationId;
+            contactRelation.Add(relation);
 
-            contactRole.Add(new FamilyRole()
+            roleId = IdentityGenerator.Next(roleId);
+            left = contactRole.Add(new FamilyRole(crate)
             {
                 ID = roleId,
-                Created = DateTime.Now,
                 Name = "外甥子",
-                Six = Gender
-    .Male,
+                Six = Gender.Male,
                 Level = -1,
                 Remark = "男性称姊妹的儿子",
-                CreatedBy = "sqlscript",
-                StatusCode = StatusCode.Enabled
             });
+            left.AddMemberAddress(new[] { MemberAddress.YoungerSister | MemberAddress.ElderSister, MemberAddress.Son });
             roleId = IdentityGenerator.Next(roleId);
-
-            contactRole.Add(new FamilyRole()
+            right = contactRole.Add(new FamilyRole(crate)
             {
                 ID = roleId,
-                Created = DateTime.Now,
                 Name = "外甥子媳",
-                Six = Gender
-    .Female,
+                Six = Gender.Female,
                 Level = -1,
-                Remark = "男性称姊妹的女儿",
-                CreatedBy = "sqlscript",
-                StatusCode = StatusCode.Enabled
             });
-            roleId = IdentityGenerator.Next(roleId);
+            right.AddMemberAddress(new[] { MemberAddress.YoungerSister | MemberAddress.ElderSister, MemberAddress.Son, MemberAddress.Wife });
+            relationId = IdentityGenerator.Next(relationId);
+            relation = FamilyRelation.Create(crate, left, right);
+            relation.ID = relationId;
+            contactRelation.Add(relation);
 
-            contactRole.Add(new FamilyRole()
+            roleId = IdentityGenerator.Next(roleId);
+            right = contactRole.Add(new FamilyRole(crate)
             {
                 ID = roleId,
-                Created = DateTime.Now,
                 Name = "外甥女",
-                Six = Gender
-    .Female,
+                Six = Gender.Female,
                 Level = -1,
                 Remark = "男性称姊妹的女儿",
-                CreatedBy = "sqlscript",
-                StatusCode = StatusCode.Enabled
             });
+            right.AddMemberAddress(new[] { MemberAddress.YoungerSister | MemberAddress.ElderSister, MemberAddress.Daughter });
             roleId = IdentityGenerator.Next(roleId);
-
-            contactRole.Add(new FamilyRole()
+            left = contactRole.Add(new FamilyRole(crate)
             {
                 ID = roleId,
-                Created = DateTime.Now,
                 Name = "外甥女婿",
-                Six = Gender
-    .Male,
+                Six = Gender.Male,
                 Level = -1,
-                Remark = "男性称姊妹的女儿",
-                CreatedBy = "sqlscript",
-                StatusCode = StatusCode.Enabled
             });
-            roleId = IdentityGenerator.Next(roleId);
+            left.AddMemberAddress(new[] { MemberAddress.YoungerSister | MemberAddress.ElderSister, MemberAddress.Daughter, MemberAddress.Wife });
+            relationId = IdentityGenerator.Next(relationId);
+            relation = FamilyRelation.Create(crate, left, right);
+            relation.ID = relationId;
+            contactRelation.Add(relation);
 
-            contactRole.Add(new FamilyRole()
+            roleId = IdentityGenerator.Next(roleId);
+            left = contactRole.Add(new FamilyRole(crate)
             {
                 ID = roleId,
-                Created = DateTime.Now,
                 Name = "姨甥子",
-                Six = Gender
-    .Male,
+                Six = Gender.Male,
                 Level = -1,
                 Remark = "女性称姊妹的儿子",
-                CreatedBy = "sqlscript",
-                StatusCode = StatusCode.Enabled
             });
+            left.AddMemberAddress(new[] { MemberAddress.YoungerSister | MemberAddress.ElderSister, MemberAddress.Son });
             roleId = IdentityGenerator.Next(roleId);
-
-            contactRole.Add(new FamilyRole()
+            right = contactRole.Add(new FamilyRole(crate)
             {
                 ID = roleId,
-                Created = DateTime.Now,
                 Name = "姨甥子媳",
-                Six = Gender
-    .Female,
+                Six = Gender.Female,
                 Level = -1,
-                Remark = "女性称姊妹的儿子",
-                CreatedBy = "sqlscript",
-                StatusCode = StatusCode.Enabled
             });
-            roleId = IdentityGenerator.Next(roleId);
+            right.AddMemberAddress(new[] { MemberAddress.YoungerSister | MemberAddress.ElderSister, MemberAddress.Son,MemberAddress.Wife });
+            relationId = IdentityGenerator.Next(relationId);
+            relation = FamilyRelation.Create(crate, left, right);
+            relation.ID = relationId;
+            contactRelation.Add(relation);
 
-            contactRole.Add(new FamilyRole()
+            roleId = IdentityGenerator.Next(roleId);
+            right = contactRole.Add(new FamilyRole(crate)
             {
                 ID = roleId,
-                Created = DateTime.Now,
                 Name = "姨甥女",
-                Six = Gender
-    .Female,
+                Six = Gender.Female,
                 Level = -1,
                 Remark = "女性称姊妹的女儿",
-                CreatedBy = "sqlscript",
-                StatusCode = StatusCode.Enabled
             });
+            right.AddMemberAddress(new[] { MemberAddress.YoungerSister | MemberAddress.ElderSister, MemberAddress.Daughter});
             roleId = IdentityGenerator.Next(roleId);
-
-            contactRole.Add(new FamilyRole()
+            left = contactRole.Add(new FamilyRole(crate)
             {
                 ID = roleId,
-                Created = DateTime.Now,
                 Name = "姨甥女婿",
-                Six = Gender
-    .Male,
+                Six = Gender.Male,
                 Level = -1,
-                CreatedBy = "sqlscript",
-                StatusCode = StatusCode.Enabled
             });
+            left.AddMemberAddress(new[] { MemberAddress.YoungerSister | MemberAddress.ElderSister, MemberAddress.Daughter, MemberAddress.Husband });
+            relationId = IdentityGenerator.Next(relationId);
+            relation = FamilyRelation.Create(crate, left, right);
+            relation.ID = relationId;
+            contactRelation.Add(relation);
 
 
             roleId = IdentityGenerator.Next(roleId);
-
-            contactRole.Add(new FamilyRole()
+            left = contactRole.Add(new FamilyRole(crate)
             {
                 ID = roleId,
-                Created = DateTime.Now,
                 Name = "孙子",
-                Six = Gender
-    .Male,
+                Six = Gender.Male,
                 Level = -2,
-                CreatedBy = "sqlscript",
-                StatusCode = StatusCode.Enabled
             });
+            left.AddMemberAddress(new[] { MemberAddress.Son, MemberAddress.Son });
             roleId = IdentityGenerator.Next(roleId);
-
-            contactRole.Add(new FamilyRole()
+            right = contactRole.Add(new FamilyRole(crate)
             {
                 ID = roleId,
-                Created = DateTime.Now,
+                Name = "孙儿媳",
+                Six = Gender.Female,
+                Level = -2,
+            });
+            right.AddMemberAddress(new[] { MemberAddress.Son, MemberAddress.Son,MemberAddress.Wife });
+            relationId = IdentityGenerator.Next(relationId);
+            relation = FamilyRelation.Create(crate, left, right);
+            relation.ID = relationId;
+            contactRelation.Add(relation);
+
+            roleId = IdentityGenerator.Next(roleId);
+            left = contactRole.Add(new FamilyRole(crate)
+            {
+                ID = roleId,
+                Name = "孙女婿",
+                Six = Gender.Male,
+                Level = -2,
+            });
+            left.AddMemberAddress(new[] {MemberAddress.Son, MemberAddress.Daughter, MemberAddress.Husband });
+            roleId = IdentityGenerator.Next(roleId);
+            right = contactRole.Add(new FamilyRole(crate)
+            {
+                ID = roleId,
                 Name = "孙女",
-                Six = Gender
-    .Female,
+                Six = Gender.Female,
                 Level = -2,
-                CreatedBy = "sqlscript",
-                StatusCode = StatusCode.Enabled
             });
-            roleId = IdentityGenerator.Next(roleId);
+            right.AddMemberAddress(new[] { MemberAddress.Son, MemberAddress.Daughter });
+            relationId = IdentityGenerator.Next(relationId);
+            relation = FamilyRelation.Create(crate, left, right);
+            relation.ID = relationId;
+            contactRelation.Add(relation);
 
-            contactRole.Add(new FamilyRole()
+            roleId = IdentityGenerator.Next(roleId);
+            left = contactRole.Add(new FamilyRole(crate)
             {
                 ID = roleId,
-                Created = DateTime.Now,
                 Name = "外孙子",
-                Six = Gender
-    .Male,
+                Six = Gender.Male,
                 Level = -2,
-                CreatedBy = "sqlscript",
-                StatusCode = StatusCode.Enabled
-            });
+            }); left.AddMemberAddress(new[] { MemberAddress.Daughter, MemberAddress.Son  });
             roleId = IdentityGenerator.Next(roleId);
-
-            contactRole.Add(new FamilyRole()
+            right = contactRole.Add(new FamilyRole(crate)
             {
                 ID = roleId,
-                Created = DateTime.Now,
+                Name = "外孙子媳",
+                Six = Gender.Female,
+                Level = -2,
+            });
+            right.AddMemberAddress(new[] { MemberAddress.Daughter, MemberAddress.Son, MemberAddress.Wife });
+            relationId = IdentityGenerator.Next(relationId);
+            relation = FamilyRelation.Create(crate, left, right);
+            relation.ID = relationId;
+            contactRelation.Add(relation);
+
+            roleId = IdentityGenerator.Next(roleId);
+            left = contactRole.Add(new FamilyRole(crate)
+            {
+                ID = roleId,
+                Name = "外孙女婿",
+                Six = Gender.Male,
+                Level = -2,
+            });
+            left.AddMemberAddress(new[] { MemberAddress.Daughter, MemberAddress.Daughter, MemberAddress.Husband });
+            roleId = IdentityGenerator.Next(roleId);
+            right = contactRole.Add(new FamilyRole(crate)
+            {
+                ID = roleId,
                 Name = "外孙女",
-                Six = Gender
-    .Female,
+                Six = Gender.Female,
                 Level = -2,
-                CreatedBy = "sqlscript",
-                StatusCode = StatusCode.Enabled
             });
+            left.AddMemberAddress(new[] { MemberAddress.Daughter, MemberAddress.Daughter});
+            relationId = IdentityGenerator.Next(relationId);
+            relation = FamilyRelation.Create(crate, left, right);
+            relation.ID = relationId;
+            contactRelation.Add(relation);
 
             roleId = IdentityGenerator.Next(roleId);
-
-            contactRole.Add(new FamilyRole()
+            left = contactRole.Add(new FamilyRole(crate)
             {
                 ID = roleId,
-                Created = DateTime.Now,
                 Name = "曾孙",
-                Six = Gender
-    .Male,
+                Six = Gender.Male,
                 Level = -3,
-                CreatedBy = "sqlscript",
-                StatusCode = StatusCode.Enabled
             });
+            left.AddMemberAddress(new[] { MemberAddress.Son, MemberAddress.Son,MemberAddress.Son });
             roleId = IdentityGenerator.Next(roleId);
-
-            contactRole.Add(new FamilyRole()
+            right = contactRole.Add(new FamilyRole(crate)
             {
                 ID = roleId,
-                Created = DateTime.Now,
+                Name = "曾孙媳",
+                Six = Gender.Female,
+                Level = -3,
+            });
+            right.AddMemberAddress(new[] { MemberAddress.Son, MemberAddress.Son, MemberAddress.Son, MemberAddress.Wife });
+            relationId = IdentityGenerator.Next(relationId);
+            relation = FamilyRelation.Create(crate, left, right);
+            relation.ID = relationId;
+            contactRelation.Add(relation);
+
+            roleId = IdentityGenerator.Next(roleId);
+            left = contactRole.Add(new FamilyRole(crate)
+            {
+                ID = roleId,
+                Name = "曾孙女婿",
+                Six = Gender.Male,
+                Level = -3,
+            });
+            left.AddMemberAddress(new[] { MemberAddress.Son, MemberAddress.Son, MemberAddress.Daughter, MemberAddress.Husband });
+            roleId = IdentityGenerator.Next(roleId);
+            right = contactRole.Add(new FamilyRole(crate)
+            {
+                ID = roleId,
                 Name = "曾孙女",
-                Six = Gender
-    .Female,
+                Six = Gender.Female,
                 Level = -3,
-                CreatedBy = "sqlscript",
-                StatusCode = StatusCode.Enabled
             });
+            right.AddMemberAddress(new[] { MemberAddress.Son, MemberAddress.Son, MemberAddress.Daughter });
+            relationId = IdentityGenerator.Next(relationId);
+            relation = FamilyRelation.Create(crate, left, right);
+            relation.ID = relationId;
+            contactRelation.Add(relation);
 
             roleId = IdentityGenerator.Next(roleId);
-
-            contactRole.Add(new FamilyRole()
+            left = contactRole.Add(new FamilyRole(crate)
             {
                 ID = roleId,
-                Created = DateTime.Now,
                 Name = "玄孙",
-                Six = Gender
-    .Male,
+                Six = Gender.Male,
                 Level = -4,
-                CreatedBy = "sqlscript",
-                StatusCode = StatusCode.Enabled
-            });
+            }); left.AddMemberAddress(new[] { MemberAddress.Son, MemberAddress.Son, MemberAddress.Son, MemberAddress.Son });
             roleId = IdentityGenerator.Next(roleId);
-
-            contactRole.Add(new FamilyRole()
+            right = contactRole.Add(new FamilyRole(crate)
             {
                 ID = roleId,
-                Created = DateTime.Now,
-                Name = "玄孙女",
-                Six = Gender
-    .Female,
+                Name = "玄孙媳",
+                Six = Gender.Female,
                 Level = -4,
-                CreatedBy = "sqlscript",
-                StatusCode = StatusCode.Enabled
+            }); right.AddMemberAddress(new[] { MemberAddress.Son, MemberAddress.Son, MemberAddress.Son, MemberAddress.Son, MemberAddress.Wife });
+            relationId = IdentityGenerator.Next(relationId);
+            relation = FamilyRelation.Create(crate, left, right);
+            relation.ID = relationId;
+            contactRelation.Add(relation);
+
+            roleId = IdentityGenerator.Next(roleId);
+            left = contactRole.Add(new FamilyRole(crate)
+            {
+                ID = roleId,
+                Name = "玄孙女婿",
+                Six = Gender.Male,
+                Level = -4,
             });
+            left.AddMemberAddress(new[] { MemberAddress.Son, MemberAddress.Son,  MemberAddress.Son,MemberAddress.Daughter, MemberAddress.Husband });
+            roleId = IdentityGenerator.Next(roleId);
+            right = contactRole.Add(new FamilyRole(crate)
+            {
+                ID = roleId,
+                Name = "玄孙女",
+                Six = Gender.Female,
+                Level = -4,
+            }); right.AddMemberAddress(new[] { MemberAddress.Son, MemberAddress.Son, MemberAddress.Son, MemberAddress.Daughter});
+            relationId = IdentityGenerator.Next(relationId);
+            relation = FamilyRelation.Create(crate, left, right);
+            relation.ID = relationId;
+            contactRelation.Add(relation);
+
+            //   */
+
+
+
+            #endregion
 
 
 
@@ -984,87 +1035,6 @@ namespace RepositoryTest
 
 
 
-
-
-
-
-
-
-            /*
-                        contactRole.Add(new ContactRole() { ID = Guid.Parse("10bee159-a76e-4864-b151-73082da3cb18"), Created = DateTime.Now, Name = "来孙", CreatedBy = "sqlscript", StatusCode =StatusCode.Enabled });
-                        contactRole.Add(new ContactRole() { ID = Guid.Parse("10bee159-a76e-4864-b151-73082da3cb18"), Created = DateTime.Now, Name = "来孙女", CreatedBy = "sqlscript", StatusCode =StatusCode.Enabled });
-
-                        contactRole.Add(new ContactRole() { ID = Guid.Parse("10bee159-a76e-4864-b151-73082da3cb18"), Created = DateTime.Now, Name = "晜孙", CreatedBy = "sqlscript", StatusCode =StatusCode.Enabled });
-                        contactRole.Add(new ContactRole() { ID = Guid.Parse("10bee159-a76e-4864-b151-73082da3cb18"), Created = DateTime.Now, Name = "晜孙女", CreatedBy = "sqlscript", StatusCode =StatusCode.Enabled });
-            */
-
-
-
-            var contactRelation = dbcontext.Set<ContactRelation>();
-            var relationId = Guid.Parse("00bee159-a76e-4864-b151-73082da3cb18");
-            contactRelation.Add(new ContactRelation() { ID = relationId, Created = DateTime.Now, Name = "夫妻", CreatedBy = "sqlscript", StatusCode = StatusCode.Enabled });
-            relationId = IdentityGenerator.Next(relationId);
-            contactRelation.Add(new ContactRelation() { ID = relationId, Created = DateTime.Now, Name = "父子", CreatedBy = "sqlscript", StatusCode = StatusCode.Enabled });
-            relationId = IdentityGenerator.Next(relationId);
-            contactRelation.Add(new ContactRelation() { ID = relationId, Created = DateTime.Now, Name = "父女", CreatedBy = "sqlscript", StatusCode = StatusCode.Enabled });
-            relationId = IdentityGenerator.Next(relationId);
-            contactRelation.Add(new ContactRelation() { ID = relationId, Created = DateTime.Now, Name = "母子", CreatedBy = "sqlscript", StatusCode = StatusCode.Enabled });
-            relationId = IdentityGenerator.Next(relationId);
-            contactRelation.Add(new ContactRelation() { ID = relationId, Created = DateTime.Now, Name = "母女", CreatedBy = "sqlscript", StatusCode = StatusCode.Enabled });
-
-            relationId = IdentityGenerator.Next(relationId);
-            contactRelation.Add(new ContactRelation() { ID = relationId, Created = DateTime.Now, Name = "爺孫", CreatedBy = "sqlscript", StatusCode = StatusCode.Enabled });
-            relationId = IdentityGenerator.Next(relationId);
-            contactRelation.Add(new ContactRelation() { ID = relationId, Created = DateTime.Now, Name = "爺孫女", CreatedBy = "sqlscript", StatusCode = StatusCode.Enabled });
-            relationId = IdentityGenerator.Next(relationId);
-            contactRelation.Add(new ContactRelation() { ID = relationId, Created = DateTime.Now, Name = "婆孫", CreatedBy = "sqlscript", StatusCode = StatusCode.Enabled });
-            relationId = IdentityGenerator.Next(relationId);
-            contactRelation.Add(new ContactRelation() { ID = relationId, Created = DateTime.Now, Name = "婆孫女", CreatedBy = "sqlscript", StatusCode = StatusCode.Enabled });
-            relationId = IdentityGenerator.Next(relationId);
-            contactRelation.Add(new ContactRelation() { ID = relationId, Created = DateTime.Now, Name = "外爺孫", CreatedBy = "sqlscript", StatusCode = StatusCode.Enabled });
-            relationId = IdentityGenerator.Next(relationId);
-            contactRelation.Add(new ContactRelation() { ID = relationId, Created = DateTime.Now, Name = "外爺孫女", CreatedBy = "sqlscript", StatusCode = StatusCode.Enabled });
-            relationId = IdentityGenerator.Next(relationId);
-            contactRelation.Add(new ContactRelation() { ID = relationId, Created = DateTime.Now, Name = "外婆孫", CreatedBy = "sqlscript", StatusCode = StatusCode.Enabled });
-            relationId = IdentityGenerator.Next(relationId);
-            contactRelation.Add(new ContactRelation() { ID = relationId, Created = DateTime.Now, Name = "外婆孫女", CreatedBy = "sqlscript", StatusCode = StatusCode.Enabled });
-
-            relationId = IdentityGenerator.Next(relationId);
-            contactRelation.Add(new ContactRelation() { ID = relationId, Created = DateTime.Now, Name = "兄弟", CreatedBy = "sqlscript", StatusCode = StatusCode.Enabled });
-            relationId = IdentityGenerator.Next(relationId);
-            contactRelation.Add(new ContactRelation() { ID = relationId, Created = DateTime.Now, Name = "兄妹", CreatedBy = "sqlscript", StatusCode = StatusCode.Enabled });
-            relationId = IdentityGenerator.Next(relationId);
-            contactRelation.Add(new ContactRelation() { ID = relationId, Created = DateTime.Now, Name = "姐妹", CreatedBy = "sqlscript", StatusCode = StatusCode.Enabled });
-            relationId = IdentityGenerator.Next(relationId);
-            contactRelation.Add(new ContactRelation() { ID = relationId, Created = DateTime.Now, Name = "姐弟", CreatedBy = "sqlscript", StatusCode = StatusCode.Enabled });
-            relationId = IdentityGenerator.Next(relationId);
-            contactRelation.Add(new ContactRelation() { ID = relationId, Created = DateTime.Now, Name = "堂兄弟", CreatedBy = "sqlscript", StatusCode = StatusCode.Enabled });
-            relationId = IdentityGenerator.Next(relationId);
-            contactRelation.Add(new ContactRelation() { ID = relationId, Created = DateTime.Now, Name = "堂兄妹", CreatedBy = "sqlscript", StatusCode = StatusCode.Enabled });
-            relationId = IdentityGenerator.Next(relationId);
-            contactRelation.Add(new ContactRelation() { ID = relationId, Created = DateTime.Now, Name = "堂姐妹", CreatedBy = "sqlscript", StatusCode = StatusCode.Enabled });
-            relationId = IdentityGenerator.Next(relationId);
-            contactRelation.Add(new ContactRelation() { ID = relationId, Created = DateTime.Now, Name = "堂姐弟", CreatedBy = "sqlscript", StatusCode = StatusCode.Enabled });
-            relationId = IdentityGenerator.Next(relationId);
-            contactRelation.Add(new ContactRelation() { ID = relationId, Created = DateTime.Now, Name = "表兄弟", CreatedBy = "sqlscript", StatusCode = StatusCode.Enabled });
-            relationId = IdentityGenerator.Next(relationId);
-            contactRelation.Add(new ContactRelation() { ID = relationId, Created = DateTime.Now, Name = "表兄妹", CreatedBy = "sqlscript", StatusCode = StatusCode.Enabled });
-            relationId = IdentityGenerator.Next(relationId);
-            contactRelation.Add(new ContactRelation() { ID = relationId, Created = DateTime.Now, Name = "表姐妹", CreatedBy = "sqlscript", StatusCode = StatusCode.Enabled });
-            relationId = IdentityGenerator.Next(relationId);
-            contactRelation.Add(new ContactRelation() { ID = relationId, Created = DateTime.Now, Name = "表姐弟", CreatedBy = "sqlscript", StatusCode = StatusCode.Enabled });
-
-            relationId = IdentityGenerator.Next(relationId);
-            contactRelation.Add(new ContactRelation() { ID = relationId, Created = DateTime.Now, Name = "伯侄", CreatedBy = "sqlscript", StatusCode = StatusCode.Enabled });
-            relationId = IdentityGenerator.Next(relationId);
-            contactRelation.Add(new ContactRelation() { ID = relationId, Created = DateTime.Now, Name = "叔侄", CreatedBy = "sqlscript", StatusCode = StatusCode.Enabled });
-
-
-            //var contactProfile = dbcontext.Set<ContactProfile>();
-            //contactProfile.Add(new ContactProfile() { ID = Guid.NewGuid(), Created = DateTime.Now, CreatedBy = "sqlscript", StatusCode =StatusCode.Enabled });
-
-            //var usres = dbcontext.Set<UserProfile>();
-            //usres.Add(new UserProfile() { ID = Guid.NewGuid(), Created = DateTime.Now, CreatedBy = "sqlscript", StatusCode =StatusCode.Enabled });
             try
             {
                 EFUnitOfWork unit = new EFUnitOfWork(dbcontext);

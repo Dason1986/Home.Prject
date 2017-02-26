@@ -27,7 +27,7 @@ namespace Home.DomainModel.Aggregates.FileAgg
         [StringLength(50)]
         public string Extension { get; set; }
         public SourceType SourceType { get; set; }
-        public virtual FileInfoExtend Extend { get; set; }
+     //   public virtual FileInfoExtend Extend { get; set; }
         public virtual Photo Photo { get; set; }
     }
 

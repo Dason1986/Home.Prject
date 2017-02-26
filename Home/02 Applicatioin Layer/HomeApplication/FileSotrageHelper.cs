@@ -14,7 +14,7 @@ namespace HomeApplication
                     return new LocalFileStorage(fileinfo.FullPath);
 
                 case Home.DomainModel.SourceType.PC:
-                    if (fileinfo.Extend == null) throw new NotSupportedException();
+                  //  if (fileinfo.Extend == null) throw new NotSupportedException();
                     break;
                 case Home.DomainModel.SourceType.Mobile:
                     break;

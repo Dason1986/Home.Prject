@@ -58,17 +58,22 @@ namespace Home.Repository.HOME_SQL
                 .PrimaryKey(t => t.ID);
             
             CreateTable(
-                "dbo.ContactRelation",
+                "dbo.FamilyRelation",
                 c => new
                     {
                         ID = c.Guid(nullable: false),
-                        Name = c.String(maxLength: 20),
+                        LeftRoleId = c.Guid(nullable: false),
+                        RightRoleId = c.Guid(nullable: false),
                         Remark = c.String(maxLength: 100),
                         Created = c.DateTime(nullable: false),
                         CreatedBy = c.String(nullable: false, maxLength: 20),
                         StatusCode = c.Int(nullable: false),
                     })
-                .PrimaryKey(t => t.ID);
+                .PrimaryKey(t => t.ID)
+                .ForeignKey("dbo.FamilyRole", t => t.LeftRoleId)
+                .ForeignKey("dbo.FamilyRole", t => t.RightRoleId)
+                .Index(t => t.LeftRoleId)
+                .Index(t => t.RightRoleId);
             
             CreateTable(
                 "dbo.FamilyRole",
@@ -95,6 +100,7 @@ namespace Home.Repository.HOME_SQL
                         FileSize = c.Long(nullable: false),
                         MD5 = c.String(maxLength: 32),
                         Extension = c.String(maxLength: 50),
+                        SourceType = c.Int(nullable: false),
                         Created = c.DateTime(nullable: false),
                         CreatedBy = c.String(nullable: false, maxLength: 20),
                         StatusCode = c.Int(nullable: false),
@@ -291,8 +297,7 @@ namespace Home.Repository.HOME_SQL
                 .ForeignKey("dbo.ProductItem", t => t.ProductID)
                 .Index(t => t.ProductID)
                 .Index(t => t.FileID);
-
-            InitSql();
+            
         }
         
         public override void Down()
@@ -312,6 +317,8 @@ namespace Home.Repository.HOME_SQL
             DropForeignKey("dbo.Photo", "AlbumID", "dbo.Album");
             DropForeignKey("dbo.Photo", "FileID", "dbo.FileInfo");
             DropForeignKey("dbo.PhotoAttribute", "PhotoID", "dbo.Photo");
+            DropForeignKey("dbo.FamilyRelation", "RightRoleId", "dbo.FamilyRole");
+            DropForeignKey("dbo.FamilyRelation", "LeftRoleId", "dbo.FamilyRole");
             DropForeignKey("dbo.UserProfile", "ContactProfileID", "dbo.ContactProfile");
             DropIndex("dbo.ProductAttachment", new[] { "FileID" });
             DropIndex("dbo.ProductAttachment", new[] { "ProductID" });
@@ -328,6 +335,8 @@ namespace Home.Repository.HOME_SQL
             DropIndex("dbo.Photo", new[] { "AlbumID" });
             DropIndex("dbo.Photo", new[] { "FileID" });
             DropIndex("dbo.Photo", new[] { "ID" });
+            DropIndex("dbo.FamilyRelation", new[] { "RightRoleId" });
+            DropIndex("dbo.FamilyRelation", new[] { "LeftRoleId" });
             DropIndex("dbo.UserProfile", new[] { "ContactProfileID" });
             DropTable("dbo.ProductAttachment");
             DropTable("dbo.ProductItem");
@@ -341,7 +350,7 @@ namespace Home.Repository.HOME_SQL
             DropTable("dbo.Photo");
             DropTable("dbo.FileInfo");
             DropTable("dbo.FamilyRole");
-            DropTable("dbo.ContactRelation");
+            DropTable("dbo.FamilyRelation");
             DropTable("dbo.ContactProfile");
             DropTable("dbo.UserProfile");
             DropTable("dbo.SystemParameter");
