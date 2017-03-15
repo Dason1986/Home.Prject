@@ -3,7 +3,6 @@ using System.IO;
 
 namespace Library.Storage
 {
-
     public class FileStorage : IFileStorage
     {
         protected internal FileStorageInfo Index { get; set; }
@@ -22,7 +21,7 @@ namespace Library.Storage
             //  Index = provider.GetIndex(fileid);
         }
 
-        public Stream Get()
+        public virtual Stream Get()
         {
             return Provider.Get(ID);
         }
@@ -43,6 +42,7 @@ namespace Library.Storage
         }
 
         #region IDisposable Support
+
         private bool disposedValue = false; // 要检测冗余调用
 
         protected virtual void Dispose(bool disposing)
@@ -51,23 +51,19 @@ namespace Library.Storage
             {
                 if (disposing)
                 {
-                  
                 }
-
-            
 
                 disposedValue = true;
             }
         }
 
-
         public void Dispose()
         {
-
             Dispose(true);
 
             GC.SuppressFinalize(this);
         }
-        #endregion
+
+        #endregion IDisposable Support
     }
 }

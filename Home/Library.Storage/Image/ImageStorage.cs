@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 
@@ -9,6 +10,12 @@ namespace Library.Storage.Image
         public ImageStorage(IImageStorageProvider provider, Guid id) : base(provider, id)
         {
             _provider = provider;
+        }
+
+        public ImageStorage(IImageStorageProvider provider, Guid id, int[] diagonals) : base(provider, id)
+        {
+            _provider = provider;
+            Diagonals = diagonals;
         }
 
         private readonly IImageStorageProvider _provider;
@@ -34,6 +41,7 @@ namespace Library.Storage.Image
 
         public void Add(Stream stream, int diagonal)
         {
+            Diagonals = new List<int>(Diagonals) { diagonal }.Distinct().ToArray();
             _provider.Add(ID, stream, diagonal);
         }
 
@@ -42,12 +50,12 @@ namespace Library.Storage.Image
             _provider.Add(ID, stream, IamgeType.Thumbnail);
         }
 
-        public Stream Get()
+        public override Stream Get()
         {
             return _provider.Get(ID, Diagonals == null ? 0 : Diagonals.Max());
         }
 
-        public byte[] GetRange(int index, int size)
+        public override byte[] GetRange(int index, int size)
         {
             return _provider.GetRange(ID, index, size);
         }
