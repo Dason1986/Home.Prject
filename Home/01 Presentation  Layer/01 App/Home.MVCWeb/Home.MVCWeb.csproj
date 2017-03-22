@@ -10,8 +10,10 @@
     <RootNamespace>Home.MVCWeb</RootNamespace>
     <AssemblyName>Home.MVCWeb</AssemblyName>
     <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
-    <FileUpgradeFlags>40</FileUpgradeFlags>
-    <UpgradeBackupLocation>D:\Code\Home.Prject\Home\Backup\</UpgradeBackupLocation>
+    <FileUpgradeFlags>
+    </FileUpgradeFlags>
+    <UpgradeBackupLocation>
+    </UpgradeBackupLocation>
     <OldToolsVersion>4.0</OldToolsVersion>
     <UseIISExpress>true</UseIISExpress>
     <IISExpressSSLPort />

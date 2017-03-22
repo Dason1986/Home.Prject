@@ -1,10 +1,8 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 14
-VisualStudioVersion = 14.0.25420.1
+VisualStudioVersion = 14.0.23107.0
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Home.WinForm", "01 Presentation  Layer\01 App\Home.WinForm\Home.WinForm.csproj", "{0B6010D2-57C8-46F7-BFA6-E77F3CB2C1DD}"
-EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Win", "Win", "{09EB09A3-C6A3-4934-AD72-384F519DA20D}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Web", "Web", "{C64BFCD3-AA32-45BA-A98C-2011F2500170}"
@@ -15,9 +13,11 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Xmal", "Xmal", "{BF5E5ED0-D
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Core", "Core", "{5B6CE494-8E90-4D31-B2C5-81579EBF1951}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Home.MVCWeb", "01 Presentation  Layer\01 App\Home.MVCWeb\Home.MVCWeb.csproj", "{CE44C8E6-553B-4888-9908-0FC21F27F096}"
-EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "MAC", "MAC", "{C0F1AA03-6FF3-43E8-899A-6F27B84EB298}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Home.WinForm", "01 Presentation  Layer\01 App\Home.WinForm\Home.WinForm.csproj", "{0B6010D2-57C8-46F7-BFA6-E77F3CB2C1DD}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Home.MVCWeb", "01 Presentation  Layer\01 App\Home.MVCWeb\Home.MVCWeb.csproj", "{CE44C8E6-553B-4888-9908-0FC21F27F096}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Home.Mac", "01 Presentation  Layer\01 App\Home.Mac\Home.Mac.csproj", "{D3C9B8BB-87FF-4DDA-B575-7B6842B9A8A2}"
 EndProject
@@ -29,7 +29,7 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Home.Win.Applicatioin", "01
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Home.WPF", "01 Presentation  Layer\01 App\Home.WPF\Home.WPF.csproj", "{D02A3764-C67C-4CE4-A876-D68946B3EE23}"
 EndProject
-Project("{E24C65DC-7377-472B-9ABA-BC803B73C61A}") = "Home.WebUI(2)", "01 Presentation  Layer\01 App\Home.WebUI\", "{3DC582AE-6496-4045-91B9-B00F05D60EAB}"
+Project("{E24C65DC-7377-472B-9ABA-BC803B73C61A}") = "Home.WebUI", "01 Presentation  Layer\01 App\Home.WebUI\", "{3DC582AE-6496-4045-91B9-B00F05D60EAB}"
 	ProjectSection(WebsiteProperties) = preProject
 		TargetFrameworkMoniker = ".NETFramework,Version%3Dv4.5"
 		Debug.AspNetCompiler.VirtualPath = "/localhost_64675"
@@ -47,6 +47,7 @@ Project("{E24C65DC-7377-472B-9ABA-BC803B73C61A}") = "Home.WebUI(2)", "01 Present
 		Release.AspNetCompiler.FixedNames = "false"
 		Release.AspNetCompiler.Debug = "False"
 		VWDPort = "64675"
+		SlnRelativePath = "01 Presentation  Layer\01 App\Home.WebUI\"
 	EndProjectSection
 EndProject
 Global
@@ -152,9 +153,9 @@ Global
 		HideSolutionNode = FALSE
 	EndGlobalSection
 	GlobalSection(NestedProjects) = preSolution
-		{0B6010D2-57C8-46F7-BFA6-E77F3CB2C1DD} = {E83E9E4F-9A91-449F-8B8A-7D40FF2C9AD6}
 		{E83E9E4F-9A91-449F-8B8A-7D40FF2C9AD6} = {09EB09A3-C6A3-4934-AD72-384F519DA20D}
 		{BF5E5ED0-D7E7-4305-96BB-AAF9FF9B2219} = {09EB09A3-C6A3-4934-AD72-384F519DA20D}
+		{0B6010D2-57C8-46F7-BFA6-E77F3CB2C1DD} = {E83E9E4F-9A91-449F-8B8A-7D40FF2C9AD6}
 		{CE44C8E6-553B-4888-9908-0FC21F27F096} = {C64BFCD3-AA32-45BA-A98C-2011F2500170}
 		{D3C9B8BB-87FF-4DDA-B575-7B6842B9A8A2} = {C0F1AA03-6FF3-43E8-899A-6F27B84EB298}
 		{BE2CE6E8-7D34-449C-AC58-6EC1B7FC59D4} = {5B6CE494-8E90-4D31-B2C5-81579EBF1951}

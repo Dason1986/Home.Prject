@@ -13,5 +13,10 @@ namespace Home.WPF
     /// </summary>
     public partial class App : Application
     {
+        public App()
+        {
+            Home.Win.Applicatioin.ComponentModel.Media media = new Win.Applicatioin.ComponentModel.Media();
+            media.GetMediaFiles();
+        }
     }
 }
