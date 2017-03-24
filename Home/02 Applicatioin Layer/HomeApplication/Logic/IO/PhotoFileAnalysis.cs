@@ -134,7 +134,7 @@ namespace HomeApplication.Logic.IO
                     var photolist = filesRepository.GetPhotoFilesByExtensions(Analysis.Option.ImageTypes).Skip(beginindex).Take(take).ToList();
                     foreach (var item in photolist)
                     {
-                        domainService.Handle(item.Photo, item);
+                        domainService.Handle(null, item);
                         domainService.ModuleProvider.UnitOfWork.Commit();
                     }
                     GC.Collect();

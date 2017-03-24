@@ -8,7 +8,11 @@ using System.Web;
 using System.Web.Http;
 using HomeApplication.Services;
 using System.Dynamic;
+using System.Linq;
 using System.Runtime.CompilerServices;
+using System.Text;
+using System.Threading.Tasks;
+using Home.DomainModel.Repositories;
 using Microsoft.CSharp.RuntimeBinder;
 
 namespace HomeApplication.Owin.API
@@ -93,18 +97,39 @@ namespace HomeApplication.Owin.API
 
             return result;
         }
+    }
+
+    [RoutePrefix("api/UploadFile")]
+    public class UploadFileController : WebAPI
+    {
+        private readonly ISystemParameterRepository _systemParameterRepository;
+        protected readonly string ServerUploadFolder;
+
+        public UploadFileController(ISystemParameterRepository systemParameterRepository)
+        {
+            _systemParameterRepository = systemParameterRepository;
+            _systemParameterRepository.GetListByGroup("UploadFileSetting");
+            ServerUploadFolder = Environment.GetFolderPath(Environment.SpecialFolder.Desktop);
+        }
 
         [HttpPost]
-        public string PhotoFileUpload()
+        public void PhotoFileUpload()
         {
-            var request = HttpContext.Current.Request;
-
-            var filePath = Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.Desktop), request.Headers["filename"]);
-            using (var fs = new System.IO.FileStream(filePath, System.IO.FileMode.Create))
+            if (!Request.Content.IsMimeMultipartContent())
             {
-                request.InputStream.CopyTo(fs);
+                throw new HttpResponseException(HttpStatusCode.UnsupportedMediaType);
             }
-            return "uploaded";
+            var streamProvider = new MultipartMemoryStreamProvider();
+            var staffnos = GetStaffNos();
+            Console.WriteLine(staffnos);
+            var task = Request.Content.ReadAsMultipartAsync(streamProvider);
+            task.Wait();
+            foreach (HttpContent content in streamProvider.Contents)
+            {
+                var byta = content.ReadAsByteArrayAsync();
+                byta.Wait();
+                Console.WriteLine(byta.Result);
+            }
         }
     }
 }

@@ -29,27 +29,28 @@ namespace Repository.EF.Mapping
         {
             modelBuilder.Configurations.Add(new SystemParameterEntityTypeConfiguration());
         }
+
         private static void FileAgg(DbModelBuilder modelBuilder)
         {
+            modelBuilder.Configurations.Add(new StorageEngineEntityTypeConfiguration());
+            modelBuilder.Configurations.Add(new StorageEngineSettingEntityTypeConfiguration());
             modelBuilder.Configurations.Add(new FileInfoEntityTypeConfiguration());
-
+            modelBuilder.Configurations.Add(new FileInfoExtendEntityTypeConfiguration());
         }
+
         private static void ProductAgg(DbModelBuilder modelBuilder)
         {
             modelBuilder.Configurations.Add(new ProductItemEntityTypeConfiguration());
             modelBuilder.Configurations.Add(new ProductAttachmentEntityTypeConfiguration());
-
-
         }
+
         private static void AssetsAgg(DbModelBuilder modelBuilder)
         {
-
             modelBuilder.Configurations.Add(new AssetsItemEntityTypeConfiguration());
             modelBuilder.Configurations.Add(new PurchaseLineItemEntityTypeConfiguration());
             modelBuilder.Configurations.Add(new PurchaseOrderEntityTypeConfiguration());
-
-
         }
+
         private static void GalleryAgg(DbModelBuilder modelBuilder)
         {
             modelBuilder.Configurations.Add(new AlbumEntityTypeConfiguration());
@@ -57,9 +58,8 @@ namespace Repository.EF.Mapping
             modelBuilder.Configurations.Add(new PhotoAttributeEntityTypeConfiguration());
             modelBuilder.Configurations.Add(new PhotoFingerprintEntityTypeConfiguration());
             modelBuilder.Configurations.Add(new PhotoSimilarEntityTypeConfiguration());
-
-
         }
+
         private static void UserAgg(DbModelBuilder modelBuilder)
         {
             modelBuilder.Configurations.Add(new UserProfileEntityTypeConfiguration());
@@ -67,7 +67,6 @@ namespace Repository.EF.Mapping
             modelBuilder.Configurations.Add(new ContactRelationEntityTypeConfiguration());
             modelBuilder.Configurations.Add(new FamilyRoleEntityTypeConfiguration());
             // modelBuilder.Configurations.Add(new ContactRelationRightEntityTypeConfiguration());
-
         }
     }
 }

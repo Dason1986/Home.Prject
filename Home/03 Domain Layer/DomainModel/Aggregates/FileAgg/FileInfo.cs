@@ -10,25 +10,65 @@ namespace Home.DomainModel.Aggregates.FileAgg
     {
         public FileInfo()
         {
-
         }
+
         public FileInfo(ICreatedInfo createinfo) : base(createinfo)
         {
-
         }
+
         [StringLength(100)]
         public string FileName { get; set; }
+
         [StringLength(255)]
         public string FullPath { get; set; }
 
         public long FileSize { get; set; }
+
         [StringLength(32)]
         public string MD5 { get; set; }
+
         [StringLength(50)]
         public string Extension { get; set; }
+
         public SourceType SourceType { get; set; }
-     //   public virtual FileInfoExtend Extend { get; set; }
+
+        public virtual FileInfoExtend Extend { get; set; }
         public virtual Photo Photo { get; set; }
+
+        public Guid EngineID { get; set; }
+        public virtual StorageEngine Engine { get; set; }
     }
 
+    public class StorageEngine : AuditedEntity
+    {
+        public StorageEngine()
+        {
+        }
+
+        public StorageEngine(ICreatedInfo createinfo) : base(createinfo)
+        {
+        }
+
+        [StringLength(50), Required]
+        public string Name { get; set; }
+
+        [StringLength(200), Required]
+        public string Root { get; set; }
+
+        public Guid SettingID { get; set; }
+
+        public virtual StorageEngineSetting Setting { get; set; }
+    }
+
+    public class StorageEngineSetting : AuditedEntity
+    {
+        [StringLength(200)]
+        public string Host { get; set; }
+
+        [StringLength(200)]
+        public string Uid { get; set; }
+
+        [StringLength(200)]
+        public string Pwd { get; set; }
+    }
 }

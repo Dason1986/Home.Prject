@@ -8,6 +8,7 @@ using Library.Infrastructure.Application;
 using Home.DomainModel;
 using Library.Draw;
 using HomeApplication.ComponentModel.IO;
+using FileInfo = Home.DomainModel.Aggregates.FileAgg.FileInfo;
 
 namespace HomeApplication.DomainServices
 {
@@ -21,10 +22,11 @@ namespace HomeApplication.DomainServices
         }
 
         private readonly IPhotoEnvironment _photoEnvironment = new PhotoEnvironment();
-        Library.Storage.IFileStorage storage;
-        Image image;
-        Stream fs ;
+        private Library.Storage.IFileStorage storage;
+        private Image image;
+        private Stream fs;
         private Orientation imageOrientation;
+
         protected override void OnDispose()
         {
             if (storage != null) storage.Dispose();
@@ -32,13 +34,13 @@ namespace HomeApplication.DomainServices
             if (image != null) image.Dispose();
             base.OnDispose();
         }
+
         protected override void DoAddAction()
         {
             if (CurrnetFile == null) return;
             if (!_photoEnvironment.Isloadconfig) _photoEnvironment.LoadConfig(ModuleProvider.CreateSystemParameter());
             storage = CurrnetFile.GetStorage();
             Logger.Trace("AddPhotoDomainService:{0}", CurrnetFile.FullPath);
-
 
             if (!storage.Exists)
             {
@@ -56,16 +58,14 @@ namespace HomeApplication.DomainServices
                     PhotoType = PhotoType.Graphy,
                 };
                 PhotoRepository.Add(CurrnetPhoto);
-                CurrnetFile.Photo = CurrnetPhoto;
+                // CurrnetFile.Photo = CurrnetPhoto;
             }
             if (CurrnetPhoto.Attributes != null && CurrnetPhoto.Attributes.Count > 0) return;
 
             Logger.TraceByContent("Analysis", CurrnetFile.FullPath);
 
-
             fs = storage.Get();
             image = new Bitmap(fs);
-
 
             var exifInfo = ImageExif.GetExifInfo(image);
             if (CurrnetPhoto.Attributes == null)
@@ -75,10 +75,6 @@ namespace HomeApplication.DomainServices
             }
             DoImageExif(image, exifInfo);
             BuildImage(image);
-
-
-
-
         }
 
         private void BuildImage(Image image)
@@ -108,7 +104,6 @@ namespace HomeApplication.DomainServices
             };
             return additemExif;
         }
-
 
         protected void DoImageExif(Image image, Library.Draw.ImageExif exif)
         {

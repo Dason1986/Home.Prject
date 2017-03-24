@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace Home.Repository.HOME_SQL
 {
-    partial class V1
+    partial class V1_0_1
     {
         private void InitSql()
         {

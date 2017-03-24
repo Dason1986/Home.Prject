@@ -64,13 +64,13 @@ namespace HomeApplication.DomainServices
                 if (args.PhotoID == Guid.Empty && args.FileID == Guid.Empty) throw new PhotoDomainServiceException(Resources.DomainServiceResource.PhotoItemArgsNull, new ArgumentException("args"));
                 CurrnetFile = FilesRepository.Get(args.FileID);
                 if (CurrnetFile == null) throw new PhotoDomainServiceException(Resources.DomainServiceResource.FileInfoNotExist);
-                CurrnetPhoto = CurrnetFile.Photo;
+                //  CurrnetPhoto = CurrnetFile.Photo;
                 args.Tag = CurrnetFile;
             }
             else
             {
                 CurrnetFile = args.Tag as FileInfo;
-                CurrnetPhoto = CurrnetFile.Photo;
+                //     CurrnetPhoto = CurrnetFile.Photo;
             }
 
             if (args.PhotoID != Guid.Empty && CurrnetPhoto == null)

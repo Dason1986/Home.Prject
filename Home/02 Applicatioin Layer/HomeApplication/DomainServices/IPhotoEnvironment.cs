@@ -35,7 +35,7 @@ namespace HomeApplication.DomainServices
             if (Isloadconfig) return;
             Isloadconfig = true;
 
-            var configs = systemParRepository.GetAll().Where(n => n.Group == "GallerySetting").ToList();
+            var configs = systemParRepository.GetListByGroup("GallerySetting");
 
             GalleryPath = configs.FirstOrDefault(n => n.Key == "GalleryPath").GetValue(Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "GalleryPath"));
         }

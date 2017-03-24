@@ -80,6 +80,7 @@
     <Compile Include="DomainServices\ISimilarPhotoDomainService.cs" />
     <Compile Include="DomainServices\PhotoItemEventArgs.cs" />
     <Compile Include="JobServices\ICopyFileService.cs" />
+    <Compile Include="ModuleProviders\IFileManagentModuleProvider.cs" />
     <Compile Include="ModuleProviders\IGalleryModuleProvider.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Aggregates\UserAgg\UserProfile.cs" />
@@ -91,6 +92,7 @@
     <Compile Include="Repositories\IPhotoFingerprintRepository.cs" />
     <Compile Include="Repositories\IPhotoRepository.cs" />
     <Compile Include="Repositories\IPhotoSimilarRepository.cs" />
+    <Compile Include="Repositories\IStorageEngineRepository.cs" />
     <Compile Include="Repositories\ISystemParameterRepository.cs" />
   </ItemGroup>
   <ItemGroup>

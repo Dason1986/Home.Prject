@@ -1,5 +1,8 @@
 ﻿insert Album (id,StatusCode,Created,CreatedBy,Modified,ModifiedBy) values(N'00000000-0000-0000-0000-000000000000',0,getdate(),N'CreateScript',getdate(),N'CreateScript')
-/*
+insert StorageEngineSetting (id,StatusCode,Created,CreatedBy,Modified,ModifiedBy) values(N'00000000-0000-0000-0000-000000000000',0,getdate(),N'CreateScript',getdate(),N'CreateScript')
+insert [StorageEngine] (id,[Name],[Root],SettingID,StatusCode,Created,CreatedBy,Modified,ModifiedBy) values(N'00000000-0000-0000-0000-000000000000','local','',N'00000000-0000-0000-0000-000000000000',0,getdate(),N'CreateScript',getdate(),N'CreateScript')
+
+
 INSERT INTO [dbo].[FamilyRole] ([ID], [Name], [Remark], [Level], [Six], [Created], [CreatedBy], [StatusCode]) VALUES (N'00173871-afe7-431a-a9ec-df44b1dcb736', N'老公', NULL, 0, 0, getdate(), N'CreateScript', 2)
 INSERT INTO [dbo].[FamilyRole] ([ID], [Name], [Remark], [Level], [Six], [Created], [CreatedBy], [StatusCode]) VALUES (N'01173871-afe7-431a-a9ec-df44b1dcb736', N'老婆', NULL, 0, 1, getdate(), N'CreateScript', 2)
 INSERT INTO [dbo].[FamilyRole] ([ID], [Name], [Remark], [Level], [Six], [Created], [CreatedBy], [StatusCode]) VALUES (N'00f73871-afe7-431a-a9ec-df44b1dcb736', N'高祖父', NULL, 4, 0, getdate(), N'CreateScript', 2)
@@ -77,4 +80,3 @@ INSERT INTO [dbo].[FamilyRole] ([ID], [Name], [Remark], [Level], [Six], [Created
 INSERT INTO [dbo].[FamilyRole] ([ID], [Name], [Remark], [Level], [Six], [Created], [CreatedBy], [StatusCode]) VALUES (N'48f73871-afe7-431a-a9ec-df44b1dcb736', N'曾孙女', NULL, -3, 1, getdate(), N'CreateScript', 2)
 INSERT INTO [dbo].[FamilyRole] ([ID], [Name], [Remark], [Level], [Six], [Created], [CreatedBy], [StatusCode]) VALUES (N'49f73871-afe7-431a-a9ec-df44b1dcb736', N'玄孙', NULL, -4, 0, getdate(), N'CreateScript', 2)
 INSERT INTO [dbo].[FamilyRole] ([ID], [Name], [Remark], [Level], [Six], [Created], [CreatedBy], [StatusCode]) VALUES (N'4af73871-afe7-431a-a9ec-df44b1dcb736', N'玄孙女', NULL, -4, 1, getdate(), N'CreateScript', 2)
-*/

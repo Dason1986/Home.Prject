@@ -7,6 +7,7 @@ using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using System;
+using Home.DomainModel.Repositories;
 
 namespace HomeApplication.Logic.IO
 {
@@ -34,17 +35,33 @@ namespace HomeApplication.Logic.IO
 
         private readonly IList<string> _existMd5S = new List<string>();
         private string _path;
+        private string _Rootpath;
 
         protected override bool OnVerification()
         {
             if (string.IsNullOrEmpty(Option.Path)) throw new Exception("路徑爲空");
-            _path = Option.Path;
+            _path = Path.GetFullPath(Option.Path);
             if (_path[0] == '\'' || _path[0] == '"') _path = _path.Substring(1, Option.Path.Length - 2);
             if (!Directory.Exists(_path)) Directory.CreateDirectory(_path);
-
+            var storageEngineRepository = Bootstrap.Currnet.GetService<IStorageEngineRepository>();
+            var engin = storageEngineRepository.GetByPathEngine(_path);
+            if (engin == null)
+            {
+                engin = new Home.DomainModel.Aggregates.FileAgg.StorageEngine(CreatedInfo.ScanderPhysical)
+                {
+                    Root = _path,
+                    Name = Path.GetDirectoryName(_path)
+                };
+                storageEngineRepository.Add(engin);
+                storageEngineRepository.UnitOfWork.Commit();
+            }
+            _Rootpath = engin.Root;
+            enginid = engin.ID;
             Scan(_path);
             return base.OnVerification();
         }
+
+        private Guid enginid;
 
         protected override void ThreadProssSize(int beginindex, int endindex)
         {
@@ -68,9 +85,10 @@ namespace HomeApplication.Logic.IO
                     FileInfo sysInfo = new FileInfo(item);
                     if (_filterfile.Any(ff => sysInfo.Name.EndsWith(ff, StringComparison.OrdinalIgnoreCase))) continue;
                     fileinfo.Extension = sysInfo.Extension;
-                    fileinfo.FullPath = item;
+                    fileinfo.FullPath = item.Replace(_Rootpath, String.Empty);
                     fileinfo.FileName = sysInfo.Name;
                     fileinfo.MD5 = md5;
+                    fileinfo.EngineID = enginid;
                     fileinfo.SourceType = Home.DomainModel.SourceType.ServerScand;
 
                     if (sysInfo.Exists)

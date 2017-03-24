@@ -3,7 +3,8 @@ using Library.Domain.Data;
 
 namespace Home.DomainModel.Repositories
 {
-    public interface ISystemParameterRepository: IRepository<SystemParameter>
-	{
-	}
+    public interface ISystemParameterRepository : IRepository<SystemParameter>
+    {
+        SystemParameter[] GetListByGroup(string groupname);
+    }
 }
