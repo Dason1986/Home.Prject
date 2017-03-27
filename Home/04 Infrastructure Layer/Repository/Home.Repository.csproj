@@ -89,9 +89,9 @@
     </Compile>
     <Compile Include="HOME_SQL\Configuration.cs" />
     <Compile Include="HOME_SQL\InitializeDB\V1.cs" />
-    <Compile Include="Migrations\201611240634251_V1.cs" />
-    <Compile Include="Migrations\201611240634251_V1.Designer.cs">
-      <DependentUpon>201611240634251_V1.cs</DependentUpon>
+    <Compile Include="Migrations\201703271538193_V1_0_1.cs" />
+    <Compile Include="Migrations\201703271538193_V1_0_1.Designer.cs">
+      <DependentUpon>201703271538193_V1_0_1.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Migrations\InitializeDB\V1.cs" />
@@ -130,12 +130,12 @@
     <EmbeddedResource Include="HOME_SQL\201703240845054_V1_0_1.resx">
       <DependentUpon>201703240845054_V1_0_1.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201703271538193_V1_0_1.resx">
+      <DependentUpon>201703271538193_V1_0_1.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Migrations\InitializeDB\CreateView.sql" />
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="Migrations\201611240634251_V1.resx">
-      <DependentUpon>201611240634251_V1.cs</DependentUpon>
-    </EmbeddedResource>
     <EmbeddedResource Include="Migrations\InitializeDB\init.sql" />
   </ItemGroup>
   <ItemGroup>

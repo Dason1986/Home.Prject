@@ -5,9 +5,14 @@ Add-Migration "MigrationName" -Force  -Verbose
 Update-Database -TargetMigration "MigrationName" -Verbose  -force
 
 Add-Migration -configuration 'Repository.Migrations.Configuration' "V1" -Force  -Verbose
+Update-Database -configuration 'Repository.Migrations.Configuration' -TargetMigration "V1_0_1" -Force  -Verbose
+
 
 enable-migrations -ContextTypeName "Repository.MainBoundedContext" -MigrationsDirectory:"HOME_SQL"
 Add-Migration -configuration 'Home.Repository.HOME_SQL.Configuration'  "V1" -Force  -Verbose
+Update-Database -configuration 'Home.Repository.HOME_SQL.Configuration' -TargetMigration "V1_0_1" -Force  -Verbose
+
+
 
 CMD by  administrator
 

@@ -1,4 +1,4 @@
-namespace Home.Repository.HOME_SQL
+namespace Repository.Migrations
 {
     using System;
     using System.Data.Entity.Migrations;
@@ -12,15 +12,15 @@ namespace Home.Repository.HOME_SQL
                 c => new
                     {
                         ID = c.Guid(nullable: false),
-                        Description = c.String(maxLength: 255),
-                        Group = c.String(maxLength: 50),
+                        Description = c.String(maxLength: 255, storeType: "nvarchar"),
+                        Group = c.String(maxLength: 50, storeType: "nvarchar"),
                         IsReadOnly = c.Boolean(nullable: false),
-                        Key = c.String(maxLength: 50),
-                        Value = c.String(maxLength: 255),
-                        Modified = c.DateTime(nullable: false),
-                        ModifiedBy = c.String(nullable: false, maxLength: 20),
-                        Created = c.DateTime(nullable: false),
-                        CreatedBy = c.String(nullable: false, maxLength: 20),
+                        Key = c.String(maxLength: 50, storeType: "nvarchar"),
+                        Value = c.String(maxLength: 255, storeType: "nvarchar"),
+                        Modified = c.DateTime(nullable: false, precision: 0),
+                        ModifiedBy = c.String(nullable: false, maxLength: 20, storeType: "nvarchar"),
+                        Created = c.DateTime(nullable: false, precision: 0),
+                        CreatedBy = c.String(nullable: false, maxLength: 20, storeType: "nvarchar"),
                         StatusCode = c.Int(nullable: false),
                     })
                 .PrimaryKey(t => t.ID);
@@ -31,11 +31,11 @@ namespace Home.Repository.HOME_SQL
                     {
                         ID = c.Guid(nullable: false),
                         ContactProfileID = c.Guid(nullable: false),
-                        StaffNo = c.String(nullable: false, maxLength: 20),
-                        Modified = c.DateTime(nullable: false),
-                        ModifiedBy = c.String(nullable: false, maxLength: 20),
-                        Created = c.DateTime(nullable: false),
-                        CreatedBy = c.String(nullable: false, maxLength: 20),
+                        StaffNo = c.String(nullable: false, maxLength: 20, storeType: "nvarchar"),
+                        Modified = c.DateTime(nullable: false, precision: 0),
+                        ModifiedBy = c.String(nullable: false, maxLength: 20, storeType: "nvarchar"),
+                        Created = c.DateTime(nullable: false, precision: 0),
+                        CreatedBy = c.String(nullable: false, maxLength: 20, storeType: "nvarchar"),
                         StatusCode = c.Int(nullable: false),
                     })
                 .PrimaryKey(t => t.ID)
@@ -47,13 +47,13 @@ namespace Home.Repository.HOME_SQL
                 c => new
                     {
                         ID = c.Guid(nullable: false),
-                        Name = c.String(maxLength: 20),
+                        Name = c.String(maxLength: 20, storeType: "nvarchar"),
                         Six = c.Int(nullable: false),
-                        Birthday = c.DateTime(nullable: false),
-                        Modified = c.DateTime(nullable: false),
-                        ModifiedBy = c.String(nullable: false, maxLength: 20),
-                        Created = c.DateTime(nullable: false),
-                        CreatedBy = c.String(nullable: false, maxLength: 20),
+                        Birthday = c.DateTime(nullable: false, precision: 0),
+                        Modified = c.DateTime(nullable: false, precision: 0),
+                        ModifiedBy = c.String(nullable: false, maxLength: 20, storeType: "nvarchar"),
+                        Created = c.DateTime(nullable: false, precision: 0),
+                        CreatedBy = c.String(nullable: false, maxLength: 20, storeType: "nvarchar"),
                         StatusCode = c.Int(nullable: false),
                     })
                 .PrimaryKey(t => t.ID);
@@ -65,9 +65,9 @@ namespace Home.Repository.HOME_SQL
                         ID = c.Guid(nullable: false),
                         LeftRoleId = c.Guid(nullable: false),
                         RightRoleId = c.Guid(nullable: false),
-                        Remark = c.String(maxLength: 100),
-                        Created = c.DateTime(nullable: false),
-                        CreatedBy = c.String(nullable: false, maxLength: 20),
+                        Remark = c.String(maxLength: 100, storeType: "nvarchar"),
+                        Created = c.DateTime(nullable: false, precision: 0),
+                        CreatedBy = c.String(nullable: false, maxLength: 20, storeType: "nvarchar"),
                         StatusCode = c.Int(nullable: false),
                     })
                 .PrimaryKey(t => t.ID)
@@ -81,12 +81,12 @@ namespace Home.Repository.HOME_SQL
                 c => new
                     {
                         ID = c.Guid(nullable: false),
-                        Name = c.String(maxLength: 20),
-                        Remark = c.String(maxLength: 20),
+                        Name = c.String(maxLength: 20, storeType: "nvarchar"),
+                        Remark = c.String(maxLength: 20, storeType: "nvarchar"),
                         Level = c.Int(nullable: false),
                         Six = c.Int(nullable: false),
-                        Created = c.DateTime(nullable: false),
-                        CreatedBy = c.String(nullable: false, maxLength: 20),
+                        Created = c.DateTime(nullable: false, precision: 0),
+                        CreatedBy = c.String(nullable: false, maxLength: 20, storeType: "nvarchar"),
                         StatusCode = c.Int(nullable: false),
                     })
                 .PrimaryKey(t => t.ID);
@@ -96,13 +96,13 @@ namespace Home.Repository.HOME_SQL
                 c => new
                     {
                         ID = c.Guid(nullable: false),
-                        Name = c.String(nullable: false, maxLength: 50),
-                        Root = c.String(nullable: false, maxLength: 200),
+                        Name = c.String(nullable: false, maxLength: 50, storeType: "nvarchar"),
+                        Root = c.String(nullable: false, maxLength: 200, storeType: "nvarchar"),
                         SettingID = c.Guid(nullable: false),
-                        Modified = c.DateTime(nullable: false),
-                        ModifiedBy = c.String(nullable: false, maxLength: 20),
-                        Created = c.DateTime(nullable: false),
-                        CreatedBy = c.String(nullable: false, maxLength: 20),
+                        Modified = c.DateTime(nullable: false, precision: 0),
+                        ModifiedBy = c.String(nullable: false, maxLength: 20, storeType: "nvarchar"),
+                        Created = c.DateTime(nullable: false, precision: 0),
+                        CreatedBy = c.String(nullable: false, maxLength: 20, storeType: "nvarchar"),
                         StatusCode = c.Int(nullable: false),
                     })
                 .PrimaryKey(t => t.ID)
@@ -114,13 +114,13 @@ namespace Home.Repository.HOME_SQL
                 c => new
                     {
                         ID = c.Guid(nullable: false),
-                        Host = c.String(maxLength: 200),
-                        Uid = c.String(maxLength: 200),
-                        Pwd = c.String(maxLength: 200),
-                        Modified = c.DateTime(nullable: false),
-                        ModifiedBy = c.String(nullable: false, maxLength: 20),
-                        Created = c.DateTime(nullable: false),
-                        CreatedBy = c.String(nullable: false, maxLength: 20),
+                        Host = c.String(maxLength: 200, storeType: "nvarchar"),
+                        Uid = c.String(maxLength: 200, storeType: "nvarchar"),
+                        Pwd = c.String(maxLength: 200, storeType: "nvarchar"),
+                        Modified = c.DateTime(nullable: false, precision: 0),
+                        ModifiedBy = c.String(nullable: false, maxLength: 20, storeType: "nvarchar"),
+                        Created = c.DateTime(nullable: false, precision: 0),
+                        CreatedBy = c.String(nullable: false, maxLength: 20, storeType: "nvarchar"),
                         StatusCode = c.Int(nullable: false),
                     })
                 .PrimaryKey(t => t.ID);
@@ -130,15 +130,15 @@ namespace Home.Repository.HOME_SQL
                 c => new
                     {
                         ID = c.Guid(nullable: false),
-                        FileName = c.String(maxLength: 100),
-                        FullPath = c.String(maxLength: 255),
+                        FileName = c.String(maxLength: 100, storeType: "nvarchar"),
+                        FullPath = c.String(maxLength: 255, storeType: "nvarchar"),
                         FileSize = c.Long(nullable: false),
-                        MD5 = c.String(maxLength: 32),
-                        Extension = c.String(maxLength: 50),
+                        MD5 = c.String(maxLength: 32, storeType: "nvarchar"),
+                        Extension = c.String(maxLength: 50, storeType: "nvarchar"),
                         SourceType = c.Int(nullable: false),
                         EngineID = c.Guid(nullable: false),
-                        Created = c.DateTime(nullable: false),
-                        CreatedBy = c.String(nullable: false, maxLength: 20),
+                        Created = c.DateTime(nullable: false, precision: 0),
+                        CreatedBy = c.String(nullable: false, maxLength: 20, storeType: "nvarchar"),
                         StatusCode = c.Int(nullable: false),
                     })
                 .PrimaryKey(t => t.ID)
@@ -150,11 +150,11 @@ namespace Home.Repository.HOME_SQL
                 c => new
                     {
                         ID = c.Guid(nullable: false),
-                        Comments = c.String(),
+                        Comments = c.String(unicode: false),
                         FileID = c.Guid(nullable: false),
                         SourceType = c.Int(nullable: false),
-                        Created = c.DateTime(nullable: false),
-                        CreatedBy = c.String(nullable: false, maxLength: 20),
+                        Created = c.DateTime(nullable: false, precision: 0),
+                        CreatedBy = c.String(nullable: false, maxLength: 20, storeType: "nvarchar"),
                         StatusCode = c.Int(nullable: false),
                     })
                 .PrimaryKey(t => t.ID)
@@ -168,12 +168,12 @@ namespace Home.Repository.HOME_SQL
                         ID = c.Guid(nullable: false),
                         FileID = c.Guid(nullable: false),
                         AlbumID = c.Guid(nullable: false),
-                        Tags = c.String(maxLength: 100),
+                        Tags = c.String(maxLength: 100, storeType: "nvarchar"),
                         PhotoType = c.Int(nullable: false),
-                        Modified = c.DateTime(nullable: false),
-                        ModifiedBy = c.String(nullable: false, maxLength: 20),
-                        Created = c.DateTime(nullable: false),
-                        CreatedBy = c.String(nullable: false, maxLength: 20),
+                        Modified = c.DateTime(nullable: false, precision: 0),
+                        ModifiedBy = c.String(nullable: false, maxLength: 20, storeType: "nvarchar"),
+                        Created = c.DateTime(nullable: false, precision: 0),
+                        CreatedBy = c.String(nullable: false, maxLength: 20, storeType: "nvarchar"),
                         StatusCode = c.Int(nullable: false),
                     })
                 .PrimaryKey(t => t.ID)
@@ -190,13 +190,13 @@ namespace Home.Repository.HOME_SQL
                     {
                         ID = c.Guid(nullable: false),
                         PhotoID = c.Guid(nullable: false),
-                        AttKey = c.String(maxLength: 50),
-                        AttValue = c.String(maxLength: 255),
+                        AttKey = c.String(maxLength: 50, storeType: "nvarchar"),
+                        AttValue = c.String(maxLength: 255, storeType: "nvarchar"),
                         BitValue = c.Binary(),
-                        Modified = c.DateTime(nullable: false),
-                        ModifiedBy = c.String(nullable: false, maxLength: 20),
-                        Created = c.DateTime(nullable: false),
-                        CreatedBy = c.String(nullable: false, maxLength: 20),
+                        Modified = c.DateTime(nullable: false, precision: 0),
+                        ModifiedBy = c.String(nullable: false, maxLength: 20, storeType: "nvarchar"),
+                        Created = c.DateTime(nullable: false, precision: 0),
+                        CreatedBy = c.String(nullable: false, maxLength: 20, storeType: "nvarchar"),
                         StatusCode = c.Int(nullable: false),
                     })
                 .PrimaryKey(t => t.ID)
@@ -208,13 +208,13 @@ namespace Home.Repository.HOME_SQL
                 c => new
                     {
                         ID = c.Guid(nullable: false),
-                        Name = c.String(maxLength: 50),
-                        Remark = c.String(maxLength: 50),
-                        RecordingDate = c.DateTime(),
-                        Modified = c.DateTime(nullable: false),
-                        ModifiedBy = c.String(nullable: false, maxLength: 20),
-                        Created = c.DateTime(nullable: false),
-                        CreatedBy = c.String(nullable: false, maxLength: 20),
+                        Name = c.String(maxLength: 50, storeType: "nvarchar"),
+                        Remark = c.String(maxLength: 50, storeType: "nvarchar"),
+                        RecordingDate = c.DateTime(precision: 0),
+                        Modified = c.DateTime(nullable: false, precision: 0),
+                        ModifiedBy = c.String(nullable: false, maxLength: 20, storeType: "nvarchar"),
+                        Created = c.DateTime(nullable: false, precision: 0),
+                        CreatedBy = c.String(nullable: false, maxLength: 20, storeType: "nvarchar"),
                         StatusCode = c.Int(nullable: false),
                     })
                 .PrimaryKey(t => t.ID);
@@ -227,8 +227,8 @@ namespace Home.Repository.HOME_SQL
                         PhotoID = c.Guid(nullable: false),
                         Fingerprint = c.Binary(),
                         Algorithm = c.Int(nullable: false),
-                        Created = c.DateTime(nullable: false),
-                        CreatedBy = c.String(nullable: false, maxLength: 20),
+                        Created = c.DateTime(nullable: false, precision: 0),
+                        CreatedBy = c.String(nullable: false, maxLength: 20, storeType: "nvarchar"),
                         StatusCode = c.Int(nullable: false),
                     })
                 .PrimaryKey(t => t.ID)
@@ -242,8 +242,8 @@ namespace Home.Repository.HOME_SQL
                         ID = c.Guid(nullable: false),
                         RightPhotoID = c.Guid(nullable: false),
                         LeftPhotoID = c.Guid(nullable: false),
-                        Created = c.DateTime(nullable: false),
-                        CreatedBy = c.String(nullable: false, maxLength: 20),
+                        Created = c.DateTime(nullable: false, precision: 0),
+                        CreatedBy = c.String(nullable: false, maxLength: 20, storeType: "nvarchar"),
                         StatusCode = c.Int(nullable: false),
                     })
                 .PrimaryKey(t => t.ID)
@@ -257,18 +257,18 @@ namespace Home.Repository.HOME_SQL
                 c => new
                     {
                         ID = c.Guid(nullable: false),
-                        SnCode = c.String(),
-                        Name = c.String(),
+                        SnCode = c.String(unicode: false),
+                        Name = c.String(unicode: false),
                         IsPublic = c.Boolean(nullable: false),
                         ContactID = c.Guid(nullable: false),
                         OrderID = c.Guid(nullable: false),
                         ProductID = c.Guid(nullable: false),
                         IsBroken = c.Boolean(nullable: false),
-                        BrokenDate = c.DateTime(nullable: false),
-                        Modified = c.DateTime(nullable: false),
-                        ModifiedBy = c.String(nullable: false, maxLength: 20),
-                        Created = c.DateTime(nullable: false),
-                        CreatedBy = c.String(nullable: false, maxLength: 20),
+                        BrokenDate = c.DateTime(nullable: false, precision: 0),
+                        Modified = c.DateTime(nullable: false, precision: 0),
+                        ModifiedBy = c.String(nullable: false, maxLength: 20, storeType: "nvarchar"),
+                        Created = c.DateTime(nullable: false, precision: 0),
+                        CreatedBy = c.String(nullable: false, maxLength: 20, storeType: "nvarchar"),
                         StatusCode = c.Int(nullable: false),
                     })
                 .PrimaryKey(t => t.ID)
@@ -288,8 +288,8 @@ namespace Home.Repository.HOME_SQL
                         PayAmout_Value = c.Decimal(nullable: false, precision: 18, scale: 2),
                         PayAmout_CurrencyType = c.Int(nullable: false),
                         OrderUserID = c.Guid(nullable: false),
-                        Created = c.DateTime(nullable: false),
-                        CreatedBy = c.String(nullable: false, maxLength: 20),
+                        Created = c.DateTime(nullable: false, precision: 0),
+                        CreatedBy = c.String(nullable: false, maxLength: 20, storeType: "nvarchar"),
                         StatusCode = c.Int(nullable: false),
                     })
                 .PrimaryKey(t => t.ID)
@@ -306,8 +306,8 @@ namespace Home.Repository.HOME_SQL
                         Price_Value = c.Decimal(nullable: false, precision: 18, scale: 2),
                         Price_CurrencyType = c.Int(nullable: false),
                         OrderID = c.Guid(nullable: false),
-                        Created = c.DateTime(nullable: false),
-                        CreatedBy = c.String(nullable: false, maxLength: 20),
+                        Created = c.DateTime(nullable: false, precision: 0),
+                        CreatedBy = c.String(nullable: false, maxLength: 20, storeType: "nvarchar"),
                         StatusCode = c.Int(nullable: false),
                     })
                 .PrimaryKey(t => t.ID)
@@ -321,16 +321,16 @@ namespace Home.Repository.HOME_SQL
                 c => new
                     {
                         ID = c.Guid(nullable: false),
-                        Name = c.String(maxLength: 50),
-                        Modle = c.String(maxLength: 50),
+                        Name = c.String(maxLength: 50, storeType: "nvarchar"),
+                        Modle = c.String(maxLength: 50, storeType: "nvarchar"),
                         Value = c.Decimal(nullable: false, precision: 18, scale: 2),
-                        BarCode = c.String(maxLength: 50),
-                        Tag = c.String(maxLength: 50),
-                        Company = c.String(maxLength: 50),
-                        Modified = c.DateTime(nullable: false),
-                        ModifiedBy = c.String(nullable: false, maxLength: 20),
-                        Created = c.DateTime(nullable: false),
-                        CreatedBy = c.String(nullable: false, maxLength: 20),
+                        BarCode = c.String(maxLength: 50, storeType: "nvarchar"),
+                        Tag = c.String(maxLength: 50, storeType: "nvarchar"),
+                        Company = c.String(maxLength: 50, storeType: "nvarchar"),
+                        Modified = c.DateTime(nullable: false, precision: 0),
+                        ModifiedBy = c.String(nullable: false, maxLength: 20, storeType: "nvarchar"),
+                        Created = c.DateTime(nullable: false, precision: 0),
+                        CreatedBy = c.String(nullable: false, maxLength: 20, storeType: "nvarchar"),
                         StatusCode = c.Int(nullable: false),
                     })
                 .PrimaryKey(t => t.ID);
@@ -342,8 +342,8 @@ namespace Home.Repository.HOME_SQL
                         ID = c.Guid(nullable: false),
                         ProductID = c.Guid(nullable: false),
                         FileID = c.Guid(nullable: false),
-                        Created = c.DateTime(nullable: false),
-                        CreatedBy = c.String(nullable: false, maxLength: 20),
+                        Created = c.DateTime(nullable: false, precision: 0),
+                        CreatedBy = c.String(nullable: false, maxLength: 20, storeType: "nvarchar"),
                         StatusCode = c.Int(nullable: false),
                     })
                 .PrimaryKey(t => t.ID)

@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace Repository.Migrations
 {
-    partial class V1
+    partial class V1_0_1
     {
         private void InitSql()
         {

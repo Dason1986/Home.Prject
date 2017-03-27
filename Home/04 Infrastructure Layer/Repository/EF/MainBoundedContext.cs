@@ -3,6 +3,7 @@ using Library.Domain.Data.EF;
 using Repository.Migrations;
 using System;
 using System.Collections.Generic;
+using System.Configuration;
 using System.Data.Common;
 using System.Data.Entity;
 using System.Data.Entity.Migrations;
@@ -18,12 +19,13 @@ namespace Repository
     {
         static MainBoundedContext()
         {
-            var dbbtype = System.Configuration.ConfigurationManager.AppSettings.Get("DBType") ?? "MSSQL";
-
-            switch (dbbtype.ToUpper())
+        //    var dbbtype = System.Configuration.ConfigurationManager.AppSettings.Get("DBType") ?? "MSSQL";
+            var setting = System.Configuration.ConfigurationManager.ConnectionStrings["MainBoundedContext"] as ConnectionStringSettings;
+            switch (setting.ProviderName)
             {
-                case "MYSQL":
+                case "MySql.Data.MySqlClient":
                     Database.SetInitializer(new MigrateDatabaseToLatestVersion<MainBoundedContext, Repository.Migrations.Configuration>()); break;
+                case "System.Data.SqlClient":
                 default:
                     Database.SetInitializer(new MigrateDatabaseToLatestVersion<MainBoundedContext, Home.Repository.HOME_SQL.Configuration>());
                     break;

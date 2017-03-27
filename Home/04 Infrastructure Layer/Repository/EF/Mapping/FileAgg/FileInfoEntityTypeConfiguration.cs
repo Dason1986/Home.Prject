@@ -22,7 +22,10 @@ namespace Repository.EF.Mapping.FileAgg
  .WithMany()
  .HasForeignKey(t => t.SettingID)
  .WillCascadeOnDelete(false);
+
             ToTable("StorageEngine");
+
+       
         }
     }
 
