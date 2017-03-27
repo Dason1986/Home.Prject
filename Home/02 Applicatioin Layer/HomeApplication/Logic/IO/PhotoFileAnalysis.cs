@@ -66,9 +66,9 @@ namespace HomeApplication.Logic.IO
             return _photoFileAnalysisProvider.GetTotalRecord();
         }
 
-        protected override void ThreadProssSize(int beginindex, int endindex)
+        protected override void ThreadProssSize(int beginindex, int endindex, int take)
         {
-            _photoFileAnalysisProvider.ThreadProssSize(beginindex, endindex);
+            _photoFileAnalysisProvider.ThreadProssSize(beginindex, endindex, take);
         }
 
         private abstract class PhotoFileAnalysisProvider
@@ -82,7 +82,7 @@ namespace HomeApplication.Logic.IO
 
             public abstract int GetTotalRecord();
 
-            public abstract void ThreadProssSize(int beginindex, int endindex);
+            public abstract void ThreadProssSize(int beginindex, int endindex, int take);
         }
 
         /*
@@ -119,11 +119,9 @@ namespace HomeApplication.Logic.IO
                 return filecount;
             }
 
-            public override void ThreadProssSize(int beginindex, int endindex)
+            public override void ThreadProssSize(int beginindex, int endindex, int take)
             {
                 #region MyRegion
-
-                var take = Analysis.BatchSize;
 
                 using (var provider = Bootstrap.Currnet.GetService<IGalleryModuleProvider>())
                 {

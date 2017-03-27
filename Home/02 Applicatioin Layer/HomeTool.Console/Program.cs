@@ -9,10 +9,9 @@ using System.Threading.Tasks;
 
 namespace HomeTool.Console
 {
-    class Program
+    internal class Program
     {
-
-        static int Main(string[] args)
+        private static int Main(string[] args)
         {
             if (args == null || args.Length == 0) return 0;
             ConsoleAppBootstrap boot = new ConsoleAppBootstrap();
@@ -25,7 +24,6 @@ namespace HomeTool.Console
                         ConsoleCommand cmd = new ConsoleCommand(args);
                         cmd.Run();
 
-
                         break;
                     }
                 case "-version": break;
@@ -35,7 +33,6 @@ namespace HomeTool.Console
             }
 
             return 0;
-
         }
     }
 }

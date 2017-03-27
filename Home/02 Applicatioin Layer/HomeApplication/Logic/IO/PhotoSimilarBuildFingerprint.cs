@@ -17,9 +17,6 @@ namespace HomeApplication.Logic.IO
 {
     public class PhotoSimilarBuildFingerprint : BaseMultiThreadingLogicService
     {
-
-
-
         protected override IOption ServiceOption
         {
             get
@@ -32,34 +29,26 @@ namespace HomeApplication.Logic.IO
                 _option = (EmptyOption)value;
             }
         }
-        EmptyOption _option;
+
+        private EmptyOption _option;
 
         protected override int GetTotalRecord()
         {
-
             var provider = Bootstrap.Currnet.GetService<IGalleryModuleProvider>();
             var _photoRepository = provider.CreatePhoto();
 
             var filecount = _photoRepository.GetAll().Count();
             provider.Dispose();
             return filecount;
-
         }
 
-        protected override void ThreadProssSize(int beginindex, int endindex)
+        protected override void ThreadProssSize(int beginindex, int endindex, int take)
         {
-           
-
-
-
-            var take = BatchSize;
-
             using (var provider = Bootstrap.Currnet.GetService<IGalleryModuleProvider>())
             {
-               
                 IBuildFingerprintDomainService domainservice = Bootstrap.Currnet.GetService<IBuildFingerprintDomainService>();
-                domainservice.ModuleProvider=( provider);
-                //   domainservice.SetAlgorithm( SimilarAlgorithm.); 
+                domainservice.ModuleProvider = (provider);
+                //   domainservice.SetAlgorithm( SimilarAlgorithm.);
                 var _photoRepository = domainservice.ModuleProvider.CreatePhoto();
                 IList<Photo> photolist = _photoRepository.GetList(beginindex, take);
 

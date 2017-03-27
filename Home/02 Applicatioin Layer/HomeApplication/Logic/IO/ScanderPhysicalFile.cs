@@ -63,9 +63,8 @@ namespace HomeApplication.Logic.IO
 
         private Guid enginid;
 
-        protected override void ThreadProssSize(int beginindex, int endindex)
+        protected override void ThreadProssSize(int beginindex, int endindex, int take)
         {
-            var take = endindex - beginindex;
             var provider = Bootstrap.Currnet.GetService<IGalleryModuleProvider>();
             var filesRepository = provider.CreateFileInfo();
             try
