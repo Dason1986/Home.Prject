@@ -12,12 +12,12 @@ namespace Home.DomainModel.Aggregates.FileAgg
     {
         public Attachment()
         {
-
         }
+
         public Attachment(ICreatedInfo createinfo) : base(createinfo)
         {
-
         }
+
         public Guid FileID { get; set; }
 
         public virtual FileInfo File { get; set; }

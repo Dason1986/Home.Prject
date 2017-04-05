@@ -11,14 +11,13 @@ namespace HomeApplication
     {
         protected override void Load(ContainerBuilder builder)
         {
-
             builder.RegisterType<MainBoundedContext>().As<EFContext, IDbContext>();
 
             builder.RegisterType<AddPhotoDomainService>().As<IAddPhotoDomainService>();
             builder.RegisterType<BuildFingerprintDomainService>().As<IBuildFingerprintDomainService>();
             builder.RegisterType<SimilarPhotoDomainService>().As<ISimilarPhotoDomainService>();
             builder.RegisterType<PhotoFacesDomainService>().As<IPhotoFacesDomainService>();
-
+            builder.RegisterType<AddFileDomainService>().As<IAddFileDomainService>();
         }
     }
 }
