@@ -14,16 +14,4 @@ namespace Repository.EF.Mapping.FileAgg
             ToTable("FileInfoExtend");
         }
     }
-
-    internal class FileAttributeEntityTypeConfiguration : EntityTypeConfiguration<FileAttribute>
-    {
-        public FileAttributeEntityTypeConfiguration()
-        {
-            this.HasRequired(t => t.Owner)
-.WithMany()
-.HasForeignKey(t => t.OwnerID)
-.WillCascadeOnDelete(false);
-            ToTable("FileAttribute");
-        }
-    }
 }

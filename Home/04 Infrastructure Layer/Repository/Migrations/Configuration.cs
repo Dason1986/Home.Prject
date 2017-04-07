@@ -12,14 +12,14 @@ namespace Repository.Migrations
     using System.Linq;
 
     // [DbConfigurationType(typeof(MySql.Data.Entity.MySqlEFConfiguration))]
-    internal sealed class Configuration : DbMigrationsConfiguration<Repository.MainBoundedContext>
+    internal sealed class Configuration : DbMigrationsConfiguration<MainBoundedContext>
     {
         public Configuration()
         {
             AutomaticMigrationsEnabled = true;
             AutomaticMigrationDataLossAllowed = true;
             MigrationsDirectory = @"Migrations";
-            SetSqlGenerator("MySql.Data.MySqlClient", new CustomMySqlMigrationSqlGenerator());
+            SetSqlGenerator("MySql.Data.MySqlClient", new CustomMySqlMigrationSqlGenerator<MainBoundedContext>());
         }
 
         protected override void Seed(Repository.MainBoundedContext context)
@@ -39,7 +39,7 @@ namespace Repository.Migrations
         }
     }
 
-    internal class CustomMySqlMigrationSqlGenerator : MySqlMigrationSqlGenerator
+    internal class CustomMySqlMigrationSqlGenerator<TContext> : MySqlMigrationSqlGenerator where TContext : DbContext
     {
         protected override MigrationStatement Generate(AddColumnOperation addColumnOperation)
         {
@@ -77,7 +77,7 @@ namespace Repository.Migrations
                 column.DefaultValueSql = "'script'";
             if (column.IsNullable == false && string.Equals("Id", column.Name, StringComparison.OrdinalIgnoreCase))
             {
-          //     if (column.Type == PrimitiveTypeKind.Guid) column.DefaultValueSql = "uuid()";
+                //     if (column.Type == PrimitiveTypeKind.Guid) column.DefaultValueSql = "uuid()";
                 if (column.Type == PrimitiveTypeKind.Int32) column.IsIdentity = true;
             }
             if (string.Equals("StatusCode", column.Name, StringComparison.OrdinalIgnoreCase) && column.Type == PrimitiveTypeKind.Int32)

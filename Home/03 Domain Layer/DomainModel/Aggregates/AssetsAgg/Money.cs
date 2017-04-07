@@ -12,8 +12,13 @@ namespace Home.DomainModel.Aggregates.AssetsAgg
     /// </summary>
     public class Money : ValueObject<Money>
     {
+        [System.ComponentModel.Description("价值"),
+            System.ComponentModel.DisplayName("价值")]
         public decimal Value { get; set; }
 
+
+        [System.ComponentModel.Description("货币类型"),
+            System.ComponentModel.DisplayName("货币类型")]
         public CurrencyType CurrencyType { get; set; }
 
 

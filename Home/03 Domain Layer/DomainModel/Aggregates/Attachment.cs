@@ -6,7 +6,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Home.DomainModel.Aggregates.FileAgg
+namespace Home.DomainModel.Aggregates
 {
     public abstract class Attachment : CreateEntity
     {
@@ -18,8 +18,6 @@ namespace Home.DomainModel.Aggregates.FileAgg
         {
         }
 
-        public Guid FileID { get; set; }
-
-        public virtual FileInfo File { get; set; }
+       
     }
 }

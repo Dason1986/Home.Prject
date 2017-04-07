@@ -13,27 +13,4 @@ namespace Repository.EF.Mapping.FileAgg
             ToTable("FileInfo");
         }
     }
-
-    internal class StorageEngineEntityTypeConfiguration : EntityTypeConfiguration<StorageEngine>
-    {
-        public StorageEngineEntityTypeConfiguration()
-        {
-            this.HasRequired(t => t.Setting)
- .WithMany()
- .HasForeignKey(t => t.SettingID)
- .WillCascadeOnDelete(false);
-
-            ToTable("StorageEngine");
-
-       
-        }
-    }
-
-    internal class StorageEngineSettingEntityTypeConfiguration : EntityTypeConfiguration<StorageEngineSetting>
-    {
-        public StorageEngineSettingEntityTypeConfiguration()
-        {
-            ToTable("StorageEngineSetting");
-        }
-    }
 }

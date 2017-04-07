@@ -9,7 +9,7 @@ namespace Repository.EF.Mapping.GalleryAgg
         {
             this.HasRequired(t => t.Owner)
 .WithMany()
-.HasForeignKey(t => t.PhotoID)
+.HasForeignKey(t => t.OwnerID)
 .WillCascadeOnDelete(false);
             ToTable("PhotoAttribute");
         }

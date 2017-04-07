@@ -51,7 +51,8 @@ namespace Repository
         {
             //刪除未使用的約定
             modelBuilder.Conventions.Remove<OneToManyCascadeDeleteConvention>();
-            EF.Mapping.TypeConfiguration.ModelCreating(modelBuilder);
+            modelBuilder.Configurations.AddFromAssembly(this.GetType().Assembly);
+            //EF.Mapping.TypeConfiguration.ModelCreating(modelBuilder);
         }
 
         IUnitOfWork IDbContext.CreateUnitOfWork()

@@ -18,37 +18,9 @@ namespace Repository.EF.Mapping.GalleryAgg
 
             HasMany(c => c.Attributes)
 .WithRequired()
-.HasForeignKey(c => c.PhotoID)
+.HasForeignKey(c => c.OwnerID)
 .WillCascadeOnDelete(false);
             ToTable("Photo");
-        }
-    }
-
-
-    internal class PhotoSimilarEntityTypeConfiguration : EntityTypeConfiguration<PhotoSimilar>
-    {
-        public PhotoSimilarEntityTypeConfiguration()
-        {
-            this.HasRequired(t => t.LeftOwner).WithMany()
-      .HasForeignKey(t => t.LeftPhotoID).WillCascadeOnDelete(false);
-
-            this.HasRequired(t => t.RightOwner).WithMany()
-   .HasForeignKey(t => t.RightPhotoID).WillCascadeOnDelete(false);
-
-            ToTable("PhotoSimilar");
-        }
-    }
-
-    internal class PhotoFingerprintEntityTypeConfiguration : EntityTypeConfiguration<PhotoFingerprint>
-    {
-        public PhotoFingerprintEntityTypeConfiguration()
-        {
-            this.HasRequired(t => t.Owner).WithMany()
-      .HasForeignKey(t => t.PhotoID).WillCascadeOnDelete(false);
-
-            
-
-            ToTable("PhotoFingerprint");
         }
     }
 }

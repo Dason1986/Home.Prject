@@ -25,7 +25,7 @@ namespace Home.DomainModel.Aggregates.GalleryAgg
         [StringLength(100)]
         public string Tags { get; set; }
 
-        public PhotoType PhotoType { get; set; }
+     
 
         public virtual ICollection<PhotoAttribute> Attributes { get; set; }
 

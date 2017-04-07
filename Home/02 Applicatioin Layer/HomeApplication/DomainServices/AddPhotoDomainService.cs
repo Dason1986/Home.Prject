@@ -55,7 +55,6 @@ namespace HomeApplication.DomainServices
                 {
                     ID = CurrnetFile.ID,
                     FileID = CurrnetFile.ID,
-                    PhotoType = PhotoType.Graphy,
                 };
                 PhotoRepository.Add(CurrnetPhoto);
                 // CurrnetFile.Photo = CurrnetPhoto;
@@ -98,7 +97,7 @@ namespace HomeApplication.DomainServices
         {
             var additemExif = new PhotoAttribute(CreatedInfo.PhotoFileAnalysis)
             {
-                PhotoID = CurrnetPhoto.ID,
+                OwnerID = CurrnetPhoto.ID,
                 AttKey = key,
                 AttValue = value
             };

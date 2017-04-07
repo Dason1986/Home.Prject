@@ -5,7 +5,10 @@ using System;
 
 namespace Home.DomainModel.Aggregates.AssetsAgg
 {
-    public class PurchaseLineItem: CreateEntity
+
+    [System.ComponentModel.Description("購買明細"),
+        System.ComponentModel.DisplayName("購買明細")]
+    public class PurchaseLineItem : CreateEntity
     {
         public PurchaseLineItem()
         {
@@ -15,47 +18,24 @@ namespace Home.DomainModel.Aggregates.AssetsAgg
         {
 
         }
+        [System.ComponentModel.Description("產品編號"),
+            System.ComponentModel.DisplayName("產品編號")]
         public Guid ProductID { get; set; }
 
         public virtual ProductItem Product { get; set; }
 
+        [System.ComponentModel.Description("產品數量"),
+            System.ComponentModel.DisplayName("產品數量")]
         public decimal Quantity { get; set; }
 
         public Money Price { get; set; }
 
+        [System.ComponentModel.Description("購買訂單编号"),
+            System.ComponentModel.DisplayName("購買訂單编号")]
         public Guid OrderID { get; set; }
 
+        [System.ComponentModel.Description("購買訂單"),
+            System.ComponentModel.DisplayName("購買訂單")]
         public virtual PurchaseOrder Order { get; set; }
-    }
-
-    public class AssetsItem:AuditedEntity
-    {
-        public AssetsItem()
-        {
-
-        }
-        public AssetsItem(ICreatedInfo createinfo) : base(createinfo)
-        {
-
-        }
-        public string SnCode { get; set; }
-        
-        public string Name { get; set; }
-
-        public bool IsPublic { get; set; }
-
-        public Guid ContactID { get; set; }
-        public virtual ContactAgg.ContactProfile Contact { get; set; }
-
-        public Guid OrderID { get; set; }
-
-        public virtual PurchaseOrder Order { get; set; }
-        public Guid ProductID { get; set; }
-
-        public virtual ProductItem Product { get; set; }
-
-        public bool IsBroken { get; set; }
-
-        public DateTime BrokenDate { get; set; }
     }
 }

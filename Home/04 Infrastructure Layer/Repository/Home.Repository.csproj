@@ -69,8 +69,14 @@
     <Compile Include="EF\EFUnitOfWork.cs" />
     <Compile Include="EF\MainBoundedContext.cs" />
     <Compile Include="EF\Mapping\AssetsAgg\AssetsItemEntityTypeConfiguration.cs" />
+    <Compile Include="EF\Mapping\FileAgg\FileAttributeEntityTypeConfiguration.cs" />
     <Compile Include="EF\Mapping\FileAgg\FileInfoExtendEntityTypeConfiguration.cs" />
+    <Compile Include="EF\Mapping\FileAgg\StorageEngineEntityTypeConfiguration.cs" />
+    <Compile Include="EF\Mapping\FileAgg\StorageEngineSettingEntityTypeConfiguration.cs" />
     <Compile Include="EF\Mapping\GalleryAgg\AlbumTypeConfiguration.cs" />
+    <Compile Include="EF\Mapping\GalleryAgg\PhotoFingerprintEntityTypeConfiguration.cs" />
+    <Compile Include="EF\Mapping\GalleryAgg\PhotoSimilarEntityTypeConfiguration.cs" />
+    <Compile Include="EF\Mapping\OfficeAgg\WordInfoEntityTypeConfiguration.cs" />
     <Compile Include="EF\Mapping\ProductAgg\ProductAttachmentEntityTypeConfiguration.cs" />
     <Compile Include="EF\Mapping\ProductAgg\ProductItemEntityTypeConfiguration.cs" />
     <Compile Include="EF\Mapping\AssetsAgg\PurchaseLineItemEntityTypeConfiguration.cs" />
@@ -81,15 +87,12 @@
     <Compile Include="EF\Mapping\SystemAgg\ProductItemEntityTypeConfiguration.cs" />
     <Compile Include="EF\Mapping\TypeConfiguration.cs" />
     <Compile Include="EF\Mapping\UserAgg\ContactProfileEntityTypeConfiguration.cs" />
+    <Compile Include="EF\Mapping\UserAgg\ContactRelationEntityTypeConfiguration.cs" />
     <Compile Include="EF\Mapping\UserAgg\FamilyRoleEntityTypeConfiguration.cs" />
     <Compile Include="EF\Mapping\UserAgg\UserProfileEntityTypeConfiguration.cs" />
     <Compile Include="HOME_SQL\201703240845054_V1_0_1.cs" />
     <Compile Include="HOME_SQL\201703240845054_V1_0_1.Designer.cs">
       <DependentUpon>201703240845054_V1_0_1.cs</DependentUpon>
-    </Compile>
-    <Compile Include="HOME_SQL\201704050939036_V1_1_1.cs" />
-    <Compile Include="HOME_SQL\201704050939036_V1_1_1.Designer.cs">
-      <DependentUpon>201704050939036_V1_1_1.cs</DependentUpon>
     </Compile>
     <Compile Include="HOME_SQL\Configuration.cs" />
     <Compile Include="HOME_SQL\InitializeDB\V1.cs" />
@@ -133,9 +136,6 @@
   <ItemGroup>
     <EmbeddedResource Include="HOME_SQL\201703240845054_V1_0_1.resx">
       <DependentUpon>201703240845054_V1_0_1.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="HOME_SQL\201704050939036_V1_1_1.resx">
-      <DependentUpon>201704050939036_V1_1_1.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201703271538193_V1_0_1.resx">
       <DependentUpon>201703271538193_V1_0_1.cs</DependentUpon>

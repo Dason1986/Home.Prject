@@ -6,7 +6,7 @@ using System.ComponentModel.DataAnnotations;
 namespace Home.DomainModel.Aggregates.GalleryAgg
 {
 
-    public class PhotoAttribute : AuditedEntity
+    public class PhotoAttribute : Home.DomainModel.Aggregates.Attribute
     {
         public PhotoAttribute()
         {
@@ -16,13 +16,9 @@ namespace Home.DomainModel.Aggregates.GalleryAgg
         {
 
         }
-        public Guid PhotoID { get; set; }
+
 
         public virtual Photo Owner { get; set; }
-        [StringLength(50)]
-        public string AttKey { get; set; }
-        [StringLength(255)]
-        public string AttValue { get; set; }
-        public byte[] BitValue { get; set; }
+        
     }
 }

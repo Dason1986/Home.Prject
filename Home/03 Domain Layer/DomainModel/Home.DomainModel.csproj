@@ -54,9 +54,14 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Aggregates\AssetsAgg\AssetsItem.cs" />
     <Compile Include="Aggregates\AssetsAgg\Money.cs" />
-    <Compile Include="Aggregates\FileAgg\Attachment.cs" />
+    <Compile Include="Aggregates\Attachment.cs" />
+    <Compile Include="Aggregates\FileAgg\FileAttribute.cs" />
     <Compile Include="Aggregates\FileAgg\FileInfoExtend.cs" />
+    <Compile Include="Aggregates\FileAgg\StorageEngine.cs" />
+    <Compile Include="Aggregates\FileAgg\StorageEngineSetting.cs" />
+    <Compile Include="Aggregates\GalleryAgg\EequipmentItem.cs" />
     <Compile Include="Aggregates\GalleryAgg\PhotoFace.cs" />
     <Compile Include="Aggregates\FileAgg\FileAggregateRoot.cs" />
     <Compile Include="Aggregates\FileAgg\FileInfo.cs" />
@@ -66,7 +71,14 @@
     <Compile Include="Aggregates\GalleryAgg\PhotoAttribute.cs" />
     <Compile Include="Aggregates\GalleryAgg\PhotoFingerprint.cs" />
     <Compile Include="Aggregates\GalleryAgg\PhotoSimilar.cs" />
+    <Compile Include="Aggregates\GalleryAgg\TimeLineItem.cs" />
     <Compile Include="Aggregates\Gender.cs" />
+    <Compile Include="Aggregates\Attribute.cs" />
+    <Compile Include="Aggregates\ObjectElement.cs" />
+    <Compile Include="Aggregates\OfficeAgg\OfficeInfo.cs" />
+    <Compile Include="Aggregates\OfficeAgg\WordAttribute.cs" />
+    <Compile Include="Aggregates\OfficeAgg\WordInfo.cs" />
+    <Compile Include="Aggregates\OfficeAgg\WordObjectElement.cs" />
     <Compile Include="Aggregates\ProductAgg\ProductAttachment.cs" />
     <Compile Include="Aggregates\ProductAgg\ProductItem.cs" />
     <Compile Include="Aggregates\AssetsAgg\PurchaseLineItem.cs" />
