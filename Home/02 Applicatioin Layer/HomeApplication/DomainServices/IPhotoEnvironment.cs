@@ -37,7 +37,7 @@ namespace HomeApplication.DomainServices
 
             var configs = systemParRepository.GetListByGroup("GallerySetting");
 
-            GalleryPath = configs.FirstOrDefault(n => n.Key == "GalleryPath").GetValue(Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "GalleryPath"));
+            GalleryPath = configs.FirstOrDefault(n => n.ParameterKey == "GalleryPath").GetValue(Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "GalleryPath"));
         }
     }
 }

@@ -1,4 +1,5 @@
 ﻿using Autofac;
+using Autofac.Extras.DynamicProxy;
 using Home.DomainModel.DomainServices;
 using HomeApplication.DomainServices;
 using Library.Domain.Data;
@@ -11,13 +12,13 @@ namespace HomeApplication
     {
         protected override void Load(ContainerBuilder builder)
         {
-            builder.RegisterType<MainBoundedContext>().As<EFContext, IDbContext>();
+          
 
-            builder.RegisterType<AddPhotoDomainService>().As<IAddPhotoDomainService>();
-            builder.RegisterType<BuildFingerprintDomainService>().As<IBuildFingerprintDomainService>();
-            builder.RegisterType<SimilarPhotoDomainService>().As<ISimilarPhotoDomainService>();
-            builder.RegisterType<PhotoFacesDomainService>().As<IPhotoFacesDomainService>();
-            builder.RegisterType<AddFileDomainService>().As<IAddFileDomainService>();
+            builder.RegisterType<AddPhotoDomainService>().As<IAddPhotoDomainService>().EnableInterfaceInterceptors();
+            builder.RegisterType<BuildFingerprintDomainService>().As<IBuildFingerprintDomainService>().EnableInterfaceInterceptors();
+            builder.RegisterType<SimilarPhotoDomainService>().As<ISimilarPhotoDomainService>().EnableInterfaceInterceptors();
+            builder.RegisterType<PhotoFacesDomainService>().As<IPhotoFacesDomainService>().EnableInterfaceInterceptors();
+            builder.RegisterType<AddFileDomainService>().As<IAddFileDomainService>().EnableInterfaceInterceptors();
         }
     }
 }

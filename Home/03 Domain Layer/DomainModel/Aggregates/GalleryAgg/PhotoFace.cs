@@ -8,6 +8,8 @@ using System.Threading.Tasks;
 
 namespace Home.DomainModel.Aggregates.GalleryAgg
 {
+    [System.ComponentModel.Description("相片面相"),
+           System.ComponentModel.DisplayName("相片面相")]
     public class PhotoFace : AuditedEntity
     {
         public PhotoFace()

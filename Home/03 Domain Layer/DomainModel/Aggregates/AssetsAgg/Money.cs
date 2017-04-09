@@ -9,7 +9,9 @@ namespace Home.DomainModel.Aggregates.AssetsAgg
 {
     /// <summary>
     /// 
-    /// </summary>
+    /// </summary>     
+    [System.ComponentModel.Description("价值"),
+           System.ComponentModel.DisplayName("价值")]
     public class Money : ValueObject<Money>
     {
         [System.ComponentModel.Description("价值"),
@@ -30,8 +32,8 @@ namespace Home.DomainModel.Aggregates.AssetsAgg
         public override bool Equals(object obj)
         {
             var item = obj as Money;
-            
-            return Equals(this,item);
+
+            return Equals(this, item);
         }
 
         public override bool Equals(Money x, Money y)

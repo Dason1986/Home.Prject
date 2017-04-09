@@ -5,7 +5,8 @@ using System.ComponentModel.DataAnnotations;
 
 namespace Home.DomainModel.Aggregates.GalleryAgg
 {
-
+    [System.ComponentModel.Description("相片屬性"),
+        System.ComponentModel.DisplayName("相片屬性")]
     public class PhotoAttribute : Home.DomainModel.Aggregates.Attribute
     {
         public PhotoAttribute()

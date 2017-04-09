@@ -48,6 +48,7 @@
     {
         Cash,
         CreditCard,
+        NetPay,
     }
 
     public enum CurrencyType

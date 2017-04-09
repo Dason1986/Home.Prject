@@ -28,6 +28,8 @@ namespace Home.DomainModel.Aggregates.AssetsAgg
             System.ComponentModel.DisplayName("產品數量")]
         public decimal Quantity { get; set; }
 
+        [System.ComponentModel.Description("產品单价"),
+            System.ComponentModel.DisplayName("產品单价")]
         public Money Price { get; set; }
 
         [System.ComponentModel.Description("購買訂單编号"),

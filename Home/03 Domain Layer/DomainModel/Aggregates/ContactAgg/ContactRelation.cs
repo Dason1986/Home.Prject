@@ -5,6 +5,8 @@ using System.ComponentModel.DataAnnotations;
 
 namespace Home.DomainModel.Aggregates.ContactAgg
 {
+    [System.ComponentModel.Description("家庭關係"),
+        System.ComponentModel.DisplayName("家庭關係")]
     public class FamilyRelation : CreateEntity
     {
         public FamilyRelation()
@@ -15,13 +17,18 @@ namespace Home.DomainModel.Aggregates.ContactAgg
         {
 
         }
+        [System.ComponentModel.Description("左邊角色ID"),
+       System.ComponentModel.DisplayName("左邊角色ID")]
         public Guid LeftRoleId { get; set; }
+        [System.ComponentModel.Description("右邊角色ID"),
+System.ComponentModel.DisplayName("右邊角色ID")]
         public Guid RightRoleId { get; set; }
         public virtual FamilyRole LeftRole { get; set; }
         public virtual FamilyRole RightRole { get; set; }
 
-    
 
+        [System.ComponentModel.Description("備註"),
+        System.ComponentModel.DisplayName("備註")]
         [StringLength(100)]
         public string Remark { get; set; }
 

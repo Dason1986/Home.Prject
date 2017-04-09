@@ -17,12 +17,20 @@ namespace Home.DomainModel.Aggregates.AssetsAgg
         {
 
         }
+        [System.ComponentModel.Description("購買清单"),
+          System.ComponentModel.DisplayName("購買清单")]
         public IList<PurchaseLineItem> Items { get; set; }
 
+        [System.ComponentModel.Description("支付方式"),
+          System.ComponentModel.DisplayName("支付方式")]
         public PayTpye PayType { get; set; }
 
+        [System.ComponentModel.Description("支付金额"),
+          System.ComponentModel.DisplayName("支付金额")]
         public Money PayAmout { get; set; }
 
+        [System.ComponentModel.Description("购买人编号"),
+          System.ComponentModel.DisplayName("购买人编号")]
         public Guid OrderUserID { get; set; }
 
 

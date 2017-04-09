@@ -1,4 +1,5 @@
 ﻿using Autofac;
+using HomeApplication.Interceptors;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -14,7 +15,7 @@ namespace HomeApplication.Modules
             base.Load(builder);
             builder.RegisterGeneric(typeof(List<>)).As(typeof(IList<>)).InstancePerLifetimeScope();
             builder.RegisterGeneric(typeof(Library.Domain.Data.EF.Repository<>)).As(typeof(Library.Domain.Data.IRepository<>)).InstancePerLifetimeScope();
-
+            builder.RegisterType<RoleInterceptor>();
         }
     }
 }

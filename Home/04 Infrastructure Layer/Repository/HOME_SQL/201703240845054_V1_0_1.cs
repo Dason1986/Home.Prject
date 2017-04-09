@@ -79,10 +79,10 @@ namespace Home.Repository.HOME_SQL
                     {
                         ID = c.Guid(nullable: false),
                         Description = c.String(maxLength: 255),
-                        Group = c.String(maxLength: 50),
+                        ParameterGroup = c.String(maxLength: 50),
                         IsReadOnly = c.Boolean(nullable: false),
-                        Key = c.String(maxLength: 50),
-                        Value = c.String(maxLength: 255),
+                        ParameterKey = c.String(maxLength: 50),
+                        ParameterValue = c.String(maxLength: 255),
                         Modified = c.DateTime(nullable: false),
                         ModifiedBy = c.String(nullable: false, maxLength: 20),
                         Created = c.DateTime(nullable: false),
@@ -112,7 +112,8 @@ namespace Home.Repository.HOME_SQL
                         ID = c.Guid(nullable: false),
                         Name = c.String(maxLength: 50),
                         Modle = c.String(maxLength: 50),
-                        Value = c.Decimal(nullable: false, precision: 18, scale: 2),
+                        Value_Value = c.Decimal(nullable: false, precision: 18, scale: 2),
+                        Value_CurrencyType = c.Int(nullable: false),
                         BarCode = c.String(maxLength: 50),
                         Tag = c.String(maxLength: 50),
                         Company = c.String(maxLength: 50),
@@ -459,6 +460,7 @@ namespace Home.Repository.HOME_SQL
                 .Index(t => t.ProductID)
                 .Index(t => t.OrderID);
             InitSql();
+            
         }
         
         public override void Down()

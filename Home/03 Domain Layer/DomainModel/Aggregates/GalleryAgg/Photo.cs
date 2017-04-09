@@ -6,7 +6,8 @@ using System.ComponentModel.DataAnnotations;
 
 namespace Home.DomainModel.Aggregates.GalleryAgg
 {
-
+    [System.ComponentModel.Description("相片"),
+        System.ComponentModel.DisplayName("相片")]
     public class Photo : AuditedEntity
     {
         public Photo()
@@ -17,16 +18,23 @@ namespace Home.DomainModel.Aggregates.GalleryAgg
         {
 
         }
+        [System.ComponentModel.Description("文件ID"),
+       System.ComponentModel.DisplayName("文件ID")]
         public Guid FileID { get; set; }
-
+        [System.ComponentModel.Description("相冊ID"),
+        System.ComponentModel.DisplayName("相冊ID")]
         public Guid AlbumID { get; set; }
         public virtual Album ParentAlbum { get; set; }
         public virtual DomainModel.Aggregates.FileAgg.FileInfo File { get; set; }
+
         [StringLength(100)]
+        [System.ComponentModel.Description("分類標籤"),
+          System.ComponentModel.DisplayName("分類標籤")]
         public string Tags { get; set; }
 
-     
 
+        [System.ComponentModel.Description("相片屬性"),
+        System.ComponentModel.DisplayName("相片屬性")]
         public virtual ICollection<PhotoAttribute> Attributes { get; set; }
 
 

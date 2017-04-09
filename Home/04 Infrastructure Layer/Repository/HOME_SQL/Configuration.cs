@@ -14,6 +14,7 @@ namespace Home.Repository.HOME_SQL
     using System.Data.Entity.Migrations;
     using System.Data.Entity.Migrations.Utilities;
     using System.Linq;
+    using System.Reflection;
 
     internal sealed class Configuration : DbMigrationsConfiguration<MainBoundedContext>
     {
@@ -107,15 +108,38 @@ namespace Home.Repository.HOME_SQL
         {
             string name = columnModel.Name;
             if (type == null) return name;
+            if (string.Equals(name, "ID", StringComparison.OrdinalIgnoreCase))
+            {
+                var display = type.GetCustomAttributes(typeof(DisplayNameAttribute), true).FirstOrDefault() as DisplayNameAttribute;
+                if (display == null) return name;
+                return display.DisplayName + "ID";
+            }
+            PropertyInfo property = null;
+            var arrname = name.Split('_');
+            if (arrname.Length == 1)
+            {
+                property = type.GetProperty(name);
+                if (property == null) return name;
+                var display = property.GetCustomAttributes(typeof(DisplayNameAttribute), true).FirstOrDefault() as DisplayNameAttribute;
+                if (display == null) return name;
+                return display.DisplayName;
 
-            var property = type.GetProperty(name);
-            if (property == null) return name;
+            }
+            else
+            {
+                property = type.GetProperty(arrname[0]);
+                if (property == null) return name;
+                var display = property.GetCustomAttributes(typeof(DisplayNameAttribute), true).FirstOrDefault() as DisplayNameAttribute;
+                if (display != null)
+                    name = display.DisplayName;
+                property = property.PropertyType.GetProperty(arrname[1]);
+                if (property == null) return name;
+                display = property.GetCustomAttributes(typeof(DisplayNameAttribute), true).FirstOrDefault() as DisplayNameAttribute;
+                if (display == null) return name;
+                return string.Format("{0}_{1}", name, display.DisplayName);
+            }
 
-            var display = property.GetCustomAttributes(typeof(DisplayNameAttribute), true).FirstOrDefault() as DisplayNameAttribute;
-            if (display == null) return name;
-            return display.DisplayName;
-
-
+            return name;
 
         }
 

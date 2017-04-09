@@ -13,7 +13,7 @@ namespace Home.Repository.Repositories
 
         public SystemParameter[] GetListByGroup(string groupname)
         {
-            return GetAll().Where(n => n.Group == groupname).ToArray();
+            return GetAll().Where(n => n.ParameterGroup == groupname).ToArray();
         }
     }
 }
