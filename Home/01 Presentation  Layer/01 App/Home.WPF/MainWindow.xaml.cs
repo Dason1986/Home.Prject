@@ -36,6 +36,8 @@ namespace Home.WPF
             if (dialog.ShowDialog() == true)
             {
                 var files = dialog.FileNames;
+                MediaElement1.Source = new Uri(dialog.FileName);
+                return;
                 //  WebClient client = new WebClient();
                 try
                 {

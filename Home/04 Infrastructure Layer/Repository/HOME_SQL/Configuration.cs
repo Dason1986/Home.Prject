@@ -59,35 +59,32 @@ namespace Home.Repository.HOME_SQL
                 Statement(writer);
             }
         }
+
         protected override void Generate(DropColumnOperation dropColumnOperation)
         {
-            base.Generate(dropColumnOperation);
             using (var writer = Writer())
             {
                 var table = dropColumnOperation.Table.Replace("dbo.", "");
                 writer.WriteLine("EXECUTE sp_dropextendedproperty  N'MS_Description', N'user', N'dbo', N'TABLE', N'{0}', N'column',N'{1}' ", table, dropColumnOperation.Name);
                 Statement(writer);
             }
+            base.Generate(dropColumnOperation);
         }
+
         protected override void Generate(CreateTableOperation createTableOperation)
         {
             using (var writer = Writer())
             {
-
                 SetCreatedUtcColumn(createTableOperation, writer);
 
                 base.Generate(createTableOperation);
+
                 Statement(writer);
             }
             //
             //  GetTableID(createTableOperation.Name);
-
         }
-        private int GetTableID(string tablename)
-        {
 
-            return 0;
-        }
         private void SetCreatedUtcColumn(CreateTableOperation createTableOperation, IndentedTextWriter writer)
         {
             var table = createTableOperation.Name.Replace("dbo.", "");
@@ -98,10 +95,18 @@ namespace Home.Repository.HOME_SQL
                 var name = GetDisplayName(type, columnModel);
 
                 writer.WriteLine("EXECUTE sp_addextendedproperty N'MS_Description', N'{2}', N'user', N'dbo', N'TABLE', N'{0}', N'column', N'{1}'", table, columnModel.Name, name);
-
-
-
             }
+            writer.WriteLine("EXECUTE sp_addextendedproperty @name=N'MS_Description',@value=N'{1}', @level0type=N'user', @level0name=N'dbo', @level1type=N'TABLE', @level1name=N'{0}'", table, GetDisplayName(type, table));
+        }
+
+        private static string GetDisplayName(Type type, string table)
+        {
+            if (type == null) return table;
+            var display =
+                type.GetCustomAttributes(typeof(DisplayNameAttribute), true).FirstOrDefault() as
+                    DisplayNameAttribute;
+            if (display == null) return table;
+            return display.DisplayName;
         }
 
         private static string GetDisplayName(Type type, ColumnModel columnModel)
@@ -123,7 +128,6 @@ namespace Home.Repository.HOME_SQL
                 var display = property.GetCustomAttributes(typeof(DisplayNameAttribute), true).FirstOrDefault() as DisplayNameAttribute;
                 if (display == null) return name;
                 return display.DisplayName;
-
             }
             else
             {
@@ -140,7 +144,6 @@ namespace Home.Repository.HOME_SQL
             }
 
             return name;
-
         }
 
         private static readonly string[] TimeColumnNames = { "Modified", "Created" };
