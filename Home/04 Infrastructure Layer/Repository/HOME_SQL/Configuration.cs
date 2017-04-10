@@ -55,8 +55,11 @@ namespace Home.Repository.HOME_SQL
                 var table = addColumnOperation.Table.Replace("dbo.", "");
                 var type = typeof(Home.DomainModel.AgeCompare).Assembly.GetTypes().FirstOrDefault(n => n.Name == table);
                 var name = GetDisplayName(type, addColumnOperation.Column);
-                writer.WriteLine("EXECUTE sp_addextendedproperty N'MS_Description', N'{2}', N'user', N'dbo', N'TABLE', N'{0}', N'column', N'{1}'", table, addColumnOperation.Column.Name, name);
-                Statement(writer);
+                if (name != addColumnOperation.Column.Name)
+                {
+                    writer.WriteLine("EXECUTE sp_addextendedproperty N'MS_Description', N'{2}', N'Schema', N'dbo', N'TABLE', N'{0}', N'column', N'{1}'", table, addColumnOperation.Column.Name, name);
+                    Statement(writer);
+                }
             }
         }
 
@@ -65,7 +68,7 @@ namespace Home.Repository.HOME_SQL
             using (var writer = Writer())
             {
                 var table = dropColumnOperation.Table.Replace("dbo.", "");
-                writer.WriteLine("EXECUTE sp_dropextendedproperty  N'MS_Description', N'user', N'dbo', N'TABLE', N'{0}', N'column',N'{1}' ", table, dropColumnOperation.Name);
+                writer.WriteLine("EXECUTE sp_dropextendedproperty  N'MS_Description', N'Schema', N'dbo', N'TABLE', N'{0}', N'column',N'{1}' ", table, dropColumnOperation.Name);
                 Statement(writer);
             }
             base.Generate(dropColumnOperation);
@@ -79,7 +82,9 @@ namespace Home.Repository.HOME_SQL
 
                 base.Generate(createTableOperation);
 
-                Statement(writer);
+                var sql = writer.InnerWriter.ToString();
+                if (!string.IsNullOrEmpty(sql))
+                    Statement(sql, true);
             }
             //
             //  GetTableID(createTableOperation.Name);
@@ -93,10 +98,14 @@ namespace Home.Repository.HOME_SQL
             {
                 SetCreatedUtcColumn(columnModel);
                 var name = GetDisplayName(type, columnModel);
-
-                writer.WriteLine("EXECUTE sp_addextendedproperty N'MS_Description', N'{2}', N'user', N'dbo', N'TABLE', N'{0}', N'column', N'{1}'", table, columnModel.Name, name);
+                if (columnModel.Name != name)
+                    writer.WriteLine("EXECUTE sp_addextendedproperty N'MS_Description', N'{2}', N'Schema', N'dbo', N'TABLE', N'{0}', N'column', N'{1}'", table, columnModel.Name, name);
             }
-            writer.WriteLine("EXECUTE sp_addextendedproperty @name=N'MS_Description',@value=N'{1}', @level0type=N'user', @level0name=N'dbo', @level1type=N'TABLE', @level1name=N'{0}'", table, GetDisplayName(type, table));
+            {
+                var name = GetDisplayName(type, table);
+                if (name != table)
+                    writer.WriteLine("EXECUTE sp_addextendedproperty @name=N'MS_Description',@value=N'{1}', @level0type=N'Schema', @level0name=N'dbo', @level1type=N'TABLE', @level1name=N'{0}'", table, name);
+            }
         }
 
         private static string GetDisplayName(Type type, string table)
