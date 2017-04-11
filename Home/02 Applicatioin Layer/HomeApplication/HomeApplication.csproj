@@ -268,6 +268,10 @@
       <Project>{10662661-00cf-4ab6-8608-4d392cfec63f}</Project>
       <Name>Home.Infrastructure</Name>
     </ProjectReference>
+    <ProjectReference Include="..\..\Library.Storage.FileEngineProvider.NFS\Library.Storage.FileEngineProvider.Network.csproj">
+      <Project>{434c4dfa-d0ca-44fa-ba6b-729807147dc8}</Project>
+      <Name>Library.Storage.FileEngineProvider.Network</Name>
+    </ProjectReference>
     <ProjectReference Include="..\..\Library.Storage\Library.Storage.csproj">
       <Project>{e78b1970-f081-4746-ab30-0a49f0157ee7}</Project>
       <Name>Library.Storage</Name>

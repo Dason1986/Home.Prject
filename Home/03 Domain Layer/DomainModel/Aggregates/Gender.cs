@@ -5,6 +5,7 @@
         ServerScand,
         PC,
         Mobile,
+        NetWork,
     }
     public enum Gender
     {

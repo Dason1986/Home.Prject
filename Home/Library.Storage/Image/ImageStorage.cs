@@ -10,6 +10,7 @@ namespace Library.Storage.Image
         public ImageStorage(IImageStorageProvider provider, Guid id) : base(provider, id)
         {
             _provider = provider;
+            Diagonals = new int[]{ };
         }
 
         public ImageStorage(IImageStorageProvider provider, Guid id, int[] diagonals) : base(provider, id)
