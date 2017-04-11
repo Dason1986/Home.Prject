@@ -7,9 +7,14 @@ using MySql.Data.Entity;
 namespace Repository.Migrations
 {
     using System;
+    using System.CodeDom.Compiler;
+    using System.ComponentModel;
     using System.Data.Entity;
     using System.Data.Entity.Migrations;
+    using System.IO;
     using System.Linq;
+    using System.Reflection;
+    using System.Text;
 
     // [DbConfigurationType(typeof(MySql.Data.Entity.MySqlEFConfiguration))]
     internal sealed class Configuration : DbMigrationsConfiguration<MainBoundedContext>
@@ -50,11 +55,29 @@ namespace Repository.Migrations
 
         protected override MigrationStatement Generate(CreateTableOperation createTableOperation)
         {
-            SetCreatedUtcColumn(createTableOperation.Columns);
 
-            return base.Generate(createTableOperation);
+            SetCreatedUtcColumn(createTableOperation);
+            var statement = base.Generate(createTableOperation);
+            if (tablecalss != null)
+            {
+                var display = tablecalss.GetCustomAttributes(typeof(DisplayNameAttribute), true).FirstOrDefault() as DisplayNameAttribute;
+                if (display != null)
+                {
+                    statement.Sql = string.Format("{0};ALTER TABLE {1} COMMENT='{2}'; ", statement.Sql, table, display.DisplayName);
+                }
+            }
+            return statement;
         }
-
+        protected override string Generate(ColumnModel op)
+        {
+            var sql = base.Generate(op);
+            var name = GetDisplayName(tablecalss, op.Name);
+            if (name != op.Name)
+            {
+                sql = string.Format("{0} comment '{1}'", sql, name);
+            }
+            return sql;
+        }
         private void SetCreatedUtcColumn(IEnumerable<ColumnModel> columns)
         {
             foreach (var columnModel in columns)
@@ -65,7 +88,62 @@ namespace Repository.Migrations
 
         private static readonly string[] TimeColumnNames = { "Modified", "Created" };
         private static readonly string[] UserColumnNames = { "ModifiedBy", "CreatedBy" };
+        string table;
+        Type tablecalss;
+        private void SetCreatedUtcColumn(CreateTableOperation createTableOperation)
+        {
+            table = createTableOperation.Name.Replace("dbo.", "");
+            tablecalss = typeof(Home.DomainModel.AgeCompare).Assembly.GetTypes().FirstOrDefault(n => n.Name == table);
+            foreach (var columnModel in createTableOperation.Columns)
+            {
+                SetCreatedUtcColumn(columnModel);
 
+                //      columnModel.
+                //  writer.WriteLine("ALTER table {0} MODIFY N`{1}` datetime DEFAULT NULL COMMENT N'{2}';", table, columnModel.Name, name);
+
+
+
+            }
+        }
+
+        private static string GetDisplayName(Type type, string name)
+        {
+
+            if (type == null) return name;
+            if (string.Equals(name, "ID", StringComparison.OrdinalIgnoreCase))
+            {
+                var display = type.GetCustomAttributes(typeof(DisplayNameAttribute), true).FirstOrDefault() as DisplayNameAttribute;
+                if (display == null) return name;
+                return display.DisplayName + "ID";
+            }
+            PropertyInfo property = null;
+            var arrname = name.Split('_');
+            if (arrname.Length == 1)
+            {
+                property = type.GetProperty(name);
+                if (property == null) return name;
+                var display = property.GetCustomAttributes(typeof(DisplayNameAttribute), true).FirstOrDefault() as DisplayNameAttribute;
+                if (display == null) return name;
+                return display.DisplayName;
+
+            }
+            else
+            {
+                property = type.GetProperty(arrname[0]);
+                if (property == null) return name;
+                var display = property.GetCustomAttributes(typeof(DisplayNameAttribute), true).FirstOrDefault() as DisplayNameAttribute;
+                if (display != null)
+                    name = display.DisplayName;
+                property = property.PropertyType.GetProperty(arrname[1]);
+                if (property == null) return name;
+                display = property.GetCustomAttributes(typeof(DisplayNameAttribute), true).FirstOrDefault() as DisplayNameAttribute;
+                if (display == null) return name;
+                return string.Format("{0}_{1}", name, display.DisplayName);
+            }
+
+            return name;
+
+        }
         private void SetCreatedUtcColumn(ColumnModel column)
         {
             if (column.IsNullable == false && column.Type == PrimitiveTypeKind.DateTime)
