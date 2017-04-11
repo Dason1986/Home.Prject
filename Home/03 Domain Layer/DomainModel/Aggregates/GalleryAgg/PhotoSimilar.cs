@@ -4,8 +4,8 @@ using System;
 
 namespace Home.DomainModel.Aggregates.GalleryAgg
 {
-    [System.ComponentModel.Description("相似相處"),
-        System.ComponentModel.DisplayName("相似相處")]
+    [System.ComponentModel.Description("相似相片"),
+        System.ComponentModel.DisplayName("相似相片")]
     public class PhotoSimilar : CreateEntity
     {
         public PhotoSimilar()
