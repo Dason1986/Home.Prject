@@ -2,13 +2,16 @@
 using NUnit.Framework;
 using Repository;
 using System;
+using System.Collections.Generic;
+using System.Linq;
+using Home.DomainModel.Aggregates.AlertAgg;
 using Library.ComponentModel.Model;
 using Library;
 using Home.DomainModel.Aggregates.ContactAgg;
 
 namespace RepositoryTest
 {
-    class testCreate : ICreatedInfo
+    internal class testCreate : ICreatedInfo
     {
         public DateTime Created
         {
@@ -17,7 +20,9 @@ namespace RepositoryTest
                 return time;
             }
         }
-        DateTime time = new DateTime(2012, 1, 1);
+
+        private DateTime time = new DateTime(2012, 1, 1);
+
         public string CreatedBy
         {
             get
@@ -26,18 +31,19 @@ namespace RepositoryTest
             }
         }
     }
+
     [TestFixture(Category = "數據庫-初始化")]
     public class Test
     {
         [Test()]
         public void TestCase()
         {
-
-
             MainBoundedContext dbcontext = new MainBoundedContext();
             var roleId = Guid.Parse("00f73871-afe7-431a-a9ec-df44b1dcb736");
             var contactRole = dbcontext.Set<FamilyRole>();
+
             #region MyRegion
+
             FamilyRole left, right;
             FamilyRelation relation;
             var crate = new testCreate();
@@ -65,9 +71,8 @@ namespace RepositoryTest
                 Name = "高祖父",
                 Six = Gender.Male,
                 Level = 4,
-
             });
-            left.AddMemberAddress(new []{ MemberAddress.Father, MemberAddress.Father, MemberAddress.Father, MemberAddress.Father });
+            left.AddMemberAddress(new[] { MemberAddress.Father, MemberAddress.Father, MemberAddress.Father, MemberAddress.Father });
             roleId = IdentityGenerator.Next(roleId);
             right = contactRole.Add(new FamilyRole(crate)
             {
@@ -81,7 +86,6 @@ namespace RepositoryTest
             relation = FamilyRelation.Create(crate, left, right);
             relation.ID = relationId;
             contactRelation.Add(relation);
-
 
             roleId = IdentityGenerator.Next(roleId);
             left = contactRole.Add(new FamilyRole(crate)
@@ -129,7 +133,6 @@ namespace RepositoryTest
             relation.ID = relationId;
             contactRelation.Add(relation);
 
-
             roleId = IdentityGenerator.Next(roleId);
             left = contactRole.Add(new FamilyRole(crate)
             {
@@ -161,7 +164,7 @@ namespace RepositoryTest
                 Six = Gender.Male,
                 Level = 2,
             });
-            left.AddMemberAddress(new[] {MemberAddress.Father, MemberAddress.Father });
+            left.AddMemberAddress(new[] { MemberAddress.Father, MemberAddress.Father });
             roleId = IdentityGenerator.Next(roleId);
             right = contactRole.Add(new FamilyRole(crate)
             {
@@ -170,12 +173,11 @@ namespace RepositoryTest
                 Six = Gender.Female,
                 Level = 2,
             });
-            right.AddMemberAddress(new[] {  MemberAddress.Father, MemberAddress.Mother });
+            right.AddMemberAddress(new[] { MemberAddress.Father, MemberAddress.Mother });
             relationId = IdentityGenerator.Next(relationId);
             relation = FamilyRelation.Create(crate, left, right);
             relation.ID = relationId;
             contactRelation.Add(relation);
-
 
             roleId = IdentityGenerator.Next(roleId);
             left = contactRole.Add(new FamilyRole(crate)
@@ -194,7 +196,7 @@ namespace RepositoryTest
                 Six = Gender.Female,
                 Level = 2,
             });
-            right.AddMemberAddress(new[] { MemberAddress.Mother,  MemberAddress.Mother });
+            right.AddMemberAddress(new[] { MemberAddress.Mother, MemberAddress.Mother });
             relationId = IdentityGenerator.Next(relationId);
             relation = FamilyRelation.Create(crate, left, right);
             relation.ID = relationId;
@@ -217,7 +219,7 @@ namespace RepositoryTest
                 Six = Gender.Female,
                 Level = 1,
             });
-            right.AddMemberAddress(new[] { MemberAddress.Father, MemberAddress.ElderBrother,MemberAddress.Wife });
+            right.AddMemberAddress(new[] { MemberAddress.Father, MemberAddress.ElderBrother, MemberAddress.Wife });
             relationId = IdentityGenerator.Next(relationId);
             relation = FamilyRelation.Create(crate, left, right);
             relation.ID = relationId;
@@ -231,7 +233,7 @@ namespace RepositoryTest
                 Six = Gender.Female,
                 Level = 1,
             });
-            right.AddMemberAddress(new[] { MemberAddress.Father, MemberAddress.ElderSister});
+            right.AddMemberAddress(new[] { MemberAddress.Father, MemberAddress.ElderSister });
             roleId = IdentityGenerator.Next(roleId);
             left = contactRole.Add(new FamilyRole(crate)
             {
@@ -269,7 +271,6 @@ namespace RepositoryTest
             relation.ID = relationId;
             contactRelation.Add(relation);
 
-
             roleId = IdentityGenerator.Next(roleId);
             left = contactRole.Add(new FamilyRole(crate)
             {
@@ -287,7 +288,7 @@ namespace RepositoryTest
                 Six = Gender.Female,
                 Level = 1,
             });
-            right.AddMemberAddress(new[] { MemberAddress.Father,MemberAddress.Wife });
+            right.AddMemberAddress(new[] { MemberAddress.Father, MemberAddress.Wife });
             relationId = IdentityGenerator.Next(relationId);
             relation = FamilyRelation.Create(crate, left, right);
             relation.ID = relationId;
@@ -301,7 +302,7 @@ namespace RepositoryTest
                 Six = Gender.Male,
                 Level = 1,
             });
-            left.AddMemberAddress(new[] { MemberAddress.Father ,MemberAddress.YoungerBrother});
+            left.AddMemberAddress(new[] { MemberAddress.Father, MemberAddress.YoungerBrother });
             roleId = IdentityGenerator.Next(roleId);
             right = contactRole.Add(new FamilyRole(crate)
             {
@@ -316,9 +317,6 @@ namespace RepositoryTest
             relation.ID = relationId;
             contactRelation.Add(relation);
 
-
-
-
             roleId = IdentityGenerator.Next(roleId);
             left = contactRole.Add(new FamilyRole(crate)
             {
@@ -327,7 +325,7 @@ namespace RepositoryTest
                 Six = Gender.Male,
                 Level = 1,
             });
-            left.AddMemberAddress(new[] { MemberAddress.Husband, MemberAddress.Father});
+            left.AddMemberAddress(new[] { MemberAddress.Husband, MemberAddress.Father });
             roleId = IdentityGenerator.Next(roleId);
             right = contactRole.Add(new FamilyRole(crate)
             {
@@ -388,7 +386,6 @@ namespace RepositoryTest
             relation.ID = relationId;
             contactRelation.Add(relation);
 
-
             roleId = IdentityGenerator.Next(roleId);
             right = contactRole.Add(new FamilyRole(crate)
             {
@@ -427,7 +424,7 @@ namespace RepositoryTest
                 Name = "嫂子",
                 Six = Gender.Female,
             });
-            right.AddMemberAddress(new[] {   MemberAddress.ElderBrother, MemberAddress.Wife });
+            right.AddMemberAddress(new[] { MemberAddress.ElderBrother, MemberAddress.Wife });
             relationId = IdentityGenerator.Next(relationId);
             relation = FamilyRelation.Create(crate, left, right);
             relation.ID = relationId;
@@ -440,7 +437,7 @@ namespace RepositoryTest
                 Name = "姐姐",
                 Six = Gender.Female,
             });
-            right.AddMemberAddress(new[] { MemberAddress.ElderSister,});
+            right.AddMemberAddress(new[] { MemberAddress.ElderSister, });
             roleId = IdentityGenerator.Next(roleId);
             left = contactRole.Add(new FamilyRole(crate)
             {
@@ -532,7 +529,6 @@ namespace RepositoryTest
             relation = FamilyRelation.Create(crate, left, right);
             relation.ID = relationId;
             contactRelation.Add(relation);
-
 
             roleId = IdentityGenerator.Next(roleId);
             left = contactRole.Add(new FamilyRole(crate)
@@ -648,7 +644,6 @@ namespace RepositoryTest
             relation.ID = relationId;
             contactRelation.Add(relation);
 
-
             roleId = IdentityGenerator.Next(roleId);
             left = contactRole.Add(new FamilyRole(crate)
             {
@@ -657,7 +652,7 @@ namespace RepositoryTest
                 Six = Gender.Male,
                 Level = -1,
             });
-            left.AddMemberAddress(new[] { MemberAddress.Son});
+            left.AddMemberAddress(new[] { MemberAddress.Son });
             roleId = IdentityGenerator.Next(roleId);
             right = contactRole.Add(new FamilyRole(crate)
             {
@@ -680,7 +675,7 @@ namespace RepositoryTest
                 Six = Gender.Female,
                 Level = -1,
             });
-            right.AddMemberAddress(new[] { MemberAddress.Daughter});
+            right.AddMemberAddress(new[] { MemberAddress.Daughter });
             roleId = IdentityGenerator.Next(roleId);
             left = contactRole.Add(new FamilyRole(crate)
             {
@@ -704,7 +699,7 @@ namespace RepositoryTest
                 Level = -1,
                 Remark = "称兄弟的儿子",
             });
-            left.AddMemberAddress(new[] { MemberAddress.YoungerBrother|MemberAddress.ElderBrother, MemberAddress.Son }); 
+            left.AddMemberAddress(new[] { MemberAddress.YoungerBrother | MemberAddress.ElderBrother, MemberAddress.Son });
             roleId = IdentityGenerator.Next(roleId);
             right = contactRole.Add(new FamilyRole(crate)
             {
@@ -713,7 +708,7 @@ namespace RepositoryTest
                 Six = Gender.Female,
                 Level = -1,
             });
-            right.AddMemberAddress(new[] {MemberAddress.YoungerBrother|MemberAddress.ElderBrother , MemberAddress.Son , MemberAddress.Wife });
+            right.AddMemberAddress(new[] { MemberAddress.YoungerBrother | MemberAddress.ElderBrother, MemberAddress.Son, MemberAddress.Wife });
 
             relationId = IdentityGenerator.Next(relationId);
             relation = FamilyRelation.Create(crate, left, right);
@@ -729,7 +724,7 @@ namespace RepositoryTest
                 Level = -1,
                 Remark = "称兄弟的女儿",
             });
-            right.AddMemberAddress(new[] { MemberAddress.YoungerBrother | MemberAddress.ElderBrother, MemberAddress.Daughter});
+            right.AddMemberAddress(new[] { MemberAddress.YoungerBrother | MemberAddress.ElderBrother, MemberAddress.Daughter });
             roleId = IdentityGenerator.Next(roleId);
             left = contactRole.Add(new FamilyRole(crate)
             {
@@ -810,7 +805,7 @@ namespace RepositoryTest
                 Six = Gender.Female,
                 Level = -1,
             });
-            right.AddMemberAddress(new[] { MemberAddress.YoungerSister | MemberAddress.ElderSister, MemberAddress.Son,MemberAddress.Wife });
+            right.AddMemberAddress(new[] { MemberAddress.YoungerSister | MemberAddress.ElderSister, MemberAddress.Son, MemberAddress.Wife });
             relationId = IdentityGenerator.Next(relationId);
             relation = FamilyRelation.Create(crate, left, right);
             relation.ID = relationId;
@@ -825,7 +820,7 @@ namespace RepositoryTest
                 Level = -1,
                 Remark = "女性称姊妹的女儿",
             });
-            right.AddMemberAddress(new[] { MemberAddress.YoungerSister | MemberAddress.ElderSister, MemberAddress.Daughter});
+            right.AddMemberAddress(new[] { MemberAddress.YoungerSister | MemberAddress.ElderSister, MemberAddress.Daughter });
             roleId = IdentityGenerator.Next(roleId);
             left = contactRole.Add(new FamilyRole(crate)
             {
@@ -839,7 +834,6 @@ namespace RepositoryTest
             relation = FamilyRelation.Create(crate, left, right);
             relation.ID = relationId;
             contactRelation.Add(relation);
-
 
             roleId = IdentityGenerator.Next(roleId);
             left = contactRole.Add(new FamilyRole(crate)
@@ -858,7 +852,7 @@ namespace RepositoryTest
                 Six = Gender.Female,
                 Level = -2,
             });
-            right.AddMemberAddress(new[] { MemberAddress.Son, MemberAddress.Son,MemberAddress.Wife });
+            right.AddMemberAddress(new[] { MemberAddress.Son, MemberAddress.Son, MemberAddress.Wife });
             relationId = IdentityGenerator.Next(relationId);
             relation = FamilyRelation.Create(crate, left, right);
             relation.ID = relationId;
@@ -872,7 +866,7 @@ namespace RepositoryTest
                 Six = Gender.Male,
                 Level = -2,
             });
-            left.AddMemberAddress(new[] {MemberAddress.Son, MemberAddress.Daughter, MemberAddress.Husband });
+            left.AddMemberAddress(new[] { MemberAddress.Son, MemberAddress.Daughter, MemberAddress.Husband });
             roleId = IdentityGenerator.Next(roleId);
             right = contactRole.Add(new FamilyRole(crate)
             {
@@ -894,7 +888,7 @@ namespace RepositoryTest
                 Name = "外孙子",
                 Six = Gender.Male,
                 Level = -2,
-            }); left.AddMemberAddress(new[] { MemberAddress.Daughter, MemberAddress.Son  });
+            }); left.AddMemberAddress(new[] { MemberAddress.Daughter, MemberAddress.Son });
             roleId = IdentityGenerator.Next(roleId);
             right = contactRole.Add(new FamilyRole(crate)
             {
@@ -926,7 +920,7 @@ namespace RepositoryTest
                 Six = Gender.Female,
                 Level = -2,
             });
-            left.AddMemberAddress(new[] { MemberAddress.Daughter, MemberAddress.Daughter});
+            left.AddMemberAddress(new[] { MemberAddress.Daughter, MemberAddress.Daughter });
             relationId = IdentityGenerator.Next(relationId);
             relation = FamilyRelation.Create(crate, left, right);
             relation.ID = relationId;
@@ -940,7 +934,7 @@ namespace RepositoryTest
                 Six = Gender.Male,
                 Level = -3,
             });
-            left.AddMemberAddress(new[] { MemberAddress.Son, MemberAddress.Son,MemberAddress.Son });
+            left.AddMemberAddress(new[] { MemberAddress.Son, MemberAddress.Son, MemberAddress.Son });
             roleId = IdentityGenerator.Next(roleId);
             right = contactRole.Add(new FamilyRole(crate)
             {
@@ -1007,7 +1001,7 @@ namespace RepositoryTest
                 Six = Gender.Male,
                 Level = -4,
             });
-            left.AddMemberAddress(new[] { MemberAddress.Son, MemberAddress.Son,  MemberAddress.Son,MemberAddress.Daughter, MemberAddress.Husband });
+            left.AddMemberAddress(new[] { MemberAddress.Son, MemberAddress.Son, MemberAddress.Son, MemberAddress.Daughter, MemberAddress.Husband });
             roleId = IdentityGenerator.Next(roleId);
             right = contactRole.Add(new FamilyRole(crate)
             {
@@ -1015,7 +1009,7 @@ namespace RepositoryTest
                 Name = "玄孙女",
                 Six = Gender.Female,
                 Level = -4,
-            }); right.AddMemberAddress(new[] { MemberAddress.Son, MemberAddress.Son, MemberAddress.Son, MemberAddress.Daughter});
+            }); right.AddMemberAddress(new[] { MemberAddress.Son, MemberAddress.Son, MemberAddress.Son, MemberAddress.Daughter });
             relationId = IdentityGenerator.Next(relationId);
             relation = FamilyRelation.Create(crate, left, right);
             relation.ID = relationId;
@@ -1023,17 +1017,7 @@ namespace RepositoryTest
 
             //   */
 
-
-
-            #endregion
-
-
-
-
-
-
-
-
+            #endregion MyRegion
 
             try
             {
@@ -1042,12 +1026,39 @@ namespace RepositoryTest
             }
             catch (Exception e)
             {
-
                 throw;
             }
 
             Console.WriteLine("1");
         }
+
+        [Test()]
+        public void TestAlert()
+        {
+            MainBoundedContext dbcontext = new MainBoundedContext();
+
+            var crate = new testCreate();
+            var messageEntitys = dbcontext.Set<MessageEntity>();
+            var mesage = new MessageEntity(crate) { Content = "test alert", Subject = "alert" };
+
+            messageEntitys.Add(mesage);
+            mesage.Logs = new List<MessageLogEntity>()
+            {
+               new MailMessageLogEntity(crate) {To = "11@11.com"},
+               new PhoneMessageLogEntity(crate) {PhoneNumber = "11212121"}
+            };
+            try
+            {
+                EFUnitOfWork unit = new EFUnitOfWork(dbcontext);
+                unit.Commit();
+            }
+            catch (Exception e)
+            {
+                throw;
+            }
+
+            var messges = messageEntitys.AsNoTracking().ToArray();
+            Console.WriteLine(messges);
+        }
     }
 }
-

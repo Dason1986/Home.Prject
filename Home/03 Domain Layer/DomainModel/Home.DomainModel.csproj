@@ -54,6 +54,12 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Aggregates\AlertAgg\MailMessageLogEntity.cs" />
+    <Compile Include="Aggregates\AlertAgg\MailUtility.cs" />
+    <Compile Include="Aggregates\AlertAgg\MessageEntity.cs" />
+    <Compile Include="Aggregates\AlertAgg\MessageLogEntity.cs" />
+    <Compile Include="Aggregates\AlertAgg\MessageState.cs" />
+    <Compile Include="Aggregates\AlertAgg\PhoneMessageLogEntity.cs" />
     <Compile Include="Aggregates\AssetsAgg\AssetsItem.cs" />
     <Compile Include="Aggregates\AssetsAgg\Money.cs" />
     <Compile Include="Aggregates\Attachment.cs" />
@@ -74,6 +80,7 @@
     <Compile Include="Aggregates\GalleryAgg\TimeLineItem.cs" />
     <Compile Include="Aggregates\Gender.cs" />
     <Compile Include="Aggregates\Attribute.cs" />
+    <Compile Include="Aggregates\AlertAgg\MailAggregateRoot.cs" />
     <Compile Include="Aggregates\ObjectElement.cs" />
     <Compile Include="Aggregates\OfficeAgg\OfficeInfo.cs" />
     <Compile Include="Aggregates\OfficeAgg\WordAttribute.cs" />

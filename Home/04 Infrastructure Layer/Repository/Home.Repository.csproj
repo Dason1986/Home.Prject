@@ -68,6 +68,9 @@
   <ItemGroup>
     <Compile Include="EF\EFUnitOfWork.cs" />
     <Compile Include="EF\MainBoundedContext.cs" />
+    <Compile Include="EF\Mapping\AlertAgg\MailMessageLogEntityTypeConfiguration.cs" />
+    <Compile Include="EF\Mapping\AlertAgg\MessageEntityEntityTypeConfiguration.cs" />
+    <Compile Include="EF\Mapping\AlertAgg\PhoneMessageLogEntityTypeConfiguration.cs" />
     <Compile Include="EF\Mapping\AssetsAgg\AssetsItemEntityTypeConfiguration.cs" />
     <Compile Include="EF\Mapping\FileAgg\FileAttributeEntityTypeConfiguration.cs" />
     <Compile Include="EF\Mapping\FileAgg\FileInfoExtendEntityTypeConfiguration.cs" />
@@ -93,6 +96,10 @@
     <Compile Include="HOME_SQL\201703240845054_V1_0_1.cs" />
     <Compile Include="HOME_SQL\201703240845054_V1_0_1.Designer.cs">
       <DependentUpon>201703240845054_V1_0_1.cs</DependentUpon>
+    </Compile>
+    <Compile Include="HOME_SQL\201704180313142_V1_0_2.cs" />
+    <Compile Include="HOME_SQL\201704180313142_V1_0_2.Designer.cs">
+      <DependentUpon>201704180313142_V1_0_2.cs</DependentUpon>
     </Compile>
     <Compile Include="HOME_SQL\Configuration.cs" />
     <Compile Include="HOME_SQL\InitializeDB\V1.cs" />
@@ -136,6 +143,9 @@
   <ItemGroup>
     <EmbeddedResource Include="HOME_SQL\201703240845054_V1_0_1.resx">
       <DependentUpon>201703240845054_V1_0_1.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="HOME_SQL\201704180313142_V1_0_2.resx">
+      <DependentUpon>201704180313142_V1_0_2.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201703271538193_V1_0_1.resx">
       <DependentUpon>201703271538193_V1_0_1.cs</DependentUpon>
