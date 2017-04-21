@@ -4,8 +4,8 @@ using Library.Domain;
 
 namespace Home.DomainModel.Aggregates.AlertAgg
 {
-    [System.ComponentModel.Description("手札短信記錄"),
-     System.ComponentModel.DisplayName("手札短信記錄")]
+    [System.ComponentModel.Description("手機短信記錄"),
+     System.ComponentModel.DisplayName("手機短信記錄")]
     public class PhoneMessageLogEntity : MessageLogEntity
     {
         public PhoneMessageLogEntity(ICreatedInfo crate) : base(crate)
