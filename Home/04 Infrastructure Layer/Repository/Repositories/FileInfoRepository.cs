@@ -39,7 +39,7 @@ namespace Home.Repository.Repositories
 
         public IEnumerable<FileInfo> GetPhotoFilesByExtensions(string[] extensions)
         {
-            return Set.Include("Photo").AsNoTracking().Where(n => extensions.Contains(n.Extension) && n.StatusCode == Library.ComponentModel.Model.StatusCode.Enabled);
+            return Set.Include("Photo").AsNoTracking().Where(n => extensions.Contains(n.Extension) && n.StatusCode == Library.ComponentModel.Model.StatusCode.Enabled && n.Photo == null);
         }
     }
 }

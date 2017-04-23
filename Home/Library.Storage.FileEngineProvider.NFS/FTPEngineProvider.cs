@@ -48,17 +48,17 @@ namespace Library.Storage.FileEngineProvider.Network
 
     public class FTPFileStorage : Library.Storage.IFileStorage, IDisposable
     {
+        Limilabs.FTP.Client.Ftp ftp = new Limilabs.FTP.Client.Ftp();
+        string _filepath;
         public FTPFileStorage(string ftpurl, string ftpuid, string ftppwd, string filepath)
         {
             try
             {
-                Limilabs.FTP.Client.Ftp ftp = new Limilabs.FTP.Client.Ftp();
-              
+
                 ftp.Connect(ftpurl);
                 ftp.Login(ftpuid, ftppwd);
-                var file = ftp.Download(filepath);
-                fs = new MemoryStream(file);
-                Exists = true;
+                Exists = ftp.FileExists(filepath);
+                _filepath = filepath;
             }
             catch (Exception)
             {
@@ -83,12 +83,14 @@ namespace Library.Storage.FileEngineProvider.Network
                 fs.Dispose();
                 fs = null;
             }
-           
+
         }
 
         public Stream Get()
         {
-           
+
+            var file = ftp.Download(_filepath);
+            fs = new MemoryStream(file);
             return fs;
         }
 
@@ -106,7 +108,7 @@ namespace Library.Storage.FileEngineProvider.Network
             {
                 if (disposing)
                 {
-                    if (fs == null) fs.Dispose();
+                    if (fs != null) fs.Dispose();
                 }
 
                 fs = null;

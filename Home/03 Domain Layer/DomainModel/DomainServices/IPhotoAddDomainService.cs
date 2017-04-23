@@ -11,6 +11,6 @@ namespace Home.DomainModel.DomainServices
 
     public interface IAddPhotoDomainService : IPhotoDomainService
     {
-        void Handle(Aggregates.GalleryAgg.Photo photo, DomainModel.Aggregates.FileAgg.FileInfo file);
+        void Handle( DomainModel.Aggregates.FileAgg.FileInfo file);
     }
 }

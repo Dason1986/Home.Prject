@@ -98,10 +98,11 @@ namespace HomeApplication.Logic.IO
                     var photolist = filesRepository.GetPhotoFilesByExtensions(Analysis.Option.ImageTypes).Skip(beginindex).Take(take).ToList();
                     foreach (var item in photolist)
                     {
-                        domainService.Handle(null, item);
+                        domainService.Handle( item);
                         domainService.ModuleProvider.UnitOfWork.Commit();
+                        GC.Collect();
                     }
-                    GC.Collect();
+               
                 }
 
                 #endregion MyRegion

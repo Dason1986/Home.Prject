@@ -14,10 +14,11 @@ namespace HomeApplication.DomainServices
 {
     public class AddPhotoDomainService : PhotoDomainService, IAddPhotoDomainService
     {
-        public void Handle(Photo photo, Home.DomainModel.Aggregates.FileAgg.FileInfo file)
+        public void Handle(Home.DomainModel.Aggregates.FileAgg.FileInfo file)
         {
-            CurrnetPhoto = photo;
             CurrnetFile = file;
+            if (file != null)
+                CurrnetPhoto = file.Photo;
             DoAddAction();
         }
 
@@ -39,41 +40,48 @@ namespace HomeApplication.DomainServices
         {
             if (CurrnetFile == null) return;
             if (!_photoEnvironment.Isloadconfig) _photoEnvironment.LoadConfig(ModuleProvider.CreateSystemParameter());
-            storage = CurrnetFile.GetStorage();
-            Logger.Trace("AddPhotoDomainService:{0}", CurrnetFile.FullPath);
-
-            if (!storage.Exists)
-            {
-                Logger.WarnByContent(Resources.DomainServiceResource.FileNotExist, CurrnetFile.FullPath);
-                throw new PhotoDomainServiceException(Resources.DomainServiceResource.FileNotExist, new FileNotFoundException(CurrnetFile.FullPath));
-            }
             if (CurrnetPhoto == null)
             {
                 Logger.TraceByContent("Create Photo Entity", CurrnetFile.FullPath);
-
-                CurrnetPhoto = new Photo(CreatedInfo.PhotoFileAnalysis)
+                CurrnetPhoto= PhotoRepository.Get(CurrnetFile.ID);
+                if (CurrnetPhoto == null)
                 {
-                    ID = CurrnetFile.ID,
-                    FileID = CurrnetFile.ID,
-                };
-                PhotoRepository.Add(CurrnetPhoto);
+                    CurrnetPhoto = new Photo(CreatedInfo.PhotoFileAnalysis)
+                    {
+                        ID = CurrnetFile.ID,
+                        FileID = CurrnetFile.ID,
+                    };
+                    CurrnetFile.Photo = CurrnetPhoto;
+                    PhotoRepository.Add(CurrnetPhoto);
+                }
                 // CurrnetFile.Photo = CurrnetPhoto;
             }
             if (CurrnetPhoto.Attributes != null && CurrnetPhoto.Attributes.Count > 0) return;
-
-            Logger.TraceByContent("Analysis", CurrnetFile.FullPath);
-
-            fs = storage.Get();
-            image = new Bitmap(fs);
-
-            var exifInfo = ImageExif.GetExifInfo(image);
-            if (CurrnetPhoto.Attributes == null)
+            using (storage = CurrnetFile.GetStorage())
             {
-                ICollection<PhotoAttribute> attributes = new List<PhotoAttribute>();
-                CurrnetPhoto.Attributes = attributes;
+                Logger.Trace("AddPhotoDomainService:{0}", CurrnetFile.FullPath);
+
+                if (!storage.Exists)
+                {
+                    Logger.WarnByContent(Resources.DomainServiceResource.FileNotExist, CurrnetFile.FullPath);
+                    throw new PhotoDomainServiceException(Resources.DomainServiceResource.FileNotExist, new FileNotFoundException(CurrnetFile.FullPath));
+                }
+
+                Logger.TraceByContent("Analysis", CurrnetFile.FullPath);
+
+                fs = storage.Get();
+                image = new Bitmap(fs);
+
+                var exifInfo = ImageExif.GetExifInfo(image);
+                if (CurrnetPhoto.Attributes == null)
+                {
+                    ICollection<PhotoAttribute> attributes = new List<PhotoAttribute>();
+                    CurrnetPhoto.Attributes = attributes;
+                }
+                DoImageExif(image, exifInfo);
+                //   BuildImage(image);
+                image.Dispose();
             }
-            DoImageExif(image, exifInfo);
-            BuildImage(image);
         }
 
         private void BuildImage(Image image)
@@ -140,6 +148,12 @@ namespace HomeApplication.DomainServices
                 }
 
                 attributes.Add(CreateAtt("AspectRatio", AspectRatio.FormSize(image.Size).ToString()));
+            }
+            foreach (var item in photo.Attributes)
+            {
+                if(item.AttValue!=null&& item.AttValue.Length > 255) {
+                    item.AttValue = item.AttValue.Substring(0, 255);
+                }
             }
         }
 
