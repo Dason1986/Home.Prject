@@ -1,4 +1,5 @@
-﻿using Home.DomainModel.DomainServices;
+﻿using System;
+using Home.DomainModel.DomainServices;
 using Home.DomainModel.ModuleProviders;
 using HomeApplication.DomainServices;
 using Library.Domain.DomainEvents;
@@ -59,12 +60,12 @@ namespace HomeApplication.Test
         }
         public void FileNotExist()
         {
-            var ex = Assert.Throws(typeof(PhotoDomainServiceException), () =>
+            var ex = Assert.Throws(typeof(ArgumentNullException), () =>
             {
                 _domainService.ModuleProvider = _moduleProvider;
                 _domainService.Handle(_args);
             });
-            Assert.That(ex.Message, Is.EqualTo(Resources.DomainServiceResource.FileNotExist));
+            Assert.That(ex.Message, Is.EqualTo("Value cannot be null.\r\nParameter name: Engine"));
         }
     }
 }

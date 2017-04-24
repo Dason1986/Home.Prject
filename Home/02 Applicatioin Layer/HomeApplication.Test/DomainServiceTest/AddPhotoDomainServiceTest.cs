@@ -29,8 +29,10 @@ namespace HomeApplication.Test
             mock.Mock<IUnitOfWork>();
             mock.Mock<IPhotoRepository>().Setup(x => x.Get(It.IsAny<Guid>())).Returns<Guid>(x => res.GetALLPhtots().FirstOrDefault(n => n.ID == x));
             mock.Mock<IFileInfoRepository>().Setup(x => x.Get(It.IsAny<Guid>())).Returns<Guid>(x => res.GetALLFiles().FirstOrDefault(n => n.ID == x));
+            mock.Mock<ISystemParameterRepository>().Setup(x => x.GetListByGroup(It.IsAny<string>())).Returns<string>(x => res.GetListByGroup(x).ToArray());
             var mokprovider = mock.Mock<IGalleryModuleProvider>();
             mokprovider.Setup(x => x.CreateFileInfo()).Returns(mock.Create<IFileInfoRepository>());
+            mokprovider.Setup(x => x.CreateSystemParameter()).Returns(mock.Create<ISystemParameterRepository>());
             mokprovider.Setup(x => x.CreatePhoto()).Returns(mock.Create<IPhotoRepository>());
             mokprovider.Setup(x => x.UnitOfWork).Returns(mock.Create<IUnitOfWork>());
             mock.Provide<IAddPhotoDomainService, AddPhotoDomainService>();

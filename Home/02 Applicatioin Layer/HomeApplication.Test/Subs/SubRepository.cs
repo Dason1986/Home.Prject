@@ -4,6 +4,7 @@ using System;
 using System.Collections.Generic;
 using System.Drawing;
 using System.Linq;
+using Home.DomainModel.Aggregates.SystemAgg;
 
 namespace HomeApplication.Test
 {
@@ -16,10 +17,12 @@ namespace HomeApplication.Test
             _photos = new List<Photo>();
             _albums = new List<Album>();
             _files = new List<FileInfo>();
+            _systemParameters = new List<SystemParameter>();
         }
         readonly List<Photo> _photos;
         readonly List<Album> _albums;
         readonly List<FileInfo> _files;
+        readonly List<SystemParameter> _systemParameters;
 
         public IQueryable<Photo> GetALLPhtots()
         {
@@ -33,7 +36,10 @@ namespace HomeApplication.Test
         {
             return _albums.AsQueryable();
         }
-
+        public IQueryable<SystemParameter> GetListByGroup(string key)
+        {
+            return _systemParameters.AsQueryable();
+        }
         public void InitPhoto()
         {
             Bitmap image = new Bitmap(100, 100);
