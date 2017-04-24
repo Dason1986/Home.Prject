@@ -50,16 +50,17 @@ namespace HomeApplication.ComponentModel.IO
             }
         }
 
-        public abstract Stream Create(Image image);
+        public abstract Stream Create();
     }
     public class PhotoPanoramicBuilder : PhotoBuilder
     {
 
 
-         
 
-        public override Stream Create(Image image)
+
+        public override Stream Create()
         {
+            Image image = SourceImage;
             const int fixHeight = 1080;
             var tempheight = image.Size.Height > fixHeight ? fixHeight : image.Size.Height;
             var per = (decimal)tempheight / image.Height;
@@ -87,71 +88,83 @@ namespace HomeApplication.ComponentModel.IO
         public PhotoThumbnailBuilder()
         {
             ThumbnailHasBorder = true;
+            Size = new Size(250, 250);
         }
 
 
         public bool ThumbnailHasBorder { get; set; }
 
 
- 
-
-
-        private const int MamarginLr = 10;
-        private const int MamarginTb = 230;
-        private static readonly RectangleF ThumbnailFillRectangle = new RectangleF(MamarginLr, MamarginLr, MamarginTb, MamarginTb);
-        private const int ThumbnailPixels = 234;
 
 
 
-        public override Stream Create(Image image)
+        public Size Size { get; set; }
+
+        public override Stream Create()
         {
-            var min = Math.Min(image.Width, image.Height);
-            var max = Math.Max(image.Width, image.Height);
-            Bitmap tempImage = new Bitmap(250, 250, PixelFormat.Format64bppArgb);
-
+            Image image = SourceImage;
+            int min;
+            int max;
+            bool minIsWidth = false;
+            if (image.Width > image.Height)
+            {
+                min = image.Height;
+                max = image.Width;
+            }
+            else
+            {
+                max = image.Height;
+                min = image.Width;
+                minIsWidth = true;
+            }
+            var thumbnailPixels = Size.Width - 16;
+            Bitmap tempImage = new Bitmap(Size.Width, Size.Height, PixelFormat.Format64bppArgb);
+            var thumbnailFillRectangle = new RectangleF(0, 0, Size.Width, Size.Height);
+            thumbnailFillRectangle.Inflate(-10, -10);
             Graphics g = Graphics.FromImage(tempImage);
             g.Clear(Color.White);
             g.InterpolationMode = InterpolationMode.HighQualityBicubic;
+
+
             if (ThumbnailHasBorder)
             {
                 g.DrawRectangle(new Pen(Color.Gray, 4), 8, 8, 234, 234);
                 g.DrawRectangle(new Pen(Color.LightGray, 2), 2, 2, 246, 246);
             }
-            if (min < 250)
+            if (min >= Size.Width)
             {
-                if (min == image.Width)
-                {
-                    if (max > ThumbnailPixels)
-                    {
-                        g.DrawImage(image, ThumbnailFillRectangle, SourceRectangle, GraphicsUnit.Pixel);
-                    }
-                    else
-                    {
-                        var per = (decimal)ThumbnailPixels / image.Height;
-                        var tempWidth = (int)(image.Width * per);
-                        var paddingleft = (ThumbnailPixels - tempWidth) / 2;
-                        g.DrawImage(image, new Rectangle(paddingleft, 12, tempWidth, 226), SourceRectangle, GraphicsUnit.Pixel);
-                    }
-                }
-                else
-                {
-                    if (min > ThumbnailPixels)
-                    {
-                        g.DrawImage(image, ThumbnailFillRectangle, SourceRectangle, GraphicsUnit.Pixel);
-                    }
-                    else
-                    {
-                        var per = (decimal)ThumbnailPixels / image.Width;
-
-                        var tempHeight = (int)(image.Height * per);
-                        var paddingTop = (ThumbnailPixels - tempHeight) / 2;
-                        g.DrawImage(image, new Rectangle(12, paddingTop, 226, tempHeight), SourceRectangle, GraphicsUnit.Pixel);
-                    }
-                }
+                g.DrawImage(image, thumbnailFillRectangle, SizeUtility.GetSquareRectangle(image.Size),
+                    GraphicsUnit.Pixel);
             }
             else
             {
-                g.DrawImage(image, ThumbnailFillRectangle, SizeUtility.GetSquareRectangle(image.Size), GraphicsUnit.Pixel);
+                int comparevalue;
+                int tempWidth = 226, tempHeight = 226, paddingleft = 12, paddingTop = 12;
+
+                if (minIsWidth)
+                {
+
+                    comparevalue = max;
+                    var per = (decimal)thumbnailPixels / image.Height;
+                    tempWidth = (int)(image.Width * per);
+                    paddingleft = (thumbnailPixels - tempWidth) / 2;
+
+                }
+                else
+                {
+
+                    comparevalue = min;
+                    var per = (decimal)thumbnailPixels / image.Width;
+
+                    tempHeight = (int)(image.Height * per);
+                    paddingTop = (thumbnailPixels - tempHeight) / 2;
+
+
+                }
+                if (comparevalue > thumbnailPixels)
+                    g.DrawImage(image, thumbnailFillRectangle, SourceRectangle, GraphicsUnit.Pixel);
+                else
+                    g.DrawImage(image, new Rectangle(paddingleft, paddingTop, tempWidth, tempHeight), SourceRectangle, GraphicsUnit.Pixel);
             }
 
             g.Dispose();
@@ -174,12 +187,13 @@ namespace HomeApplication.ComponentModel.IO
 
         public Size ZoomSize { get; set; }
 
- 
 
 
 
-        public override Stream Create(Image image)
+
+        public override Stream Create()
         {
+            Image image = SourceImage;
             Size endPoint = image.Size;
             if ((image.Width < ZoomSize.Width && image.Height < ZoomSize.Height) == false)
             {
@@ -194,7 +208,7 @@ namespace HomeApplication.ComponentModel.IO
             g.DrawImage(image, new Rectangle(Point.Empty, endPoint), SourceRectangle, GraphicsUnit.Pixel);
 
             g.Dispose();
-            Rotate(tempImage);
+            //    Rotate(tempImage);
             MemoryStream ms = new MemoryStream();
             tempImage.Save(ms, ImageFormat.Jpeg);
 
