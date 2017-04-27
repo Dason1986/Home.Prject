@@ -21,6 +21,7 @@ namespace Home.Repository.Repositories
 
         public bool FileExists(string mD5, long fileSize)
         {
+            if (string.IsNullOrEmpty(mD5)) return false;
             return Set.Any(n => n.MD5 == mD5 && n.FileSize == fileSize);
         }
 

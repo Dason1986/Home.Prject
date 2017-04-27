@@ -37,11 +37,24 @@ namespace HomeApplication.Logic
         }
 
         private static CommandMenu[] _menus = new CommandMenu[] {
-            new CommandMenu() {
+            new ChildCommandMenu() {
+                Name = "掃描文件",
+                Key = "1",
+
+                 Menus = new CommandMenu[]
+               {
+                   new CommandMenu() {
                 Name = "掃描物理文件",
                 Key = "1",
                 CommandClassType = typeof(ScanderPhysicalFile),
                 OptionBuilderType = typeof(ScanderPhysicalFileOptionCommandBuilder)
+            } ,
+                   new CommandMenu() {
+                                        Name = "掃描FTP",
+                                        Key = "2",
+                                        CommandClassType = typeof(ScanderFTP),
+                OptionBuilderType = typeof(ScanderFTPOptionCommandBuilder)
+                                    } , }
             } ,
 
            new ChildCommandMenu {

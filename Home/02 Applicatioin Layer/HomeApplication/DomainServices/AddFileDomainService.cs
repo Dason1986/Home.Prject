@@ -91,12 +91,16 @@ namespace HomeApplication.DomainServices
                 if (_filterfile.Any(ff => item.Name.EndsWith(ff, StringComparison.OrdinalIgnoreCase))) continue;
                 var filepath = item.Name.Replace(_rootpath, string.Empty);
                 if (FilesRepository.FileExists(filepath)) continue;
-                var md5 = Library.HelperUtility.FileUtility.FileMD5(item.Buffer);
-                if (_existMd5S.Contains(md5))
+                string md5="";
+                if (item.Buffer != null)
                 {
-                    continue;
+                    md5 = Library.HelperUtility.FileUtility.FileMD5(item.Buffer);
+                    if (_existMd5S.Contains(md5))
+                    {
+                        continue;
+                    }
+                    _existMd5S.Add(md5);
                 }
-                _existMd5S.Add(md5);
                 var fileinfo = new FileEx(args.CreatedInfo)
                 {
                     FullPath = filepath,
