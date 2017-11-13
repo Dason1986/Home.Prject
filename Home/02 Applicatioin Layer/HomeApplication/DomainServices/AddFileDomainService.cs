@@ -12,11 +12,7 @@ namespace HomeApplication.DomainServices
 {
     public class AddFileDomainService : FileManagentDomainService, IAddFileDomainService
     {
-        protected override void Handle(IDomainEventArgs args)
-        {
-            if (args is AddFileEventArgs == false) throw new Exception();
-            Handle(args as AddFileEventArgs);
-        }
+       
 
         private readonly IList<string> _existMd5S = new List<string>();
         private readonly string[] _filterfile = { ".DS_Store", "desktop.ini", "thumbs.db" };
@@ -118,6 +114,11 @@ namespace HomeApplication.DomainServices
                 }
                 FilesRepository.Add(fileinfo);
             }
+        }
+
+        protected override void Handle(DomainEventArgs args)
+        {
+            throw new NotImplementedException();
         }
     }
 }

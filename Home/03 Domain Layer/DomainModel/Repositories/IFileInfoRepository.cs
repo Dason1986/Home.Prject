@@ -1,6 +1,7 @@
 using Library.Domain.Data;
 using System.Collections.Generic;
 using Home.DomainModel.Aggregates.FileAgg;
+using Library.Domain.Data.Repositorys;
 
 namespace Home.DomainModel.Repositories
 {
@@ -8,7 +9,7 @@ namespace Home.DomainModel.Repositories
     {
         bool FileExists(string filepath);
 
-        IEnumerable<FileInfo> GetPhotoFilesByExtensions(string[] extensions);
+        FileInfo[] GetPhotoFilesByExtensions(string[] extensions,int takes);
 
         bool FileExists(string mD5, long fileSize);
 

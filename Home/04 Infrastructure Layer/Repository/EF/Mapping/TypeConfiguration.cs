@@ -28,6 +28,9 @@ namespace Repository.EF.Mapping
         private static void SystemAgg(DbModelBuilder modelBuilder)
         {
             modelBuilder.Configurations.Add(new SystemParameterEntityTypeConfiguration());
+            modelBuilder.Configurations.Add(new DomainEventArgsLogEntityTypeConfiguration());
+            modelBuilder.Configurations.Add(new ScheduleJobEntityTypeConfiguration());
+            modelBuilder.Configurations.Add(new ScheduleJobLogEntityTypeConfiguration());
         }
 
         private static void FileAgg(DbModelBuilder modelBuilder)

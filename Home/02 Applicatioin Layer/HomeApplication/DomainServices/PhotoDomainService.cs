@@ -6,6 +6,7 @@ using Home.DomainModel.Repositories;
 using Library.Domain.Data;
 using Library.Domain.DomainEvents;
 using Home.DomainModel.Aggregates.FileAgg;
+using Library.Domain.Data.ModuleProviders;
 
 namespace HomeApplication.DomainServices
 {
@@ -16,7 +17,7 @@ namespace HomeApplication.DomainServices
         //    _moduleProvider = moduleProvider;
         //    CreateRepository(_moduleProvider);
         //}
-        public IGalleryModuleProvider ModuleProvider
+        public IGalleryModuleProvider GalleryModuleProvider
         {
             get { return _moduleProvider; }
             set
@@ -29,16 +30,16 @@ namespace HomeApplication.DomainServices
             }
         }
 
-        protected override IDomainModuleProvider Provider
+        protected override IModuleProvider Provider
         {
             get
             {
-                return ModuleProvider;
+                return GalleryModuleProvider;
             }
 
             set
             {
-                ModuleProvider = value as IGalleryModuleProvider;
+                GalleryModuleProvider = value as IGalleryModuleProvider;
             }
         }
 
@@ -48,8 +49,8 @@ namespace HomeApplication.DomainServices
 
         protected virtual void CreateRepository(IGalleryModuleProvider moduleProvider)
         {
-            PhotoRepository = ModuleProvider.CreatePhoto();
-            FilesRepository = ModuleProvider.CreateFileInfo();
+            PhotoRepository = GalleryModuleProvider.CreatePhoto();
+            FilesRepository = GalleryModuleProvider.CreateFileInfo();
         }
 
         public Photo CurrnetPhoto { get; protected set; }
@@ -57,7 +58,7 @@ namespace HomeApplication.DomainServices
 
         public void Handle(PhotoItemEventArgs args)
         {
-            if (ModuleProvider == null) throw new PhotoDomainServiceException(Resources.DomainServiceResource.ModuleProviderNull);
+            if (GalleryModuleProvider == null) throw new PhotoDomainServiceException(Resources.DomainServiceResource.ModuleProviderNull);
             if (args == null) throw new PhotoDomainServiceException(Resources.DomainServiceResource.PhotoItemArgumentNull, new ArgumentException("args"));
             if (args.Tag is FileInfo == false)
             {
@@ -82,7 +83,7 @@ namespace HomeApplication.DomainServices
             DoAddAction();
         }
 
-        protected override void Handle(IDomainEventArgs args)
+        protected override void Handle(DomainEventArgs args)
         {
             Handle(args as PhotoItemEventArgs);
         }
@@ -91,9 +92,9 @@ namespace HomeApplication.DomainServices
 
         protected override void OnDispose()
         {
-            if (this.ModuleProvider == null) return;
+            if (this.GalleryModuleProvider == null) return;
 
-            this.ModuleProvider.Dispose();
+            //this.GalleryModuleProvider.Dispose();
         }
     }
 }

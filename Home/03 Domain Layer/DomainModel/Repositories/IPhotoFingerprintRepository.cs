@@ -3,6 +3,7 @@ using Library.Domain.Data;
 using System.Collections.Generic;
 using Home.DomainModel.Aggregates.GalleryAgg;
 using Home.DomainModel;
+using Library.Domain.Data.Repositorys;
 
 namespace Home.DomainModel.Repositories
 {

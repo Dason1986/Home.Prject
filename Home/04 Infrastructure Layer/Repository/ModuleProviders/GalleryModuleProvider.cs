@@ -2,53 +2,54 @@ using Home.DomainModel.ModuleProviders;
 using Library.Domain.Data.EF;
 using Home.DomainModel.Repositories;
 using Home.Repository.Repositories;
+using System.Data.Entity;
 
 namespace Home.Repository.ModuleProviders
 {
-    public class GalleryModuleProvider : DomainModuleProvider, IGalleryModuleProvider
+    public class GalleryModuleProvider : ModuleProvider, IGalleryModuleProvider
     {
-        public GalleryModuleProvider(EFContext context) : base(context)
+        public GalleryModuleProvider(DbContext context) : base(context)
         {
         }
 
         public IAlbumRepository CreateAlbum()
         {
-            return new AlbumRepository(this.Context);
+            return new AlbumRepository(this.DbContext);
         }
 
         public IFileInfoRepository CreateFileInfo()
         {
-            return new FileInfoRepository(this.Context);
+            return new FileInfoRepository(this.DbContext);
         }
 
         public IPhotoRepository CreatePhoto()
         {
-            return new PhotoRepository(this.Context);
+            return new PhotoRepository(this.DbContext);
         }
 
         public IPhotoAttributeRepository CreatePhotoAttribute()
         {
-            return new PhotoAttributeRepository(this.Context);
+            return new PhotoAttributeRepository(this.DbContext);
         }
 
         public IPhotoFacesRepository CreatePhotoFaces()
         {
-            return new PhotoFacesRepository(this.Context);
+            return new PhotoFacesRepository(this.DbContext);
         }
 
         public IPhotoFingerprintRepository CreatePhotoFingerprint()
         {
-            return new PhotoFingerprintRepository(this.Context);
+            return new PhotoFingerprintRepository(this.DbContext);
         }
 
         public IPhotoSimilarRepository CreatePhotoSimilar()
         {
-            return new PhotoSimilarRepository(this.Context);
+            return new PhotoSimilarRepository(this.DbContext);
         }
 
         public ISystemParameterRepository CreateSystemParameter()
         {
-            return new SystemParameterRepository(this.Context);
+            return new SystemParameterRepository(this.DbContext);
         }
     }
 }

@@ -8,7 +8,7 @@ using System.ComponentModel.DataAnnotations;
 namespace Home.DomainModel.Aggregates.FileAgg
 {
     [DisplayName("文件信息")]
-    public class FileInfo : CreateEntity
+    public class FileInfo : Entity
     {
         public FileInfo()
         {

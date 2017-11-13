@@ -4,13 +4,15 @@ namespace Home.DomainModel.DomainServices
 {
     public class AddPhotoDomainEventHandler : DomainEventHandler<IAddPhotoDomainService>
     {
-        public AddPhotoDomainEventHandler(PhotoItemEventArgs args) : base(args)
+        public AddPhotoDomainEventHandler(PhotoItemEventArgs args)
         {
         }
     }
 
     public interface IAddPhotoDomainService : IPhotoDomainService
     {
+   
+
         void Handle( DomainModel.Aggregates.FileAgg.FileInfo file);
     }
 }

@@ -9,7 +9,7 @@ namespace Home.DomainModel.DomainServices
 {
     public class PhotoFacesDomainEventHandler : DomainEventHandler<IPhotoFacesDomainService>
     {
-        public PhotoFacesDomainEventHandler(PhotoItemEventArgs args) : base(args)
+        public PhotoFacesDomainEventHandler(PhotoItemEventArgs args) 
         {
         }
     }

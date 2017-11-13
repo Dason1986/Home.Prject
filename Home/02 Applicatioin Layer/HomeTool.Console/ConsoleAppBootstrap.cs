@@ -81,6 +81,20 @@ namespace HomeApplication
             return _container.ResolveNamed<T>(name);
         }
 
+        public override object GetService(Type type)
+        {
+            throw new NotImplementedException();
+        }
+
+        public override object GetService(Type type, Type[] argtypes, object[] obj)
+        {
+            throw new NotImplementedException();
+        }
+
+        public override object GetService(Type type, string[] constantNames, object[] obj)
+        {
+            throw new NotImplementedException();
+        }
     }
 
 

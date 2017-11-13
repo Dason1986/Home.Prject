@@ -1,19 +1,21 @@
 ﻿using Home.DomainModel.DomainServices;
 using Home.DomainModel.ModuleProviders;
 using Home.DomainModel.Repositories;
+using Library;
 using Library.Domain;
 using Library.Domain.Data;
+using Library.Domain.Data.ModuleProviders;
 using System;
 using System.Linq;
 
 namespace Home.DomainModel.Aggregates.FileAgg
 {
-    public class FileAggregateRoot : AggregateRoot
+    public class FileAggregateRoot
     {
         public FileAggregateRoot(Guid fileid, IFileInfoRepository fileRspository = null)
         {
             if (fileRspository == null)
-                fileRspository = Library.Bootstrap.Currnet.GetService<IFileInfoRepository>();
+                fileRspository = Bootstrap.Currnet.GetService<IFileInfoRepository>();
             File = fileRspository.Get(fileid);
             if (File == null) throw new Exception();
             UnitOfWork = fileRspository.UnitOfWork;
@@ -37,7 +39,7 @@ namespace Home.DomainModel.Aggregates.FileAgg
 
         public FileInfo File { get; set; }
 
-        public override Guid ID
+        public Guid ID
         {
             get
             {
@@ -45,7 +47,7 @@ namespace Home.DomainModel.Aggregates.FileAgg
             }
         }
 
-        public override void Commit()
+        public void Commit()
         {
             UnitOfWork.Commit();
         }
@@ -53,12 +55,12 @@ namespace Home.DomainModel.Aggregates.FileAgg
         public void PublishPhotoDomain()
         {
             if (!IsImageFile()) return;
-            IDomainModuleProvider moduleProvider = Library.Bootstrap.Currnet.GetService<IGalleryModuleProvider>();
-            CreatePhotoInfo();
-            BuildPhotoFaces();
-            BuildFingerprint();
-            this.Bus.DomainModuleProvider = moduleProvider;
-            this.Bus.PublishAwait();
+            IModuleProvider moduleProvider = Library.Bootstrap.Currnet.GetService<IGalleryModuleProvider>();
+            //CreatePhotoInfo();
+            //BuildPhotoFaces();
+            //BuildFingerprint();
+            //this.Bus.DomainModuleProvider = moduleProvider;
+            //this.Bus.PublishAwait();
         }
 
         private readonly string[] _imageExtension = { ".bmp", ".jpg", ".png", ".jpeg" };
@@ -79,7 +81,7 @@ namespace Home.DomainModel.Aggregates.FileAgg
         {
             return extensions.Any(n => string.Equals(n, extension, StringComparison.OrdinalIgnoreCase));
         }
-
+/*
         public void CreatePhotoInfo()
         {
             AddEvent(new AddPhotoDomainEventHandler(PhotoArgs));
@@ -106,6 +108,6 @@ namespace Home.DomainModel.Aggregates.FileAgg
 
         protected override void OnDeactivate(bool close)
         {
-        }
+        }*/
     }
 }

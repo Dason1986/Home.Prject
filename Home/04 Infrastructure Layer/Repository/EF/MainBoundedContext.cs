@@ -14,12 +14,12 @@ using System.Threading.Tasks;
 
 namespace Repository
 {
-    // [DbConfigurationType(typeof(MySql.Data.Entity.MySqlEFConfiguration))]
-    public class MainBoundedContext : EFContext, IDbContext
+  
+    public class MainBoundedContext : DbContext, IDbContext
     {
         static MainBoundedContext()
         {
-        //    var dbbtype = System.Configuration.ConfigurationManager.AppSettings.Get("DBType") ?? "MSSQL";
+       
             var setting = System.Configuration.ConfigurationManager.ConnectionStrings["MainBoundedContext"] as ConnectionStringSettings;
             switch (setting.ProviderName)
             {
@@ -37,14 +37,17 @@ namespace Repository
             this.Configuration.LazyLoadingEnabled = true;
         }
 
-        protected MainBoundedContext(DbConnection existingConnection)
-            : base(existingConnection)
-        {
-        }
+      
 
         protected MainBoundedContext(string connection)
             : base(connection)
         {
+            this.Configuration.LazyLoadingEnabled = true;
+        }
+
+        public IQueryable<TEntity> CreateSet<TEntity>() where TEntity : class
+        {
+            return CreateSet<TEntity>();
         }
 
         protected override void OnModelCreating(DbModelBuilder modelBuilder)
@@ -55,9 +58,6 @@ namespace Repository
             //EF.Mapping.TypeConfiguration.ModelCreating(modelBuilder);
         }
 
-        IUnitOfWork IDbContext.CreateUnitOfWork()
-        {
-            return new EFUnitOfWork(this);
-        }
+        
     }
 }

@@ -4,7 +4,7 @@ namespace Home.DomainModel.DomainServices
 {
     public class BuildFingerprintDomainEventHandler : DomainEventHandler<IBuildFingerprintDomainService>
     {
-        public BuildFingerprintDomainEventHandler(PhotoItemEventArgs args) : base(args)
+        public BuildFingerprintDomainEventHandler(PhotoItemEventArgs args)
         {
         }
     }

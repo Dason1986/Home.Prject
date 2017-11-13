@@ -152,6 +152,9 @@
       <HintPath>..\..\packages\MimeKit.1.14.0\lib\net451\MimeKit.dll</HintPath>
       <Private>True</Private>
     </Reference>
+    <Reference Include="Newtonsoft.Json, Version=10.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\Newtonsoft.Json.10.0.3\lib\net45\Newtonsoft.Json.dll</HintPath>
+    </Reference>
     <Reference Include="NLog, Version=4.0.0.0, Culture=neutral, PublicKeyToken=5120e14c03d0593c, processorArchitecture=MSIL">
       <HintPath>..\..\packages\NLog.4.4.5\lib\net45\NLog.dll</HintPath>
       <Private>True</Private>
@@ -227,13 +230,13 @@
     <Compile Include="DomainServices\FileManagentDomainService.cs" />
     <Compile Include="FileSotrageHelper.cs" />
     <Compile Include="Interceptors\RoleInterceptor.cs" />
-    <Compile Include="Jobs\CopyFileServiceJob.cs" />
+    <Compile Include="Jobs\DomainEventBusJob.cs" />
     <Compile Include="Jobs\IOJobPlugin.cs" />
-    <Compile Include="Jobs\ServiceJob.cs" />
+    <Compile Include="Jobs\ScanderPhysical.cs" />
+    <Compile Include="Jobs\TDomainService.cs" />
     <Compile Include="LocalFileStorage.cs" />
-    <Compile Include="Logic\IO\ScanderFTP.cs" />
     <Compile Include="Modules\APIServiceModule.cs" />
-    <Compile Include="Modules\DomainServiceModule.cs" />
+    <Compile Include="Modules\DomainServiceManagementModule.cs" />
     <Compile Include="DomainServices\AddPhotoDomainService.cs" />
     <Compile Include="DomainServices\BuildFingerprintDomainService.cs" />
     <Compile Include="DomainServices\DomainService.cs" />
@@ -242,10 +245,10 @@
     <Compile Include="DomainServices\PhotoFacesDomainService.cs" />
     <Compile Include="DomainServices\SimilarPhotoDomainService.cs" />
     <Compile Include="Logic\IO\DeleteFileDistinctByMD5.cs" />
-    <Compile Include="Logic\IO\PhotoFileAnalysis.cs" />
+    <Compile Include="Jobs\PhotoFileAnalysis.cs" />
     <Compile Include="Logic\IO\PhotoSimilar.cs" />
     <Compile Include="Logic\IO\PhotoSimilarBuildFingerprint.cs" />
-    <Compile Include="Logic\IO\ScanderPhysicalFile.cs" />
+    <Compile Include="Modules\FindInterfaceMappToType.cs" />
     <Compile Include="Modules\GenericModule.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Modules\RepositoryModule.cs" />
@@ -263,7 +266,6 @@
     <Compile Include="Services\GalleryServiceImpl.cs" />
     <Compile Include="Services\PMSServiceImpl.cs" />
     <Compile Include="Services\ServiceImpl.cs" />
-    <Compile Include="Modules\TimerJobModule.cs" />
     <Compile Include="DomainServices\IPhotoEnvironment.cs" />
   </ItemGroup>
   <ItemGroup>

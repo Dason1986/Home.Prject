@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace Repository.Migrations
 {
-    partial class V1_0_1
+    partial class V1_1_1
     {
         private void InitSql()
         {
@@ -19,21 +19,5 @@ namespace Repository.Migrations
         }
     }
 
-    public class CreateViewOperation : MigrationOperation
-    {
-        public CreateViewOperation(string viewName, string viewQueryString)
-          : base(null)
-        {
-            ViewName = viewName;
-            ViewString = viewQueryString;
-        }
-
-        public string ViewName { get; private set; }
-        public string ViewString { get; private set; }
-
-        public override bool IsDestructiveChange
-        {
-            get { return false; }
-        }
-    }
+  
 }

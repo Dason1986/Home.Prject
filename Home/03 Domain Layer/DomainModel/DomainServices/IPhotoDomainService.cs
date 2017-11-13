@@ -5,6 +5,6 @@ namespace Home.DomainModel.DomainServices
 {
     public interface IPhotoDomainService : IDomainService, IDomainService<PhotoItemEventArgs>
     {
-        IGalleryModuleProvider ModuleProvider { get; set; }
+        IGalleryModuleProvider GalleryModuleProvider { get; set; }
     }
 }

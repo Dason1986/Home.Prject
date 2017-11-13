@@ -9,10 +9,10 @@ namespace Home.DomainModel.DomainServices
     {
         void Handle(AddFileEventArgs args);
 
-        IFileManagentModuleProvider ModuleProvider { get; set; }
+          IFileManagentModuleProvider FileModuleProvider { get; set; }
     }
 
-    public class AddFileEventArgs : IDomainEventArgs
+    public class AddFileEventArgs : DomainEventArgs
     {
         public AddFileEventArgs(StorageEngine engine, MemoryFile[] memoryFiles, SourceType sourceType, ICreatedInfo createdInfo)
         {

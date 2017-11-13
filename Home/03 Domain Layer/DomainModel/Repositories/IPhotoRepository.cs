@@ -2,6 +2,7 @@ using System;
 using System.Collections.Generic;
 using Library.Domain.Data;
 using Home.DomainModel.Aggregates.GalleryAgg;
+using Library.Domain.Data.Repositorys;
 
 namespace Home.DomainModel.Repositories
 {
@@ -16,5 +17,6 @@ namespace Home.DomainModel.Repositories
         Photo GetByFileId(Guid iD);
 
         Photo GetBySerialNumber(string serialNumber);
+        int Count();
     }
 }

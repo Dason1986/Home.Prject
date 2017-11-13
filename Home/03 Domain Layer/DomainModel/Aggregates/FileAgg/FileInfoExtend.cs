@@ -7,7 +7,7 @@ namespace Home.DomainModel.Aggregates.FileAgg
 {
     [System.ComponentModel.Description("文件擴展信息"),
            System.ComponentModel.DisplayName("文件擴展信息")]
-    public class FileInfoExtend : CreateEntity
+    public class FileInfoExtend : Entity
     {
         public FileInfoExtend()
         {

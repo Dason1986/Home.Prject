@@ -31,20 +31,23 @@ namespace HomeApplication.ComponentModel.IO
          
             int maxLive = 0;
             {
-                var builder = new PhotoThumbnailBuilder {SourceImage = SourceImage};
+                var builder = new PhotoThumbnailBuilder( )  ;
+                builder.SetInfo(this);
                 var lv = builder.Create();
                 Storage.AddThumbnail(lv);
             }
             if (IsPanoramic)
             {
-                var builder = new PhotoPanoramicBuilder {SourceImage = SourceImage};
+                var builder = new PhotoPanoramicBuilder()  ;
+                builder.SetInfo(this);
                 maxLive = 1;
                 var lv = builder.Create();
                 Storage.Add(lv, maxLive);
             }
             else
             {
-                var builder = new PhotoZoomBuilder {SourceImage = SourceImage};
+                var builder = new PhotoZoomBuilder( )  ;
+                builder.SetInfo(this);
                 for (var i = 0; i < LvSizes.Length; i++)
                 {
                     var item = LvSizes[i];

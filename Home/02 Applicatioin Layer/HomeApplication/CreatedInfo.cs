@@ -25,9 +25,11 @@ namespace HomeApplication
             BuildFingerprint = new CreatedInfo() { CreatedBy = "BuildFingerprint" };
             PhotoFileAnalysis = new CreatedInfo { CreatedBy = "PhotoFileAnalysis" };
             PhotoSimilar = new CreatedInfo { CreatedBy = "PhotoSimilar" };
+            ScheduleJob = new CreatedInfo { CreatedBy = "ScheduleJob" };
         }
         public static CreatedInfo BuildFingerprint { get; private set; }
         public static CreatedInfo ScanderPhysical { get; private set; }
+        public static CreatedInfo ScheduleJob { get; private set; }
         public static CreatedInfo PhotoFileAnalysis { get; private set; }
         public static CreatedInfo PhotoSimilar { get; private set; }
     }

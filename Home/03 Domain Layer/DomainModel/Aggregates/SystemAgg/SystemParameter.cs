@@ -50,7 +50,7 @@ namespace Home.DomainModel.Aggregates.SystemAgg
             }
         }
 
-       
+
 
         string IParameter.Key
         {
@@ -60,7 +60,7 @@ namespace Home.DomainModel.Aggregates.SystemAgg
             }
         }
 
-        
+
 
         string IParameter.Value
         {
@@ -68,6 +68,11 @@ namespace Home.DomainModel.Aggregates.SystemAgg
             {
                 return this.ParameterValue;
             }
+        }
+
+        string IParameter.GetValue()
+        {
+            return this.ParameterValue;
         }
 
         void IParameter.SetValue(string value)

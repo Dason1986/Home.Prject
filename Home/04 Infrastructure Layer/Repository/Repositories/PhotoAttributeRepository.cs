@@ -6,31 +6,32 @@ using System.Linq;
 using System.Collections;
 using System.Collections.Generic;
 using System.Text;
+using System.Data.Entity;
 
 namespace Home.Repository.Repositories
 {
     public class PhotoAttributeRepository : Repository<PhotoAttribute>, IPhotoAttributeRepository
     {
-        public PhotoAttributeRepository(EFContext context) : base(context)
+        public PhotoAttributeRepository(DbContext context) : base(context)
         {
         }
 
         public int GetCount(string key)
         {
-            return Set.AsNoTracking().Count(nn => nn.AttKey == key);
+            return Wrapper.Find().AsNoTracking().Count(nn => nn.AttKey == key);
         }
 
         public EequipmentItem[] GetModelCountByMake()
         {
             StringBuilder builder = new StringBuilder(@" select   * from  equipmentview");
 
-            var list = EfContext.Database.SqlQuery<EequipmentItem>(builder.ToString());
+            var list = UnitOfWork.ExecuteQuery<EequipmentItem>(builder.ToString());
             return list.ToArray();
         }
 
         public IDictionary<string, int> GetCountByValue(string key, string filter)
         {
-            IQueryable<PhotoAttribute> quer = Set.AsNoTracking().Where(n => n.AttKey == key);
+            IQueryable<PhotoAttribute> quer = Wrapper.Find().AsNoTracking().Where(n => n.AttKey == key);
             if (!string.IsNullOrWhiteSpace(filter))
             {
                 quer = quer.Where(n => n.AttValue.Contains(filter));
@@ -40,7 +41,7 @@ namespace Home.Repository.Repositories
 
         public TimeLineItem[] GetTimeLineByformat(TimeFormat format, string filtertime = null)
         {
-            var list = EfContext.Database.SqlQuery<TimeLineItem>("select * from TimeLineBy" + format).ToArray();
+            var list = UnitOfWork.ExecuteQuery<TimeLineItem>("select * from TimeLineBy" + format).ToArray();
             return string.IsNullOrEmpty(filtertime) ? list : list.Where(n => n.TimeLine.Contains(filtertime)).ToArray();
         }
     }

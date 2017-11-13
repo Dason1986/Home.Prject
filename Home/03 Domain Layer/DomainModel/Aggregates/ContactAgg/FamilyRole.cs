@@ -6,7 +6,7 @@ namespace Home.DomainModel.Aggregates.ContactAgg
 {
     [System.ComponentModel.Description("家庭角色"),
         System.ComponentModel.DisplayName("家庭角色")]
-    public class FamilyRole : CreateEntity
+    public class FamilyRole : Entity
     {
         public FamilyRole()
         {

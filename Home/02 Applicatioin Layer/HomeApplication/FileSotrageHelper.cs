@@ -13,7 +13,9 @@ namespace HomeApplication
             switch (fileinfo.SourceType)
             {
                 case Home.DomainModel.SourceType.ServerScand:
-                    var fullpath = System.IO.Path.Combine(fileinfo.Engine.Root, fileinfo.FullPath);
+                    var filename = fileinfo.FullPath;
+                    if (filename.StartsWith(@"\")) filename = filename.Substring(1);
+                     var fullpath = System.IO.Path.Combine(fileinfo.Engine.Root, filename);
                     return new LocalFileStorage(fullpath);
 
                 case Home.DomainModel.SourceType.PC:

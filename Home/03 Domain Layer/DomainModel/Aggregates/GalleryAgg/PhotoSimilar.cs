@@ -6,7 +6,7 @@ namespace Home.DomainModel.Aggregates.GalleryAgg
 {
     [System.ComponentModel.Description("相似相片"),
         System.ComponentModel.DisplayName("相似相片")]
-    public class PhotoSimilar : CreateEntity
+    public class PhotoSimilar : Entity
     {
         public PhotoSimilar()
         {

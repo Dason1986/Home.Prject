@@ -23,7 +23,11 @@ namespace HomeApplication.ComponentModel.IO
                 _sourceRectangle = new Rectangle(0, 0, SourceImage.Width, SourceImage.Height);
             }
         }
-
+        internal void SetInfo(PhotoStorageBuilder photoStorageBuilder)
+        {
+            SourceImage = photoStorageBuilder.SourceImage;
+            Orientation = photoStorageBuilder.Orientation;
+        }
         protected Rectangle SourceRectangle
         {
             get { return _sourceRectangle; }
@@ -177,7 +181,7 @@ namespace HomeApplication.ComponentModel.IO
             return ms;
         }
 
-
+       
     }
     public class PhotoZoomBuilder : PhotoBuilder
     {
@@ -208,7 +212,7 @@ namespace HomeApplication.ComponentModel.IO
             g.DrawImage(image, new Rectangle(Point.Empty, endPoint), SourceRectangle, GraphicsUnit.Pixel);
 
             g.Dispose();
-            //    Rotate(tempImage);
+            Rotate(tempImage);
             MemoryStream ms = new MemoryStream();
             tempImage.Save(ms, ImageFormat.Jpeg);
 

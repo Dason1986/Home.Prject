@@ -38,18 +38,18 @@ namespace HomeApplication.Logic.IO
             var _photoRepository = provider.CreatePhoto();
 
             var filecount = _photoRepository.GetAll().Count();
-            provider.Dispose();
+          
             return filecount;
         }
 
         protected override void ThreadProssSize(int beginindex, int endindex, int take)
         {
-            using (var provider = Bootstrap.Currnet.GetService<IGalleryModuleProvider>())
+             var provider = Bootstrap.Currnet.GetService<IGalleryModuleProvider>();
             {
                 IBuildFingerprintDomainService domainservice = Bootstrap.Currnet.GetService<IBuildFingerprintDomainService>();
                 domainservice.ModuleProvider = (provider);
                 //   domainservice.SetAlgorithm( SimilarAlgorithm.);
-                var _photoRepository = domainservice.ModuleProvider.CreatePhoto();
+                var _photoRepository = domainservice.GalleryModuleProvider.CreatePhoto();
                 IList<Photo> photolist = _photoRepository.GetList(beginindex, take);
 
                 foreach (var item in photolist)

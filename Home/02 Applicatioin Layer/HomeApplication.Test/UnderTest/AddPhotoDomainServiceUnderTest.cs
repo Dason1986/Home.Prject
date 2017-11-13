@@ -11,10 +11,10 @@ namespace HomeApplication.Test
     {
        
         private readonly IAddPhotoDomainService _domainService;
-        private readonly IDomainEventArgs _args;
+        private readonly DomainEventArgs _args;
         IGalleryModuleProvider _moduleProvider;
 
-        public AddPhotoDomainServiceUnderTest(IGalleryModuleProvider moduleProvider,  IAddPhotoDomainService domainService, IDomainEventArgs args)
+        public AddPhotoDomainServiceUnderTest(IGalleryModuleProvider moduleProvider,  IAddPhotoDomainService domainService, DomainEventArgs args)
         {
             _moduleProvider = moduleProvider;
             this._domainService = domainService;

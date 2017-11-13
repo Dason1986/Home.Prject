@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 
 namespace Home.DomainModel.Aggregates
 {
-    public abstract class Attachment : CreateEntity
+    public abstract class Attachment : Entity
     {
         public Attachment()
         {

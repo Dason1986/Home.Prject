@@ -1,8 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Reflection;
-using Autofac;
+﻿using Autofac;
 using Home.DomainModel.ModuleProviders;
 using Home.DomainModel.Repositories;
 using Library.Domain.Data;
@@ -11,6 +7,10 @@ using Repository;
 using Home.Repository.ModuleProviders;
 using Home.Repository.Repositories;
 using Module = Autofac.Module;
+using System.Collections.Generic;
+using System;
+using Library.Domain.Data.Repositorys;
+using Library.Domain.Data.ModuleProviders;
 
 namespace HomeApplication
 {
@@ -18,14 +18,15 @@ namespace HomeApplication
     {
         protected override void Load(ContainerBuilder builder)
         {
-            builder.RegisterType<MainBoundedContext>().As<EFContext, IDbContext>();
+            builder.RegisterType<MainBoundedContext>().As<MainBoundedContext, System.Data.Entity.DbContext, IDbContext>();
             FindInterfaceMappToType find = new FindInterfaceMappToType(typeof(IRepository), typeof(IAlbumRepository).Assembly, typeof(MainBoundedContext).Assembly);
             var mappdic = find.Find();
             foreach (var typese in mappdic)
             {
-                builder.RegisterType(typese.Value[0]).As(typese.Key);
+                if (typese.Value.Length > 0)
+                    builder.RegisterType(typese.Value[0]).As(typese.Key);
             }
-            find = new FindInterfaceMappToType(typeof(IDomainModuleProvider), typeof(IGalleryModuleProvider).Assembly, typeof(MainBoundedContext).Assembly);
+            find = new FindInterfaceMappToType(typeof(IModuleProvider), typeof(IGalleryModuleProvider).Assembly, typeof(MainBoundedContext).Assembly);
             mappdic = find.Find();
             foreach (var typese in mappdic)
             {
@@ -43,43 +44,6 @@ namespace HomeApplication
 
             //builder.RegisterType<FileManagentModuleProvider>().As<IFileManagentModuleProvider>();
             //builder.RegisterType<GalleryModuleProvider>().As<IGalleryModuleProvider>();
-        }
-    }
-
-    public class FindInterfaceMappToType
-    {
-        private readonly Type _interfacType;
-        private readonly Assembly _intefaceAssembly;
-        private readonly Assembly _maptoAssembly;
-
-        public FindInterfaceMappToType(Type interfacType, Assembly intefaceAssembly, Assembly maptoAssembly)
-        {
-            _interfacType = interfacType;
-            _intefaceAssembly = intefaceAssembly;
-            _maptoAssembly = maptoAssembly;
-        }
-
-        public IDictionary<Type, Type[]> Find()
-        {
-            IDictionary<Type, Type[]> dictionary = new Dictionary<Type, Type[]>();
-            var types =
-              _intefaceAssembly.GetTypes()
-                  .Where(n => _interfacType.IsAssignableFrom(n) && n.IsInterface && n != _interfacType).OrderBy(n => n.Name)
-                  .ToArray();
-            var mapptos =
-                _maptoAssembly.GetTypes()
-                    .Where(
-                        n => _interfacType.IsAssignableFrom(n) && n.IsClass && !n.IsAbstract && n != _interfacType)
-                    .ToArray();
-            foreach (var type in types)
-            {
-                if (type.IsGenericType) continue;
-
-                var maptoType = mapptos.Where(n => type.IsAssignableFrom(n) && n.IsClass && !n.IsAbstract).ToArray();
-
-                dictionary.Add(type, maptoType.Length == 0 ? null : maptoType);
-            }
-            return dictionary;
         }
     }
 }

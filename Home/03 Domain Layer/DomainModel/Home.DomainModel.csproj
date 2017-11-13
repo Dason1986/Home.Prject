@@ -34,6 +34,9 @@
       <HintPath>..\..\packages\Autofac.4.4.0\lib\net45\Autofac.dll</HintPath>
       <Private>True</Private>
     </Reference>
+    <Reference Include="Library">
+      <HintPath>..\..\Lib\Library.dll</HintPath>
+    </Reference>
     <Reference Include="Library.Core">
       <HintPath>..\..\Lib\Library.Core.dll</HintPath>
     </Reference>
@@ -81,6 +84,8 @@
     <Compile Include="Aggregates\Gender.cs" />
     <Compile Include="Aggregates\Attribute.cs" />
     <Compile Include="Aggregates\AlertAgg\MailAggregateRoot.cs" />
+    <Compile Include="Aggregates\LogsAgg\DomainEventArgsLog.cs" />
+    <Compile Include="Aggregates\LogsAgg\ScheduleJobLog.cs" />
     <Compile Include="Aggregates\ObjectElement.cs" />
     <Compile Include="Aggregates\OfficeAgg\OfficeInfo.cs" />
     <Compile Include="Aggregates\OfficeAgg\WordAttribute.cs" />
@@ -90,6 +95,7 @@
     <Compile Include="Aggregates\ProductAgg\ProductItem.cs" />
     <Compile Include="Aggregates\AssetsAgg\PurchaseLineItem.cs" />
     <Compile Include="Aggregates\AssetsAgg\PurchaseOrder.cs" />
+    <Compile Include="Aggregates\SystemAgg\ScheduleJob.cs" />
     <Compile Include="Aggregates\SystemAgg\SystemParameter.cs" />
     <Compile Include="Aggregates\ContactAgg\ContactRelation.cs" />
     <Compile Include="DomainServices\IAddFileDomainService.cs" />
@@ -106,12 +112,15 @@
     <Compile Include="Aggregates\UserAgg\UserProfile.cs" />
     <Compile Include="Aggregates\ContactAgg\ContactProfile.cs" />
     <Compile Include="Repositories\IAlbumRepository.cs" />
+    <Compile Include="Repositories\IDomainEventArgsLogRepository.cs" />
     <Compile Include="Repositories\IFileInfoRepository.cs" />
     <Compile Include="Repositories\IPhotoAttributeRepository.cs" />
     <Compile Include="Repositories\IPhotoFacesRepository.cs" />
     <Compile Include="Repositories\IPhotoFingerprintRepository.cs" />
     <Compile Include="Repositories\IPhotoRepository.cs" />
     <Compile Include="Repositories\IPhotoSimilarRepository.cs" />
+    <Compile Include="Repositories\IScheduleJobLogRepository.cs" />
+    <Compile Include="Repositories\IScheduleJobRepository.cs" />
     <Compile Include="Repositories\IStorageEngineRepository.cs" />
     <Compile Include="Repositories\ISystemParameterRepository.cs" />
   </ItemGroup>

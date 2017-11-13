@@ -1,6 +1,8 @@
 ﻿using Autofac;
 using Autofac.Core;
 using Autofac.Integration.WebApi;
+using Home.DomainModel.Repositories;
+using HomeApplication.Jobs;
 using Library;
 using Microsoft.Owin.Hosting;
 using NLog;
@@ -68,10 +70,13 @@ namespace HomeApplication
 
 
             _container = _containerBuilder.Build();
+
             var resolver = new AutofacWebApiDependencyResolver(_container);
             config.DependencyResolver = resolver;
             WebConfig();
-            Jobs.IOJobPlugin.Regter.RegJobs();
+            ScheduleJobManagement jobManagement = new ScheduleJobManagement(GetService<IScheduleJobRepository>());
+            jobManagement.LoadProvider();
+            jobManagement.Run();
         }
 
         void WebConfig()
@@ -131,6 +136,30 @@ namespace HomeApplication
         {
 
             return _container.ResolveNamed<T>(name);
+        }
+
+        public override object GetService(Type type)
+        {
+           return _container.Resolve(type);
+        }
+
+        public override object GetService(Type type, Type[] argtypes, object[] obj)
+        {
+            Parameter[] pars = new Parameter[argtypes.Length];
+            for (int i = 0; i < argtypes.Length; i++)
+            {
+                pars[i] = new TypedParameter(argtypes[i], obj[i]);
+            }
+            return _container.Resolve(type, pars);
+        }
+        public override object GetService(Type type, string[] constantNames, object[] obj)
+        {
+            Parameter[] pars = new Parameter[constantNames.Length];
+            for (int i = 0; i < constantNames.Length; i++)
+            {
+                pars[i] = new NamedParameter(constantNames[i], obj[i]);
+            }
+            return _container.Resolve(type, pars);
         }
         #endregion
     }

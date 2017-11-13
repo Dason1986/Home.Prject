@@ -8,6 +8,7 @@ using Home.DomainModel.Aggregates.AlertAgg;
 using Library.ComponentModel.Model;
 using Library;
 using Home.DomainModel.Aggregates.ContactAgg;
+using Library.Domain.Data.EF;
 
 namespace RepositoryTest
 {
@@ -1021,7 +1022,7 @@ namespace RepositoryTest
 
             try
             {
-                EFUnitOfWork unit = new EFUnitOfWork(dbcontext);
+                var unit = new UnitOfWork(dbcontext);
                 unit.Commit();
             }
             catch (Exception e)
@@ -1044,12 +1045,12 @@ namespace RepositoryTest
             messageEntitys.Add(mesage);
             mesage.Logs = new List<MessageLogEntity>()
             {
-               new MailMessageLogEntity(crate) {To = "11@11.com"},
-               new PhoneMessageLogEntity(crate) {PhoneNumber = "11212121"}
+               new MailMessageLogEntity(crate) {To = "11@11.com", MessageEntityID=mesage.ID},
+               new PhoneMessageLogEntity(crate) {PhoneNumber = "11212121", MessageEntityID=mesage.ID}
             };
             try
             {
-                EFUnitOfWork unit = new EFUnitOfWork(dbcontext);
+                var unit = new UnitOfWork(dbcontext);
                 unit.Commit();
             }
             catch (Exception e)

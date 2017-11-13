@@ -1,6 +1,7 @@
 ﻿using Home.DomainModel.ModuleProviders;
 using Home.DomainModel.Repositories;
 using Library.Domain.Data;
+using Library.Domain.Data.ModuleProviders;
 
 namespace HomeApplication.DomainServices
 {
@@ -11,7 +12,7 @@ namespace HomeApplication.DomainServices
         {
         }
 
-        public IFileManagentModuleProvider ModuleProvider
+        public IFileManagentModuleProvider FileModuleProvider
         {
             get { return _moduleProvider; }
             set
@@ -24,22 +25,22 @@ namespace HomeApplication.DomainServices
             }
         }
 
-        protected override IDomainModuleProvider Provider
+        protected override IModuleProvider Provider
         {
             get
             {
-                return ModuleProvider;
+                return FileModuleProvider;
             }
 
             set
             {
-                ModuleProvider = value as IFileManagentModuleProvider;
+                FileModuleProvider = value as IFileManagentModuleProvider;
             }
         }
 
         protected virtual void CreateRepository(IFileManagentModuleProvider moduleProvider)
         {
-            FilesRepository = ModuleProvider.CreateFileInfo();
+            FilesRepository = FileModuleProvider.CreateFileInfo();
         }
 
         protected IFileInfoRepository FilesRepository { get; private set; }

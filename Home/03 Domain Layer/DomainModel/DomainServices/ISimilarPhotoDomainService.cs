@@ -11,7 +11,7 @@ namespace Home.DomainModel.DomainServices
 
     public class SimilarPhotoDomainEventHandler : DomainEventHandler<ISimilarPhotoDomainService>
     {
-        public SimilarPhotoDomainEventHandler(PhotoItemEventArgs args) : base(args)
+        public SimilarPhotoDomainEventHandler(PhotoItemEventArgs args) 
         {
         }
     }

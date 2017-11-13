@@ -4,27 +4,32 @@ using Home.DomainModel.Repositories;
 using Library.Domain.Data.EF;
 using System.Linq;
 using Library.ComponentModel.Model;
-using System.Collections.Generic;
-using Library.Domain.Data.Linq;
+using System.Collections.Generic; 
+using System.Data.Entity;
 
 namespace Home.Repository.Repositories
 {
     public class PhotoRepository : Repository<Photo>, IPhotoRepository
     {
-        public PhotoRepository(EFContext context) : base(context)
+        public PhotoRepository(DbContext context) : base(context)
         {
+        }
+
+        public int Count()
+        {
+            throw new NotImplementedException();
         }
 
         public void DeletePhotoAllInfoByID(Guid id)
         {
-            var cmd = this.EfContext.Database;
-            cmd.ExecuteSqlCommand(string.Format("delete from photoattribute  where Photoid='{0}'", id));
+            var cmd = this.UnitOfWork;
+            cmd.ExecuteCommand(string.Format("delete from photoattribute  where Photoid='{0}'", id));
 
-            cmd.ExecuteSqlCommand(string.Format("delete from photofingerprint  where Photoid='{0}'", id));
-            cmd.ExecuteSqlCommand(string.Format("delete from photosimilar  where RightPhotoID='{0}'", id));
-            cmd.ExecuteSqlCommand(string.Format("delete from photosimilar  where LeftPhotoID='{0}'", id));
+            cmd.ExecuteCommand(string.Format("delete from photofingerprint  where Photoid='{0}'", id));
+            cmd.ExecuteCommand(string.Format("delete from photosimilar  where RightPhotoID='{0}'", id));
+            cmd.ExecuteCommand(string.Format("delete from photosimilar  where LeftPhotoID='{0}'", id));
 
-            cmd.ExecuteSqlCommand(string.Format("delete from photo  where id='{0}'", id));
+            cmd.ExecuteCommand(string.Format("delete from photo  where id='{0}'", id));
         }
 
         public int GetAllPhotoTotal()
@@ -34,17 +39,17 @@ namespace Home.Repository.Repositories
 
         public Photo GetByFileId(Guid id)
         {
-            return CreateSet().FirstOrDefault(n => n.FileID == id);
+            return Wrapper.Find().FirstOrDefault(n => n.FileID == id);
         }
 
         public Photo GetBySerialNumber(string serialNumber)
         {
-            return CreateSet().FirstOrDefault(n => n.Attributes.AsQueryable().Any(ff => ff.AttKey == "SerialNumber" && ff.AttValue == serialNumber));
+            return Wrapper.Find().FirstOrDefault(n => n.Attributes.AsQueryable().Any(ff => ff.AttKey == "SerialNumber" && ff.AttValue == serialNumber));
         }
 
         public IList<Photo> GetList(int beginindex, int take)
         {
-            var photos = CreateSet().Include("File").Include("ParentAlbum").Include("Attributes").AsNoTracking().OrderBy(n => n.Created).Skip(beginindex).Take(take).ToList();
+            var photos = Wrapper.Find().Include("File").Include("ParentAlbum").Include("Attributes").AsNoTracking().OrderBy(n => n.Created).Skip(beginindex).Take(take).ToList();
             return photos;
         }
     }

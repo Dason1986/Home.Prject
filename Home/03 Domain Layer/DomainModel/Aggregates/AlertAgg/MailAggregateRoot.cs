@@ -1,13 +1,11 @@
 ﻿using System;
 using Library.Domain;
+using Library.Domain.Data;
 
 namespace Home.DomainModel.Aggregates.AlertAgg
 {
-    public class AlertAggregateRoot : AggregateRoot
+    public class AlertAggregateRoot 
     {
-        public override void Commit()
-        {
-            throw new NotImplementedException();
-        }
+        
     }
 }

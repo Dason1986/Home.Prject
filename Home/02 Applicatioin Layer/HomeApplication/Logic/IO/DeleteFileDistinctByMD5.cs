@@ -53,7 +53,7 @@ namespace HomeApplication.Logic.IO
                     var photo = fileinfo.Photo ?? photoRepository.GetByFileId(fileinfo.ID);
                     if (photo == null)
                     {
-                        fileInfoRepository.Remove(fileinfo);
+                        fileInfoRepository.Remove(fileinfo.ID);
                     }
                     else
                     {
@@ -61,7 +61,7 @@ namespace HomeApplication.Logic.IO
                         DeleFile(fileinfo);
 
                         photoRepository.DeletePhotoAllInfoByID(photo.ID);
-                        fileInfoRepository.Remove(fileinfo);
+                        fileInfoRepository.Remove(fileinfo.ID);
                         try
                         {
                             System.IO.File.Delete(fileinfo.FileName);

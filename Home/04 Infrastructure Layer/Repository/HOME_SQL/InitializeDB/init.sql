@@ -80,3 +80,8 @@ INSERT INTO [FamilyRole] ([ID], [Name], [Remark], [Level], [Six], [Created], [Cr
 INSERT INTO [FamilyRole] ([ID], [Name], [Remark], [Level], [Six], [Created], [CreatedBy], [StatusCode]) VALUES (N'48f73871-afe7-431a-a9ec-df44b1dcb736', N'曾孙女', NULL, -3, 1, getdate(), N'CreateScript', 2)
 INSERT INTO [FamilyRole] ([ID], [Name], [Remark], [Level], [Six], [Created], [CreatedBy], [StatusCode]) VALUES (N'49f73871-afe7-431a-a9ec-df44b1dcb736', N'玄孙', NULL, -4, 0, getdate(), N'CreateScript', 2)
 INSERT INTO [FamilyRole] ([ID], [Name], [Remark], [Level], [Six], [Created], [CreatedBy], [StatusCode]) VALUES (N'4af73871-afe7-431a-a9ec-df44b1dcb736', N'玄孙女', NULL, -4, 1, getdate(), N'CreateScript', 2)
+
+
+
+INSERT INTO  [ScheduleJob] ([Id], [Title], [ScheduleJobClass],   [ScheduleCronExpression],   [Created], [CreatedBy], [Modified], [ModifiedBy], [StatusCode]) VALUES (N'2060fb81-18f6-4785-b01d-b046fe4ae2de', N'扫描指定目录', N'HomeApplication.Jobs.ScanderPhysical,HomeApplication',   N'0 0 0/1 * * ?',  getdate(), N'CreateScript', getdate(), N'CreateScript',2)
+INSERT INTO  [ScheduleJob] ([Id], [Title], [ScheduleJobClass],   [ScheduleCronExpression],   [Created], [CreatedBy], [Modified], [ModifiedBy], [StatusCode]) VALUES (N'2160fb81-18f6-4785-b01d-b046fe4ae2de', N'图片分析', N'HomeApplication.Jobs.PhotoFileAnalysis,HomeApplication',   N'0/30 * * * * ?',  getdate(), N'CreateScript', getdate(), N'CreateScript',2)

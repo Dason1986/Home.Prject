@@ -39,7 +39,7 @@ namespace HomeApplication.DomainServices
         protected override void DoAddAction()
         {
             if (CurrnetFile == null) return;
-            if (!_photoEnvironment.Isloadconfig) _photoEnvironment.LoadConfig(ModuleProvider.CreateSystemParameter());
+            if (!_photoEnvironment.Isloadconfig) _photoEnvironment.LoadConfig(this.GalleryModuleProvider.CreateSystemParameter());
             if (CurrnetPhoto == null)
             {
                 Logger.TraceByContent("Create Photo Entity", CurrnetFile.FullPath);
@@ -79,7 +79,7 @@ namespace HomeApplication.DomainServices
                     CurrnetPhoto.Attributes = attributes;
                 }
                 DoImageExif(image, exifInfo);
-                //   BuildImage(image);
+                    BuildImage(image);
                 image.Dispose();
             }
         }

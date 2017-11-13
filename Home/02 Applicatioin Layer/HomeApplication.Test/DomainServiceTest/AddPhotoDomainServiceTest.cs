@@ -43,30 +43,30 @@ namespace HomeApplication.Test
         {
             System.Threading.Thread.CurrentThread.CurrentUICulture = System.Globalization.CultureInfo.GetCultureInfo("en-us");
             {
-                var service = mock.Create<AddPhotoDomainServiceUnderTest>(new TypedParameter(typeof(IDomainEventArgs), null));
+                var service = mock.Create<AddPhotoDomainServiceUnderTest>(new TypedParameter(typeof(DomainEventArgs), null));
                 service.ArgumentNull();
             }
             {
-                var service = mock.Create<AddPhotoDomainServiceUnderTest>(new TypedParameter(typeof(IDomainEventArgs), new PhotoItemEventArgs()));
+                var service = mock.Create<AddPhotoDomainServiceUnderTest>(new TypedParameter(typeof(DomainEventArgs), new PhotoItemEventArgs()));
                 service.IDIsEmpty();
             }
             {
                 var service = mock.Create<AddPhotoDomainServiceUnderTest>(
                new TypedParameter(typeof(IGalleryModuleProvider), null),
-               new TypedParameter(typeof(IDomainEventArgs), new PhotoItemEventArgs(SubRepository.fileid, SubRepository.photoid))
+               new TypedParameter(typeof(DomainEventArgs), new PhotoItemEventArgs(SubRepository.fileid, SubRepository.photoid))
                );
                 service.ModuleProviderIsEmpty();
             }
             {
                 var service = mock.Create<AddPhotoDomainServiceUnderTest>(
-               new TypedParameter(typeof(IDomainEventArgs), new PhotoItemEventArgs(Guid.NewGuid(), Guid.Empty))
+               new TypedParameter(typeof(DomainEventArgs), new PhotoItemEventArgs(Guid.NewGuid(), Guid.Empty))
                );
                 service.FileInfoNotExist();
             }
 
             {
                 var service = mock.Create<AddPhotoDomainServiceUnderTest>(
-               new TypedParameter(typeof(IDomainEventArgs), new PhotoItemEventArgs(SubRepository.fileid, SubRepository.photoid))
+               new TypedParameter(typeof(DomainEventArgs), new PhotoItemEventArgs(SubRepository.fileid, SubRepository.photoid))
                );
                 service.FileNotExist();
             }

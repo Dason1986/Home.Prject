@@ -7,7 +7,7 @@ namespace Home.DomainModel.Aggregates.AssetsAgg
 {
     [System.ComponentModel.Description("購買訂單"),
           System.ComponentModel.DisplayName("購買訂單")]
-    public  class PurchaseOrder: CreateEntity
+    public  class PurchaseOrder:Entity
     {
         public PurchaseOrder()
         {

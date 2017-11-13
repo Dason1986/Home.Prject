@@ -1,6 +1,6 @@
-﻿insert Album (id,StatusCode,Created,CreatedBy,Modified,ModifiedBy) values(N'00000000-0000-0000-0000-000000000000',0,now(),N'CreateScript',now(),N'CreateScript');
-insert StorageEngineSetting (id,StatusCode,Created,CreatedBy,Modified,ModifiedBy) values(N'00000000-0000-0000-0000-000000000000',0,now(),N'CreateScript',now(),N'CreateScript');
-insert `StorageEngine` (id,`Name`,`Root`,SettingID,StatusCode,Created,CreatedBy,Modified,ModifiedBy) values(N'00000000-0000-0000-0000-000000000000','local','',N'00000000-0000-0000-0000-000000000000',0,now(),N'CreateScript',now(),N'CreateScript');
+﻿insert INTO Album (id,StatusCode,Created,CreatedBy,Modified,ModifiedBy) values(N'00000000-0000-0000-0000-000000000000',0,now(),N'CreateScript',now(),N'CreateScript');
+insert INTO StorageEngineSetting (id,StatusCode,Created,CreatedBy,Modified,ModifiedBy) values(N'00000000-0000-0000-0000-000000000000',0,now(),N'CreateScript',now(),N'CreateScript');
+insert INTO `StorageEngine` (id,`Name`,`Root`,SettingID,StatusCode,Created,CreatedBy,Modified,ModifiedBy) values(N'00000000-0000-0000-0000-000000000000','local','',N'00000000-0000-0000-0000-000000000000',0,now(),N'CreateScript',now(),N'CreateScript');
 
 
 
@@ -81,3 +81,6 @@ INSERT INTO `FamilyRole` (`ID`, `Name`, `Remark`, `Level`, `Six`, `Created`, `Cr
 INSERT INTO `FamilyRole` (`ID`, `Name`, `Remark`, `Level`, `Six`, `Created`, `CreatedBy`, `StatusCode`) VALUES (N'48f73871-afe7-431a-a9ec-df44b1dcb736', N'曾孙女', NULL, -3, 1, now(), N'CreateScript', 2);
 INSERT INTO `FamilyRole` (`ID`, `Name`, `Remark`, `Level`, `Six`, `Created`, `CreatedBy`, `StatusCode`) VALUES (N'49f73871-afe7-431a-a9ec-df44b1dcb736', N'玄孙', NULL, -4, 0, now(), N'CreateScript', 2);
 INSERT INTO `FamilyRole` (`ID`, `Name`, `Remark`, `Level`, `Six`, `Created`, `CreatedBy`, `StatusCode`) VALUES (N'4af73871-afe7-431a-a9ec-df44b1dcb736', N'玄孙女', NULL, -4, 1, now(), N'CreateScript', 2);
+
+
+INSERT INTO  `ScheduleJob` (`Id`, `Title`, `ScheduleJobClass`,   `ScheduleCronExpression`,   `Created`, `CreatedBy`, `Modified`, `ModifiedBy`, `StatusCode`) VALUES (N'2060fb81-18f6-4785-b01d-b046fe4ae2de', N'扫描指定目录', N'HomeApplication.Jobs.ScanderPhysical,HomeApplication',   N'0 0 0/1 * * ?',  now(), N'CreateScript', now(), N'CreateScript',2)

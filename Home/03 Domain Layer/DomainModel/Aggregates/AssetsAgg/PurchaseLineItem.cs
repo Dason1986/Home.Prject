@@ -8,7 +8,7 @@ namespace Home.DomainModel.Aggregates.AssetsAgg
 
     [System.ComponentModel.Description("購買明細"),
         System.ComponentModel.DisplayName("購買明細")]
-    public class PurchaseLineItem : CreateEntity
+    public class PurchaseLineItem : Entity
     {
         public PurchaseLineItem()
         {

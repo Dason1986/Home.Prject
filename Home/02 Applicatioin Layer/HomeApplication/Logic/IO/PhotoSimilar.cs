@@ -104,7 +104,7 @@ namespace HomeApplication.Logic.IO
 
             }
             var row = 0;
-            using (var provider = Bootstrap.Currnet.GetService<IGalleryModuleProvider>())
+            var provider = Bootstrap.Currnet.GetService<IGalleryModuleProvider>();
             {
                 using (var domainservice = Bootstrap.Currnet.GetService<ISimilarPhotoDomainService>())
                 {

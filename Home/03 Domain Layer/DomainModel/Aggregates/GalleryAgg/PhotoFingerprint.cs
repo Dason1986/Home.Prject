@@ -6,7 +6,7 @@ namespace Home.DomainModel.Aggregates.GalleryAgg
 {
     [System.ComponentModel.Description("相片指紋，用於比較分類"),
         System.ComponentModel.DisplayName("相片指紋")]
-    public class PhotoFingerprint : CreateEntity
+    public class PhotoFingerprint : Entity
     {
         public PhotoFingerprint()
         {

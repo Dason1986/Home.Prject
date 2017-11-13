@@ -3,7 +3,7 @@ using System;
 
 namespace Home.DomainModel.DomainServices
 {
-    public class PhotoItemEventArgs : IDomainEventArgs
+    public class PhotoItemEventArgs : DomainEventArgs
     {
         public PhotoItemEventArgs(Guid fileID, Guid photoID)
         {
