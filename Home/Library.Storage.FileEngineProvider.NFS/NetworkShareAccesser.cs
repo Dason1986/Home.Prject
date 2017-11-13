@@ -1,10 +1,6 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.ComponentModel;
-using System.Linq;
 using System.Runtime.InteropServices;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace Library.Storage
 {
@@ -219,9 +215,10 @@ namespace Library.Storage
             }
         }
 
-        private void DisconnectFromShare(string remoteUnc)
+        public static void DisconnectFromShare(string remoteUnc)
         {
             int result = WNetCancelConnection2(remoteUnc, CONNECT_UPDATE_PROFILE, false);
+            if (result == 2250) return;
             if (result != NO_ERROR)
             {
                 throw new Win32Exception(result);
@@ -234,7 +231,7 @@ namespace Library.Storage
         /// <filterpriority>2</filterpriority>
         public void Close()
         {
-            this.DisconnectFromShare(this._remoteUncName);
+            DisconnectFromShare(this._remoteUncName);
         }
     }
 }

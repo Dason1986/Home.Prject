@@ -26,9 +26,9 @@ namespace HomeApplication.Logic.IO
     }
 
     public class ScanderFTP : BaseMultiThreadingLogicService
-    {
+    {  
         public ScanderFTPOption Option { get; set; }
-
+        public ScanderFTP() { BatchSize = 4; }
         protected override IOption ServiceOption
         {
             get
@@ -46,8 +46,8 @@ namespace HomeApplication.Logic.IO
         Limilabs.FTP.Client.Ftp ftp = new Limilabs.FTP.Client.Ftp();
         protected override bool OnVerification()
         {
-            if (string.IsNullOrEmpty(Option.Path)) throw new Exception("路徑爲空");
-
+            //   if (string.IsNullOrEmpty(Option.Path)) throw new Exception("路徑爲空");
+            _path = Option.Path;
             try
             {
 
@@ -62,19 +62,19 @@ namespace HomeApplication.Logic.IO
             //_path = Path.GetFullPath(Option.Path);
             //if (_path[0] == '\'' || _path[0] == '"') _path = _path.Substring(1, Option.Path.Length - 2);
             //if (!Directory.Exists(_path)) Directory.CreateDirectory(_path);
-            //var storageEngineRepository = Bootstrap.Currnet.GetService<IStorageEngineRepository>();
-            //_engin = storageEngineRepository.GetByPathEngine(_path);
-            //if (_engin == null)
-            //{
-            //    _engin = new Home.DomainModel.Aggregates.FileAgg.StorageEngine(CreatedInfo.ScanderPhysical)
-            //    {
-            //        Root = _path,
-            //        Name = Path.GetDirectoryName(_path)
-            //    };
-            //    storageEngineRepository.Add(_engin);
-            //    storageEngineRepository.UnitOfWork.Commit();
-            //}
-            Scan(_path);
+            var storageEngineRepository = Bootstrap.Currnet.GetService<IStorageEngineRepository>();
+            _engin = storageEngineRepository.GetByPathEngine(Option.Server);
+            if (_engin == null)
+            {
+                _engin = new Home.DomainModel.Aggregates.FileAgg.StorageEngine(CreatedInfo.ScanderPhysical)
+                {
+                    Root = Option.Server,
+                    Name = Option.Server
+                };
+                storageEngineRepository.Add(_engin);
+                storageEngineRepository.UnitOfWork.Commit();
+            }
+            Scan(_path, "");
             return base.OnVerification();
         }
 
@@ -84,8 +84,8 @@ namespace HomeApplication.Logic.IO
             {
                 var provider = Bootstrap.Currnet.GetService<IFileManagentModuleProvider>();
 
-                var files = _files.Skip(beginindex).Take(take).Select(n => new System.IO.FileInfo(n)).ToArray();
-
+                var files = _files.Skip(beginindex).Take(take).Select(n => new MemoryFile() { Name=n}).ToArray();
+                
                 #region MyRegion
 
                 var domainService = Bootstrap.Currnet.GetService<IAddFileDomainService>();
@@ -108,16 +108,22 @@ namespace HomeApplication.Logic.IO
         private readonly IList<string> _files = new List<string>();
         private StorageEngine _engin;
 
-        private void Scan(string dic)
+        private void Scan(string dic, string full)
         {
-            var list = ftp.GetList(dic);
+            if (ftp.GetCurrentFolder() != dic&&!string.IsNullOrEmpty(dic))
+                ftp.ChangeFolder(dic);
+            var list = ftp.GetList().Where(n => n.Name != "." && n.Name != "..").ToArray();
 
             foreach (var ftpItem in list)
             {
+                var name = Path.Combine(full, ftpItem.Name);
                 if (ftpItem.IsFile)
-                    this._files.Add(ftpItem.SymlinkPath);
+                    this._files.Add(name);
                 if (ftpItem.IsFolder)
-                    Scan(ftpItem.SymlinkPath);
+                {
+                    Scan(ftpItem.Name, name);
+                    ftp.ChangeFolder("..");
+                }
             }
 
 

@@ -59,7 +59,7 @@ namespace HomeApplication.DomainServices
             if (CurrnetPhoto.Attributes != null && CurrnetPhoto.Attributes.Count > 0) return;
             using (storage = CurrnetFile.GetStorage())
             {
-                Logger.Trace("AddPhotoDomainService:{0}", CurrnetFile.FullPath);
+               // Logger.TraceByContent("AddPhotoDomainService", CurrnetFile.FullPath);
 
                 if (!storage.Exists)
                 {
@@ -70,6 +70,11 @@ namespace HomeApplication.DomainServices
                 Logger.TraceByContent("Analysis", CurrnetFile.FullPath);
 
                 fs = storage.Get();
+                if(string.IsNullOrEmpty(CurrnetFile.MD5))
+                {
+                    CurrnetFile.MD5= Library.HelperUtility.FileUtility.FileMD5(fs);
+                    CurrnetFile.FileSize = fs.Length;
+                }
                 image = new Bitmap(fs);
 
                 var exifInfo = ImageExif.GetExifInfo(image);

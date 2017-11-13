@@ -2,11 +2,25 @@
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
+using System.Net;
 using System.Text;
 using System.Threading.Tasks;
 
 namespace Library.Storage.FileEngineProvider.Network
 {
+    class FTPEntity
+    {
+        public Limilabs.FTP.Client.Ftp ftp { get; set; }
+        public string reomtoDir { get; set; }
+        public bool IsLock { get; private set; }
+
+        public void Lock() { IsLock = true; }
+        public void Unlock()
+        {
+            IsLock = false;
+        }
+    }
+ 
     public class FTPEngineProvider : IFileStorageProvider
     {
         public bool CanDelete
@@ -45,22 +59,76 @@ namespace Library.Storage.FileEngineProvider.Network
             throw new NotImplementedException();
         }
     }
+    class FTPPool
+    {
 
+        IList<FTPEntity> ftpdics = new List<FTPEntity>();
+        static FTPPool()
+        {
+            if (Current != null) throw new Exception("");
+            Current = new FTPPool();
+        }
+        FTPPool()
+        {
+
+        }
+
+        public static FTPPool Current { get; private set; }
+
+
+
+        static object lockobj = new object();
+
+        public FTPEntity GetOrAdd(string ftpservice, string ftpuid, string ftppwd, string reomtoDir)
+        {
+            lock (lockobj)
+            {
+
+
+                var dir = Path.GetDirectoryName(reomtoDir);
+                var item = ftpdics.FirstOrDefault(n => n.reomtoDir == dir && !n.IsLock);
+                if (item != null)
+                {
+                    item.Lock();
+                    return item;
+                }
+            
+                FTPEntity entiy = new FTPEntity
+                {
+                    reomtoDir = dir
+                };
+                Limilabs.FTP.Client.Ftp ftp = new Limilabs.FTP.Client.Ftp();
+                ftp.Connect(ftpservice);
+                ftp.Login(ftpuid, ftppwd);
+                var arry = dir.Split(new char[] { '\\' }, StringSplitOptions.RemoveEmptyEntries);
+                for (int i = 0; i < arry.Length; i++)
+                {
+                    ftp.ChangeFolder(arry[i]);
+                }
+                entiy.ftp = ftp;
+                entiy.Lock();
+                ftpdics.Add(entiy);
+                return entiy;
+            }
+        }
+    }
     public class FTPFileStorage : Library.Storage.IFileStorage, IDisposable
     {
-        Limilabs.FTP.Client.Ftp ftp = new Limilabs.FTP.Client.Ftp();
+        FTPEntity ftpentity;
         string _filepath;
         public FTPFileStorage(string ftpurl, string ftpuid, string ftppwd, string filepath)
         {
             try
             {
 
-                ftp.Connect(ftpurl);
-                ftp.Login(ftpuid, ftppwd);
-                Exists = ftp.FileExists(filepath);
-                _filepath = filepath;
+
+                ftpentity = FTPPool.Current.GetOrAdd(ftpurl, ftpuid, ftppwd, filepath);
+                _filepath = Path.GetFileName(filepath);
+                Exists = ftpentity.ftp.FileExists(_filepath);
+
+
             }
-            catch (Exception)
+            catch (Exception ex)
             {
 
                 throw;
@@ -89,7 +157,7 @@ namespace Library.Storage.FileEngineProvider.Network
         public Stream Get()
         {
 
-            var file = ftp.Download(_filepath);
+            var file = ftpentity.ftp.Download(_filepath);
             fs = new MemoryStream(file);
             return fs;
         }
@@ -110,7 +178,7 @@ namespace Library.Storage.FileEngineProvider.Network
                 {
                     if (fs != null) fs.Dispose();
                 }
-
+                ftpentity.Unlock();
                 fs = null;
 
                 disposedValue = true;

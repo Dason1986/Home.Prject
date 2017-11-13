@@ -25,7 +25,7 @@ namespace HomeApplication
                     break;
                 case Home.DomainModel.SourceType.NetWork:
                     var setting = fileinfo.Engine.Setting;
-                    return new FTPFileStorage(setting.Host, setting.Uid, setting.Pwd, fileinfo.FullPath);
+                    return new SmbFileStorage(setting.Host, setting.Uid, setting.Pwd, fileinfo.FullPath);
                   
                 default:
                     break;
