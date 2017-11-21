@@ -9,6 +9,7 @@ using Library.ComponentModel.Model;
 using Library;
 using Home.DomainModel.Aggregates.ContactAgg;
 using Library.Domain.Data.EF;
+using Home.DomainModel.Aggregates.SystemAgg;
 
 namespace RepositoryTest
 {
@@ -1060,6 +1061,32 @@ namespace RepositoryTest
 
             var messges = messageEntitys.AsNoTracking().ToArray();
             Console.WriteLine(messges);
+        }
+
+        [Test()]
+        public void TestBuildEvn()
+        {
+            MainBoundedContext dbcontext = new MainBoundedContext();
+
+            var crate = new testCreate();
+            var systemParameters = dbcontext.Set<SystemParameter>();
+            var mesage = new SystemParameter(crate) { ParameterValue = @"D:\Dason\DCIM", ParameterKey= @"Path" ,@ParameterGroup= "ScanderPhysical" };
+            var mesage2 = new SystemParameter(crate) { ParameterValue = @".png,.jpg,.jpeg", ParameterKey = @"ImageTypes", @ParameterGroup = "PhotoFileAnalysis" };
+
+            systemParameters.Add(mesage);
+            systemParameters.Add(mesage2);
+            try
+            {
+                var unit = new UnitOfWork(dbcontext);
+                unit.Commit();
+            }
+            catch (Exception e)
+            {
+                throw;
+            }
+
+         
+        
         }
     }
 }

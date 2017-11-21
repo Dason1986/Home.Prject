@@ -31,6 +31,7 @@ namespace Repository.EF.Mapping
             modelBuilder.Configurations.Add(new DomainEventArgsLogEntityTypeConfiguration());
             modelBuilder.Configurations.Add(new ScheduleJobEntityTypeConfiguration());
             modelBuilder.Configurations.Add(new ScheduleJobLogEntityTypeConfiguration());
+            modelBuilder.Configurations.Add(new LogEntityEntityTypeConfiguration());
         }
 
         private static void FileAgg(DbModelBuilder modelBuilder)

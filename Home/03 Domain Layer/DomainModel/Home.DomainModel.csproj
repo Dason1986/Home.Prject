@@ -85,6 +85,7 @@
     <Compile Include="Aggregates\Attribute.cs" />
     <Compile Include="Aggregates\AlertAgg\MailAggregateRoot.cs" />
     <Compile Include="Aggregates\LogsAgg\DomainEventArgsLog.cs" />
+    <Compile Include="Aggregates\LogsAgg\LogEntity.cs" />
     <Compile Include="Aggregates\LogsAgg\ScheduleJobLog.cs" />
     <Compile Include="Aggregates\ObjectElement.cs" />
     <Compile Include="Aggregates\OfficeAgg\OfficeInfo.cs" />

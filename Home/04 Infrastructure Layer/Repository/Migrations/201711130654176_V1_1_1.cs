@@ -14,11 +14,11 @@ namespace Repository.Migrations
                         ID = c.Guid(nullable: false),
                         State = c.Int(nullable: false),
                         MessageEntityID = c.Guid(nullable: false),
-                        Modified = c.DateTime(nullable: false),
-                        ModifiedBy = c.String(nullable: false, maxLength: 20),
+                        Modified = c.DateTime(nullable: false, precision: 0),
+                        ModifiedBy = c.String(nullable: false, maxLength: 20, storeType: "nvarchar"),
                         StatusCode = c.Int(nullable: false),
-                        Created = c.DateTime(nullable: false),
-                        CreatedBy = c.String(nullable: false, maxLength: 20),
+                        Created = c.DateTime(nullable: false, precision: 0),
+                        CreatedBy = c.String(nullable: false, maxLength: 20, storeType: "nvarchar"),
                         Message_ID = c.Guid(),
                     })
                 .PrimaryKey(t => t.ID)
@@ -32,13 +32,13 @@ namespace Repository.Migrations
                 c => new
                     {
                         ID = c.Guid(nullable: false),
-                        Subject = c.String(nullable: false, maxLength: 255),
-                        Content = c.String(nullable: false),
-                        Modified = c.DateTime(nullable: false),
-                        ModifiedBy = c.String(nullable: false, maxLength: 20),
+                        Subject = c.String(nullable: false, maxLength: 255, storeType: "nvarchar"),
+                        Content = c.String(nullable: false, unicode: false),
+                        Modified = c.DateTime(nullable: false, precision: 0),
+                        ModifiedBy = c.String(nullable: false, maxLength: 20, storeType: "nvarchar"),
                         StatusCode = c.Int(nullable: false),
-                        Created = c.DateTime(nullable: false),
-                        CreatedBy = c.String(nullable: false, maxLength: 20),
+                        Created = c.DateTime(nullable: false, precision: 0),
+                        CreatedBy = c.String(nullable: false, maxLength: 20, storeType: "nvarchar"),
                     })
                 .PrimaryKey(t => t.ID);
             
@@ -47,14 +47,14 @@ namespace Repository.Migrations
                 c => new
                     {
                         ID = c.Guid(nullable: false),
-                        Name = c.String(maxLength: 20),
+                        Name = c.String(maxLength: 20, storeType: "nvarchar"),
                         Six = c.Int(nullable: false),
-                        Birthday = c.DateTime(nullable: false),
-                        Modified = c.DateTime(nullable: false),
-                        ModifiedBy = c.String(nullable: false, maxLength: 20),
+                        Birthday = c.DateTime(nullable: false, precision: 0),
+                        Modified = c.DateTime(nullable: false, precision: 0),
+                        ModifiedBy = c.String(nullable: false, maxLength: 20, storeType: "nvarchar"),
                         StatusCode = c.Int(nullable: false),
-                        Created = c.DateTime(nullable: false),
-                        CreatedBy = c.String(nullable: false, maxLength: 20),
+                        Created = c.DateTime(nullable: false, precision: 0),
+                        CreatedBy = c.String(nullable: false, maxLength: 20, storeType: "nvarchar"),
                     })
                 .PrimaryKey(t => t.ID);
             
@@ -65,10 +65,10 @@ namespace Repository.Migrations
                         ID = c.Guid(nullable: false),
                         LeftRoleId = c.Guid(nullable: false),
                         RightRoleId = c.Guid(nullable: false),
-                        Remark = c.String(maxLength: 100),
+                        Remark = c.String(maxLength: 100, storeType: "nvarchar"),
                         StatusCode = c.Int(nullable: false),
-                        Created = c.DateTime(nullable: false),
-                        CreatedBy = c.String(nullable: false, maxLength: 20),
+                        Created = c.DateTime(nullable: false, precision: 0),
+                        CreatedBy = c.String(nullable: false, maxLength: 20, storeType: "nvarchar"),
                     })
                 .PrimaryKey(t => t.ID)
                 .ForeignKey("dbo.FamilyRole", t => t.LeftRoleId)
@@ -81,13 +81,13 @@ namespace Repository.Migrations
                 c => new
                     {
                         ID = c.Guid(nullable: false),
-                        Name = c.String(maxLength: 20),
-                        Remark = c.String(maxLength: 20),
+                        Name = c.String(maxLength: 20, storeType: "nvarchar"),
+                        Remark = c.String(maxLength: 20, storeType: "nvarchar"),
                         Level = c.Int(nullable: false),
                         Six = c.Int(nullable: false),
                         StatusCode = c.Int(nullable: false),
-                        Created = c.DateTime(nullable: false),
-                        CreatedBy = c.String(nullable: false, maxLength: 20),
+                        Created = c.DateTime(nullable: false, precision: 0),
+                        CreatedBy = c.String(nullable: false, maxLength: 20, storeType: "nvarchar"),
                     })
                 .PrimaryKey(t => t.ID);
             
@@ -97,12 +97,12 @@ namespace Repository.Migrations
                     {
                         ID = c.Guid(nullable: false),
                         ContactProfileID = c.Guid(nullable: false),
-                        StaffNo = c.String(nullable: false, maxLength: 20),
-                        Modified = c.DateTime(nullable: false),
-                        ModifiedBy = c.String(nullable: false, maxLength: 20),
+                        StaffNo = c.String(nullable: false, maxLength: 20, storeType: "nvarchar"),
+                        Modified = c.DateTime(nullable: false, precision: 0),
+                        ModifiedBy = c.String(nullable: false, maxLength: 20, storeType: "nvarchar"),
                         StatusCode = c.Int(nullable: false),
-                        Created = c.DateTime(nullable: false),
-                        CreatedBy = c.String(nullable: false, maxLength: 20),
+                        Created = c.DateTime(nullable: false, precision: 0),
+                        CreatedBy = c.String(nullable: false, maxLength: 20, storeType: "nvarchar"),
                     })
                 .PrimaryKey(t => t.ID)
                 .ForeignKey("dbo.ContactProfile", t => t.ContactProfileID)
@@ -113,16 +113,16 @@ namespace Repository.Migrations
                 c => new
                     {
                         ID = c.Guid(nullable: false),
-                        Description = c.String(maxLength: 255),
-                        ParameterGroup = c.String(maxLength: 50),
+                        Description = c.String(maxLength: 255, storeType: "nvarchar"),
+                        ParameterGroup = c.String(maxLength: 50, storeType: "nvarchar"),
                         IsReadOnly = c.Boolean(nullable: false),
-                        ParameterKey = c.String(maxLength: 50),
-                        ParameterValue = c.String(maxLength: 255),
-                        Modified = c.DateTime(nullable: false),
-                        ModifiedBy = c.String(nullable: false, maxLength: 20),
+                        ParameterKey = c.String(maxLength: 50, storeType: "nvarchar"),
+                        ParameterValue = c.String(maxLength: 255, storeType: "nvarchar"),
+                        Modified = c.DateTime(nullable: false, precision: 0),
+                        ModifiedBy = c.String(nullable: false, maxLength: 20, storeType: "nvarchar"),
                         StatusCode = c.Int(nullable: false),
-                        Created = c.DateTime(nullable: false),
-                        CreatedBy = c.String(nullable: false, maxLength: 20),
+                        Created = c.DateTime(nullable: false, precision: 0),
+                        CreatedBy = c.String(nullable: false, maxLength: 20, storeType: "nvarchar"),
                     })
                 .PrimaryKey(t => t.ID);
             
@@ -133,12 +133,12 @@ namespace Repository.Migrations
                         ID = c.Guid(nullable: false),
                         IsExecuted = c.Boolean(nullable: false),
                         HasError = c.Boolean(nullable: false),
-                        ErrorMsg = c.String(),
-                        DomainEventType = c.String(),
-                        DomainEvent = c.String(),
+                        ErrorMsg = c.String(unicode: false),
+                        DomainEventType = c.String(unicode: false),
+                        DomainEvent = c.String(unicode: false),
                         StatusCode = c.Int(nullable: false),
-                        Created = c.DateTime(nullable: false),
-                        CreatedBy = c.String(nullable: false, maxLength: 20),
+                        Created = c.DateTime(nullable: false, precision: 0),
+                        CreatedBy = c.String(nullable: false, maxLength: 20, storeType: "nvarchar"),
                     })
                 .PrimaryKey(t => t.ID);
             
@@ -147,14 +147,35 @@ namespace Repository.Migrations
                 c => new
                     {
                         ID = c.Guid(nullable: false),
-                        Title = c.String(),
-                        ScheduleJobClass = c.String(),
-                        ScheduleCronExpression = c.String(),
-                        Modified = c.DateTime(nullable: false),
-                        ModifiedBy = c.String(nullable: false, maxLength: 20),
+                        Title = c.String(unicode: false),
+                        ScheduleJobClass = c.String(unicode: false),
+                        ScheduleCronExpression = c.String(unicode: false),
+                        Modified = c.DateTime(nullable: false, precision: 0),
+                        ModifiedBy = c.String(nullable: false, maxLength: 20, storeType: "nvarchar"),
                         StatusCode = c.Int(nullable: false),
-                        Created = c.DateTime(nullable: false),
-                        CreatedBy = c.String(nullable: false, maxLength: 20),
+                        Created = c.DateTime(nullable: false, precision: 0),
+                        CreatedBy = c.String(nullable: false, maxLength: 20, storeType: "nvarchar"),
+                    })
+                .PrimaryKey(t => t.ID);
+            
+            CreateTable(
+                "dbo.LogEntity",
+                c => new
+                    {
+                        ID = c.Guid(nullable: false),
+                        CallSite = c.String(unicode: false),
+                        Date = c.String(unicode: false),
+                        Exception = c.String(unicode: false),
+                        Level = c.String(unicode: false),
+                        Logger = c.String(unicode: false),
+                        MachineName = c.String(unicode: false),
+                        Message = c.String(unicode: false),
+                        StackTrace = c.String(unicode: false),
+                        Thread = c.String(unicode: false),
+                        Username = c.String(unicode: false),
+                        StatusCode = c.Int(nullable: false),
+                        Created = c.DateTime(nullable: false, precision: 0),
+                        CreatedBy = c.String(nullable: false, maxLength: 20, storeType: "nvarchar"),
                     })
                 .PrimaryKey(t => t.ID);
             
@@ -164,11 +185,11 @@ namespace Repository.Migrations
                     {
                         ID = c.Guid(nullable: false),
                         ScheduleId = c.Guid(nullable: false),
-                        ElapsedTime = c.Time(nullable: false, precision: 7),
+                        ElapsedTime = c.Time(nullable: false, precision: 0),
                         HasError = c.Boolean(nullable: false),
                         StatusCode = c.Int(nullable: false),
-                        Created = c.DateTime(nullable: false),
-                        CreatedBy = c.String(nullable: false, maxLength: 20),
+                        Created = c.DateTime(nullable: false, precision: 0),
+                        CreatedBy = c.String(nullable: false, maxLength: 20, storeType: "nvarchar"),
                     })
                 .PrimaryKey(t => t.ID)
                 .ForeignKey("dbo.ScheduleJob", t => t.ScheduleId)
@@ -181,8 +202,8 @@ namespace Repository.Migrations
                         ID = c.Guid(nullable: false),
                         ProductID = c.Guid(nullable: false),
                         StatusCode = c.Int(nullable: false),
-                        Created = c.DateTime(nullable: false),
-                        CreatedBy = c.String(nullable: false, maxLength: 20),
+                        Created = c.DateTime(nullable: false, precision: 0),
+                        CreatedBy = c.String(nullable: false, maxLength: 20, storeType: "nvarchar"),
                     })
                 .PrimaryKey(t => t.ID)
                 .ForeignKey("dbo.ProductItem", t => t.ProductID)
@@ -193,18 +214,18 @@ namespace Repository.Migrations
                 c => new
                     {
                         ID = c.Guid(nullable: false),
-                        Name = c.String(maxLength: 50),
-                        Modle = c.String(maxLength: 50),
+                        Name = c.String(maxLength: 50, storeType: "nvarchar"),
+                        Modle = c.String(maxLength: 50, storeType: "nvarchar"),
                         Value_Value = c.Decimal(nullable: false, precision: 18, scale: 2),
                         Value_CurrencyType = c.Int(nullable: false),
-                        BarCode = c.String(maxLength: 50),
-                        Tag = c.String(maxLength: 50),
-                        Company = c.String(maxLength: 50),
-                        Modified = c.DateTime(nullable: false),
-                        ModifiedBy = c.String(nullable: false, maxLength: 20),
+                        BarCode = c.String(maxLength: 50, storeType: "nvarchar"),
+                        Tag = c.String(maxLength: 50, storeType: "nvarchar"),
+                        Company = c.String(maxLength: 50, storeType: "nvarchar"),
+                        Modified = c.DateTime(nullable: false, precision: 0),
+                        ModifiedBy = c.String(nullable: false, maxLength: 20, storeType: "nvarchar"),
                         StatusCode = c.Int(nullable: false),
-                        Created = c.DateTime(nullable: false),
-                        CreatedBy = c.String(nullable: false, maxLength: 20),
+                        Created = c.DateTime(nullable: false, precision: 0),
+                        CreatedBy = c.String(nullable: false, maxLength: 20, storeType: "nvarchar"),
                     })
                 .PrimaryKey(t => t.ID);
             
@@ -218,11 +239,11 @@ namespace Repository.Migrations
                         ChineseCount = c.Int(nullable: false),
                         ImageCount = c.Int(nullable: false),
                         LinkCount = c.Int(nullable: false),
-                        Modified = c.DateTime(nullable: false),
-                        ModifiedBy = c.String(nullable: false, maxLength: 20),
+                        Modified = c.DateTime(nullable: false, precision: 0),
+                        ModifiedBy = c.String(nullable: false, maxLength: 20, storeType: "nvarchar"),
                         StatusCode = c.Int(nullable: false),
-                        Created = c.DateTime(nullable: false),
-                        CreatedBy = c.String(nullable: false, maxLength: 20),
+                        Created = c.DateTime(nullable: false, precision: 0),
+                        CreatedBy = c.String(nullable: false, maxLength: 20, storeType: "nvarchar"),
                     })
                 .PrimaryKey(t => t.ID);
             
@@ -232,13 +253,13 @@ namespace Repository.Migrations
                     {
                         ID = c.Guid(nullable: false),
                         OwnerID = c.Guid(nullable: false),
-                        AttKey = c.String(maxLength: 50),
-                        AttValue = c.String(maxLength: 255),
-                        Modified = c.DateTime(nullable: false),
-                        ModifiedBy = c.String(nullable: false, maxLength: 20),
+                        AttKey = c.String(maxLength: 50, storeType: "nvarchar"),
+                        AttValue = c.String(maxLength: 255, storeType: "nvarchar"),
+                        Modified = c.DateTime(nullable: false, precision: 0),
+                        ModifiedBy = c.String(nullable: false, maxLength: 20, storeType: "nvarchar"),
                         StatusCode = c.Int(nullable: false),
-                        Created = c.DateTime(nullable: false),
-                        CreatedBy = c.String(nullable: false, maxLength: 20),
+                        Created = c.DateTime(nullable: false, precision: 0),
+                        CreatedBy = c.String(nullable: false, maxLength: 20, storeType: "nvarchar"),
                     })
                 .PrimaryKey(t => t.ID)
                 .ForeignKey("dbo.WordInfo", t => t.OwnerID)
@@ -251,11 +272,11 @@ namespace Repository.Migrations
                         ID = c.Guid(nullable: false),
                         ElementType = c.Int(nullable: false),
                         ObjectBuffer = c.Binary(),
-                        ObjectContent = c.String(),
+                        ObjectContent = c.String(unicode: false),
                         OwnerID = c.Guid(nullable: false),
                         StatusCode = c.Int(nullable: false),
-                        Created = c.DateTime(nullable: false),
-                        CreatedBy = c.String(nullable: false, maxLength: 20),
+                        Created = c.DateTime(nullable: false, precision: 0),
+                        CreatedBy = c.String(nullable: false, maxLength: 20, storeType: "nvarchar"),
                     })
                 .PrimaryKey(t => t.ID)
                 .ForeignKey("dbo.WordInfo", t => t.OwnerID)
@@ -271,11 +292,11 @@ namespace Repository.Migrations
                         ChineseCount = c.Int(nullable: false),
                         ImageCount = c.Int(nullable: false),
                         LinkCount = c.Int(nullable: false),
-                        Modified = c.DateTime(nullable: false),
-                        ModifiedBy = c.String(nullable: false, maxLength: 20),
+                        Modified = c.DateTime(nullable: false, precision: 0),
+                        ModifiedBy = c.String(nullable: false, maxLength: 20, storeType: "nvarchar"),
                         StatusCode = c.Int(nullable: false),
-                        Created = c.DateTime(nullable: false),
-                        CreatedBy = c.String(nullable: false, maxLength: 20),
+                        Created = c.DateTime(nullable: false, precision: 0),
+                        CreatedBy = c.String(nullable: false, maxLength: 20, storeType: "nvarchar"),
                     })
                 .PrimaryKey(t => t.ID);
             
@@ -285,13 +306,13 @@ namespace Repository.Migrations
                     {
                         ID = c.Guid(nullable: false),
                         OwnerID = c.Guid(nullable: false),
-                        AttKey = c.String(maxLength: 50),
-                        AttValue = c.String(maxLength: 255),
-                        Modified = c.DateTime(nullable: false),
-                        ModifiedBy = c.String(nullable: false, maxLength: 20),
+                        AttKey = c.String(maxLength: 50, storeType: "nvarchar"),
+                        AttValue = c.String(maxLength: 255, storeType: "nvarchar"),
+                        Modified = c.DateTime(nullable: false, precision: 0),
+                        ModifiedBy = c.String(nullable: false, maxLength: 20, storeType: "nvarchar"),
                         StatusCode = c.Int(nullable: false),
-                        Created = c.DateTime(nullable: false),
-                        CreatedBy = c.String(nullable: false, maxLength: 20),
+                        Created = c.DateTime(nullable: false, precision: 0),
+                        CreatedBy = c.String(nullable: false, maxLength: 20, storeType: "nvarchar"),
                     })
                 .PrimaryKey(t => t.ID)
                 .ForeignKey("dbo.PDFInfo", t => t.OwnerID)
@@ -302,14 +323,14 @@ namespace Repository.Migrations
                 c => new
                     {
                         ID = c.Guid(nullable: false),
-                        Name = c.String(maxLength: 50),
-                        Remark = c.String(maxLength: 50),
-                        RecordingDate = c.DateTime(),
-                        Modified = c.DateTime(nullable: false),
-                        ModifiedBy = c.String(nullable: false, maxLength: 20),
+                        Name = c.String(maxLength: 50, storeType: "nvarchar"),
+                        Remark = c.String(maxLength: 50, storeType: "nvarchar"),
+                        RecordingDate = c.DateTime(precision: 0),
+                        Modified = c.DateTime(nullable: false, precision: 0),
+                        ModifiedBy = c.String(nullable: false, maxLength: 20, storeType: "nvarchar"),
                         StatusCode = c.Int(nullable: false),
-                        Created = c.DateTime(nullable: false),
-                        CreatedBy = c.String(nullable: false, maxLength: 20),
+                        Created = c.DateTime(nullable: false, precision: 0),
+                        CreatedBy = c.String(nullable: false, maxLength: 20, storeType: "nvarchar"),
                     })
                 .PrimaryKey(t => t.ID);
             
@@ -320,12 +341,12 @@ namespace Repository.Migrations
                         ID = c.Guid(nullable: false),
                         FileID = c.Guid(nullable: false),
                         AlbumID = c.Guid(nullable: false),
-                        Tags = c.String(maxLength: 100),
-                        Modified = c.DateTime(nullable: false),
-                        ModifiedBy = c.String(nullable: false, maxLength: 20),
+                        Tags = c.String(maxLength: 100, storeType: "nvarchar"),
+                        Modified = c.DateTime(nullable: false, precision: 0),
+                        ModifiedBy = c.String(nullable: false, maxLength: 20, storeType: "nvarchar"),
                         StatusCode = c.Int(nullable: false),
-                        Created = c.DateTime(nullable: false),
-                        CreatedBy = c.String(nullable: false, maxLength: 20),
+                        Created = c.DateTime(nullable: false, precision: 0),
+                        CreatedBy = c.String(nullable: false, maxLength: 20, storeType: "nvarchar"),
                     })
                 .PrimaryKey(t => t.ID)
                 .ForeignKey("dbo.FileInfo", t => t.ID)
@@ -341,13 +362,13 @@ namespace Repository.Migrations
                     {
                         ID = c.Guid(nullable: false),
                         OwnerID = c.Guid(nullable: false),
-                        AttKey = c.String(maxLength: 50),
-                        AttValue = c.String(maxLength: 255),
-                        Modified = c.DateTime(nullable: false),
-                        ModifiedBy = c.String(nullable: false, maxLength: 20),
+                        AttKey = c.String(maxLength: 50, storeType: "nvarchar"),
+                        AttValue = c.String(maxLength: 255, storeType: "nvarchar"),
+                        Modified = c.DateTime(nullable: false, precision: 0),
+                        ModifiedBy = c.String(nullable: false, maxLength: 20, storeType: "nvarchar"),
                         StatusCode = c.Int(nullable: false),
-                        Created = c.DateTime(nullable: false),
-                        CreatedBy = c.String(nullable: false, maxLength: 20),
+                        Created = c.DateTime(nullable: false, precision: 0),
+                        CreatedBy = c.String(nullable: false, maxLength: 20, storeType: "nvarchar"),
                     })
                 .PrimaryKey(t => t.ID)
                 .ForeignKey("dbo.Photo", t => t.OwnerID)
@@ -358,16 +379,16 @@ namespace Repository.Migrations
                 c => new
                     {
                         ID = c.Guid(nullable: false),
-                        FileName = c.String(maxLength: 100),
-                        FullPath = c.String(maxLength: 255),
+                        FileName = c.String(maxLength: 100, storeType: "nvarchar"),
+                        FullPath = c.String(maxLength: 255, storeType: "nvarchar"),
                         FileSize = c.Long(nullable: false),
-                        MD5 = c.String(maxLength: 32),
-                        Extension = c.String(maxLength: 50),
+                        MD5 = c.String(maxLength: 32, storeType: "nvarchar"),
+                        Extension = c.String(maxLength: 50, storeType: "nvarchar"),
                         SourceType = c.Int(nullable: false),
                         EngineID = c.Guid(nullable: false),
                         StatusCode = c.Int(nullable: false),
-                        Created = c.DateTime(nullable: false),
-                        CreatedBy = c.String(nullable: false, maxLength: 20),
+                        Created = c.DateTime(nullable: false, precision: 0),
+                        CreatedBy = c.String(nullable: false, maxLength: 20, storeType: "nvarchar"),
                     })
                 .PrimaryKey(t => t.ID)
                 .ForeignKey("dbo.StorageEngine", t => t.EngineID)
@@ -378,14 +399,14 @@ namespace Repository.Migrations
                 c => new
                     {
                         ID = c.Guid(nullable: false),
-                        Name = c.String(nullable: false, maxLength: 50),
-                        Root = c.String(nullable: false, maxLength: 200),
+                        Name = c.String(nullable: false, maxLength: 50, storeType: "nvarchar"),
+                        Root = c.String(nullable: false, maxLength: 200, storeType: "nvarchar"),
                         SettingID = c.Guid(nullable: false),
-                        Modified = c.DateTime(nullable: false),
-                        ModifiedBy = c.String(nullable: false, maxLength: 20),
+                        Modified = c.DateTime(nullable: false, precision: 0),
+                        ModifiedBy = c.String(nullable: false, maxLength: 20, storeType: "nvarchar"),
                         StatusCode = c.Int(nullable: false),
-                        Created = c.DateTime(nullable: false),
-                        CreatedBy = c.String(nullable: false, maxLength: 20),
+                        Created = c.DateTime(nullable: false, precision: 0),
+                        CreatedBy = c.String(nullable: false, maxLength: 20, storeType: "nvarchar"),
                     })
                 .PrimaryKey(t => t.ID)
                 .ForeignKey("dbo.StorageEngineSetting", t => t.SettingID)
@@ -396,14 +417,14 @@ namespace Repository.Migrations
                 c => new
                     {
                         ID = c.Guid(nullable: false),
-                        Host = c.String(maxLength: 200),
-                        Uid = c.String(maxLength: 200),
-                        Pwd = c.String(maxLength: 200),
-                        Modified = c.DateTime(nullable: false),
-                        ModifiedBy = c.String(nullable: false, maxLength: 20),
+                        Host = c.String(maxLength: 200, storeType: "nvarchar"),
+                        Uid = c.String(maxLength: 200, storeType: "nvarchar"),
+                        Pwd = c.String(maxLength: 200, storeType: "nvarchar"),
+                        Modified = c.DateTime(nullable: false, precision: 0),
+                        ModifiedBy = c.String(nullable: false, maxLength: 20, storeType: "nvarchar"),
                         StatusCode = c.Int(nullable: false),
-                        Created = c.DateTime(nullable: false),
-                        CreatedBy = c.String(nullable: false, maxLength: 20),
+                        Created = c.DateTime(nullable: false, precision: 0),
+                        CreatedBy = c.String(nullable: false, maxLength: 20, storeType: "nvarchar"),
                     })
                 .PrimaryKey(t => t.ID);
             
@@ -412,17 +433,17 @@ namespace Repository.Migrations
                 c => new
                     {
                         ID = c.Guid(nullable: false),
-                        Comments = c.String(),
-                        KeyWords = c.String(),
+                        Comments = c.String(unicode: false),
+                        KeyWords = c.String(unicode: false),
                         FileID = c.Guid(nullable: false),
                         BarCodeBuffer = c.Binary(),
                         QRCodeBuffer = c.Binary(),
-                        BarCode = c.String(),
-                        QRCode = c.String(),
-                        Sequence = c.String(),
+                        BarCode = c.String(unicode: false),
+                        QRCode = c.String(unicode: false),
+                        Sequence = c.String(unicode: false),
                         StatusCode = c.Int(nullable: false),
-                        Created = c.DateTime(nullable: false),
-                        CreatedBy = c.String(nullable: false, maxLength: 20),
+                        Created = c.DateTime(nullable: false, precision: 0),
+                        CreatedBy = c.String(nullable: false, maxLength: 20, storeType: "nvarchar"),
                     })
                 .PrimaryKey(t => t.ID)
                 .ForeignKey("dbo.FileInfo", t => t.ID)
@@ -434,13 +455,13 @@ namespace Repository.Migrations
                     {
                         ID = c.Guid(nullable: false),
                         OwnerID = c.Guid(nullable: false),
-                        AttKey = c.String(maxLength: 50),
-                        AttValue = c.String(maxLength: 255),
-                        Modified = c.DateTime(nullable: false),
-                        ModifiedBy = c.String(nullable: false, maxLength: 20),
+                        AttKey = c.String(maxLength: 50, storeType: "nvarchar"),
+                        AttValue = c.String(maxLength: 255, storeType: "nvarchar"),
+                        Modified = c.DateTime(nullable: false, precision: 0),
+                        ModifiedBy = c.String(nullable: false, maxLength: 20, storeType: "nvarchar"),
                         StatusCode = c.Int(nullable: false),
-                        Created = c.DateTime(nullable: false),
-                        CreatedBy = c.String(nullable: false, maxLength: 20),
+                        Created = c.DateTime(nullable: false, precision: 0),
+                        CreatedBy = c.String(nullable: false, maxLength: 20, storeType: "nvarchar"),
                     })
                 .PrimaryKey(t => t.ID)
                 .ForeignKey("dbo.FileInfoExtend", t => t.OwnerID)
@@ -455,8 +476,8 @@ namespace Repository.Migrations
                         Fingerprint = c.Binary(),
                         Algorithm = c.Int(nullable: false),
                         StatusCode = c.Int(nullable: false),
-                        Created = c.DateTime(nullable: false),
-                        CreatedBy = c.String(nullable: false, maxLength: 20),
+                        Created = c.DateTime(nullable: false, precision: 0),
+                        CreatedBy = c.String(nullable: false, maxLength: 20, storeType: "nvarchar"),
                     })
                 .PrimaryKey(t => t.ID)
                 .ForeignKey("dbo.Photo", t => t.PhotoID)
@@ -470,8 +491,8 @@ namespace Repository.Migrations
                         RightPhotoID = c.Guid(nullable: false),
                         LeftPhotoID = c.Guid(nullable: false),
                         StatusCode = c.Int(nullable: false),
-                        Created = c.DateTime(nullable: false),
-                        CreatedBy = c.String(nullable: false, maxLength: 20),
+                        Created = c.DateTime(nullable: false, precision: 0),
+                        CreatedBy = c.String(nullable: false, maxLength: 20, storeType: "nvarchar"),
                     })
                 .PrimaryKey(t => t.ID)
                 .ForeignKey("dbo.Photo", t => t.LeftPhotoID)
@@ -484,19 +505,19 @@ namespace Repository.Migrations
                 c => new
                     {
                         ID = c.Guid(nullable: false),
-                        SnCode = c.String(),
-                        Name = c.String(),
+                        SnCode = c.String(unicode: false),
+                        Name = c.String(unicode: false),
                         IsPublic = c.Boolean(nullable: false),
                         ContactID = c.Guid(nullable: false),
                         OrderID = c.Guid(nullable: false),
                         ProductID = c.Guid(nullable: false),
                         IsBroken = c.Boolean(nullable: false),
-                        BrokenDate = c.DateTime(),
-                        Modified = c.DateTime(nullable: false),
-                        ModifiedBy = c.String(nullable: false, maxLength: 20),
+                        BrokenDate = c.DateTime(precision: 0),
+                        Modified = c.DateTime(nullable: false, precision: 0),
+                        ModifiedBy = c.String(nullable: false, maxLength: 20, storeType: "nvarchar"),
                         StatusCode = c.Int(nullable: false),
-                        Created = c.DateTime(nullable: false),
-                        CreatedBy = c.String(nullable: false, maxLength: 20),
+                        Created = c.DateTime(nullable: false, precision: 0),
+                        CreatedBy = c.String(nullable: false, maxLength: 20, storeType: "nvarchar"),
                     })
                 .PrimaryKey(t => t.ID)
                 .ForeignKey("dbo.ContactProfile", t => t.ContactID)
@@ -516,8 +537,8 @@ namespace Repository.Migrations
                         PayAmout_CurrencyType = c.Int(nullable: false),
                         OrderUserID = c.Guid(nullable: false),
                         StatusCode = c.Int(nullable: false),
-                        Created = c.DateTime(nullable: false),
-                        CreatedBy = c.String(nullable: false, maxLength: 20),
+                        Created = c.DateTime(nullable: false, precision: 0),
+                        CreatedBy = c.String(nullable: false, maxLength: 20, storeType: "nvarchar"),
                     })
                 .PrimaryKey(t => t.ID)
                 .ForeignKey("dbo.UserProfile", t => t.OrderUserID)
@@ -534,8 +555,8 @@ namespace Repository.Migrations
                         Price_CurrencyType = c.Int(nullable: false),
                         OrderID = c.Guid(nullable: false),
                         StatusCode = c.Int(nullable: false),
-                        Created = c.DateTime(nullable: false),
-                        CreatedBy = c.String(nullable: false, maxLength: 20),
+                        Created = c.DateTime(nullable: false, precision: 0),
+                        CreatedBy = c.String(nullable: false, maxLength: 20, storeType: "nvarchar"),
                     })
                 .PrimaryKey(t => t.ID)
                 .ForeignKey("dbo.PurchaseOrder", t => t.OrderID)
@@ -548,8 +569,8 @@ namespace Repository.Migrations
                 c => new
                     {
                         ID = c.Guid(nullable: false),
-                        To = c.String(nullable: false, maxLength: 255),
-                        Cc = c.String(maxLength: 255),
+                        To = c.String(nullable: false, maxLength: 255, storeType: "nvarchar"),
+                        Cc = c.String(maxLength: 255, storeType: "nvarchar"),
                     })
                 .PrimaryKey(t => t.ID)
                 .ForeignKey("dbo.MessageLogEntities", t => t.ID)
@@ -560,7 +581,7 @@ namespace Repository.Migrations
                 c => new
                     {
                         ID = c.Guid(nullable: false),
-                        PhoneNumber = c.String(nullable: false, maxLength: 50),
+                        PhoneNumber = c.String(nullable: false, maxLength: 50, storeType: "nvarchar"),
                     })
                 .PrimaryKey(t => t.ID)
                 .ForeignKey("dbo.MessageLogEntities", t => t.ID)
@@ -651,6 +672,7 @@ namespace Repository.Migrations
             DropTable("dbo.ProductItem");
             DropTable("dbo.ProductAttachment");
             DropTable("dbo.ScheduleJobLog");
+            DropTable("dbo.LogEntity");
             DropTable("dbo.ScheduleJob");
             DropTable("dbo.DomainEventArgsLog");
             DropTable("dbo.SystemParameter");

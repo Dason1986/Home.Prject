@@ -32,6 +32,15 @@ namespace Repository.EF.Mapping.SystemAgg
             ToTable("ScheduleJob");
         }
     }
+    internal class LogEntityEntityTypeConfiguration : EntityTypeConfiguration<LogEntity>
+    {
+        public LogEntityEntityTypeConfiguration()
+        {
+
+
+            ToTable("LogEntity");
+        }
+    }
     internal class ScheduleJobLogEntityTypeConfiguration : EntityTypeConfiguration<ScheduleJobLog>
     {
         public ScheduleJobLogEntityTypeConfiguration()

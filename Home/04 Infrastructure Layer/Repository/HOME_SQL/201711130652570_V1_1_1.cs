@@ -159,6 +159,27 @@ namespace Home.Repository.HOME_SQL
                 .PrimaryKey(t => t.ID);
             
             CreateTable(
+                "dbo.LogEntity",
+                c => new
+                    {
+                        ID = c.Guid(nullable: false),
+                        CallSite = c.String(),
+                        Date = c.String(),
+                        Exception = c.String(),
+                        Level = c.String(),
+                        Logger = c.String(),
+                        MachineName = c.String(),
+                        Message = c.String(),
+                        StackTrace = c.String(),
+                        Thread = c.String(),
+                        Username = c.String(),
+                        StatusCode = c.Int(nullable: false),
+                        Created = c.DateTime(nullable: false),
+                        CreatedBy = c.String(nullable: false, maxLength: 20),
+                    })
+                .PrimaryKey(t => t.ID);
+            
+            CreateTable(
                 "dbo.ScheduleJobLog",
                 c => new
                     {
@@ -651,6 +672,7 @@ namespace Home.Repository.HOME_SQL
             DropTable("dbo.ProductItem");
             DropTable("dbo.ProductAttachment");
             DropTable("dbo.ScheduleJobLog");
+            DropTable("dbo.LogEntity");
             DropTable("dbo.ScheduleJob");
             DropTable("dbo.DomainEventArgsLog");
             DropTable("dbo.SystemParameter");

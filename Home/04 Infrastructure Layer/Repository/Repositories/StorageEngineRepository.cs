@@ -14,7 +14,7 @@ namespace Home.Repository.Repositories
 
         public StorageEngine GetByPathEngine(string path)
         {
-            return Wrapper.Find().FirstOrDefault(n => n.Root.StartsWith(path) || path.StartsWith(n.Root));
+            return Wrapper.Find().FirstOrDefault(n => (n.Root.StartsWith(path) || path.StartsWith(n.Root))&& n.StatusCode== Library.ComponentModel.Model.StatusCode.Enabled);
         }
     }
 }

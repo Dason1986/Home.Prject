@@ -77,6 +77,10 @@ namespace HomeApplication
             ScheduleJobManagement jobManagement = new ScheduleJobManagement(GetService<IScheduleJobRepository>());
             jobManagement.LoadProvider();
             jobManagement.Run();
+            var updater = new ContainerBuilder();
+            updater.RegisterInstance<ScheduleJobManagement>(jobManagement).SingleInstance();
+            updater.Update(_container);
+            
         }
 
         void WebConfig()
@@ -90,9 +94,9 @@ namespace HomeApplication
             config.Routes.MapHttpRoute(
     name: "ActionApi",
     routeTemplate: "api/{controller}/{action}/{id}",
-    defaults: new { action="Get", id = RouteParameter.Optional }
+    defaults: new { action = "Get", id = RouteParameter.Optional }
 );
-       //     config.Routes.MapHttpRoute("API", "api/{controller}/{ID}", new { controller = "Home", ID = System.Web.Http.RouteParameter.Optional });
+            //     config.Routes.MapHttpRoute("API", "api/{controller}/{ID}", new { controller = "Home", ID = System.Web.Http.RouteParameter.Optional });
 
             //定义web api route
             //xml格式输出结果 
@@ -140,7 +144,7 @@ namespace HomeApplication
 
         public override object GetService(Type type)
         {
-           return _container.Resolve(type);
+            return _container.Resolve(type);
         }
 
         public override object GetService(Type type, Type[] argtypes, object[] obj)

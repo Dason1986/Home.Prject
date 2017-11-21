@@ -42,11 +42,13 @@ namespace HomeApplication.Jobs
             Scan(_path);
             var _rootpath = _engin.Root;
             var FilesRepository = provider.CreateFileInfo();
+            int count = 0;
             foreach (var item in _files)
             {
-            
+
                 if (string.IsNullOrEmpty(item)) continue;
                 if (_filterfile.Any(ff => item.EndsWith(ff, StringComparison.OrdinalIgnoreCase))) continue;
+                count++;
                 var filepath = item.Replace(_rootpath, string.Empty);
                 if (filepath.StartsWith(@"\") || filepath.StartsWith(@"\")) filepath = filepath.Substring(1);
                 if (FilesRepository.FileExists(filepath)) continue;
@@ -68,8 +70,14 @@ namespace HomeApplication.Jobs
                 //}
 
                 FilesRepository.Add(fileinfo);
+                if (count >= 20)
+                {
+                    provider.UnitOfWork.Commit();
+                    count = 0;
+                }
             }
-            provider.UnitOfWork.Commit();
+            if (count > 0)
+                provider.UnitOfWork.Commit();
 
         }
         private readonly string[] _filterfile = { ".DS_Store", "desktop.ini", "thumbs.db" };
