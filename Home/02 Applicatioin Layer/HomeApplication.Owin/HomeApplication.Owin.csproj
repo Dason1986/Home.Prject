@@ -208,6 +208,7 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="API\ScanderController.cs" />
     <Compile Include="Core\BasicAuthenticationAttribute.cs" />
     <Compile Include="Core\ClinetLanguageAttribute.cs" />
     <Compile Include="Core\CompressAttribute.cs" />

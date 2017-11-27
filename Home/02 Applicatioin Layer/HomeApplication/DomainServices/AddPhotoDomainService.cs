@@ -40,6 +40,9 @@ namespace HomeApplication.DomainServices
         {
             if (CurrnetFile == null) return;
             if (!_photoEnvironment.Isloadconfig) _photoEnvironment.LoadConfig(this.GalleryModuleProvider.CreateSystemParameter());
+            try
+            {
+
             if (CurrnetPhoto == null)
             {
                 Logger.TraceByContent("Create Photo Entity", CurrnetFile.FullPath);
@@ -86,6 +89,13 @@ namespace HomeApplication.DomainServices
                 DoImageExif(image, exifInfo);
                     BuildImage(image);
                 image.Dispose();
+                }
+            }
+            catch (Exception)
+            {
+                CurrnetFile.StatusCode =  Library.ComponentModel.Model.StatusCode.Disabled;
+                this.GalleryModuleProvider.UnitOfWork.Commit();
+                throw;
             }
         }
 

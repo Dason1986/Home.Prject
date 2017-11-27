@@ -70,7 +70,7 @@ namespace HomeApplication.Jobs
                 //}
 
                 FilesRepository.Add(fileinfo);
-                if (count >= 20)
+                if (count >= 100)
                 {
                     provider.UnitOfWork.Commit();
                     count = 0;

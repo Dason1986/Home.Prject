@@ -126,6 +126,11 @@ namespace HomeApplication.Jobs
             Logger.Info("LoadProvider count:" + _providers.Count);
 
         }
+        public IDictionary<Guid,string> GetCalendarNames() {
+          var names=  _providers.Cast<ScheduleJob>().ToDictionary(n=>n.Id,n => n.Provider.Title);
+
+            return names;
+        }
         private void EmailJob()
         {
             var jobData = new JobDataMap();
@@ -171,7 +176,7 @@ namespace HomeApplication.Jobs
                 count++;
                 triggerbuilder.WithCronSchedule(item.Provider.ScheduleCronExpression);
 
-
+             
                 triggerbuilder = triggerbuilder.StartNow();
                 //将任务与触发器关联起来放到调度器中
                 scheduler.ScheduleJob(job, triggerbuilder.Build());
@@ -202,6 +207,13 @@ namespace HomeApplication.Jobs
             IsRuning = false;
             Logger.Info("stop schedulejob");
             scheduler.Shutdown(false);
+        }
+
+        public void RunCalendar(Guid id)
+        {
+            var job = _providers.Cast<ScheduleJob>().FirstOrDefault(n => n.Id == id);
+            if (job == null) throw new LogicException("排程不存在");
+            job.Provider.Execute(null);
         }
 
 
