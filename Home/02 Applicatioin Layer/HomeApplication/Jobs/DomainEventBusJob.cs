@@ -11,7 +11,8 @@ using System.Threading.Tasks;
 namespace HomeApplication.Jobs
 {
 
-
+    [PersistJobDataAfterExecution]
+    [DisallowConcurrentExecution]
     public sealed class DomainEventBusJob : IJob
     {
         readonly static object _sync = new object();

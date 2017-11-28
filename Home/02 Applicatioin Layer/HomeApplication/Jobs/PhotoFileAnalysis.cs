@@ -13,11 +13,13 @@ using Library.HelperUtility;
 
 namespace HomeApplication.Jobs
 {
+    [PersistJobDataAfterExecution]
+    [DisallowConcurrentExecution]
     public class PhotoFileAnalysis : ScheduleJobProvider
     {
 
 
-
+        readonly static object _sync = new object();
 
 
         protected string[] ImageTypes;
@@ -31,22 +33,26 @@ namespace HomeApplication.Jobs
 
         public override void Execute(IJobExecutionContext context)
         {
+            lock (_sync)
+            {
 
-            var provider = Bootstrap.Currnet.GetService<IFileManagentModuleProvider>();
-            var systemParameter = provider.CreateSystemParameter();
-            var setting = systemParameter.GetListByGroup("PhotoFileAnalysis");
-            ImageTypes = setting.Cast<string>("ImageTypes", "").Split(',');
-            Takes = setting.Cast<int>("Takes", 10);
-            ThreadProssSize(GetTotalRecord());
+                provideralleryModule = Bootstrap.Currnet.GetService<IGalleryModuleProvider>();
+
+                var systemParameter = provideralleryModule.CreateSystemParameter();
+                var setting = systemParameter.GetListByGroup("PhotoFileAnalysis");
+                ImageTypes = setting.Cast<string>("ImageTypes", ".jpeg,.jpg,.png").Split(',');
+                Takes = setting.Cast<int>("Takes", 10);
+                ThreadProssSize(GetTotalRecord());
+            }
         }
-
+        IGalleryModuleProvider provideralleryModule;
 
         protected FileInfo[] GetTotalRecord()
         {
-            var provider = Bootstrap.Currnet.GetService<IGalleryModuleProvider>();
-            IFileInfoRepository filesRepository = provider.CreateFileInfo();
 
-            var filecount = filesRepository.GetPhotoFilesByExtensions(ImageTypes,Takes);
+            IFileInfoRepository filesRepository = provideralleryModule.CreateFileInfo();
+
+            var filecount = filesRepository.GetPhotoFilesByExtensions(ImageTypes, Takes);
             return filecount;
         }
 
@@ -54,20 +60,20 @@ namespace HomeApplication.Jobs
         {
             #region MyRegion
 
-            var provider = Bootstrap.Currnet.GetService<IGalleryModuleProvider>();
+
+
+            var domainService = Bootstrap.Currnet.GetService<IAddPhotoDomainService>();
+            domainService.ModuleProvider = provideralleryModule;
+
+            IFileInfoRepository filesRepository = domainService.GalleryModuleProvider.CreateFileInfo();
+            foreach (var item in photolist)
             {
-                var domainService = Bootstrap.Currnet.GetService<IAddPhotoDomainService>();
-                domainService.ModuleProvider = provider;
-
-                IFileInfoRepository filesRepository = domainService.GalleryModuleProvider.CreateFileInfo();
-                foreach (var item in photolist)
-                {
-                    domainService.Handle(item);
-                    domainService.ModuleProvider.UnitOfWork.Commit();
-                    GC.Collect();
-                }
-
+                domainService.Handle(item);
+                domainService.ModuleProvider.UnitOfWork.Commit();
+                GC.Collect();
             }
+
+
 
             #endregion MyRegion
 

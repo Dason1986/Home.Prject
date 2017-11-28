@@ -30,7 +30,7 @@ namespace Home.Repository.Repositories
         {
             return Wrapper.Find().Include("Photo").AsNoTracking().FirstOrDefault(n => n.FullPath == file);
         }
-
+    
         public string[] GetFileDistinctByMD5()
         {
             var md5s = Wrapper.Find().GroupBy(n => n.MD5).Select(n => new { MD5 = n.Key, Count = n.Count() }).Where(n => n.Count > 1).Select(n => n.MD5).ToArray();
@@ -41,7 +41,7 @@ namespace Home.Repository.Repositories
 
         public FileInfo[] GetPhotoFilesByExtensions(string[] extensions,int takes=5)
         {
-            return Wrapper.Find().Include("Photo").AsNoTracking().Where(n => extensions.Contains(n.Extension) && n.StatusCode == Library.ComponentModel.Model.StatusCode.Enabled && n.Photo == null).Take(takes).ToArray();
+            return Wrapper.Find().Include("Photo").Where(n => extensions.Contains(n.Extension) && n.StatusCode == Library.ComponentModel.Model.StatusCode.Enabled && (n.MD5 == null || n.MD5 == "")).Take(takes).ToArray();
         }
     }
 }

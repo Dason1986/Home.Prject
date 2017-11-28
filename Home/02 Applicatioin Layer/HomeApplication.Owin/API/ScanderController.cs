@@ -8,16 +8,17 @@ namespace HomeApplication.Owin.API
     [RoutePrefix("api/Scander")]
     public class ScanderController : WebAPI
     {
-        public IDictionary<Guid, string> Get() {
-        var job=    Bootstrap.Currnet.GetService<ScheduleJobManagement>();
-         return   job.GetCalendarNames();
+        public IDictionary<Guid, string> Get()
+        {
+            var job = Bootstrap.Currnet.GetService<ScheduleJobManagement>();
+            return job.GetCalendarNames();
         }
         [ActionName("Run")]
         [HttpGet]
-        public void Run(Guid id)
+        public TimeSpan Run(Guid id)
         {
             var job = Bootstrap.Currnet.GetService<ScheduleJobManagement>();
-              job.RunCalendar(id);
+            return job.RunCalendar(id);
         }
     }
 }

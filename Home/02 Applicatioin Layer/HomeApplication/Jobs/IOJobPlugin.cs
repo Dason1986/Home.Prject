@@ -103,7 +103,7 @@ namespace HomeApplication.Jobs
                 {
                     var itemScheduleJob = ScheduleJobProvider.CreateInstance(item.ScheduleJobClass);
                     if (itemScheduleJob == null) throw new Exception("Create Instance error");
-                   
+
                     itemScheduleJob.ScheduleCronExpression = item.ScheduleCronExpression;
                     itemScheduleJob.Title = item.Title;
                     itemScheduleJob.Initialize();
@@ -126,8 +126,9 @@ namespace HomeApplication.Jobs
             Logger.Info("LoadProvider count:" + _providers.Count);
 
         }
-        public IDictionary<Guid,string> GetCalendarNames() {
-          var names=  _providers.Cast<ScheduleJob>().ToDictionary(n=>n.Id,n => n.Provider.Title);
+        public IDictionary<Guid, string> GetCalendarNames()
+        {
+            var names = _providers.Cast<ScheduleJob>().ToDictionary(n => n.Id, n => n.Provider.Title);
 
             return names;
         }
@@ -176,7 +177,7 @@ namespace HomeApplication.Jobs
                 count++;
                 triggerbuilder.WithCronSchedule(item.Provider.ScheduleCronExpression);
 
-             
+
                 triggerbuilder = triggerbuilder.StartNow();
                 //将任务与触发器关联起来放到调度器中
                 scheduler.ScheduleJob(job, triggerbuilder.Build());
@@ -209,11 +210,27 @@ namespace HomeApplication.Jobs
             scheduler.Shutdown(false);
         }
 
-        public void RunCalendar(Guid id)
+        public TimeSpan RunCalendar(Guid id)
         {
             var job = _providers.Cast<ScheduleJob>().FirstOrDefault(n => n.Id == id);
             if (job == null) throw new LogicException("排程不存在");
-            job.Provider.Execute(null);
+            Stopwatch stopwatch = Stopwatch.StartNew();
+            try
+            {
+                job.Provider.Execute(null);
+            }
+            catch (Exception e)
+            {
+                throw e;
+            }
+            finally
+            {
+
+                stopwatch.Stop();
+                job.LastElapsedTime = stopwatch.Elapsed;
+            }
+
+            return job.LastElapsedTime;
         }
 
 
@@ -282,7 +299,7 @@ namespace HomeApplication.Jobs
         /// <summary>
         ///
         /// </summary>
-    
+
         protected ILogger Logger = LogManager.GetCurrentClassLogger();
 
         public string Title { get; set; }
@@ -367,8 +384,8 @@ namespace HomeApplication.Jobs
                     log.ElapsedTime = new TimeSpan(stopwatch.Elapsed.Hours, stopwatch.Elapsed.Minutes, stopwatch.Elapsed.Seconds);
                 }
                 logger.Info("run job:{0} runtimes:{1} LastElapsedTime:{2}", job.Provider.Title, job.RunTimes, job.LastElapsedTime);
-          
-                IScheduleJobLogRepository logRepository =        Bootstrap.Currnet.GetService< IScheduleJobLogRepository>();
+
+                IScheduleJobLogRepository logRepository = Bootstrap.Currnet.GetService<IScheduleJobLogRepository>();
                 logRepository.Add(log);
                 logRepository.UnitOfWork.Commit();
 

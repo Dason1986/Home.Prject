@@ -43,57 +43,58 @@ namespace HomeApplication.DomainServices
             try
             {
 
-            if (CurrnetPhoto == null)
-            {
-                Logger.TraceByContent("Create Photo Entity", CurrnetFile.FullPath);
-                CurrnetPhoto= PhotoRepository.Get(CurrnetFile.ID);
                 if (CurrnetPhoto == null)
                 {
-                    CurrnetPhoto = new Photo(CreatedInfo.PhotoFileAnalysis)
+                    Logger.TraceByContent("Create Photo Entity", CurrnetFile.FullPath);
+                    CurrnetPhoto = PhotoRepository.Get(CurrnetFile.ID);
+                    if (CurrnetPhoto == null)
                     {
-                        ID = CurrnetFile.ID,
-                        FileID = CurrnetFile.ID,
-                    };
-                    CurrnetFile.Photo = CurrnetPhoto;
-                    PhotoRepository.Add(CurrnetPhoto);
+                        CurrnetPhoto = new Photo(CreatedInfo.PhotoFileAnalysis)
+                        {
+                            ID = CurrnetFile.ID,
+                            FileID = CurrnetFile.ID,
+                        };
+                        CurrnetFile.Photo = CurrnetPhoto;
+                        PhotoRepository.Add(CurrnetPhoto);
+                    }
+                    // CurrnetFile.Photo = CurrnetPhoto;
                 }
-                // CurrnetFile.Photo = CurrnetPhoto;
-            }
-            if (CurrnetPhoto.Attributes != null && CurrnetPhoto.Attributes.Count > 0) return;
-            using (storage = CurrnetFile.GetStorage())
-            {
-               // Logger.TraceByContent("AddPhotoDomainService", CurrnetFile.FullPath);
-
-                if (!storage.Exists)
+                using (storage = CurrnetFile.GetStorage())
                 {
-                    Logger.WarnByContent(Resources.DomainServiceResource.FileNotExist, CurrnetFile.FullPath);
-                    throw new PhotoDomainServiceException(Resources.DomainServiceResource.FileNotExist, new FileNotFoundException(CurrnetFile.FullPath));
-                }
+                    // Logger.TraceByContent("AddPhotoDomainService", CurrnetFile.FullPath);
 
-                Logger.TraceByContent("Analysis", CurrnetFile.FullPath);
+                    if (!storage.Exists)
+                    {
+                        Logger.WarnByContent(Resources.DomainServiceResource.FileNotExist, CurrnetFile.FullPath);
+                        throw new PhotoDomainServiceException(Resources.DomainServiceResource.FileNotExist, new FileNotFoundException(CurrnetFile.FullPath));
+                    }
 
-                fs = storage.Get();
-                if(string.IsNullOrEmpty(CurrnetFile.MD5))
-                {
-                    CurrnetFile.MD5= Library.HelperUtility.FileUtility.FileMD5(fs);
-                    CurrnetFile.FileSize = fs.Length;
-                }
-                image = new Bitmap(fs);
+                    Logger.TraceByContent("Analysis", CurrnetFile.FullPath);
 
-                var exifInfo = ImageExif.GetExifInfo(image);
-                if (CurrnetPhoto.Attributes == null)
-                {
-                    ICollection<PhotoAttribute> attributes = new List<PhotoAttribute>();
-                    CurrnetPhoto.Attributes = attributes;
-                }
-                DoImageExif(image, exifInfo);
+                    fs = storage.Get();
+                    if (string.IsNullOrEmpty(CurrnetFile.MD5))
+                    {
+                        CurrnetFile.MD5 = Library.HelperUtility.FileUtility.FileMD5(fs);
+                        CurrnetFile.FileSize = fs.Length;
+                    }
+                    if (CurrnetPhoto.Attributes != null && CurrnetPhoto.Attributes.Count > 0) return;
+                    image = new Bitmap(fs);
+
+                    var exifInfo = ImageExif.GetExifInfo(image);
+                    if (CurrnetPhoto.Attributes == null)
+                    {
+                        ICollection<PhotoAttribute> attributes = new List<PhotoAttribute>();
+                        CurrnetPhoto.Attributes = attributes;
+                    }
+                    DoImageExif(image, exifInfo);
                     BuildImage(image);
-                image.Dispose();
+                    image.Dispose();
                 }
             }
             catch (Exception)
             {
-                CurrnetFile.StatusCode =  Library.ComponentModel.Model.StatusCode.Disabled;
+                this.GalleryModuleProvider.UnitOfWork.RollbackChanges();
+                CurrnetFile.StatusCode = Library.ComponentModel.Model.StatusCode.Disabled;
                 this.GalleryModuleProvider.UnitOfWork.Commit();
                 throw;
             }
@@ -166,7 +167,8 @@ namespace HomeApplication.DomainServices
             }
             foreach (var item in photo.Attributes)
             {
-                if(item.AttValue!=null&& item.AttValue.Length > 255) {
+                if (item.AttValue != null && item.AttValue.Length > 255)
+                {
                     item.AttValue = item.AttValue.Substring(0, 255);
                 }
             }

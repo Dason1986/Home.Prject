@@ -14,71 +14,77 @@ using Library.HelperUtility;
 
 namespace HomeApplication.Jobs
 {
+    [PersistJobDataAfterExecution]
+    [DisallowConcurrentExecution]
     public class ScanderPhysical : ScheduleJobProvider
     {
-
+        readonly static object _sync = new object();
         protected void OnDowrok()
         {
-            //if (string.IsNullOrEmpty(Option.Path)) throw new Exception("路徑爲空");
-            //_path = Path.GetFullPath(Option.Path);
-            //if (_path[0] == '\'' || _path[0] == '"') _path = _path.Substring(1, Option.Path.Length - 2);
-            var provider = Bootstrap.Currnet.GetService<IFileManagentModuleProvider>();
-            var systemParameter = provider.CreateSystemParameter();
-            var setting = systemParameter.GetListByGroup("ScanderPhysical");
-            _path = setting.Cast<string>("Path", "");
-            if (!Directory.Exists(_path)) return;
-            var storageEngineRepository = provider.CreateStorageEngine();
-            _engin = storageEngineRepository.GetByPathEngine(_path);
-            if (_engin == null)
-            {
-                _engin = new StorageEngine(CreatedInfo.ScanderPhysical)
-                {
-                    Root = _path,
-                    Name = Path.GetDirectoryName(_path)
-                };
-                storageEngineRepository.Add(_engin);
-                storageEngineRepository.UnitOfWork.Commit();
-            }
-            Scan(_path);
-            var _rootpath = _engin.Root;
-            var FilesRepository = provider.CreateFileInfo();
-            int count = 0;
-            foreach (var item in _files)
+            lock (_sync)
             {
 
-                if (string.IsNullOrEmpty(item)) continue;
-                if (_filterfile.Any(ff => item.EndsWith(ff, StringComparison.OrdinalIgnoreCase))) continue;
-                count++;
-                var filepath = item.Replace(_rootpath, string.Empty);
-                if (filepath.StartsWith(@"\") || filepath.StartsWith(@"\")) filepath = filepath.Substring(1);
-                if (FilesRepository.FileExists(filepath)) continue;
 
-
-                var fileinfo = new FileEx(CreatedInfo.PhotoFileAnalysis)
+                //if (string.IsNullOrEmpty(Option.Path)) throw new Exception("路徑爲空");
+                //_path = Path.GetFullPath(Option.Path);
+                //if (_path[0] == '\'' || _path[0] == '"') _path = _path.Substring(1, Option.Path.Length - 2);
+                var provider = Bootstrap.Currnet.GetService<IFileManagentModuleProvider>();
+                var systemParameter = provider.CreateSystemParameter();
+                var setting = systemParameter.GetListByGroup("ScanderPhysical");
+                _path = setting.Cast<string>("Path", "");
+                if (!Directory.Exists(_path)) return;
+                var storageEngineRepository = provider.CreateStorageEngine();
+                _engin = storageEngineRepository.GetByPathEngine(_path);
+                if (_engin == null)
                 {
-                    Extension = Path.GetExtension(item),
-                    FullPath = filepath,
-                    FileName = Path.GetFileName(item),
-
-                    EngineID = _engin.ID,
-                    SourceType = Home.DomainModel.SourceType.ServerScand
-                };
-
-                //if (File.Exists(item))
-                //{
-                //    fileinfo.FileSize = item.Length;
-                //}
-
-                FilesRepository.Add(fileinfo);
-                if (count >= 100)
-                {
-                    provider.UnitOfWork.Commit();
-                    count = 0;
+                    _engin = new StorageEngine(CreatedInfo.ScanderPhysical)
+                    {
+                        Root = _path,
+                        Name = Path.GetDirectoryName(_path)
+                    };
+                    storageEngineRepository.Add(_engin);
+                    storageEngineRepository.UnitOfWork.Commit();
                 }
-            }
-            if (count > 0)
-                provider.UnitOfWork.Commit();
+                Scan(_path);
+                var _rootpath = _engin.Root;
+                var FilesRepository = provider.CreateFileInfo();
+                int count = 0;
+                foreach (var item in _files)
+                {
 
+                    if (string.IsNullOrEmpty(item)) continue;
+                    if (_filterfile.Any(ff => item.EndsWith(ff, StringComparison.OrdinalIgnoreCase))) continue;
+                    count++;
+                    var filepath = item.Replace(_rootpath, string.Empty);
+                    if (filepath.StartsWith(@"\") || filepath.StartsWith(@"\")) filepath = filepath.Substring(1);
+                    if (FilesRepository.FileExists(filepath)) continue;
+
+
+                    var fileinfo = new FileEx(CreatedInfo.PhotoFileAnalysis)
+                    {
+                        Extension = Path.GetExtension(item),
+                        FullPath = filepath,
+                        FileName = Path.GetFileName(item),
+
+                        EngineID = _engin.ID,
+                        SourceType = Home.DomainModel.SourceType.ServerScand
+                    };
+
+                    //if (File.Exists(item))
+                    //{
+                    //    fileinfo.FileSize = item.Length;
+                    //}
+
+                    FilesRepository.Add(fileinfo);
+                    if (count >= 100)
+                    {
+                        provider.UnitOfWork.Commit();
+                        count = 0;
+                    }
+                }
+                if (count > 0)
+                    provider.UnitOfWork.Commit();
+            }
         }
         private readonly string[] _filterfile = { ".DS_Store", "desktop.ini", "thumbs.db" };
         private string _path;
