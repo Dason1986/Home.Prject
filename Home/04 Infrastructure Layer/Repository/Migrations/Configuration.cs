@@ -66,6 +66,7 @@ namespace Repository.Migrations
                     statement.Sql = string.Format("{0};ALTER TABLE {1} COMMENT='{2}'; ", statement.Sql, table, display.DisplayName);
                 }
             }
+            if (!string.IsNullOrEmpty(TRIGGER)) { statement.Sql = string.Format("{0};{1};", statement.Sql, TRIGGER); }
             return statement;
         }
         protected override string Generate(ColumnModel op)
@@ -78,13 +79,7 @@ namespace Repository.Migrations
             }
             return sql;
         }
-        private void SetCreatedUtcColumn(IEnumerable<ColumnModel> columns)
-        {
-            foreach (var columnModel in columns)
-            {
-                SetCreatedUtcColumn(columnModel);
-            }
-        }
+
 
         private static readonly string[] TimeColumnNames = { "Modified", "Created" };
         private static readonly string[] UserColumnNames = { "ModifiedBy", "CreatedBy" };
@@ -93,6 +88,7 @@ namespace Repository.Migrations
         private void SetCreatedUtcColumn(CreateTableOperation createTableOperation)
         {
             table = createTableOperation.Name.Replace("dbo.", "");
+            TRIGGER = null;
             tablecalss = typeof(Home.DomainModel.AgeCompare).Assembly.GetTypes().FirstOrDefault(n => n.Name == table);
             foreach (var columnModel in createTableOperation.Columns)
             {
@@ -105,7 +101,7 @@ namespace Repository.Migrations
 
             }
         }
-
+        string TRIGGER;
         private static string GetDisplayName(Type type, string name)
         {
 
@@ -155,7 +151,18 @@ namespace Repository.Migrations
                 column.DefaultValueSql = "'script'";
             if (column.IsNullable == false && string.Equals("Id", column.Name, StringComparison.OrdinalIgnoreCase))
             {
-                //     if (column.Type == PrimitiveTypeKind.Guid) column.DefaultValueSql = "uuid()";
+                if (column.Type == PrimitiveTypeKind.Guid)
+                {
+                    TRIGGER = string.Format(@" DELIMITER ;;
+CREATE TRIGGER `{0}_before_insert` 
+BEFORE INSERT ON `{0}` FOR EACH ROW 
+BEGIN
+  IF new.{1} IS NULL or new.{1} = '' THEN
+    SET new.{1} = uuid();
+  END IF;
+END;;
+DELIMITER ;", table,column.Name);
+                }
                 if (column.Type == PrimitiveTypeKind.Int32) column.IsIdentity = true;
             }
             if (string.Equals("StatusCode", column.Name, StringComparison.OrdinalIgnoreCase) && column.Type == PrimitiveTypeKind.Int32)

@@ -152,7 +152,7 @@ namespace Home.Repository.HOME_SQL
                 return string.Format("{0}_{1}", name, display.DisplayName);
             }
 
-            return name;
+        
         }
 
         private static readonly string[] TimeColumnNames = { "Modified", "Created" };
