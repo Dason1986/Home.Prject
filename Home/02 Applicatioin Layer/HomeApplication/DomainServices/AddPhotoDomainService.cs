@@ -141,19 +141,23 @@ namespace HomeApplication.DomainServices
                 ? CreateAtt("DateTimeOriginal", exif.DateTimeOriginal.Value.ToString("yyyy-MM-dd HH:mm:ss"))
                 : CreateAtt("DateTimeOriginal", "unknown"));
             if (!string.IsNullOrWhiteSpace(exif.Description)) attributes.Add(CreateAtt("Description", exif.Description.Trim()));
-            if (!string.IsNullOrWhiteSpace(exif.Keyword)) attributes.Add(CreateAtt("Keyword", exif.Keyword));
+            if (!string.IsNullOrWhiteSpace(exif.Keyword)) attributes.Add(CreateAtt("Keyword", exif.Keyword.Trim()));
             if (string.IsNullOrWhiteSpace(exif.Title)) exif.Title = CurrnetFile.FileName;
             attributes.Add(CreateAtt("Title", exif.Title));
-            if (!string.IsNullOrWhiteSpace(exif.RawFormat)) attributes.Add(CreateAtt("RawFormat", exif.RawFormat));
-            if (exif.GPS != null) attributes.Add(CreateAtt("GPS", exif.GPS.ToString()));
-            if (!string.IsNullOrWhiteSpace(exif.Author)) attributes.Add(CreateAtt("Author", exif.Author));
-            if (!string.IsNullOrWhiteSpace(exif.Comment)) attributes.Add(CreateAtt("Comment", exif.Comment));
+            if (!string.IsNullOrWhiteSpace(exif.RawFormat)) attributes.Add(CreateAtt("RawFormat", exif.RawFormat.Trim()));
+            if (exif.GPS != null ) {
+                var gps = exif.GPS.ToString().Trim();
+                if(gps  != "-0.000000,-0.000000" && gps != "0.000000,0.000000")
+                    attributes.Add(CreateAtt("GPS", gps));
+            }
+            if (!string.IsNullOrWhiteSpace(exif.Author)) attributes.Add(CreateAtt("Author", exif.Author.Trim()));
+            if (!string.IsNullOrWhiteSpace(exif.Comment)) attributes.Add(CreateAtt("Comment", exif.Comment.Trim()));
 
             imageOrientation = exif.Orientation;
             if ((int)imageOrientation != 0)
                 attributes.Add(CreateAtt("Orientation", exif.Orientation.ToString()));
 
-            if (!string.IsNullOrWhiteSpace(exif.EquipmentModel)) attributes.Add(CreateAtt("EquipmentModel", exif.EquipmentModel));
+            if (!string.IsNullOrWhiteSpace(exif.EquipmentModel)) attributes.Add(CreateAtt("EquipmentModel", exif.EquipmentModel.Trim()));
             if (!string.IsNullOrEmpty(exif.EquipmentMake))
             {
                 attributes.Add(CreateAtt("EquipmentMake", exif.EquipmentMake));

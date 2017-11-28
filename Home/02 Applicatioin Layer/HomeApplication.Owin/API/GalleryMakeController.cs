@@ -15,21 +15,6 @@ namespace HomeApplication.Owin.API
             _service = service;
         }
 
-        public IEnumerable<GalleryType> Get()
-        {
-            return _service.GetEquipmentMake();
-        }
-
-        [ActionName("make")]
-        public IEnumerable<GalleryType> GetByMake([FromUri(Name = "id")]string make)
-        {
-            return _service.GetEquipmentMake(make);
-        }
-
-        [ActionName("model")]
-        public IEnumerable<GalleryType> GetByModel()
-        {
-            return _service.GetEquipmentModel();
-        }
+      
     }
 }

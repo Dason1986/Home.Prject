@@ -21,46 +21,6 @@ namespace HomeApplication.Owin.API
             return _service.GetTimeLineByformat(TimeFormat.YYYY);
         }
 
-        [ActionName("year")]
-        public IEnumerable<GalleryType> GetTimeLineByYear([FromUri(Name = "filter")]string filter)
-        {
-            return _service.GetTimeLineByformat(TimeFormat.YYYY, filter);
-        }
-
-        [ActionName("yyyymm")]
-        public IEnumerable<GalleryType> GetTimeLineMonthByYear()
-        {
-            return _service.GetTimeLineByformat(TimeFormat.YYYYMM);
-        }
-
-        [ActionName("yyyy")]
-        public IEnumerable<GalleryType> GetTimeLineByYYYY()
-        {
-            return _service.GetTimeLineByformat(TimeFormat.YYYY);
-        }
-
-        [ActionName("yyyymmdd")]
-        public IEnumerable<GalleryType> GetTimeLineByYYYYMMDD()
-        {
-            return _service.GetTimeLineByformat(TimeFormat.YYYYMMDD);
-        }
-
-        [ActionName("yyyymm")]
-        public IEnumerable<GalleryType> GetTimeLineByYYYYMM([FromUri(Name = "filter")]string filter)
-        {
-            return _service.GetTimeLineByformat(TimeFormat.YYYYMM, filter);
-        }
-
-        [ActionName("yyyy")]
-        public IEnumerable<GalleryType> GetTimeLineByYYYY([FromUri(Name = "filter")]string filter)
-        {
-            return _service.GetTimeLineByformat(TimeFormat.YYYY, filter);
-        }
-
-        [ActionName("yyyymmdd")]
-        public IEnumerable<GalleryType> GetTimeLineByYYYYMMDD([FromUri(Name = "filter")]string filter)
-        {
-            return _service.GetTimeLineByformat(TimeFormat.YYYYMMDD, filter);
-        }
+      
     }
 }

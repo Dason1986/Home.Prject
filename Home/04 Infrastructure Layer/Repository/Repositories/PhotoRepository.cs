@@ -4,7 +4,7 @@ using Home.DomainModel.Repositories;
 using Library.Domain.Data.EF;
 using System.Linq;
 using Library.ComponentModel.Model;
-using System.Collections.Generic; 
+using System.Collections.Generic;
 using System.Data.Entity;
 
 namespace Home.Repository.Repositories
@@ -17,7 +17,7 @@ namespace Home.Repository.Repositories
 
         public int Count()
         {
-            throw new NotImplementedException();
+            return Wrapper.Find().Count();
         }
 
         public void DeletePhotoAllInfoByID(Guid id)

@@ -1,7 +1,7 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
-# Visual Studio 14
-VisualStudioVersion = 14.0.23107.0
+# Visual Studio 15
+VisualStudioVersion = 15.0.27004.2005
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "03 Domain Layer", "03 Domain Layer", "{76240EF8-E034-4BB6-9AAB-C5E6BACD4200}"
 EndProject
@@ -14,6 +14,9 @@ EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "05 Test", "05 Test", "{12A376A1-B1E7-41BC-93DD-ABBB56C4669A}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "06 Documnet", "06 Documnet", "{A6B958DF-7AB1-4647-9ED0-6BC3294CCBA9}"
+	ProjectSection(SolutionItems) = preProject
+		readme.md = readme.md
+	EndProjectSection
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Dev", "Dev", "{2EB35976-5C0F-4B24-A66D-E6262D114418}"
 	ProjectSection(SolutionItems) = preProject
@@ -472,5 +475,8 @@ Global
 		{434C4DFA-D0CA-44FA-BA6B-729807147DC8} = {F55A8A84-F9BE-4505-995F-C426544154F8}
 		{423541FE-B61A-44B3-8A6D-D30139C485C1} = {F55A8A84-F9BE-4505-995F-C426544154F8}
 		{2004B495-4B9A-47B7-BDCF-A975E3CE6257} = {F55A8A84-F9BE-4505-995F-C426544154F8}
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {ADCEA16C-E079-4919-9A3C-160DAAFD2F7E}
 	EndGlobalSection
 EndGlobal

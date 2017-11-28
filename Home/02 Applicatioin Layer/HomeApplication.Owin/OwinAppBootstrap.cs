@@ -5,6 +5,7 @@ using Home.DomainModel.Repositories;
 using HomeApplication.Jobs;
 using Library;
 using Microsoft.Owin.Hosting;
+using Newtonsoft.Json;
 using NLog;
 using Owin;
 using System;
@@ -61,6 +62,7 @@ namespace HomeApplication
         }
         protected override void Register()
         {
+            WebConfig();
             AutoMap.AutoMapProfile.Reg();
 
             Logger.Info("Ioc");
@@ -73,7 +75,7 @@ namespace HomeApplication
 
             var resolver = new AutofacWebApiDependencyResolver(_container);
             config.DependencyResolver = resolver;
-            WebConfig();
+         
             ScheduleJobManagement jobManagement = new ScheduleJobManagement(GetService<IScheduleJobRepository>());
             jobManagement.LoadProvider();
             jobManagement.Run();
@@ -83,33 +85,48 @@ namespace HomeApplication
 
 
         }
-
+        private void DefaultJsonFormat(HttpConfiguration config)
+        {
+            Logger.Trace("設置JsonFormat");
+            var formatters = config.Formatters;
+            if (formatters.XmlFormatter != null) config.Formatters.Remove(formatters.XmlFormatter);
+            var jsonFormatter = formatters.JsonFormatter;
+            var settings = jsonFormatter.SerializerSettings;
+            settings.DateFormatString = "dd/MM/yyyy HH:mm:ss";
+            settings.Formatting = Formatting.Indented;
+            settings.FloatParseHandling = FloatParseHandling.Decimal;
+        
+            // settings.Converters.Add(new DatenullJsonConverter());
+            settings.ContractResolver = new Newtonsoft.Json.Serialization.DefaultContractResolver();//CamelCasePropertyNamesContractResolver();
+       
+            //    config.Formatters.Insert(0, new JsonpMediaTypeFormatter(jsonFormatter));
+            // logger.Info("日期格式：{0}", settings.DateFormatString);
+        }
         void WebConfig()
         {
-            var cors = new EnableCorsAttribute("*", "*", "*");
-            config.EnableCors(cors);
+            SetWebApi();
+            DefaultJsonFormat(config);
 
-
-        
-            //定义web api route
-            config.Routes.MapHttpRoute(
-    name: "ActionApi",
-    routeTemplate: "api/{controller}/{action}/{id}",
-    defaults: new { action = "Get", id = RouteParameter.Optional }
-);
-    
-            //定义web api route
-            //xml格式输出结果 
-            // config.Formatters.XmlFormatter.UseXmlSerializer = false;
-            config.Formatters.Remove(config.Formatters.XmlFormatter);
-            //     config.Formatters.Remove(config.Formatters.JsonFormatter);
-            config.Formatters.JsonFormatter.UseDataContractJsonSerializer = true;
- 
             //将web api以Middleware注册到OWIN管道中
 
 
             //    app.Use<HelloWorldMiddleware>();
+            Logger.Trace("啟用:Swagger");
+            config.RegisterSwagger();
             _app.UseWebApi(config);
+        }
+
+        private void SetWebApi()
+        {
+            var cors = new EnableCorsAttribute("*", "*", "*");
+            config.EnableCors(cors);
+            config.MapHttpAttributeRoutes(); 
+            //定义web api route
+            config.Routes.MapHttpRoute(
+                        name: "DefaultApi",
+                        routeTemplate: "api/{controller}/{id}",
+                        defaults: new { id = RouteParameter.Optional }
+                    );
         }
 
         #region GetService

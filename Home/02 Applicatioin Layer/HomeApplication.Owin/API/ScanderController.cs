@@ -5,16 +5,16 @@ using System.Collections.Generic;
 using System.Web.Http;
 namespace HomeApplication.Owin.API
 {
-    [RoutePrefix("api/Scander")]
+ 
     public class ScanderController : WebAPI
     {
+        [Route("api/Scander")]
         public IDictionary<Guid, string> Get()
         {
             var job = Bootstrap.Currnet.GetService<ScheduleJobManagement>();
             return job.GetCalendarNames();
         }
-        [ActionName("Run")]
-        [HttpGet]
+        [Route("api/Scander/run/{id}")]     
         public TimeSpan Run(Guid id)
         {
             var job = Bootstrap.Currnet.GetService<ScheduleJobManagement>();

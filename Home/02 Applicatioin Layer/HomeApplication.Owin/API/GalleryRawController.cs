@@ -15,9 +15,6 @@ namespace HomeApplication.Owin.API
             _service = service;
         }
 
-        public IEnumerable<GalleryType> Get()
-        {
-            return _service.GetRawFormat();
-        }
+      
     }
 }
