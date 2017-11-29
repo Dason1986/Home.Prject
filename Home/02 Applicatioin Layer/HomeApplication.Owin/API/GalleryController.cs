@@ -95,32 +95,20 @@ namespace HomeApplication.Owin.API
             {
                 return Request.CreateErrorResponse(HttpStatusCode.NotFound, "圖片不存在！");
             }
-            var result = new HttpResponseMessage(HttpStatusCode.OK)
-            {
-                Content = new ByteArrayContent(photoinfo.FileBuffer),
-            };
-            //result.Content.LoadIntoBufferAsync(photoinfo.FileBuffer.Length).Wait();
-            //result.Content.Headers.ContentDisposition =
-            //    new ContentDispositionHeaderValue("attachment")
-            //    {
-            //        FileName = photoinfo.Name
-            //    };
-            result.Content.Headers.ContentType =
-                new MediaTypeHeaderValue("image/" + photoinfo.Extension.Substring(1));
-
+            HttpResponseMessage result = dwonimagefile(photoinfo);
             return result;
         }
 
 
         [HttpGet]
-        [Route("api/Gallery/Photo/Exif/{id}")]
-        public HttpResponseMessage GetExif( string id)
+        [Route("api/Gallery/Photo/Exif/{serialNumber}")]
+        public HttpResponseMessage GetExif( string serialNumber)
         {
-            if (string.IsNullOrEmpty(id))
+            if (string.IsNullOrEmpty(serialNumber))
             {
                 return Request.CreateErrorResponse(HttpStatusCode.BadRequest, "圖片編號爲空！");
             }
-            var photoinfo = _service.GetExifBySerialNumber(id);
+            var photoinfo = _service.GetExifBySerialNumber(serialNumber);
             if (photoinfo == null)
             {
                 return Request.CreateErrorResponse(HttpStatusCode.BadRequest, "圖片編號不存在！");
@@ -130,31 +118,37 @@ namespace HomeApplication.Owin.API
         }
 
 
-        [Route("api/Gallery/Photo/{id}")]
-        public HttpResponseMessage GetPhoto([FromUri(Name = "id")]string id)
+        [Route("api/Gallery/Photo/{serialNumber}")]
+        public HttpResponseMessage GetPhoto(string serialNumber)
         {
-            if (string.IsNullOrEmpty(id))
+            if (string.IsNullOrEmpty(serialNumber))
             {
                 return Request.CreateErrorResponse(HttpStatusCode.BadRequest, "圖片編號爲空！");
             }
-            var photoinfo = _service.GetPhotoBySerialNumber(id);
+            var photoinfo = _service.GetPhotoBySerialNumber(serialNumber);
             if (photoinfo == null)
             {
                 return Request.CreateErrorResponse(HttpStatusCode.BadRequest, "圖片編號不存在！");
             }
+            HttpResponseMessage result = dwonimagefile(photoinfo);
+
+            return result;
+        }
+
+        private static HttpResponseMessage dwonimagefile(FileProfile photoinfo)
+        {
             var result = new HttpResponseMessage(HttpStatusCode.OK)
             {
                 Content = new ByteArrayContent(photoinfo.FileBuffer),
-            };
-            result.Content.LoadIntoBufferAsync(photoinfo.FileBuffer.Length).Wait();
-            result.Content.Headers.ContentDisposition =
-                new ContentDispositionHeaderValue("attachment")
-                {
-                    FileName = photoinfo.Name
-                };
+            };   
+            //result.Content.Headers.ContentDisposition =
+            //    new ContentDispositionHeaderValue("attachment")
+            //    {
+            //        FileName = photoinfo.Name,
+            //        Size = photoinfo.FileBuffer.Length,
+            //    };
             result.Content.Headers.ContentType =
                 new MediaTypeHeaderValue("image/" + photoinfo.Extension.Substring(1));
-
             return result;
         }
     }

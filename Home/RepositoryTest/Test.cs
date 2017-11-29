@@ -1028,7 +1028,7 @@ namespace RepositoryTest
             }
             catch (Exception e)
             {
-                throw;
+                throw e;
             }
 
             Console.WriteLine("1");
@@ -1056,7 +1056,7 @@ namespace RepositoryTest
             }
             catch (Exception e)
             {
-                throw;
+                throw e;
             }
 
             var messges = messageEntitys.AsNoTracking().ToArray();
@@ -1082,7 +1082,7 @@ namespace RepositoryTest
             }
             catch (Exception e)
             {
-                throw;
+                throw e;
             }
 
          

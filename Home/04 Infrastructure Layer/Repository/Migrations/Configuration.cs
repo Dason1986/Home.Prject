@@ -136,8 +136,7 @@ namespace Repository.Migrations
                 if (display == null) return name;
                 return string.Format("{0}_{1}", name, display.DisplayName);
             }
-
-            return name;
+             
 
         }
         private void SetCreatedUtcColumn(ColumnModel column)

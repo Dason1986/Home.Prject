@@ -88,7 +88,7 @@ namespace HomeApplication.Services
             List<GalleryType> list = new List<GalleryType>();
             foreach (var item in dic)
             {
-                list.Add(new GalleryType { Name = item.Make + item.Model, Count = item.Count });
+                list.Add(new GalleryType { Name =string.Format("{0} {1}",item.Make , item.Model) , Count = item.Count });
             }
 
             return list;

@@ -36,11 +36,10 @@ namespace Library.Storage.FileEngineProvider.Network
             }
         }
     }
-    public class SmbFileStorage : Library.Storage.IFileStorage, IDisposable
+    public class SmbFileStorage : IFileStorage, IDisposable
     {
 
-        string _filepath;
-        static bool isconnnection;
+        string _filepath; 
         public SmbFileStorage(string ftpurl, string ftpuid, string ftppwd, string filepath)
         {
             try
@@ -57,7 +56,7 @@ namespace Library.Storage.FileEngineProvider.Network
             catch (Exception ex)
             {
 
-                throw;
+                throw ex;
             }
 
 

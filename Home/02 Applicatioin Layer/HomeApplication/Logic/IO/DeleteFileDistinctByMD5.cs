@@ -48,7 +48,7 @@ namespace HomeApplication.Logic.IO
                 for (int i = 1; i < fileDistincts.Count; i++)
                 {
                     var fileinfo = fileDistincts[i];
-                    Logger.TraceByContent("Distinct", fileinfo.FileName);
+                
 
                     var photo = fileinfo.Photo ?? photoRepository.GetByFileId(fileinfo.ID);
                     if (photo == null)
@@ -68,7 +68,7 @@ namespace HomeApplication.Logic.IO
                         }
                         catch (System.Exception)
                         {
-                            Logger.WarnByContent("删除文件失败！", fileinfo.FileName);
+                          //  Logger.WarnByContent("删除文件失败！", fileinfo.FileName);
                         }
                     }
                     provider.UnitOfWork.Commit();
@@ -85,7 +85,7 @@ namespace HomeApplication.Logic.IO
             }
             catch (System.Exception)
             {
-                Logger.WarnByContent("删除文件失败！", fileinfo.FileName);
+              //  Logger.WarnByContent("删除文件失败！", fileinfo.FileName);
             }
         }
     }

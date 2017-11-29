@@ -65,11 +65,11 @@ namespace HomeApplication.DomainServices
 
                     if (!storage.Exists)
                     {
-                        Logger.WarnByContent(Resources.DomainServiceResource.FileNotExist, CurrnetFile.FullPath);
+                     //   Logger.WarnByContent(Resources.DomainServiceResource.FileNotExist, CurrnetFile.FullPath);
                         throw new PhotoDomainServiceException(Resources.DomainServiceResource.FileNotExist, new FileNotFoundException(CurrnetFile.FullPath));
                     }
 
-                    Logger.TraceByContent("Analysis", CurrnetFile.FullPath);
+                //    Logger.TraceByContent("Analysis", CurrnetFile.FullPath);
 
                     fs = storage.Get();
                     if (string.IsNullOrEmpty(CurrnetFile.MD5))
@@ -102,7 +102,7 @@ namespace HomeApplication.DomainServices
 
         private void BuildImage(Image image)
         {
-            Logger.TraceByContent("Create Image", CurrnetFile.FullPath);
+           // Logger.TraceByContent("Create Image", CurrnetFile.FullPath);
             var builder = new PhotoStorageBuilder()
             {
                 SourceImage = image,
@@ -130,7 +130,7 @@ namespace HomeApplication.DomainServices
 
         protected void DoImageExif(Image image, Library.Draw.ImageExif exif)
         {
-            Logger.TraceByContent("Create exif", CurrnetFile.FullPath);
+            Logger.Trace("Create exif:{0}", CurrnetFile.FullPath);
 
             var photo = CurrnetPhoto;
             ICollection<PhotoAttribute> attributes = photo.Attributes;
@@ -145,9 +145,10 @@ namespace HomeApplication.DomainServices
             if (string.IsNullOrWhiteSpace(exif.Title)) exif.Title = CurrnetFile.FileName;
             attributes.Add(CreateAtt("Title", exif.Title));
             if (!string.IsNullOrWhiteSpace(exif.RawFormat)) attributes.Add(CreateAtt("RawFormat", exif.RawFormat.Trim()));
-            if (exif.GPS != null ) {
+            if (exif.GPS != null)
+            {
                 var gps = exif.GPS.ToString().Trim();
-                if(gps  != "-0.000000,-0.000000" && gps != "0.000000,0.000000")
+                if (gps != "-0.000000,-0.000000" && gps != "0.000000,0.000000")
                     attributes.Add(CreateAtt("GPS", gps));
             }
             if (!string.IsNullOrWhiteSpace(exif.Author)) attributes.Add(CreateAtt("Author", exif.Author.Trim()));
@@ -161,16 +162,19 @@ namespace HomeApplication.DomainServices
             if (!string.IsNullOrEmpty(exif.EquipmentMake))
             {
                 attributes.Add(CreateAtt("EquipmentMake", exif.EquipmentMake));
-                if (image.Height > image.Width && ((double)image.Height / image.Width) < 0.5)
-                {
-                    attributes.Add(CreateAtt("Panoramic", "1"));
-                    isPanoramic = true;
-                }
 
-                attributes.Add(CreateAtt("AspectRatio", AspectRatio.FormSize(image.Size).ToString()));
+
             }
+            if (image.Height > image.Width && ((double)image.Height / image.Width) < 0.5)
+            {
+                attributes.Add(CreateAtt("Panoramic", "1"));
+                isPanoramic = true;
+            }
+            AspectRatioF f = AspectRatioF.FormSize(image.Size);
+            attributes.Add(CreateAtt("AspectRatio", f.ToString()));
             foreach (var item in photo.Attributes)
             {
+                item.AttValue = item.AttValue.Trim();
                 if (item.AttValue != null && item.AttValue.Length > 255)
                 {
                     item.AttValue = item.AttValue.Substring(0, 255);

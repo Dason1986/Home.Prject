@@ -131,7 +131,7 @@ namespace Library.Storage.FileEngineProvider.Network
             catch (Exception ex)
             {
 
-                throw;
+                throw ex;
             }
 
 

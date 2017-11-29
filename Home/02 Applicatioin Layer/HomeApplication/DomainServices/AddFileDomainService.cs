@@ -44,7 +44,7 @@ namespace HomeApplication.DomainServices
             var files = args.PhysicalFiles;
             foreach (var item in files)
             {
-                Logger.TraceByContent("Scan file", item.FullName);
+              //  Logger.TraceByContent("Scan file", item.FullName);
                 if (string.IsNullOrEmpty(item.FullName)) continue;
                 if (_filterfile.Any(ff => item.Name.EndsWith(ff, StringComparison.OrdinalIgnoreCase))) continue;
                 var filepath = item.FullName.Replace(_rootpath, string.Empty);
@@ -82,7 +82,7 @@ namespace HomeApplication.DomainServices
             var files = args.MemoryFiles;
             foreach (var item in files)
             {
-                Logger.TraceByContent("Scan file", item.Name);
+              //  Logger.TraceByContent("Scan file", item.Name);
                 if (string.IsNullOrEmpty(item.Name)) continue;
                 if (_filterfile.Any(ff => item.Name.EndsWith(ff, StringComparison.OrdinalIgnoreCase))) continue;
                 var filepath = item.Name.Replace(_rootpath, string.Empty);

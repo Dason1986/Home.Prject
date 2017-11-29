@@ -28,15 +28,15 @@ namespace Home.Repository.Repositories
             var list = UnitOfWork.ExecuteQuery<EequipmentItem>(builder.ToString());
             return list.ToArray();
         }
-
+       
         public IDictionary<string, int> GetCountByValue(string key, string filter)
         {
-            IQueryable<PhotoAttribute> quer = Wrapper.Find().AsNoTracking().Where(n => n.AttKey == key);
-            if (!string.IsNullOrWhiteSpace(filter))
-            {
-                quer = quer.Where(n => n.AttValue.Contains(filter));
-            }
-            return quer.GroupBy(n => n.AttValue).ToDictionary(n => n.Key, n => n.Count());
+            
+          
+           var sql= string.Format("select AttValue 'Name',count(0) 'count' from photoattribute where AttKey='{0}' GROUP BY AttValue", key);
+           var list= this.UnitOfWork.ExecuteQuery<StatisticsItem>(sql);
+            
+            return list.ToDictionary(n => n.Name, n => n.Count);
         }
 
         public TimeLineItem[] GetTimeLineByformat(TimeFormat format, string filtertime = null)
