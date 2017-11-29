@@ -21,8 +21,11 @@ namespace HomeApplication.DomainServices
                 CurrnetPhoto = file.Photo;
             DoAddAction();
         }
-
-        private readonly IPhotoEnvironment _photoEnvironment = new PhotoEnvironment();
+        public AddPhotoDomainService()
+        {
+            _photoEnvironment = Library.Bootstrap.Currnet.GetService<IPhotoEnvironment>(); 
+        }
+        private readonly IPhotoEnvironment _photoEnvironment;
         private Library.Storage.IFileStorage storage;
         private Image image;
         private Stream fs;

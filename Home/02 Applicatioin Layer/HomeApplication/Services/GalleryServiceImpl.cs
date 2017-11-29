@@ -88,7 +88,7 @@ namespace HomeApplication.Services
             List<GalleryType> list = new List<GalleryType>();
             foreach (var item in dic)
             {
-                list.Add(new GalleryType { Name =string.Format("{0} {1}",item.Make , item.Model) , Count = item.Count });
+                list.Add(new GalleryType { Name = string.Format("{0} {1}", item.Make, item.Model), Count = item.Count });
             }
 
             return list;
@@ -117,14 +117,20 @@ namespace HomeApplication.Services
             var photoRepository = _provider.CreatePhoto();
             int count = photoRepository.Count();
             if (count == 0) return null;
-            int live = 0;
+
 
             Random random = new Random((int)DateTime.Now.Ticks);
             var number = random.Next(0, count);
             var photoinfos = photoRepository.GetAll().OrderBy(n => n.Created).Skip(number).Take(1);
             var photoinfo = photoinfos.First();
             if (photoinfo == null) return null;
-            IPhotoEnvironment photoEnvironment = new PhotoEnvironment();
+            return GetPhoto(photoinfo);
+        }
+
+        private FileProfile GetPhoto(Photo photoinfo)
+        {
+            IPhotoEnvironment photoEnvironment = Library.Bootstrap.Currnet.GetService<IPhotoEnvironment>();
+            int live = 0;
             photoEnvironment.LoadConfig(_provider.CreateSystemParameter());
             var imageStorage = photoEnvironment.CreateImageStorage(photoinfo.ID);
             var itemImageLevel = photoinfo.Attributes.FirstOrDefault(n => n.AttKey == "ImageLevel");
@@ -144,15 +150,9 @@ namespace HomeApplication.Services
         public FileProfile GetPhotoBySerialNumber(string serialNumber)
         {
             var photoRepository = _provider.CreatePhoto();
-            var photo = photoRepository.GetBySerialNumber(serialNumber);
-            if (photo == null) return null;
-            FileProfile file = new FileProfile
-            {
-                Name = photo.File.FileName,
-                FileBuffer = File.ReadAllBytes(photo.File.FullPath),
-                Extension = photo.File.Extension,
-            };
-            return file;
+            var photoinfo = photoRepository.GetBySerialNumber(serialNumber);
+            if (photoinfo == null) return null;
+            return GetPhoto(photoinfo);
         }
 
         public FileProfile GetPhoto(Guid id)

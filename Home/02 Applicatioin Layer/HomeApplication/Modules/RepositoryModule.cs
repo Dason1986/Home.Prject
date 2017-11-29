@@ -11,6 +11,7 @@ using System.Collections.Generic;
 using System;
 using Library.Domain.Data.Repositorys;
 using Library.Domain.Data.ModuleProviders;
+using HomeApplication.DomainServices;
 
 namespace HomeApplication
 {
@@ -32,6 +33,7 @@ namespace HomeApplication
             {
                 builder.RegisterType(typese.Value[0]).As(typese.Key);
             }
+            builder.RegisterType<PhotoEnvironment>().As<IPhotoEnvironment>().As<PhotoEnvironment>();
             // builder.RegisterType(typeof(AlbumRepository)).As(typeof(IAlbumRepository));
             //builder.RegisterType<AlbumRepository>().As<IAlbumRepository>();
             //builder.RegisterType<FileInfoRepository>().As<IFileInfoRepository>();
