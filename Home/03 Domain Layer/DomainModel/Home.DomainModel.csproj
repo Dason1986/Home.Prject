@@ -71,6 +71,7 @@
     <Compile Include="Aggregates\Attachment.cs" />
     <Compile Include="Aggregates\FileAgg\FileAttribute.cs" />
     <Compile Include="Aggregates\FileAgg\FileInfoExtend.cs" />
+    <Compile Include="Aggregates\FileAgg\FileLogicTree.cs" />
     <Compile Include="Aggregates\FileAgg\StorageEngine.cs" />
     <Compile Include="Aggregates\FileAgg\StorageEngineSetting.cs" />
     <Compile Include="Aggregates\GalleryAgg\EequipmentItem.cs" />
@@ -100,6 +101,7 @@
     <Compile Include="Aggregates\AssetsAgg\PurchaseLineItem.cs" />
     <Compile Include="Aggregates\AssetsAgg\PurchaseOrder.cs" />
     <Compile Include="Aggregates\SystemAgg\ScheduleJob.cs" />
+    <Compile Include="Aggregates\SystemAgg\SerialNumberManagement.cs" />
     <Compile Include="Aggregates\SystemAgg\SystemParameter.cs" />
     <Compile Include="Aggregates\ContactAgg\ContactRelation.cs" />
     <Compile Include="DomainServices\IAddFileDomainService.cs" />
@@ -125,6 +127,7 @@
     <Compile Include="Repositories\IPhotoSimilarRepository.cs" />
     <Compile Include="Repositories\IScheduleJobLogRepository.cs" />
     <Compile Include="Repositories\IScheduleJobRepository.cs" />
+    <Compile Include="Repositories\ISerialNumberManagementRepository.cs" />
     <Compile Include="Repositories\IStorageEngineRepository.cs" />
     <Compile Include="Repositories\ISystemParameterRepository.cs" />
   </ItemGroup>

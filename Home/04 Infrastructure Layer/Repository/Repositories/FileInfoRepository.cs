@@ -30,16 +30,26 @@ namespace Home.Repository.Repositories
         {
             return Wrapper.Find().Include("Photo").AsNoTracking().FirstOrDefault(n => n.FullPath == file);
         }
-    
-        public string[] GetFileDistinctByMD5()
+        public IDictionary<string, int> GetExtension()
         {
-            var md5s = Wrapper.Find().GroupBy(n => n.MD5).Select(n => new { MD5 = n.Key, Count = n.Count() }).Where(n => n.Count > 1).Select(n => n.MD5).ToArray();
-
+            var list = Wrapper.Find().Where(n=> n.StatusCode == Library.ComponentModel.Model.StatusCode.Enabled).GroupBy(n => n.Extension ).Select(n => new { Name = n.Key, Count = n.Count() }).ToArray();
+            var dic = new Dictionary<string, int>();
+            foreach (var item in list)
+            {
+                dic.Add(item.Name, item.Count);
+            }
+            return dic;
+        }
+        public string[] GetFileDuplicateByMD5()
+        {
+            var md5s = this.UnitOfWork.ExecuteQuery<string>("select  md5   from  fileinfo  group  by  md5  having  count(md5) > 1  ").ToArray();
+            // var md5s = Wrapper.Find().GroupBy(n => n.MD5).Select(n => new { MD5 = n.Key, Count = n.Count() }).Where(n => n.Count > 1).Select(n => n.MD5).ToArray();
+            //select  md5 ,count(0) 'count'  from  fileinfo  group  by  md5  having  count(md5) > 1 ORDER BY count desc
             return md5s;
-            // return 	EfContext.Database.SqlQuery<string>("SELECT md5 FROM (SELECT MD5,count(0) 'aa' FROM fileinfo GROUP BY MD5) t1 WHERE aa > 1").ToList();
+
         }
 
-        public FileInfo[] GetPhotoFilesByExtensions(string[] extensions,int takes=5)
+        public FileInfo[] GetPhotoFilesByExtensions(string[] extensions, int takes = 5)
         {
             return Wrapper.Find().Include("Photo").Where(n => extensions.Contains(n.Extension) && n.StatusCode == Library.ComponentModel.Model.StatusCode.Enabled && (n.MD5 == null || n.MD5 == "")).Take(takes).ToArray();
         }

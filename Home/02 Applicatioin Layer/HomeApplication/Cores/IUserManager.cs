@@ -13,4 +13,6 @@ namespace HomeApplication.Interceptors
             return new  UserProfile();
         }
     }
+
+
 }

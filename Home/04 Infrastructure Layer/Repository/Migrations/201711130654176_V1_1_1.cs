@@ -8,7 +8,7 @@ namespace Repository.Migrations
         public override void Up()
         {
             CreateTable(
-                "dbo.MessageLogEntities",
+                "MessageLogEntities",
                 c => new
                     {
                         ID = c.Guid(nullable: false),
@@ -22,13 +22,13 @@ namespace Repository.Migrations
                         Message_ID = c.Guid(),
                     })
                 .PrimaryKey(t => t.ID)
-                .ForeignKey("dbo.MessageEntity", t => t.Message_ID)
-                .ForeignKey("dbo.MessageEntity", t => t.MessageEntityID)
+                .ForeignKey("MessageEntity", t => t.Message_ID)
+                .ForeignKey("MessageEntity", t => t.MessageEntityID)
                 .Index(t => t.MessageEntityID)
                 .Index(t => t.Message_ID);
             
             CreateTable(
-                "dbo.MessageEntity",
+                "MessageEntity",
                 c => new
                     {
                         ID = c.Guid(nullable: false),
@@ -43,7 +43,7 @@ namespace Repository.Migrations
                 .PrimaryKey(t => t.ID);
             
             CreateTable(
-                "dbo.ContactProfile",
+                "ContactProfile",
                 c => new
                     {
                         ID = c.Guid(nullable: false),
@@ -59,7 +59,7 @@ namespace Repository.Migrations
                 .PrimaryKey(t => t.ID);
             
             CreateTable(
-                "dbo.FamilyRelation",
+                "FamilyRelation",
                 c => new
                     {
                         ID = c.Guid(nullable: false),
@@ -71,13 +71,13 @@ namespace Repository.Migrations
                         CreatedBy = c.String(nullable: false, maxLength: 20, storeType: "nvarchar"),
                     })
                 .PrimaryKey(t => t.ID)
-                .ForeignKey("dbo.FamilyRole", t => t.LeftRoleId)
-                .ForeignKey("dbo.FamilyRole", t => t.RightRoleId)
+                .ForeignKey("FamilyRole", t => t.LeftRoleId)
+                .ForeignKey("FamilyRole", t => t.RightRoleId)
                 .Index(t => t.LeftRoleId)
                 .Index(t => t.RightRoleId);
             
             CreateTable(
-                "dbo.FamilyRole",
+                "FamilyRole",
                 c => new
                     {
                         ID = c.Guid(nullable: false),
@@ -92,7 +92,7 @@ namespace Repository.Migrations
                 .PrimaryKey(t => t.ID);
             
             CreateTable(
-                "dbo.UserProfile",
+                "UserProfile",
                 c => new
                     {
                         ID = c.Guid(nullable: false),
@@ -105,11 +105,11 @@ namespace Repository.Migrations
                         CreatedBy = c.String(nullable: false, maxLength: 20, storeType: "nvarchar"),
                     })
                 .PrimaryKey(t => t.ID)
-                .ForeignKey("dbo.ContactProfile", t => t.ContactProfileID)
+                .ForeignKey("ContactProfile", t => t.ContactProfileID)
                 .Index(t => t.ContactProfileID);
             
             CreateTable(
-                "dbo.SystemParameter",
+                "SystemParameter",
                 c => new
                     {
                         ID = c.Guid(nullable: false),
@@ -127,7 +127,7 @@ namespace Repository.Migrations
                 .PrimaryKey(t => t.ID);
             
             CreateTable(
-                "dbo.DomainEventArgsLog",
+                "DomainEventArgsLog",
                 c => new
                     {
                         ID = c.Guid(nullable: false),
@@ -143,7 +143,7 @@ namespace Repository.Migrations
                 .PrimaryKey(t => t.ID);
             
             CreateTable(
-                "dbo.ScheduleJob",
+                "ScheduleJob",
                 c => new
                     {
                         ID = c.Guid(nullable: false),
@@ -159,7 +159,7 @@ namespace Repository.Migrations
                 .PrimaryKey(t => t.ID);
             
             CreateTable(
-                "dbo.LogEntity",
+                "LogEntity",
                 c => new
                     {
                         ID = c.Guid(nullable: false),
@@ -180,7 +180,7 @@ namespace Repository.Migrations
                 .PrimaryKey(t => t.ID);
             
             CreateTable(
-                "dbo.ScheduleJobLog",
+                "ScheduleJobLog",
                 c => new
                     {
                         ID = c.Guid(nullable: false),
@@ -192,11 +192,11 @@ namespace Repository.Migrations
                         CreatedBy = c.String(nullable: false, maxLength: 20, storeType: "nvarchar"),
                     })
                 .PrimaryKey(t => t.ID)
-                .ForeignKey("dbo.ScheduleJob", t => t.ScheduleId)
+                .ForeignKey("ScheduleJob", t => t.ScheduleId)
                 .Index(t => t.ScheduleId);
             
             CreateTable(
-                "dbo.ProductAttachment",
+                "ProductAttachment",
                 c => new
                     {
                         ID = c.Guid(nullable: false),
@@ -206,11 +206,11 @@ namespace Repository.Migrations
                         CreatedBy = c.String(nullable: false, maxLength: 20, storeType: "nvarchar"),
                     })
                 .PrimaryKey(t => t.ID)
-                .ForeignKey("dbo.ProductItem", t => t.ProductID)
+                .ForeignKey("ProductItem", t => t.ProductID)
                 .Index(t => t.ProductID);
             
             CreateTable(
-                "dbo.ProductItem",
+                "ProductItem",
                 c => new
                     {
                         ID = c.Guid(nullable: false),
@@ -230,7 +230,7 @@ namespace Repository.Migrations
                 .PrimaryKey(t => t.ID);
             
             CreateTable(
-                "dbo.WordInfo",
+                "WordInfo",
                 c => new
                     {
                         ID = c.Guid(nullable: false),
@@ -248,7 +248,7 @@ namespace Repository.Migrations
                 .PrimaryKey(t => t.ID);
             
             CreateTable(
-                "dbo.WordAttribute",
+                "WordAttribute",
                 c => new
                     {
                         ID = c.Guid(nullable: false),
@@ -262,11 +262,11 @@ namespace Repository.Migrations
                         CreatedBy = c.String(nullable: false, maxLength: 20, storeType: "nvarchar"),
                     })
                 .PrimaryKey(t => t.ID)
-                .ForeignKey("dbo.WordInfo", t => t.OwnerID)
+                .ForeignKey("WordInfo", t => t.OwnerID)
                 .Index(t => t.OwnerID);
             
             CreateTable(
-                "dbo.WordObjectElement",
+                "WordObjectElement",
                 c => new
                     {
                         ID = c.Guid(nullable: false),
@@ -279,11 +279,11 @@ namespace Repository.Migrations
                         CreatedBy = c.String(nullable: false, maxLength: 20, storeType: "nvarchar"),
                     })
                 .PrimaryKey(t => t.ID)
-                .ForeignKey("dbo.WordInfo", t => t.OwnerID)
+                .ForeignKey("WordInfo", t => t.OwnerID)
                 .Index(t => t.OwnerID);
             
             CreateTable(
-                "dbo.PDFInfo",
+                "PDFInfo",
                 c => new
                     {
                         ID = c.Guid(nullable: false),
@@ -301,7 +301,7 @@ namespace Repository.Migrations
                 .PrimaryKey(t => t.ID);
             
             CreateTable(
-                "dbo.PDFAttribute",
+                "PDFAttribute",
                 c => new
                     {
                         ID = c.Guid(nullable: false),
@@ -315,11 +315,11 @@ namespace Repository.Migrations
                         CreatedBy = c.String(nullable: false, maxLength: 20, storeType: "nvarchar"),
                     })
                 .PrimaryKey(t => t.ID)
-                .ForeignKey("dbo.PDFInfo", t => t.OwnerID)
+                .ForeignKey("PDFInfo", t => t.OwnerID)
                 .Index(t => t.OwnerID);
             
             CreateTable(
-                "dbo.Album",
+                "Album",
                 c => new
                     {
                         ID = c.Guid(nullable: false),
@@ -335,7 +335,7 @@ namespace Repository.Migrations
                 .PrimaryKey(t => t.ID);
             
             CreateTable(
-                "dbo.Photo",
+                "Photo",
                 c => new
                     {
                         ID = c.Guid(nullable: false),
@@ -349,15 +349,15 @@ namespace Repository.Migrations
                         CreatedBy = c.String(nullable: false, maxLength: 20, storeType: "nvarchar"),
                     })
                 .PrimaryKey(t => t.ID)
-                .ForeignKey("dbo.FileInfo", t => t.ID)
-                .ForeignKey("dbo.FileInfo", t => t.FileID)
-                .ForeignKey("dbo.Album", t => t.AlbumID)
+                .ForeignKey("FileInfo", t => t.ID)
+                .ForeignKey("FileInfo", t => t.FileID)
+                .ForeignKey("Album", t => t.AlbumID)
                 .Index(t => t.ID)
                 .Index(t => t.FileID)
                 .Index(t => t.AlbumID);
             
             CreateTable(
-                "dbo.PhotoAttribute",
+                "PhotoAttribute",
                 c => new
                     {
                         ID = c.Guid(nullable: false),
@@ -371,11 +371,11 @@ namespace Repository.Migrations
                         CreatedBy = c.String(nullable: false, maxLength: 20, storeType: "nvarchar"),
                     })
                 .PrimaryKey(t => t.ID)
-                .ForeignKey("dbo.Photo", t => t.OwnerID)
+                .ForeignKey("Photo", t => t.OwnerID)
                 .Index(t => t.OwnerID);
             
             CreateTable(
-                "dbo.FileInfo",
+                "FileInfo",
                 c => new
                     {
                         ID = c.Guid(nullable: false),
@@ -391,11 +391,11 @@ namespace Repository.Migrations
                         CreatedBy = c.String(nullable: false, maxLength: 20, storeType: "nvarchar"),
                     })
                 .PrimaryKey(t => t.ID)
-                .ForeignKey("dbo.StorageEngine", t => t.EngineID)
+                .ForeignKey("StorageEngine", t => t.EngineID)
                 .Index(t => t.EngineID);
             
             CreateTable(
-                "dbo.StorageEngine",
+                "StorageEngine",
                 c => new
                     {
                         ID = c.Guid(nullable: false),
@@ -409,11 +409,11 @@ namespace Repository.Migrations
                         CreatedBy = c.String(nullable: false, maxLength: 20, storeType: "nvarchar"),
                     })
                 .PrimaryKey(t => t.ID)
-                .ForeignKey("dbo.StorageEngineSetting", t => t.SettingID)
+                .ForeignKey("StorageEngineSetting", t => t.SettingID)
                 .Index(t => t.SettingID);
             
             CreateTable(
-                "dbo.StorageEngineSetting",
+                "StorageEngineSetting",
                 c => new
                     {
                         ID = c.Guid(nullable: false),
@@ -429,7 +429,7 @@ namespace Repository.Migrations
                 .PrimaryKey(t => t.ID);
             
             CreateTable(
-                "dbo.FileInfoExtend",
+                "FileInfoExtend",
                 c => new
                     {
                         ID = c.Guid(nullable: false),
@@ -446,11 +446,11 @@ namespace Repository.Migrations
                         CreatedBy = c.String(nullable: false, maxLength: 20, storeType: "nvarchar"),
                     })
                 .PrimaryKey(t => t.ID)
-                .ForeignKey("dbo.FileInfo", t => t.ID)
+                .ForeignKey("FileInfo", t => t.ID)
                 .Index(t => t.ID);
             
             CreateTable(
-                "dbo.FileAttribute",
+                "FileAttribute",
                 c => new
                     {
                         ID = c.Guid(nullable: false),
@@ -464,11 +464,11 @@ namespace Repository.Migrations
                         CreatedBy = c.String(nullable: false, maxLength: 20, storeType: "nvarchar"),
                     })
                 .PrimaryKey(t => t.ID)
-                .ForeignKey("dbo.FileInfoExtend", t => t.OwnerID)
+                .ForeignKey("FileInfoExtend", t => t.OwnerID)
                 .Index(t => t.OwnerID);
             
             CreateTable(
-                "dbo.PhotoFingerprint",
+                "PhotoFingerprint",
                 c => new
                     {
                         ID = c.Guid(nullable: false),
@@ -480,11 +480,11 @@ namespace Repository.Migrations
                         CreatedBy = c.String(nullable: false, maxLength: 20, storeType: "nvarchar"),
                     })
                 .PrimaryKey(t => t.ID)
-                .ForeignKey("dbo.Photo", t => t.PhotoID)
+                .ForeignKey("Photo", t => t.PhotoID)
                 .Index(t => t.PhotoID);
             
             CreateTable(
-                "dbo.PhotoSimilar",
+                "PhotoSimilar",
                 c => new
                     {
                         ID = c.Guid(nullable: false),
@@ -495,13 +495,13 @@ namespace Repository.Migrations
                         CreatedBy = c.String(nullable: false, maxLength: 20, storeType: "nvarchar"),
                     })
                 .PrimaryKey(t => t.ID)
-                .ForeignKey("dbo.Photo", t => t.LeftPhotoID)
-                .ForeignKey("dbo.Photo", t => t.RightPhotoID)
+                .ForeignKey("Photo", t => t.LeftPhotoID)
+                .ForeignKey("Photo", t => t.RightPhotoID)
                 .Index(t => t.RightPhotoID)
                 .Index(t => t.LeftPhotoID);
             
             CreateTable(
-                "dbo.AssetsItem",
+                "AssetsItem",
                 c => new
                     {
                         ID = c.Guid(nullable: false),
@@ -520,15 +520,15 @@ namespace Repository.Migrations
                         CreatedBy = c.String(nullable: false, maxLength: 20, storeType: "nvarchar"),
                     })
                 .PrimaryKey(t => t.ID)
-                .ForeignKey("dbo.ContactProfile", t => t.ContactID)
-                .ForeignKey("dbo.PurchaseOrder", t => t.OrderID)
-                .ForeignKey("dbo.ProductItem", t => t.ProductID)
+                .ForeignKey("ContactProfile", t => t.ContactID)
+                .ForeignKey("PurchaseOrder", t => t.OrderID)
+                .ForeignKey("ProductItem", t => t.ProductID)
                 .Index(t => t.ContactID)
                 .Index(t => t.OrderID)
                 .Index(t => t.ProductID);
             
             CreateTable(
-                "dbo.PurchaseOrder",
+                "PurchaseOrder",
                 c => new
                     {
                         ID = c.Guid(nullable: false),
@@ -541,11 +541,11 @@ namespace Repository.Migrations
                         CreatedBy = c.String(nullable: false, maxLength: 20, storeType: "nvarchar"),
                     })
                 .PrimaryKey(t => t.ID)
-                .ForeignKey("dbo.UserProfile", t => t.OrderUserID)
+                .ForeignKey("UserProfile", t => t.OrderUserID)
                 .Index(t => t.OrderUserID);
             
             CreateTable(
-                "dbo.PurchaseLineItem",
+                "PurchaseLineItem",
                 c => new
                     {
                         ID = c.Guid(nullable: false),
@@ -559,13 +559,13 @@ namespace Repository.Migrations
                         CreatedBy = c.String(nullable: false, maxLength: 20, storeType: "nvarchar"),
                     })
                 .PrimaryKey(t => t.ID)
-                .ForeignKey("dbo.PurchaseOrder", t => t.OrderID)
-                .ForeignKey("dbo.ProductItem", t => t.ProductID)
+                .ForeignKey("PurchaseOrder", t => t.OrderID)
+                .ForeignKey("ProductItem", t => t.ProductID)
                 .Index(t => t.ProductID)
                 .Index(t => t.OrderID);
             
             CreateTable(
-                "dbo.MailMessageLogEntity",
+                "MailMessageLogEntity",
                 c => new
                     {
                         ID = c.Guid(nullable: false),
@@ -573,115 +573,115 @@ namespace Repository.Migrations
                         Cc = c.String(maxLength: 255, storeType: "nvarchar"),
                     })
                 .PrimaryKey(t => t.ID)
-                .ForeignKey("dbo.MessageLogEntities", t => t.ID)
+                .ForeignKey("MessageLogEntities", t => t.ID)
                 .Index(t => t.ID);
             
             CreateTable(
-                "dbo.PhoneMessageLogEntity",
+                "PhoneMessageLogEntity",
                 c => new
                     {
                         ID = c.Guid(nullable: false),
                         PhoneNumber = c.String(nullable: false, maxLength: 50, storeType: "nvarchar"),
                     })
                 .PrimaryKey(t => t.ID)
-                .ForeignKey("dbo.MessageLogEntities", t => t.ID)
+                .ForeignKey("MessageLogEntities", t => t.ID)
                 .Index(t => t.ID);
             InitSql();
         }
         
         public override void Down()
         {
-            DropForeignKey("dbo.PhoneMessageLogEntity", "ID", "dbo.MessageLogEntities");
-            DropForeignKey("dbo.MailMessageLogEntity", "ID", "dbo.MessageLogEntities");
-            DropForeignKey("dbo.AssetsItem", "ProductID", "dbo.ProductItem");
-            DropForeignKey("dbo.AssetsItem", "OrderID", "dbo.PurchaseOrder");
-            DropForeignKey("dbo.PurchaseOrder", "OrderUserID", "dbo.UserProfile");
-            DropForeignKey("dbo.PurchaseLineItem", "ProductID", "dbo.ProductItem");
-            DropForeignKey("dbo.PurchaseLineItem", "OrderID", "dbo.PurchaseOrder");
-            DropForeignKey("dbo.AssetsItem", "ContactID", "dbo.ContactProfile");
-            DropForeignKey("dbo.PhotoSimilar", "RightPhotoID", "dbo.Photo");
-            DropForeignKey("dbo.PhotoSimilar", "LeftPhotoID", "dbo.Photo");
-            DropForeignKey("dbo.PhotoFingerprint", "PhotoID", "dbo.Photo");
-            DropForeignKey("dbo.Photo", "AlbumID", "dbo.Album");
-            DropForeignKey("dbo.Photo", "FileID", "dbo.FileInfo");
-            DropForeignKey("dbo.Photo", "ID", "dbo.FileInfo");
-            DropForeignKey("dbo.FileInfoExtend", "ID", "dbo.FileInfo");
-            DropForeignKey("dbo.FileAttribute", "OwnerID", "dbo.FileInfoExtend");
-            DropForeignKey("dbo.FileInfo", "EngineID", "dbo.StorageEngine");
-            DropForeignKey("dbo.StorageEngine", "SettingID", "dbo.StorageEngineSetting");
-            DropForeignKey("dbo.PhotoAttribute", "OwnerID", "dbo.Photo");
-            DropForeignKey("dbo.PDFAttribute", "OwnerID", "dbo.PDFInfo");
-            DropForeignKey("dbo.WordObjectElement", "OwnerID", "dbo.WordInfo");
-            DropForeignKey("dbo.WordAttribute", "OwnerID", "dbo.WordInfo");
-            DropForeignKey("dbo.ProductAttachment", "ProductID", "dbo.ProductItem");
-            DropForeignKey("dbo.ScheduleJobLog", "ScheduleId", "dbo.ScheduleJob");
-            DropForeignKey("dbo.UserProfile", "ContactProfileID", "dbo.ContactProfile");
-            DropForeignKey("dbo.FamilyRelation", "RightRoleId", "dbo.FamilyRole");
-            DropForeignKey("dbo.FamilyRelation", "LeftRoleId", "dbo.FamilyRole");
-            DropForeignKey("dbo.MessageLogEntities", "MessageEntityID", "dbo.MessageEntity");
-            DropForeignKey("dbo.MessageLogEntities", "Message_ID", "dbo.MessageEntity");
-            DropIndex("dbo.PhoneMessageLogEntity", new[] { "ID" });
-            DropIndex("dbo.MailMessageLogEntity", new[] { "ID" });
-            DropIndex("dbo.PurchaseLineItem", new[] { "OrderID" });
-            DropIndex("dbo.PurchaseLineItem", new[] { "ProductID" });
-            DropIndex("dbo.PurchaseOrder", new[] { "OrderUserID" });
-            DropIndex("dbo.AssetsItem", new[] { "ProductID" });
-            DropIndex("dbo.AssetsItem", new[] { "OrderID" });
-            DropIndex("dbo.AssetsItem", new[] { "ContactID" });
-            DropIndex("dbo.PhotoSimilar", new[] { "LeftPhotoID" });
-            DropIndex("dbo.PhotoSimilar", new[] { "RightPhotoID" });
-            DropIndex("dbo.PhotoFingerprint", new[] { "PhotoID" });
-            DropIndex("dbo.FileAttribute", new[] { "OwnerID" });
-            DropIndex("dbo.FileInfoExtend", new[] { "ID" });
-            DropIndex("dbo.StorageEngine", new[] { "SettingID" });
-            DropIndex("dbo.FileInfo", new[] { "EngineID" });
-            DropIndex("dbo.PhotoAttribute", new[] { "OwnerID" });
-            DropIndex("dbo.Photo", new[] { "AlbumID" });
-            DropIndex("dbo.Photo", new[] { "FileID" });
-            DropIndex("dbo.Photo", new[] { "ID" });
-            DropIndex("dbo.PDFAttribute", new[] { "OwnerID" });
-            DropIndex("dbo.WordObjectElement", new[] { "OwnerID" });
-            DropIndex("dbo.WordAttribute", new[] { "OwnerID" });
-            DropIndex("dbo.ProductAttachment", new[] { "ProductID" });
-            DropIndex("dbo.ScheduleJobLog", new[] { "ScheduleId" });
-            DropIndex("dbo.UserProfile", new[] { "ContactProfileID" });
-            DropIndex("dbo.FamilyRelation", new[] { "RightRoleId" });
-            DropIndex("dbo.FamilyRelation", new[] { "LeftRoleId" });
-            DropIndex("dbo.MessageLogEntities", new[] { "Message_ID" });
-            DropIndex("dbo.MessageLogEntities", new[] { "MessageEntityID" });
-            DropTable("dbo.PhoneMessageLogEntity");
-            DropTable("dbo.MailMessageLogEntity");
-            DropTable("dbo.PurchaseLineItem");
-            DropTable("dbo.PurchaseOrder");
-            DropTable("dbo.AssetsItem");
-            DropTable("dbo.PhotoSimilar");
-            DropTable("dbo.PhotoFingerprint");
-            DropTable("dbo.FileAttribute");
-            DropTable("dbo.FileInfoExtend");
-            DropTable("dbo.StorageEngineSetting");
-            DropTable("dbo.StorageEngine");
-            DropTable("dbo.FileInfo");
-            DropTable("dbo.PhotoAttribute");
-            DropTable("dbo.Photo");
-            DropTable("dbo.Album");
-            DropTable("dbo.PDFAttribute");
-            DropTable("dbo.PDFInfo");
-            DropTable("dbo.WordObjectElement");
-            DropTable("dbo.WordAttribute");
-            DropTable("dbo.WordInfo");
-            DropTable("dbo.ProductItem");
-            DropTable("dbo.ProductAttachment");
-            DropTable("dbo.ScheduleJobLog");
-            DropTable("dbo.LogEntity");
-            DropTable("dbo.ScheduleJob");
-            DropTable("dbo.DomainEventArgsLog");
-            DropTable("dbo.SystemParameter");
-            DropTable("dbo.UserProfile");
-            DropTable("dbo.FamilyRole");
-            DropTable("dbo.FamilyRelation");
-            DropTable("dbo.ContactProfile");
-            DropTable("dbo.MessageEntity");
-            DropTable("dbo.MessageLogEntities");
+            DropForeignKey("PhoneMessageLogEntity", "ID", "MessageLogEntities");
+            DropForeignKey("MailMessageLogEntity", "ID", "MessageLogEntities");
+            DropForeignKey("AssetsItem", "ProductID", "ProductItem");
+            DropForeignKey("AssetsItem", "OrderID", "PurchaseOrder");
+            DropForeignKey("PurchaseOrder", "OrderUserID", "UserProfile");
+            DropForeignKey("PurchaseLineItem", "ProductID", "ProductItem");
+            DropForeignKey("PurchaseLineItem", "OrderID", "PurchaseOrder");
+            DropForeignKey("AssetsItem", "ContactID", "ContactProfile");
+            DropForeignKey("PhotoSimilar", "RightPhotoID", "Photo");
+            DropForeignKey("PhotoSimilar", "LeftPhotoID", "Photo");
+            DropForeignKey("PhotoFingerprint", "PhotoID", "Photo");
+            DropForeignKey("Photo", "AlbumID", "Album");
+            DropForeignKey("Photo", "FileID", "FileInfo");
+            DropForeignKey("Photo", "ID", "FileInfo");
+            DropForeignKey("FileInfoExtend", "ID", "FileInfo");
+            DropForeignKey("FileAttribute", "OwnerID", "FileInfoExtend");
+            DropForeignKey("FileInfo", "EngineID", "StorageEngine");
+            DropForeignKey("StorageEngine", "SettingID", "StorageEngineSetting");
+            DropForeignKey("PhotoAttribute", "OwnerID", "Photo");
+            DropForeignKey("PDFAttribute", "OwnerID", "PDFInfo");
+            DropForeignKey("WordObjectElement", "OwnerID", "WordInfo");
+            DropForeignKey("WordAttribute", "OwnerID", "WordInfo");
+            DropForeignKey("ProductAttachment", "ProductID", "ProductItem");
+            DropForeignKey("ScheduleJobLog", "ScheduleId", "ScheduleJob");
+            DropForeignKey("UserProfile", "ContactProfileID", "ContactProfile");
+            DropForeignKey("FamilyRelation", "RightRoleId", "FamilyRole");
+            DropForeignKey("FamilyRelation", "LeftRoleId", "FamilyRole");
+            DropForeignKey("MessageLogEntities", "MessageEntityID", "MessageEntity");
+            DropForeignKey("MessageLogEntities", "Message_ID", "MessageEntity");
+            DropIndex("PhoneMessageLogEntity", new[] { "ID" });
+            DropIndex("MailMessageLogEntity", new[] { "ID" });
+            DropIndex("PurchaseLineItem", new[] { "OrderID" });
+            DropIndex("PurchaseLineItem", new[] { "ProductID" });
+            DropIndex("PurchaseOrder", new[] { "OrderUserID" });
+            DropIndex("AssetsItem", new[] { "ProductID" });
+            DropIndex("AssetsItem", new[] { "OrderID" });
+            DropIndex("AssetsItem", new[] { "ContactID" });
+            DropIndex("PhotoSimilar", new[] { "LeftPhotoID" });
+            DropIndex("PhotoSimilar", new[] { "RightPhotoID" });
+            DropIndex("PhotoFingerprint", new[] { "PhotoID" });
+            DropIndex("FileAttribute", new[] { "OwnerID" });
+            DropIndex("FileInfoExtend", new[] { "ID" });
+            DropIndex("StorageEngine", new[] { "SettingID" });
+            DropIndex("FileInfo", new[] { "EngineID" });
+            DropIndex("PhotoAttribute", new[] { "OwnerID" });
+            DropIndex("Photo", new[] { "AlbumID" });
+            DropIndex("Photo", new[] { "FileID" });
+            DropIndex("Photo", new[] { "ID" });
+            DropIndex("PDFAttribute", new[] { "OwnerID" });
+            DropIndex("WordObjectElement", new[] { "OwnerID" });
+            DropIndex("WordAttribute", new[] { "OwnerID" });
+            DropIndex("ProductAttachment", new[] { "ProductID" });
+            DropIndex("ScheduleJobLog", new[] { "ScheduleId" });
+            DropIndex("UserProfile", new[] { "ContactProfileID" });
+            DropIndex("FamilyRelation", new[] { "RightRoleId" });
+            DropIndex("FamilyRelation", new[] { "LeftRoleId" });
+            DropIndex("MessageLogEntities", new[] { "Message_ID" });
+            DropIndex("MessageLogEntities", new[] { "MessageEntityID" });
+            DropTable("PhoneMessageLogEntity");
+            DropTable("MailMessageLogEntity");
+            DropTable("PurchaseLineItem");
+            DropTable("PurchaseOrder");
+            DropTable("AssetsItem");
+            DropTable("PhotoSimilar");
+            DropTable("PhotoFingerprint");
+            DropTable("FileAttribute");
+            DropTable("FileInfoExtend");
+            DropTable("StorageEngineSetting");
+            DropTable("StorageEngine");
+            DropTable("FileInfo");
+            DropTable("PhotoAttribute");
+            DropTable("Photo");
+            DropTable("Album");
+            DropTable("PDFAttribute");
+            DropTable("PDFInfo");
+            DropTable("WordObjectElement");
+            DropTable("WordAttribute");
+            DropTable("WordInfo");
+            DropTable("ProductItem");
+            DropTable("ProductAttachment");
+            DropTable("ScheduleJobLog");
+            DropTable("LogEntity");
+            DropTable("ScheduleJob");
+            DropTable("DomainEventArgsLog");
+            DropTable("SystemParameter");
+            DropTable("UserProfile");
+            DropTable("FamilyRole");
+            DropTable("FamilyRelation");
+            DropTable("ContactProfile");
+            DropTable("MessageEntity");
+            DropTable("MessageLogEntities");
         }
     }
 }

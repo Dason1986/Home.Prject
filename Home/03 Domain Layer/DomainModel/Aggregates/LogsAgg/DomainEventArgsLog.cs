@@ -8,6 +8,7 @@ using System.Threading.Tasks;
 
 namespace Home.DomainModel.Aggregates.LogsAgg
 {
+    [DisplayName("服務隊列日誌"), Description("服務隊列日誌")]
     public class DomainEventArgsLog : Entity
     {
         [DisplayName("是否已經執行"), Description("是否已經執行")]

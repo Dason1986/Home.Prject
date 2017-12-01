@@ -1,0 +1,1 @@
+INSERT INTO `serialnumbermanagement` (`ID`,`Code`,`CurrentNumber`,`SerialNumberFormat`,`IsCustom`,`CustomClass`,`StatusCode`,`Created`,`CreatedBy`) VALUES ('4aae2b32-f4f6-e511-9845-acbc32c58e76','File',0,'{Number:d12}',0,NULL,2,'2017-09-13 11:54:07','CreateScript');

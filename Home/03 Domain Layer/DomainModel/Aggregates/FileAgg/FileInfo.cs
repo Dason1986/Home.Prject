@@ -33,6 +33,10 @@ namespace Home.DomainModel.Aggregates.FileAgg
         [DisplayName("文件MD5值"), Description("文件MD5值，判斷文件唯一")]
         public string MD5 { get; set; }
 
+        
+        [DisplayName("是否存在過的"), Description("是否存在過的，如果已經存在過，爲true")]
+        public bool IsDuplicate { get; set; }
+
         [StringLength(50)]
         [DisplayName("文件擴展名"), Description("文件擴展名，判斷文件的類型")]
         public string Extension { get; set; }

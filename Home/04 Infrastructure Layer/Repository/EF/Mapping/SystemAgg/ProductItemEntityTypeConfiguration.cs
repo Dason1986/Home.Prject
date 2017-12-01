@@ -1,5 +1,4 @@
-﻿using Home.DomainModel.Aggregates.LogsAgg;
-using Home.DomainModel.Aggregates.ProductAgg;
+﻿using Home.DomainModel.Aggregates.ProductAgg;
 using Home.DomainModel.Aggregates.SystemAgg;
 using System.Data.Entity.ModelConfiguration;
 
@@ -12,42 +11,6 @@ namespace Repository.EF.Mapping.SystemAgg
 
 
             ToTable("SystemParameter");
-        }
-    }
-    internal class DomainEventArgsLogEntityTypeConfiguration : EntityTypeConfiguration<DomainEventArgsLog>
-    {
-        public DomainEventArgsLogEntityTypeConfiguration()
-        {
-
-
-            ToTable("DomainEventArgsLog");
-        }
-    }
-    internal class ScheduleJobEntityTypeConfiguration : EntityTypeConfiguration<ScheduleJob>
-    {
-        public ScheduleJobEntityTypeConfiguration()
-        {
-
-
-            ToTable("ScheduleJob");
-        }
-    }
-    internal class LogEntityEntityTypeConfiguration : EntityTypeConfiguration<LogEntity>
-    {
-        public LogEntityEntityTypeConfiguration()
-        {
-
-
-            ToTable("LogEntity");
-        }
-    }
-    internal class ScheduleJobLogEntityTypeConfiguration : EntityTypeConfiguration<ScheduleJobLog>
-    {
-        public ScheduleJobLogEntityTypeConfiguration()
-        {
-
-
-            ToTable("ScheduleJobLog");
         }
     }
 }

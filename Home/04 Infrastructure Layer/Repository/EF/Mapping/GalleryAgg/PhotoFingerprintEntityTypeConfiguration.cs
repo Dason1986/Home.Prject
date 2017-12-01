@@ -15,5 +15,4 @@ namespace Repository.EF.Mapping.GalleryAgg
 
             ToTable("PhotoFingerprint");
         }
-    }
-}
+    }    }

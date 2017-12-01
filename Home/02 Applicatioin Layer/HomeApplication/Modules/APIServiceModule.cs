@@ -9,6 +9,7 @@ namespace HomeApplication
         {
             builder.RegisterType<GalleryServiceImpl>().As<IGalleryService>();
             builder.RegisterType<PMSServiceImpl>().As<IPMSService>();
+            builder.RegisterType<FileManagementServiceImpl>().As<FileManagementServiceImpl>();
         }
     }
 }

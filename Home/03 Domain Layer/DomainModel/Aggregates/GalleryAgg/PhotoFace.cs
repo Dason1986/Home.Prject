@@ -1,4 +1,5 @@
-﻿using Library.ComponentModel.Model;
+﻿using Home.DomainModel.Aggregates.ContactAgg;
+using Library.ComponentModel.Model;
 using Library.Domain;
 using System;
 using System.Collections.Generic;
@@ -21,6 +22,23 @@ namespace Home.DomainModel.Aggregates.GalleryAgg
 
         }
 
+        public Guid ContactId { get; set; }
+        public virtual ContactProfile Contact { get; set; }
+
+        /// <summary>
+        /// 
+        /// </summary>
+        public Guid PhotoId { get; set; }
+
+        /// <summary>
+        /// 
+        /// </summary>
+        public virtual Photo Photo { get; set; }
+
+        /// <summary>
+        /// 
+        /// </summary>
+        public string Location { get; set; }
 
     }
 }

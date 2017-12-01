@@ -2,6 +2,8 @@
 using Home.DomainModel.Repositories;
 using HomeApplication.Dtos;
 using System;
+using System.Linq;
+using System.Collections.Generic;
 
 namespace HomeApplication.Services
 {
@@ -13,23 +15,13 @@ namespace HomeApplication.Services
         public FileManagementServiceImpl(IFileInfoRepository fileInfoRepository)
         {
             FileInfoRepository = fileInfoRepository;
-        }
-        public void CreateFile(FileInfoDto file)
-        {
 
         }
 
-        public void UploadBigFile(Guid fileid, int position, byte[] fileBuff)
+        public GalleryType[] GetExtension()
         {
-
-        }
-
-        private void FileUploadCompleted(FileInfo file)
-        {
-
-            var process = new FileAggregateRoot(file, FileInfoRepository);
-            if (process.IsImageFile())
-                process.PublishPhotoDomain();
+            var dic = FileInfoRepository.GetExtension();
+            return dic.Select(n => new GalleryType { Name = n.Key, Count = n.Value }).ToArray();
         }
     }
 }

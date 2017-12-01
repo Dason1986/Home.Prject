@@ -215,6 +215,8 @@
     <Compile Include="AutoMap\ToDtoProfile.cs" />
     <Compile Include="AutoMap\ToEntityProfile.cs" />
     <Compile Include="ComponentModel\IO\PhotoBuilder.cs" />
+    <Compile Include="Cores\HomeSerialNumberBuilderProvider.cs" />
+    <Compile Include="Cores\ISerialNumberBuilderProvider.cs" />
     <Compile Include="CreatedInfo.cs" />
     <Compile Include="Cores\IUserManager.cs" />
     <Compile Include="ComponentModel\IO\PhotoStorageBuilder.cs" />
@@ -276,10 +278,6 @@
     <ProjectReference Include="..\..\04 Infrastructure Layer\Repository\Home.Repository.csproj">
       <Project>{28ee81f9-857e-4451-af91-ad842ecee48c}</Project>
       <Name>Home.Repository</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\..\Home.Infrastructure\Home.Infrastructure.csproj">
-      <Project>{10662661-00cf-4ab6-8608-4d392cfec63f}</Project>
-      <Name>Home.Infrastructure</Name>
     </ProjectReference>
     <ProjectReference Include="..\..\Library.Storage.FileEngineProvider.NFS\Library.Storage.FileEngineProvider.Network.csproj">
       <Project>{434c4dfa-d0ca-44fa-ba6b-729807147dc8}</Project>

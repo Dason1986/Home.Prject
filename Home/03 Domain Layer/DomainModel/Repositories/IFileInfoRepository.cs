@@ -15,6 +15,8 @@ namespace Home.DomainModel.Repositories
 
         FileInfo GetByFullPath(string file);
 
-        string[] GetFileDistinctByMD5();
+        IDictionary<string, int> GetExtension();
+
+        string[] GetFileDuplicateByMD5();
     }
 }

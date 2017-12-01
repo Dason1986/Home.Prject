@@ -35,7 +35,7 @@ namespace HomeApplication.Logic.IO
 
             var fileInfoRepository = provider.CreateFileInfo();
             var photoRepository = provider.CreatePhoto();
-            var md5S = fileInfoRepository.GetFileDistinctByMD5();
+            var md5S = fileInfoRepository.GetFileDuplicateByMD5();
             if (md5S.Length == 0) return;
             _photoEnvironment.LoadConfig(provider.CreateSystemParameter());
             // var _photoAttRepository = provider.CreatePhotoAttribute();

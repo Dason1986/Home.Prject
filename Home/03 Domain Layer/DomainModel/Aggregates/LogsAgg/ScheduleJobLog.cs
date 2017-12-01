@@ -9,6 +9,7 @@ using System.Threading.Tasks;
 
 namespace Home.DomainModel.Aggregates.LogsAgg
 {
+    [DisplayName("排程日誌"), Description("排程日誌")]
     public class ScheduleJobLog : Library.Domain.Entity
     {
         /// <summary>

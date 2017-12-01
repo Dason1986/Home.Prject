@@ -2,6 +2,7 @@
 using Autofac.Core;
 using Autofac.Integration.WebApi;
 using Home.DomainModel.Repositories;
+using HomeApplication.Interceptors;
 using HomeApplication.Jobs;
 using Library;
 using Microsoft.Owin.Hosting;
@@ -75,14 +76,13 @@ namespace HomeApplication
 
             var resolver = new AutofacWebApiDependencyResolver(_container);
             config.DependencyResolver = resolver;
-         
-            ScheduleJobManagement jobManagement = new ScheduleJobManagement(GetService<IScheduleJobRepository>());
+
+            ScheduleJobManagement jobManagement = GetService<ScheduleJobManagement>();
             jobManagement.LoadProvider();
             jobManagement.Run();
-            var updater = new ContainerBuilder();
-            updater.RegisterInstance<ScheduleJobManagement>(jobManagement).SingleInstance();
-            updater.Update(_container);
 
+            var serialNumberBuilder = GetService<SerialNumberBuilderProvider>();
+            serialNumberBuilder.Initialize();
 
         }
         private void DefaultJsonFormat(HttpConfiguration config)
@@ -95,10 +95,10 @@ namespace HomeApplication
             settings.DateFormatString = "dd/MM/yyyy HH:mm:ss";
             settings.Formatting = Formatting.Indented;
             settings.FloatParseHandling = FloatParseHandling.Decimal;
-        
+
             // settings.Converters.Add(new DatenullJsonConverter());
             settings.ContractResolver = new Newtonsoft.Json.Serialization.DefaultContractResolver();//CamelCasePropertyNamesContractResolver();
-       
+
             //    config.Formatters.Insert(0, new JsonpMediaTypeFormatter(jsonFormatter));
             // logger.Info("日期格式：{0}", settings.DateFormatString);
         }
@@ -120,7 +120,7 @@ namespace HomeApplication
         {
             var cors = new EnableCorsAttribute("*", "*", "*");
             config.EnableCors(cors);
-            config.MapHttpAttributeRoutes(); 
+            config.MapHttpAttributeRoutes();
             //定义web api route
             config.Routes.MapHttpRoute(
                         name: "DefaultApi",

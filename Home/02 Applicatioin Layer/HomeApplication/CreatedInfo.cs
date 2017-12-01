@@ -24,6 +24,7 @@ namespace HomeApplication
             ScanderPhysical = new CreatedInfo() { CreatedBy = "ScanderPhysical" };
             BuildFingerprint = new CreatedInfo() { CreatedBy = "BuildFingerprint" };
             PhotoFileAnalysis = new CreatedInfo { CreatedBy = "PhotoFileAnalysis" };
+            SerialNumber = new CreatedInfo { CreatedBy = "SerialNumber" };
             PhotoSimilar = new CreatedInfo { CreatedBy = "PhotoSimilar" };
             ScheduleJob = new CreatedInfo { CreatedBy = "ScheduleJob" };
         }
@@ -32,5 +33,6 @@ namespace HomeApplication
         public static CreatedInfo ScheduleJob { get; private set; }
         public static CreatedInfo PhotoFileAnalysis { get; private set; }
         public static CreatedInfo PhotoSimilar { get; private set; }
+        public static CreatedInfo SerialNumber { get; private set; }
     }
 }

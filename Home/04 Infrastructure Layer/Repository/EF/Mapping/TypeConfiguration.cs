@@ -32,6 +32,9 @@ namespace Repository.EF.Mapping
             modelBuilder.Configurations.Add(new ScheduleJobEntityTypeConfiguration());
             modelBuilder.Configurations.Add(new ScheduleJobLogEntityTypeConfiguration());
             modelBuilder.Configurations.Add(new LogEntityEntityTypeConfiguration());
+
+
+            modelBuilder.Configurations.Add(new PhotoFaceEntityTypeConfiguration());
         }
 
         private static void FileAgg(DbModelBuilder modelBuilder)
@@ -40,6 +43,7 @@ namespace Repository.EF.Mapping
             modelBuilder.Configurations.Add(new StorageEngineSettingEntityTypeConfiguration());
             modelBuilder.Configurations.Add(new FileInfoEntityTypeConfiguration());
             modelBuilder.Configurations.Add(new FileInfoExtendEntityTypeConfiguration());
+            modelBuilder.Configurations.Add(new FileLogicTreeEntityTypeConfiguration());
         }
 
         private static void ProductAgg(DbModelBuilder modelBuilder)
@@ -62,6 +66,7 @@ namespace Repository.EF.Mapping
             modelBuilder.Configurations.Add(new PhotoAttributeEntityTypeConfiguration());
             modelBuilder.Configurations.Add(new PhotoFingerprintEntityTypeConfiguration());
             modelBuilder.Configurations.Add(new PhotoSimilarEntityTypeConfiguration());
+            modelBuilder.Configurations.Add(new PhotoFaceEntityTypeConfiguration());
         }
 
         private static void UserAgg(DbModelBuilder modelBuilder)

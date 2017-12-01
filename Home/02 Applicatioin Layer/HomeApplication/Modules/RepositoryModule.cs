@@ -12,6 +12,9 @@ using System;
 using Library.Domain.Data.Repositorys;
 using Library.Domain.Data.ModuleProviders;
 using HomeApplication.DomainServices;
+using HomeApplication.Interceptors;
+using HomeApplication.Jobs;
+using HomeApplication.Cores;
 
 namespace HomeApplication
 {
@@ -25,7 +28,11 @@ namespace HomeApplication
             foreach (var typese in mappdic)
             {
                 if (typese.Value.Length > 0)
-                    builder.RegisterType(typese.Value[0]).As(typese.Key);
+                {
+                    builder.RegisterType(typese.Value[0])
+                        .As(typese.Key);
+                     
+                }
             }
             find = new FindInterfaceMappToType(typeof(IModuleProvider), typeof(IGalleryModuleProvider).Assembly, typeof(MainBoundedContext).Assembly);
             mappdic = find.Find();
@@ -33,19 +40,33 @@ namespace HomeApplication
             {
                 builder.RegisterType(typese.Value[0]).As(typese.Key);
             }
-            builder.RegisterType<PhotoEnvironment>().As<IPhotoEnvironment>().As<PhotoEnvironment>();
-            // builder.RegisterType(typeof(AlbumRepository)).As(typeof(IAlbumRepository));
-            //builder.RegisterType<AlbumRepository>().As<IAlbumRepository>();
-            //builder.RegisterType<FileInfoRepository>().As<IFileInfoRepository>();
-            //builder.RegisterType<PhotoAttributeRepository>().As<IPhotoAttributeRepository>();
-            //builder.RegisterType<PhotoFingerprintRepository>().As<IPhotoFingerprintRepository>();
-            //builder.RegisterType<PhotoRepository>().As<IPhotoRepository>();
-            //builder.RegisterType<SystemParameterRepository>().As<ISystemParameterRepository>();
-            //builder.RegisterType<PhotoSimilarRepository>().As<IPhotoSimilarRepository>();
-            //builder.RegisterType<StorageEngineRepository>().As<IStorageEngineRepository>();
+        }
+    }
 
-            //builder.RegisterType<FileManagentModuleProvider>().As<IFileManagentModuleProvider>();
-            //builder.RegisterType<GalleryModuleProvider>().As<IGalleryModuleProvider>();
+    public class ApplictionModule : Module
+    {
+        protected override void Load(ContainerBuilder builder)
+        {
+            builder.RegisterType<PhotoEnvironment>()
+                .As<IPhotoEnvironment>()
+                .As<PhotoEnvironment>()
+                .AsImplementedInterfaces()
+               .InstancePerRequest()
+                .SingleInstance();
+
+            builder.RegisterType<ScheduleJobManagement>()
+           .As<ScheduleJobManagement>()
+           .AsImplementedInterfaces()
+           .InstancePerRequest()
+           .SingleInstance();
+
+            builder.RegisterType<HomeSerialNumberBuilderProvider>()
+                .As<ISerialNumberBuilderProvider>()
+                .As<SerialNumberBuilderProvider>()
+           .AsImplementedInterfaces()
+           .InstancePerRequest()
+                .SingleInstance();
+
         }
     }
 }

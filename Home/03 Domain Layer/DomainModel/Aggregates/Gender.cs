@@ -12,7 +12,11 @@
         Male,
         Female
     }
-
+    public enum FileLogicType
+    {
+        File,
+        Dir,
+    }
     public enum PhotoType
     {
         Graphy,

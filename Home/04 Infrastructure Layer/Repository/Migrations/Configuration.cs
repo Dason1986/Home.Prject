@@ -55,7 +55,7 @@ namespace Repository.Migrations
 
         protected override MigrationStatement Generate(CreateTableOperation createTableOperation)
         {
-
+            
             SetCreatedUtcColumn(createTableOperation);
             var statement = base.Generate(createTableOperation);
             if (tablecalss != null)
@@ -66,7 +66,7 @@ namespace Repository.Migrations
                     statement.Sql = string.Format("{0};ALTER TABLE {1} COMMENT='{2}'; ", statement.Sql, table, display.DisplayName);
                 }
             }
-            if (!string.IsNullOrEmpty(TRIGGER)) { statement.Sql = string.Format("{0};{1};", statement.Sql, TRIGGER); }
+            //   if (!string.IsNullOrEmpty(TRIGGER)) { statement.Sql = string.Format("{0};{1};", statement.Sql, TRIGGER); }
             return statement;
         }
         protected override string Generate(ColumnModel op)
@@ -79,8 +79,18 @@ namespace Repository.Migrations
             }
             return sql;
         }
-
-
+        protected override MigrationStatement Generate(DropColumnOperation op)
+        {
+            return base.Generate(op);
+            
+        }
+        protected override MigrationStatement Generate(DropTableOperation op)
+        {
+            table = op.Name.Replace("dbo.", "");
+            var sql = base.Generate(op);
+            sql.Sql = string.Format("drop TABLE `{0}` ; ", table);
+            return sql;
+        }
         private static readonly string[] TimeColumnNames = { "Modified", "Created" };
         private static readonly string[] UserColumnNames = { "ModifiedBy", "CreatedBy" };
         string table;
@@ -136,7 +146,7 @@ namespace Repository.Migrations
                 if (display == null) return name;
                 return string.Format("{0}_{1}", name, display.DisplayName);
             }
-             
+
 
         }
         private void SetCreatedUtcColumn(ColumnModel column)
@@ -160,7 +170,7 @@ BEGIN
     SET new.{1} = uuid();
   END IF;
 END;;
-DELIMITER ;", table,column.Name);
+DELIMITER ;", table, column.Name);
                 }
                 if (column.Type == PrimitiveTypeKind.Int32) column.IsIdentity = true;
             }

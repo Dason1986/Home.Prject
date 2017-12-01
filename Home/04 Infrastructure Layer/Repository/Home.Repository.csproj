@@ -74,9 +74,11 @@
     <Compile Include="EF\Mapping\AssetsAgg\AssetsItemEntityTypeConfiguration.cs" />
     <Compile Include="EF\Mapping\FileAgg\FileAttributeEntityTypeConfiguration.cs" />
     <Compile Include="EF\Mapping\FileAgg\FileInfoExtendEntityTypeConfiguration.cs" />
+    <Compile Include="EF\Mapping\FileAgg\FileLogicTreeEntityTypeConfiguration.cs" />
     <Compile Include="EF\Mapping\FileAgg\StorageEngineEntityTypeConfiguration.cs" />
     <Compile Include="EF\Mapping\FileAgg\StorageEngineSettingEntityTypeConfiguration.cs" />
     <Compile Include="EF\Mapping\GalleryAgg\AlbumTypeConfiguration.cs" />
+    <Compile Include="EF\Mapping\GalleryAgg\PhotoFaceEntityTypeConfiguration.cs" />
     <Compile Include="EF\Mapping\GalleryAgg\PhotoFingerprintEntityTypeConfiguration.cs" />
     <Compile Include="EF\Mapping\GalleryAgg\PhotoSimilarEntityTypeConfiguration.cs" />
     <Compile Include="EF\Mapping\OfficeAgg\WordInfoEntityTypeConfiguration.cs" />
@@ -87,7 +89,12 @@
     <Compile Include="EF\Mapping\FileAgg\FileInfoEntityTypeConfiguration.cs" />
     <Compile Include="EF\Mapping\GalleryAgg\PhotoAttributeEntityTypeConfiguration.cs" />
     <Compile Include="EF\Mapping\GalleryAgg\PhotoEntityTypeConfiguration.cs" />
+    <Compile Include="EF\Mapping\SystemAgg\DomainEventArgsLogEntityTypeConfiguration.cs" />
+    <Compile Include="EF\Mapping\SystemAgg\LogEntityEntityTypeConfiguration.cs" />
     <Compile Include="EF\Mapping\SystemAgg\ProductItemEntityTypeConfiguration.cs" />
+    <Compile Include="EF\Mapping\SystemAgg\ScheduleJobEntityTypeConfiguration.cs" />
+    <Compile Include="EF\Mapping\SystemAgg\ScheduleJobLogEntityTypeConfiguration.cs" />
+    <Compile Include="EF\Mapping\SystemAgg\SerialNumberManagementEntityTypeConfiguration.cs" />
     <Compile Include="EF\Mapping\TypeConfiguration.cs" />
     <Compile Include="EF\Mapping\UserAgg\ContactProfileEntityTypeConfiguration.cs" />
     <Compile Include="EF\Mapping\UserAgg\ContactRelationEntityTypeConfiguration.cs" />
@@ -97,27 +104,38 @@
     <Compile Include="HOME_SQL\201711130652570_V1_1_1.Designer.cs">
       <DependentUpon>201711130652570_V1_1_1.cs</DependentUpon>
     </Compile>
+    <Compile Include="HOME_SQL\201712010857179_V1_2_1.cs" />
+    <Compile Include="HOME_SQL\201712010857179_V1_2_1.Designer.cs">
+      <DependentUpon>201712010857179_V1_2_1.cs</DependentUpon>
+    </Compile>
     <Compile Include="HOME_SQL\Configuration.cs" />
     <Compile Include="HOME_SQL\InitializeDB\V1.cs" />
+    <Compile Include="HOME_SQL\V1_2_1\V1_2_1.cs" />
     <Compile Include="Migrations\201711130654176_V1_1_1.cs" />
     <Compile Include="Migrations\201711130654176_V1_1_1.Designer.cs">
       <DependentUpon>201711130654176_V1_1_1.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201712010811348_V1_2_1.cs" />
+    <Compile Include="Migrations\201712010811348_V1_2_1.Designer.cs">
+      <DependentUpon>201712010811348_V1_2_1.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Migrations\InitializeDB\V1.cs" />
+    <Compile Include="Migrations\V1_2_1\V1_2_1.cs" />
     <Compile Include="ModuleProviders\FileManagentModuleProvider.cs" />
     <Compile Include="ModuleProviders\GalleryModuleProvider.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Repositories\AlbumRepository.cs" />
     <Compile Include="Repositories\DomainEventArgsLogRepository.cs" />
     <Compile Include="Repositories\FileInfoRepository.cs" />
-    <Compile Include="Repositories\IScheduleJobLogRepository.cs" />
+    <Compile Include="Repositories\ScheduleJobLogRepository.cs" />
     <Compile Include="Repositories\PhotoAttributeRepository.cs" />
     <Compile Include="Repositories\PhotoFacesRepository.cs" />
     <Compile Include="Repositories\PhotoFingerprintRepository.cs" />
     <Compile Include="Repositories\PhotoRepository.cs" />
     <Compile Include="Repositories\PhotoSimilarRepository.cs" />
     <Compile Include="Repositories\ScheduleJobRepository.cs" />
+    <Compile Include="Repositories\SerialNumberManagementRepository.cs" />
     <Compile Include="Repositories\StorageEngineRepository.cs" />
     <Compile Include="Repositories\SystemParameterRepository.cs" />
   </ItemGroup>
@@ -143,8 +161,14 @@
     <EmbeddedResource Include="HOME_SQL\201711130652570_V1_1_1.resx">
       <DependentUpon>201711130652570_V1_1_1.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="HOME_SQL\201712010857179_V1_2_1.resx">
+      <DependentUpon>201712010857179_V1_2_1.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201711130654176_V1_1_1.resx">
       <DependentUpon>201711130654176_V1_1_1.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201712010811348_V1_2_1.resx">
+      <DependentUpon>201712010811348_V1_2_1.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\InitializeDB\CreateView.sql" />
   </ItemGroup>
@@ -174,5 +198,9 @@
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Include="HOME_SQL\InitializeDB\TimeLineByYYYYMMDD.sql" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="HOME_SQL\V1_2_1\up.sql" />
+    <EmbeddedResource Include="Migrations\V1_2_1\up.sql" />
   </ItemGroup>
 </Project>
