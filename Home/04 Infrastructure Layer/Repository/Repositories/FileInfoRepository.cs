@@ -28,7 +28,7 @@ namespace Home.Repository.Repositories
 
         public FileInfo GetByFullPath(string file)
         {
-            return Wrapper.Find().Include("Photo").AsNoTracking().FirstOrDefault(n => n.FullPath == file);
+            return Wrapper.Find().Include("Photo").FirstOrDefault(n => n.FullPath == file);
         }
         public IDictionary<string, int> GetExtension()
         {
@@ -42,7 +42,7 @@ namespace Home.Repository.Repositories
         }
         public string[] GetFileDuplicateByMD5()
         {
-            var md5s = this.UnitOfWork.ExecuteQuery<string>("select  md5   from  fileinfo  group  by  md5  having  count(md5) > 1  ").ToArray();
+            var md5s = this.UnitOfWork.ExecuteQuery<string>("select  md5   from  DuplicateByMD5View ").ToArray();
             // var md5s = Wrapper.Find().GroupBy(n => n.MD5).Select(n => new { MD5 = n.Key, Count = n.Count() }).Where(n => n.Count > 1).Select(n => n.MD5).ToArray();
             //select  md5 ,count(0) 'count'  from  fileinfo  group  by  md5  having  count(md5) > 1 ORDER BY count desc
             return md5s;

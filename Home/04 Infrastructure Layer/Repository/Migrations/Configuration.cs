@@ -16,7 +16,7 @@ namespace Repository.Migrations
     using System.Reflection;
     using System.Text;
 
-    // [DbConfigurationType(typeof(MySql.Data.Entity.MySqlEFConfiguration))]
+    [DbConfigurationType(typeof(MySql.Data.Entity.MySqlEFConfiguration))]
     internal sealed class Configuration : DbMigrationsConfiguration<MainBoundedContext>
     {
         public Configuration()

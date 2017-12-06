@@ -37,9 +37,6 @@ System.ComponentModel.DisplayName("條形碼")]
         [System.ComponentModel.Description("二維碼內容"),
 System.ComponentModel.DisplayName("二維碼內容")]
         public string QRCode { get; set; }
-        [System.ComponentModel.Description("文件顯示編號"),
-System.ComponentModel.DisplayName("文件顯示編號")]
-        public string Sequence { get; set; }
         [System.ComponentModel.Description("文件屬性"),
         System.ComponentModel.DisplayName("文件屬性")]
         public virtual ICollection<FileAttribute> Attributes { get; set; }

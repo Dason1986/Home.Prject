@@ -224,6 +224,7 @@
     <Compile Include="DomainServices\FileManagentDomainService.cs" />
     <Compile Include="FileSotrageHelper.cs" />
     <Compile Include="Interceptors\RoleInterceptor.cs" />
+    <Compile Include="Jobs\DeleteFileDistinctByMD5.cs" />
     <Compile Include="Jobs\DomainEventBusJob.cs" />
     <Compile Include="Jobs\IOJobPlugin.cs" />
     <Compile Include="Jobs\ScanderPhysical.cs" />
@@ -238,10 +239,7 @@
     <Compile Include="DomainServices\PhotoDomainServiceException.cs" />
     <Compile Include="DomainServices\PhotoFacesDomainService.cs" />
     <Compile Include="DomainServices\SimilarPhotoDomainService.cs" />
-    <Compile Include="Logic\IO\DeleteFileDistinctByMD5.cs" />
     <Compile Include="Jobs\PhotoFileAnalysis.cs" />
-    <Compile Include="Logic\IO\PhotoSimilar.cs" />
-    <Compile Include="Logic\IO\PhotoSimilarBuildFingerprint.cs" />
     <Compile Include="Modules\FindInterfaceMappToType.cs" />
     <Compile Include="Modules\GenericModule.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

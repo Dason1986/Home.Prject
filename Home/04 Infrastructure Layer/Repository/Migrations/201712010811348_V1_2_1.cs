@@ -62,12 +62,15 @@ namespace Repository.Migrations
                 .Index(t => t.ParentId)
                 .Index(t => t.FileId);
             
-            AddColumn("FileInfo", "IsDuplicate", c => c.Boolean(nullable: false));
-            ExSqlUp();
+            AddColumn("FileInfo", "FileStatue", c => c.Int(nullable: false));
+            AddColumn("FileInfo", "Sequence", c => c.String(unicode: false));
+            DropColumn("FileInfoExtend", "Sequence");
+            this.ExSqlUp();
         }
         
         public override void Down()
         {
+            AddColumn("FileInfoExtend", "Sequence", c => c.String(unicode: false));
             DropForeignKey("FileLogicTree", "FileId", "FileInfo");
             DropForeignKey("FileLogicTree", "ParentId", "FileLogicTree");
             DropForeignKey("PhotoFace", "PhotoId", "Photo");
@@ -76,11 +79,11 @@ namespace Repository.Migrations
             DropIndex("FileLogicTree", new[] { "ParentId" });
             DropIndex("PhotoFace", new[] { "PhotoId" });
             DropIndex("PhotoFace", new[] { "ContactId" });
-            DropColumn("FileInfo", "IsDuplicate");
+            DropColumn("FileInfo", "Sequence");
+            DropColumn("FileInfo", "FileStatue");
             DropTable("FileLogicTree");
             DropTable("PhotoFace");
             DropTable("SerialNumberManagement");
-            ExSqlDown();
         }
     }
 }

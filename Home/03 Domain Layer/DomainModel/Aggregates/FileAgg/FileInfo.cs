@@ -34,8 +34,12 @@ namespace Home.DomainModel.Aggregates.FileAgg
         public string MD5 { get; set; }
 
         
-        [DisplayName("是否存在過的"), Description("是否存在過的，如果已經存在過，爲true")]
-        public bool IsDuplicate { get; set; }
+        [DisplayName("文件状态"), Description("文件状态")]
+        public FileStatue FileStatue { get; set; }
+
+        [System.ComponentModel.Description("文件顯示編號"),
+System.ComponentModel.DisplayName("文件顯示編號")]
+        public string Sequence { get; set; }
 
         [StringLength(50)]
         [DisplayName("文件擴展名"), Description("文件擴展名，判斷文件的類型")]
@@ -52,5 +56,11 @@ namespace Home.DomainModel.Aggregates.FileAgg
         public Guid EngineID { get; set; }
         [DisplayName("文件存儲引擎"), Description("文件存儲引擎，文件保存的地方")]
         public virtual StorageEngine Engine { get; set; }
+    }
+
+    public enum FileStatue
+    {
+        None,
+        Duplicate,
     }
 }

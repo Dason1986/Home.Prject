@@ -40,7 +40,7 @@ namespace HomeApplication.Jobs
 
                 var systemParameter = provideralleryModule.CreateSystemParameter();
                 var setting = systemParameter.GetListByGroup("PhotoFileAnalysis");
-                ImageTypes = setting.Cast<string>("ImageTypes", ".jpeg,.jpg,.png").Split(',');
+                ImageTypes = setting.Cast<string>("ImageTypes", ".jpeg,.jpg,.png,.bmp").Split(',');
                 Takes = setting.Cast<int>("Takes", 10);
                 ThreadProssSize(GetTotalRecord());
             }

@@ -15,7 +15,7 @@ namespace Home.Repository.HOME_SQL
     using System.Data.Entity.Migrations.Utilities;
     using System.Linq;
     using System.Reflection;
-
+    [DbConfigurationType(typeof(System.Data.Entity.DbConfiguration))]
     internal sealed class Configuration : DbMigrationsConfiguration<MainBoundedContext>
     {
         public Configuration()

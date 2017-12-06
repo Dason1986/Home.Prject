@@ -203,4 +203,8 @@
     <EmbeddedResource Include="HOME_SQL\V1_2_1\up.sql" />
     <EmbeddedResource Include="Migrations\V1_2_1\up.sql" />
   </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="HOME_SQL\V1_2_1\CreateView.sql" />
+    <EmbeddedResource Include="Migrations\V1_2_1\CreateView.sql" />
+  </ItemGroup>
 </Project>

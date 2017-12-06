@@ -90,7 +90,7 @@ namespace HomeApplication.Jobs
         {
             if (_scheduleJobRepository == null) throw new ArgumentNullException("scheduleJobRepository");
 
-            var scheduleJobs = _scheduleJobRepository.GetAll().Where(n => n.StatusCode == StatusCode.Enabled).ToArray();
+            var scheduleJobs = _scheduleJobRepository.GetAll().ToArray();
 
             foreach (var item in scheduleJobs)
             {
@@ -106,6 +106,7 @@ namespace HomeApplication.Jobs
 
                     itemScheduleJob.ScheduleCronExpression = item.ScheduleCronExpression;
                     itemScheduleJob.Title = item.Title;
+                    itemScheduleJob.StatusCode  = item.StatusCode;
                     itemScheduleJob.Initialize();
                     if (string.IsNullOrEmpty(item.ScheduleCronExpression))
                     {
@@ -166,7 +167,7 @@ namespace HomeApplication.Jobs
             scheduler = schedulerFactory.GetScheduler();
             int count = 1;
             EmailJob();
-            foreach (var item in _providers)
+            foreach (var item in _providers.Where(n => n.Provider.StatusCode == StatusCode.Enabled))
             {
                 var jobbuilder = JobBuilder.Create<JobItem>().WithIdentity(item.Provider.Title, "AppLogJobGroup");
                 var job = jobbuilder.Build();
@@ -304,6 +305,7 @@ namespace HomeApplication.Jobs
 
         public string Title { get; set; }
         public string ScheduleCronExpression { get; set; }
+        public StatusCode StatusCode { get;   set; }
 
         public abstract void Initialize();
 

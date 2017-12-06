@@ -12,6 +12,7 @@ namespace Home.Repository.HOME_SQL
         void ExSqlUp()
         {
             SqlResource("Home.Repository.HOME_SQL.V1_2_1.up.sql");
+            SqlResource("Home.Repository.HOME_SQL.V1_2_1.CreateView.sql");
         }
         void ExSqlDown()
         {
