@@ -18,5 +18,6 @@ namespace Home.DomainModel.Repositories
         IDictionary<string, int> GetExtension();
 
         string[] GetFileDuplicateByMD5();
+        FileInfo[] GetFilesByMD5(string md5);
     }
 }

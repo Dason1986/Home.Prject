@@ -84,6 +84,7 @@ namespace Repository.Migrations
             DropTable("FileLogicTree");
             DropTable("PhotoFace");
             DropTable("SerialNumberManagement");
+            this.ExSqlDown();
         }
     }
 }

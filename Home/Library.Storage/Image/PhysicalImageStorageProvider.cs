@@ -90,7 +90,8 @@ namespace Library.Storage.Image
 
         void IFileStorageProvider.Delete(Guid id)
         {
-            throw new NotImplementedException();
+            var path = Path.Combine(_path, id.ToString());
+            if (Directory.Exists(path)) System.IO.Directory.Delete(path, true);
         }
 
         Stream IFileStorageProvider.Get(Guid id)

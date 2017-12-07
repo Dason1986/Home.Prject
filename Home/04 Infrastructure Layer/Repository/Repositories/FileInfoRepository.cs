@@ -49,6 +49,11 @@ namespace Home.Repository.Repositories
 
         }
 
+        public FileInfo[] GetFilesByMD5(string md5)
+        {  return Wrapper.Find().Include("Photo").Where(n =>  n.StatusCode == Library.ComponentModel.Model.StatusCode.Enabled && n.MD5 == md5).OrderBy(n => n.Created).ToArray();
+            
+        }
+
         public FileInfo[] GetPhotoFilesByExtensions(string[] extensions, int takes = 5)
         {
             return Wrapper.Find().Include("Photo").Where(n => extensions.Contains(n.Extension) && n.StatusCode == Library.ComponentModel.Model.StatusCode.Enabled && (n.MD5 == null || n.MD5 == "")).Take(takes).ToArray();

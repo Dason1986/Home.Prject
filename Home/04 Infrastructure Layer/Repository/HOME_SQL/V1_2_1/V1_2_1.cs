@@ -16,7 +16,7 @@ namespace Home.Repository.HOME_SQL
         }
         void ExSqlDown()
         {
-
+            SqlResource("Home.Repository.HOME_SQL.V1_2_1.down.sql");
         }
     }
 }

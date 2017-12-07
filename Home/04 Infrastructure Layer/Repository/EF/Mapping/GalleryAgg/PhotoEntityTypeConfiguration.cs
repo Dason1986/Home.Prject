@@ -20,6 +20,10 @@ namespace Repository.EF.Mapping.GalleryAgg
 .WithRequired()
 .HasForeignKey(c => c.OwnerID)
 .WillCascadeOnDelete(false);
+            HasMany(c => c.Faces)
+.WithRequired()
+.HasForeignKey(c => c.PhotoId)
+.WillCascadeOnDelete(false);
             ToTable("Photo");
         }
     }

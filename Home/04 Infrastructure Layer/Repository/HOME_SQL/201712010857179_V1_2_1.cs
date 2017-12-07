@@ -84,6 +84,7 @@ namespace Home.Repository.HOME_SQL
             DropTable("dbo.FileLogicTree");
             DropTable("dbo.PhotoFace");
             DropTable("dbo.SerialNumberManagement");
+            this.ExSqlDown();
         }
     }
 }

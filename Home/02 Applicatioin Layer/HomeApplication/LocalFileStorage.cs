@@ -49,7 +49,7 @@ namespace HomeApplication
             {
                 if (disposing)
                 {
-                    if (fs == null) fs.Dispose();
+                    if (fs != null) fs.Dispose();
                 }
 
                 fs = null;

@@ -36,6 +36,9 @@ namespace Home.DomainModel.Aggregates.GalleryAgg
         [System.ComponentModel.Description("相片屬性"),
         System.ComponentModel.DisplayName("相片屬性")]
         public virtual ICollection<PhotoAttribute> Attributes { get; set; }
+        [System.ComponentModel.Description("頭像"),
+        System.ComponentModel.DisplayName("頭像")]
+        public virtual ICollection<PhotoFace> Faces { get; set; }
 
 
     }

@@ -19,7 +19,7 @@ namespace Repository.Migrations
         }
         void ExSqlDown()
         {
-
+            SqlResource("Home.Repository.Migrations.V1_2_1.down.sql");
         }
     }
 }
