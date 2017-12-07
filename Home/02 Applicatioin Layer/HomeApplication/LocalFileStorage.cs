@@ -3,8 +3,8 @@ using System.IO;
 
 namespace HomeApplication
 {
-  
-    public class LocalFileStorage : Library.Storage.IFileStorage,IDisposable
+
+    public class LocalFileStorage : Library.Storage.IFileStorage, IDisposable
     {
         public LocalFileStorage(string filepath)
         {
@@ -31,13 +31,20 @@ namespace HomeApplication
 
         public Stream Get()
         {
-            fs= fileinfo.Open(FileMode.Open, FileAccess.Read, FileShare.ReadWrite);
+            if (!Exists) throw new FileNotFoundException();
+            if (fs != null) return fs;
+            fs = fileinfo.Open(FileMode.Open, FileAccess.Read, FileShare.ReadWrite);
             return fs;
         }
 
         public byte[] GetRange(int index, int size)
         {
-            throw new NotImplementedException();
+            Get();
+
+            fs.Seek(index, SeekOrigin.Begin);
+            byte[] buffer = new byte[size];
+            fs.Read(buffer, 0, size);
+            return buffer;
         }
 
         #region IDisposable Support
@@ -58,13 +65,13 @@ namespace HomeApplication
             }
         }
 
-    
+
         void IDisposable.Dispose()
         {
-            
+
             Dispose(true);
-            
-             GC.SuppressFinalize(this);
+
+            GC.SuppressFinalize(this);
         }
         #endregion
     }
