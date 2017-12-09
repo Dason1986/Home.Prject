@@ -32,13 +32,6 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="Ftp, Version=2.0.17331.1521, Culture=neutral, PublicKeyToken=6dc438ab78a525b3, processorArchitecture=MSIL">
-      <HintPath>..\packages\Ftp.dll.2.0.17331.1521\lib\net45\Ftp.dll</HintPath>
-    </Reference>
-    <Reference Include="NFSLibrary, Version=0.8.4167.36997, Culture=neutral, processorArchitecture=x86">
-      <HintPath>..\packages\NFSLibrary.0.8.0\lib\net40\NFSLibrary.dll</HintPath>
-      <Private>True</Private>
-    </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />
     <Reference Include="System.Xml.Linq" />
@@ -49,13 +42,9 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="FTPEngineProvider.cs" />
     <Compile Include="NetworkShareAccesser.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="SmbFileStorage.cs" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\Library.Storage\Library.Storage.csproj">

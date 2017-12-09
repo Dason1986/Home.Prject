@@ -58,9 +58,5 @@ System.ComponentModel.DisplayName("文件顯示編號")]
         public virtual StorageEngine Engine { get; set; }
     }
 
-    public enum FileStatue
-    {
-        None,
-        Duplicate,
-    }
+
 }

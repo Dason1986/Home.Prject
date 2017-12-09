@@ -11,6 +11,7 @@ using FileEx = Home.DomainModel.Aggregates.FileAgg.FileInfo;
 using Library;
 using Home.DomainModel.ModuleProviders;
 using Library.HelperUtility;
+using HomeApplication.DomainServices;
 
 namespace HomeApplication.Jobs
 {
@@ -48,45 +49,24 @@ namespace HomeApplication.Jobs
                 Scan(_path);
                 var _rootpath = _engin.Root;
                 var FilesRepository = provider.CreateFileInfo();
-                int count = 0;
-                foreach (var item in _files)
+
+                AddFileDomainService addFileDomain = new AddFileDomainService();
+                addFileDomain.FileModuleProvider = provider;
+                for (int i = 0; i < _files.Count; i = i + 100)
                 {
-
-                    if (string.IsNullOrEmpty(item)) continue;
-                    if (_filterfile.Any(ff => item.EndsWith(ff, StringComparison.OrdinalIgnoreCase))) continue;
-                    count++;
-                    var filepath = item.Replace(_rootpath, string.Empty);
-                    if (filepath.StartsWith(@"\") || filepath.StartsWith(@"\")) filepath = filepath.Substring(1);
-                    if (FilesRepository.FileExists(filepath)) continue;
-
-
-                    var fileinfo = new FileEx(CreatedInfo.PhotoFileAnalysis)
-                    {
-                        Extension = Path.GetExtension(item),
-                        FullPath = filepath,
-                        FileName = Path.GetFileName(item),
-
-                        EngineID = _engin.ID,
-                        SourceType = Home.DomainModel.SourceType.ServerScand
-                    };
-
-                    //if (File.Exists(item))
-                    //{
-                    //    fileinfo.FileSize = item.Length;
-                    //}
-
-                    FilesRepository.Add(fileinfo);
-                    if (count >= 100)
-                    {
-                        provider.UnitOfWork.Commit();
-                        count = 0;
-                    }
+                    var files = _files.Skip(i).Take(100).Select(n => new System.IO.FileInfo(n)).ToArray();
+                    var args = new Home.DomainModel.DomainServices.AddFileEventArgs(
+                    _engin,
+                     files,
+                  Home.DomainModel.SourceType.PC,
+                  CreatedInfo.ScanderPhysical);
+                    addFileDomain.Handle(args);
                 }
-                if (count > 0)
-                    provider.UnitOfWork.Commit();
+
+
             }
         }
-        private readonly string[] _filterfile = { ".DS_Store", "desktop.ini", "thumbs.db" };
+
         private string _path;
         private StorageEngine _engin;
         IList<string> _files = new List<string>();

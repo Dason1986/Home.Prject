@@ -49,7 +49,7 @@ namespace HomeApplication.Jobs
                         var imagestorage = photoEnvironment.CreateImageStorage(file.ID);
                         imagestorage.Delete();
                         file.StatusCode = Library.ComponentModel.Model.StatusCode.Delete;
-                        file.FileStatue = Home.DomainModel.Aggregates.FileAgg.FileStatue.Duplicate;
+                        file.FileStatue = Home.DomainModel.FileStatue.Duplicate;
                         var photo = photoRepository.GetByFileId(file.ID);
                         if (photo != null)
                         {

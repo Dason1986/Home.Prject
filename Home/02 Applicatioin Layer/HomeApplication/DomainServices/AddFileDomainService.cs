@@ -12,10 +12,10 @@ namespace HomeApplication.DomainServices
 {
     public class AddFileDomainService : FileManagentDomainService, IAddFileDomainService
     {
-       
 
-        private readonly IList<string> _existMd5S = new List<string>();
-        private readonly string[] _filterfile = { ".DS_Store", "desktop.ini", "thumbs.db" };
+
+
+        private readonly string[] _filterfile = { ".DS_Store", "desktop.ini", "thumbs.db", ".thumb", ".testusefull" };
         private Guid _enginid;
         private string _rootpath;
 
@@ -44,36 +44,39 @@ namespace HomeApplication.DomainServices
             var files = args.PhysicalFiles;
             foreach (var item in files)
             {
-              //  Logger.TraceByContent("Scan file", item.FullName);
-                if (string.IsNullOrEmpty(item.FullName)) continue;
-                if (_filterfile.Any(ff => item.Name.EndsWith(ff, StringComparison.OrdinalIgnoreCase))) continue;
-                var filepath = item.FullName.Replace(_rootpath, string.Empty);
-                if (FilesRepository.FileExists(filepath)) continue;
-                var md5 = Library.HelperUtility.FileUtility.FileMD5(item.FullName);
-                if (_existMd5S.Contains(md5))
+                //  Logger.TraceByContent("Scan file", item.FullName);
+                FileEx fileinfo = null;
+                try
                 {
-                    continue;
-                }
-                _existMd5S.Add(md5);
-                var fileinfo = new FileEx(args.CreatedInfo)
-                {
-                    Extension = item.Extension,
-                    FullPath = filepath,
-                    FileName = item.Name,
-                    MD5 = md5,
-                    EngineID = _enginid,
-                    SourceType = args.SourceType
-                };
+                    if (string.IsNullOrEmpty(item.FullName)) continue;
+                    if (_filterfile.Any(ff => item.Name.EndsWith(ff, StringComparison.OrdinalIgnoreCase))) continue;
+                    var filepath = item.FullName.Replace(_rootpath, string.Empty);
+                    if (FilesRepository.FileExists(filepath)) continue;
 
-                if (item.Exists)
-                {
-                    fileinfo.FileSize = item.Length;
+                    fileinfo = new FileEx(args.CreatedInfo)
+                    {
+                        Extension = item.Extension,
+                        FullPath = filepath,
+                        FileName = item.Name,
+                        EngineID = _enginid,
+                        SourceType = args.SourceType
+                    };
+
+                    if (item.Exists)
+                    {
+                        fileinfo.FileSize = item.Length;
+                    }
+                    FilesRepository.Add(fileinfo);
                 }
-                if (FilesRepository.FileExists(md5, fileinfo.FileSize))
+                catch (Exception e)
                 {
-                    continue;
+                    if (fileinfo != null)
+                    {
+                        fileinfo.FileStatue = Home.DomainModel.FileStatue.NotSupport;
+                    }
+                    FilesRepository.UnitOfWork.Commit();
+                    throw e;
                 }
-                FilesRepository.Add(fileinfo);
             }
         }
 
@@ -82,40 +85,39 @@ namespace HomeApplication.DomainServices
             var files = args.MemoryFiles;
             foreach (var item in files)
             {
-              //  Logger.TraceByContent("Scan file", item.Name);
-                if (string.IsNullOrEmpty(item.Name)) continue;
-                if (_filterfile.Any(ff => item.Name.EndsWith(ff, StringComparison.OrdinalIgnoreCase))) continue;
-                var filepath = item.Name.Replace(_rootpath, string.Empty);
-                if (FilesRepository.FileExists(filepath)) continue;
-                string md5="";
-                if (item.Buffer != null)
+                FileEx fileinfo = null;
+                try
                 {
-                    md5 = Library.HelperUtility.FileUtility.FileMD5(item.Buffer);
-                    if (_existMd5S.Contains(md5))
-                    {
-                        continue;
-                    }
-                    _existMd5S.Add(md5);
-                }
-                var fileinfo = new FileEx(args.CreatedInfo)
-                {
-                    FullPath = filepath,
-                    MD5 = md5,
-                    EngineID = _enginid,
-                    SourceType = args.SourceType
-                };
-                var sysInfo = new System.IO.FileInfo(item.Name);
-                fileinfo.Extension = sysInfo.Extension;
-                fileinfo.FileName = sysInfo.Name;
+                    if (string.IsNullOrEmpty(item.Name)) continue;
+                    if (_filterfile.Any(ff => item.Name.EndsWith(ff, StringComparison.OrdinalIgnoreCase))) continue;
+                    var filepath = item.Name.Replace(_rootpath, string.Empty);
+                    if (FilesRepository.FileExists(filepath)) continue;
 
-                if (sysInfo.Exists)
-                {
-                    fileinfo.FileSize = sysInfo.Length;
+                    fileinfo = new FileEx(args.CreatedInfo)
+                    {
+                        FullPath = filepath,
+                       
+                        EngineID = _enginid,
+                        SourceType = args.SourceType
+                    };
+                    var sysInfo = new System.IO.FileInfo(item.Name);
+                    fileinfo.Extension = sysInfo.Extension;
+                    fileinfo.FileName = sysInfo.Name;
+
+                    if (sysInfo.Exists)
+                    {
+                        fileinfo.FileSize = sysInfo.Length;
+                    }
                 }
-                if (FilesRepository.FileExists(md5, fileinfo.FileSize))
+                catch (Exception e)
                 {
-                    continue;
+                    if (fileinfo != null)
+                    {
+                        fileinfo.FileStatue = Home.DomainModel.FileStatue.NotSupport;
+                    }
+                    throw e;
                 }
+ 
                 FilesRepository.Add(fileinfo);
             }
         }

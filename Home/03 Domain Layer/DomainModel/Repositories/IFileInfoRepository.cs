@@ -9,7 +9,7 @@ namespace Home.DomainModel.Repositories
     {
         bool FileExists(string filepath);
 
-        FileInfo[] GetPhotoFilesByExtensions(string[] extensions,int takes);
+        FileInfo[] GetFilesByExtensions(string[] extensions,int takes);
 
         bool FileExists(string mD5, long fileSize);
 

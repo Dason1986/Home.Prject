@@ -52,7 +52,7 @@ namespace HomeApplication.Jobs
 
             IFileInfoRepository filesRepository = provideralleryModule.CreateFileInfo();
 
-            var filecount = filesRepository.GetPhotoFilesByExtensions(ImageTypes, Takes);
+            var filecount = filesRepository.GetFilesByExtensions(ImageTypes, Takes);
             return filecount;
         }
 

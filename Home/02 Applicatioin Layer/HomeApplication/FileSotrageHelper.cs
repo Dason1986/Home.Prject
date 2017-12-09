@@ -12,15 +12,13 @@ namespace HomeApplication
 
             switch (fileinfo.SourceType)
             {
+                case Home.DomainModel.SourceType.PC:
                 case Home.DomainModel.SourceType.ServerScand:
                     var filename = fileinfo.FullPath;
                     if (filename.StartsWith(@"\")) filename = filename.Substring(1);
                      var fullpath = System.IO.Path.Combine(fileinfo.Engine.Root, filename);
                     return new LocalFileStorage(fullpath);
-
-                case Home.DomainModel.SourceType.PC:
-                    //  if (fileinfo.Extend == null) throw new NotSupportedException();
-                    break;
+                    
                 case Home.DomainModel.SourceType.Mobile:
                     break;
                 case Home.DomainModel.SourceType.NetWork:

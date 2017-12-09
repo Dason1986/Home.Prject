@@ -36,6 +36,13 @@
         Son,
         Daughter
     }
+    public enum FileStatue
+    {
+        None=0,
+        Duplicate=1,
+        NotSupport=2,
+        Analysis = 100,
+    }
     public enum AgeCompare
     {
         Younger=-1,

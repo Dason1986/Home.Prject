@@ -62,7 +62,7 @@ namespace HomeApplication.DomainServices
                     }
                     // CurrnetFile.Photo = CurrnetPhoto;
                 }
-                using (storage = CurrnetFile.GetStorage())
+                using (var storage = CurrnetFile.GetStorage())
                 {
                     // Logger.TraceByContent("AddPhotoDomainService", CurrnetFile.FullPath);
 

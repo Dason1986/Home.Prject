@@ -33,6 +33,7 @@ namespace HomeApplication
         {
             if (!Exists) throw new FileNotFoundException();
             if (fs != null) return fs;
+
             fs = fileinfo.Open(FileMode.Open, FileAccess.Read, FileShare.ReadWrite);
             return fs;
         }
