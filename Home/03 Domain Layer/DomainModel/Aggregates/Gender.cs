@@ -24,9 +24,10 @@
     }
     public enum OffileFileType
     {
-        Doc,
-        Pdf,
-        Execl,
+        DOC,
+        PDF,
+        XLS,
+        PPT,
     }
     public enum MemberAddress
     {

@@ -16,7 +16,8 @@ namespace HomeApplication.Jobs
     public class OfficeFilesAnalysis : ScheduleJobProvider
     {
         readonly static object _sync = new object();
-        readonly static string[] Extensions = { ".doc", ".docx", ".dot", ".dotx", ".xlsx", ".xltx" , ".pptx"  , ".potx" ,".pdf"};
+        // 
+        readonly static string[] Extensions = { ".doc", ".docx", ".dot", ".dotx", ".xlsx", ".xltx", ".xls", ".pptx", ".potx", ".pdf" };
         public override void Execute(IJobExecutionContext context)
         {
             lock (_sync)
