@@ -116,6 +116,11 @@ namespace Library.Storage.FileEngineProvider.Network
 
             GC.SuppressFinalize(this);
         }
+
+        public long Size()
+        {
+            throw new NotImplementedException();
+        }
         #endregion
     }
 }

@@ -108,6 +108,10 @@
     <Compile Include="HOME_SQL\201712010857179_V1_2_1.Designer.cs">
       <DependentUpon>201712010857179_V1_2_1.cs</DependentUpon>
     </Compile>
+    <Compile Include="HOME_SQL\201712110731053_V1_3_2.cs" />
+    <Compile Include="HOME_SQL\201712110731053_V1_3_2.Designer.cs">
+      <DependentUpon>201712110731053_V1_3_2.cs</DependentUpon>
+    </Compile>
     <Compile Include="HOME_SQL\Configuration.cs" />
     <Compile Include="HOME_SQL\InitializeDB\V1.cs" />
     <Compile Include="HOME_SQL\V1_2_1\V1_2_1.cs" />
@@ -118,6 +122,10 @@
     <Compile Include="Migrations\201712010811348_V1_2_1.cs" />
     <Compile Include="Migrations\201712010811348_V1_2_1.Designer.cs">
       <DependentUpon>201712010811348_V1_2_1.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201712110725281_V1_3_2.cs" />
+    <Compile Include="Migrations\201712110725281_V1_3_2.Designer.cs">
+      <DependentUpon>201712110725281_V1_3_2.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Migrations\InitializeDB\V1.cs" />
@@ -164,11 +172,17 @@
     <EmbeddedResource Include="HOME_SQL\201712010857179_V1_2_1.resx">
       <DependentUpon>201712010857179_V1_2_1.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="HOME_SQL\201712110731053_V1_3_2.resx">
+      <DependentUpon>201712110731053_V1_3_2.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201711130654176_V1_1_1.resx">
       <DependentUpon>201711130654176_V1_1_1.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201712010811348_V1_2_1.resx">
       <DependentUpon>201712010811348_V1_2_1.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201712110725281_V1_3_2.resx">
+      <DependentUpon>201712110725281_V1_3_2.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\InitializeDB\CreateView.sql" />
   </ItemGroup>

@@ -1,6 +1,7 @@
 ﻿using Repository.EF.Mapping.AssetsAgg;
 using Repository.EF.Mapping.FileAgg;
 using Repository.EF.Mapping.GalleryAgg;
+using Repository.EF.Mapping.OfficeAgg;
 using Repository.EF.Mapping.ProductAgg;
 using Repository.EF.Mapping.SystemAgg;
 using Repository.EF.Mapping.UserAgg;
@@ -36,7 +37,11 @@ namespace Repository.EF.Mapping
 
             modelBuilder.Configurations.Add(new PhotoFaceEntityTypeConfiguration());
         }
-
+        private static void OfficeFileAgg(DbModelBuilder modelBuilder)
+        {
+            modelBuilder.Configurations.Add(new WordInfoEntityTypeConfiguration());
+            modelBuilder.Configurations.Add(new WordAttributeEntityTypeConfiguration()); 
+        }
         private static void FileAgg(DbModelBuilder modelBuilder)
         {
             modelBuilder.Configurations.Add(new StorageEngineEntityTypeConfiguration());

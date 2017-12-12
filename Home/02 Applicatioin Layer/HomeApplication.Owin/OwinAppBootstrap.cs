@@ -4,7 +4,10 @@ using Autofac.Integration.WebApi;
 using Home.DomainModel.Repositories;
 using HomeApplication.Interceptors;
 using HomeApplication.Jobs;
+using HomeApplication.Owin;
+using HomeApplication.Owin.Core;
 using Library;
+using Library.ExceptionProviders;
 using Microsoft.Owin.Hosting;
 using Newtonsoft.Json;
 using NLog;
@@ -63,6 +66,7 @@ namespace HomeApplication
         }
         protected override void Register()
         {
+            InitErrorProvider();
             WebConfig();
             AutoMap.AutoMapProfile.Reg();
 
@@ -84,6 +88,16 @@ namespace HomeApplication
             var serialNumberBuilder = GetService<SerialNumberBuilderProvider>();
             serialNumberBuilder.Initialize();
 
+        }
+        private void InitErrorProvider()
+        {
+            Logger.Trace("註冊錯誤信息處理器");
+            CustomExceptionProvider.Add(new LogicFaultExceptionProvider());
+         //   CustomExceptionProvider.Add(new NotImplementedExceptionProvider());
+       //     CustomExceptionProvider.Add(new ArgumentExceptionProvider());
+            CustomExceptionProvider.Add(new DbValidataionFaultExceptionProvider());
+            CustomExceptionProvider.Add(new EFUpdateFaultExceptionProvider());
+            CustomExceptionProvider.Add(new EFDbUpdateFaultExceptionProvider());
         }
         private void DefaultJsonFormat(HttpConfiguration config)
         {
@@ -127,6 +141,7 @@ namespace HomeApplication
                         routeTemplate: "api/{controller}/{id}",
                         defaults: new { id = RouteParameter.Optional }
                     );
+            config.Filters.Add(new LogicExceptionFilterAttribute());
         }
 
         #region GetService

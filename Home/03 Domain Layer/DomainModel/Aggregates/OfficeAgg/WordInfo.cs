@@ -1,4 +1,6 @@
-﻿using Library.Domain;
+﻿using Library.ComponentModel.Model;
+using Library.Domain;
+using System;
 using System.Collections.Generic;
 
 namespace Home.DomainModel.Aggregates.OfficeAgg
@@ -7,49 +9,21 @@ namespace Home.DomainModel.Aggregates.OfficeAgg
            System.ComponentModel.DisplayName("Word文檔")]
     public class WordInfo : AuditedEntity
     {
+        public WordInfo(ICreatedInfo createinfo) : base(createinfo) { Summary = new OfficeInfo(); }
+        public WordInfo()
+        {
 
-        [System.ComponentModel.Description("頁數"),
-        System.ComponentModel.DisplayName("頁數")]
-        public int PagesCount { get; set; }
-        [System.ComponentModel.Description("總字符數"),
-        System.ComponentModel.DisplayName("總字符數")]
-        public int CharCount { get; set; }
-        [System.ComponentModel.Description("總中文數"),
-        System.ComponentModel.DisplayName("總中文數")]
-        public int ChineseCount { get; set; }
-        [System.ComponentModel.Description("圖像數"),
-        System.ComponentModel.DisplayName("圖像數")]
-        public int ImageCount { get; set; }
-        [System.ComponentModel.Description("超鏈接數"),
-        System.ComponentModel.DisplayName("超鏈接數")]
-        public int LinkCount { get; set; }
+        }
 
         public virtual ICollection<WordAttribute> Attributes { get; set; }
+        public virtual OfficeInfo Summary { get; set; }
+        public OffileFileType OffileFileType { get; set; }
 
-        public virtual ICollection<WordObjectElement> Elements { get; set; }
+
+        [System.ComponentModel.Description("文件ID"),
+         System.ComponentModel.DisplayName("文件ID")]
+        public Guid FileID { get; set; }
+        public virtual DomainModel.Aggregates.FileAgg.FileInfo File { get; set; }
     }
-    [System.ComponentModel.Description("PDF文檔"),
-       System.ComponentModel.DisplayName("PDF文檔")]
-    public class PDFInfo : AuditedEntity
-    {
 
-
-        [System.ComponentModel.Description("頁數"),
-    System.ComponentModel.DisplayName("頁數")]
-        public int PagesCount { get; set; }
-        [System.ComponentModel.Description("總字符數"),
-        System.ComponentModel.DisplayName("總字符數")]
-        public int CharCount { get; set; }
-        [System.ComponentModel.Description("總中文數"),
-        System.ComponentModel.DisplayName("總中文數")]
-        public int ChineseCount { get; set; }
-        [System.ComponentModel.Description("圖像數"),
-        System.ComponentModel.DisplayName("圖像數")]
-        public int ImageCount { get; set; }
-        [System.ComponentModel.Description("超鏈接數"),
-        System.ComponentModel.DisplayName("超鏈接數")]
-        public int LinkCount { get; set; }
-
-        public virtual ICollection<PDFAttribute> Attributes { get; set; }
-    }
 }

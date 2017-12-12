@@ -64,6 +64,11 @@ namespace Library.Storage
             GC.SuppressFinalize(this);
         }
 
+        public long Size()
+        {
+            return Provider.Size;
+        }
+
         #endregion IDisposable Support
     }
 }

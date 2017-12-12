@@ -25,6 +25,8 @@ namespace Library.Storage.FileEngineProvider.Physical64M
             }
         }
 
+        public long Size => throw new NotImplementedException();
+
         public void Delete(Guid iD)
         {
             throw new NotImplementedException();

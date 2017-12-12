@@ -27,8 +27,10 @@ namespace HomeApplication
             SerialNumber = new CreatedInfo { CreatedBy = "SerialNumber" };
             PhotoSimilar = new CreatedInfo { CreatedBy = "PhotoSimilar" };
             ScheduleJob = new CreatedInfo { CreatedBy = "ScheduleJob" };
+            OfficeFileAnalysis = new CreatedInfo { CreatedBy = "OfficeFileAnalysis" };
         }
         public static CreatedInfo BuildFingerprint { get; private set; }
+        public static CreatedInfo OfficeFileAnalysis { get; private set; }
         public static CreatedInfo ScanderPhysical { get; private set; }
         public static CreatedInfo ScheduleJob { get; private set; }
         public static CreatedInfo PhotoFileAnalysis { get; private set; }

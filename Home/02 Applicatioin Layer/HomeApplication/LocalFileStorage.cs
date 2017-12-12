@@ -74,6 +74,11 @@ namespace HomeApplication
 
             GC.SuppressFinalize(this);
         }
+
+        public long Size()
+        {
+            return fileinfo.Length;
+        }
         #endregion
     }
 }

@@ -25,6 +25,8 @@ namespace Library.Storage.FileEngineProvider.EF
             }
         }
 
+        public long Size => throw new NotImplementedException();
+
         public void Delete(Guid iD)
         {
             throw new NotImplementedException();

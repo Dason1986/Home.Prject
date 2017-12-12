@@ -16,7 +16,7 @@ namespace HomeApplication.Jobs
     public class OfficeFilesAnalysis : ScheduleJobProvider
     {
         readonly static object _sync = new object();
-        readonly static string[] Extensions = { ".doc", ".docx", ".dot", ".dotx", ".xlsx", ".xltx" , ".pptx"  , ".potx" };
+        readonly static string[] Extensions = { ".doc", ".docx", ".dot", ".dotx", ".xlsx", ".xltx" , ".pptx"  , ".potx" ,".pdf"};
         public override void Execute(IJobExecutionContext context)
         {
             lock (_sync)
@@ -29,9 +29,12 @@ namespace HomeApplication.Jobs
                 var filecount = filesRepository.GetFilesByExtensions(Extensions, 10);
                 foreach (var item in filecount)
                 {
-                    domainService.Handle(item);
-                    domainService.ModuleProvider.UnitOfWork.Commit();
-                    GC.Collect();
+                    
+                        domainService.Handle(item);
+                        domainService.ModuleProvider.UnitOfWork.Commit();
+                        GC.Collect();
+                   
+                  
                 }
             }
         }

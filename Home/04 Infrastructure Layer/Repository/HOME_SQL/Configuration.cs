@@ -62,7 +62,7 @@ namespace Home.Repository.HOME_SQL
                 }
             }
         }
-
+        /*
         protected override void Generate(DropColumnOperation dropColumnOperation)
         {
             using (var writer = Writer())
@@ -72,7 +72,7 @@ namespace Home.Repository.HOME_SQL
                 Statement(writer);
             }
             base.Generate(dropColumnOperation);
-        }
+        }*/
 
         protected override void Generate(CreateTableOperation createTableOperation)
         {

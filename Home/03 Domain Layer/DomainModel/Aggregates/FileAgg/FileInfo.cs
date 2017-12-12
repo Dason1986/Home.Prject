@@ -4,6 +4,7 @@ using Library.Domain;
 using System;
 using System.ComponentModel;
 using System.ComponentModel.DataAnnotations;
+using Home.DomainModel.Aggregates.OfficeAgg;
 
 namespace Home.DomainModel.Aggregates.FileAgg
 {
@@ -56,6 +57,7 @@ System.ComponentModel.DisplayName("文件顯示編號")]
         public Guid EngineID { get; set; }
         [DisplayName("文件存儲引擎"), Description("文件存儲引擎，文件保存的地方")]
         public virtual StorageEngine Engine { get; set; }
+        public virtual WordInfo OfficeFile { get; set; }
     }
 
 

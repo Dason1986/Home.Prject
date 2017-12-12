@@ -21,11 +21,11 @@ namespace Home.DomainModel.Aggregates.GalleryAgg
         [System.ComponentModel.Description("文件ID"),
        System.ComponentModel.DisplayName("文件ID")]
         public Guid FileID { get; set; }
+        public virtual DomainModel.Aggregates.FileAgg.FileInfo File { get; set; }
         [System.ComponentModel.Description("相冊ID"),
         System.ComponentModel.DisplayName("相冊ID")]
         public Guid AlbumID { get; set; }
         public virtual Album ParentAlbum { get; set; }
-        public virtual DomainModel.Aggregates.FileAgg.FileInfo File { get; set; }
 
         [StringLength(100)]
         [System.ComponentModel.Description("分類標籤"),

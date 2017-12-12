@@ -73,6 +73,9 @@
     <Reference Include="AutoMapper, Version=6.2.2.0, Culture=neutral, PublicKeyToken=be96cd2c38ef1005, processorArchitecture=MSIL">
       <HintPath>..\..\packages\AutoMapper.6.2.2\lib\net45\AutoMapper.dll</HintPath>
     </Reference>
+    <Reference Include="BouncyCastle.Crypto, Version=1.8.1.0, Culture=neutral, PublicKeyToken=0e99375e54769942, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\Portable.BouncyCastle.1.8.1.3\lib\net40\BouncyCastle.Crypto.dll</HintPath>
+    </Reference>
     <Reference Include="CacheManager.Core, Version=1.1.2.0, Culture=neutral, PublicKeyToken=5b450b4fb65c4cdb, processorArchitecture=MSIL">
       <HintPath>..\..\packages\CacheManager.Core.1.1.2\lib\net45\CacheManager.Core.dll</HintPath>
     </Reference>
@@ -106,6 +109,27 @@
     </Reference>
     <Reference Include="ImageProcessor.Plugins.WebP, Version=1.0.6.0, Culture=neutral, processorArchitecture=MSIL">
       <HintPath>..\..\packages\ImageProcessor.Plugins.WebP.1.0.6\lib\net45\ImageProcessor.Plugins.WebP.dll</HintPath>
+    </Reference>
+    <Reference Include="itext.barcodes, Version=7.1.0.0, Culture=neutral, PublicKeyToken=8354ae6d2174ddca, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\itext7.7.1.0\lib\net40\itext.barcodes.dll</HintPath>
+    </Reference>
+    <Reference Include="itext.forms, Version=7.1.0.0, Culture=neutral, PublicKeyToken=8354ae6d2174ddca, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\itext7.7.1.0\lib\net40\itext.forms.dll</HintPath>
+    </Reference>
+    <Reference Include="itext.io, Version=7.1.0.0, Culture=neutral, PublicKeyToken=8354ae6d2174ddca, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\itext7.7.1.0\lib\net40\itext.io.dll</HintPath>
+    </Reference>
+    <Reference Include="itext.kernel, Version=7.1.0.0, Culture=neutral, PublicKeyToken=8354ae6d2174ddca, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\itext7.7.1.0\lib\net40\itext.kernel.dll</HintPath>
+    </Reference>
+    <Reference Include="itext.layout, Version=7.1.0.0, Culture=neutral, PublicKeyToken=8354ae6d2174ddca, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\itext7.7.1.0\lib\net40\itext.layout.dll</HintPath>
+    </Reference>
+    <Reference Include="itext.pdfa, Version=7.1.0.0, Culture=neutral, PublicKeyToken=8354ae6d2174ddca, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\itext7.7.1.0\lib\net40\itext.pdfa.dll</HintPath>
+    </Reference>
+    <Reference Include="itext.sign, Version=7.1.0.0, Culture=neutral, PublicKeyToken=8354ae6d2174ddca, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\itext7.7.1.0\lib\net40\itext.sign.dll</HintPath>
     </Reference>
     <Reference Include="JiebaNet.Analyser, Version=0.38.3.0, Culture=neutral, processorArchitecture=MSIL">
       <HintPath>..\..\packages\jieba.NET.0.38.3\lib\net45\JiebaNet.Analyser.dll</HintPath>
@@ -195,6 +219,11 @@
     <Compile Include="CreatedInfo.cs" />
     <Compile Include="Cores\IUserManager.cs" />
     <Compile Include="ComponentModel\IO\PhotoStorageBuilder.cs" />
+    <Compile Include="CustomExceptionProvider\ArgumentExceptionFaultException.cs" />
+    <Compile Include="CustomExceptionProvider\CustomExceptionProviderHerlper.cs" />
+    <Compile Include="CustomExceptionProvider\DbValidataionFaultExceptionProvider.cs" />
+    <Compile Include="CustomExceptionProvider\EFUpdateFaultExceptionProvider.cs" />
+    <Compile Include="CustomExceptionProvider\LogicFaultExceptionProvider.cs" />
     <Compile Include="DomainServices\AddFileDomainService.cs" />
     <Compile Include="DomainServices\FileManagentDomainService.cs" />
     <Compile Include="DomainServices\OfficeFileDomainService.cs" />

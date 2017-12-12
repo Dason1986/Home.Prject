@@ -19,7 +19,11 @@ namespace Library.Storage
         /// </summary>
         /// <returns></returns>
         Stream Get();
-
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <returns></returns>
+        long Size();
         /// <summary>
         ///
         /// </summary>

@@ -8,6 +8,7 @@ namespace Repository.EF.Mapping.FileAgg
         public FileInfoEntityTypeConfiguration()
         {
             HasRequired(c => c.Photo).WithRequiredPrincipal();
+            HasRequired(c => c.OfficeFile).WithRequiredPrincipal();
 
             HasRequired(c => c.Extend).WithRequiredPrincipal();
             ToTable("FileInfo");

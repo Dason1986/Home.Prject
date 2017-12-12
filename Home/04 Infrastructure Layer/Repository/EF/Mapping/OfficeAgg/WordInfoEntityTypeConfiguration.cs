@@ -13,25 +13,16 @@ namespace Repository.EF.Mapping.OfficeAgg
 .WithRequired()
 .HasForeignKey(c => c.OwnerID)
 .WillCascadeOnDelete(false);
-            HasMany(c => c.Elements)
-.WithRequired()
-.HasForeignKey(c => c.OwnerID)
-.WillCascadeOnDelete(false);
+
+            this.HasRequired(t => t.File)
+       .WithMany()
+       .HasForeignKey(t => t.FileID)
+       .WillCascadeOnDelete(false);
+
             ToTable("WordInfo");
         }
     }
-    internal class WordObjectElementEntityTypeConfiguration : EntityTypeConfiguration<WordObjectElement>
-    {
-        public WordObjectElementEntityTypeConfiguration()
-        {
-
-            this.HasRequired(t => t.Owner)
-.WithMany()
-.HasForeignKey(t => t.OwnerID)
-.WillCascadeOnDelete(false);
-            ToTable("WordObjectElement");
-        }
-    }
+    
     internal class WordAttributeEntityTypeConfiguration : EntityTypeConfiguration<WordAttribute>
     {
         public WordAttributeEntityTypeConfiguration()
@@ -45,28 +36,5 @@ namespace Repository.EF.Mapping.OfficeAgg
         }
     }
 
-    internal class PDFInfoEntityTypeConfiguration : EntityTypeConfiguration<PDFInfo>
-    {
-        public PDFInfoEntityTypeConfiguration()
-        {
-
-            HasMany(c => c.Attributes)
-.WithRequired()
-.HasForeignKey(c => c.OwnerID)
-.WillCascadeOnDelete(false);
-            ToTable("PDFInfo");
-        }
-    }
-    internal class PDFAttributeEntityTypeConfiguration : EntityTypeConfiguration<PDFAttribute>
-    {
-        public PDFAttributeEntityTypeConfiguration()
-        {
-
-            this.HasRequired(t => t.Owner)
-.WithMany()
-.HasForeignKey(t => t.OwnerID)
-.WillCascadeOnDelete(false);
-            ToTable("PDFAttribute");
-        }
-    }
+   
 }

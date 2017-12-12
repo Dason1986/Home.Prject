@@ -95,7 +95,6 @@
     <Compile Include="Aggregates\OfficeAgg\OfficeInfo.cs" />
     <Compile Include="Aggregates\OfficeAgg\WordAttribute.cs" />
     <Compile Include="Aggregates\OfficeAgg\WordInfo.cs" />
-    <Compile Include="Aggregates\OfficeAgg\WordObjectElement.cs" />
     <Compile Include="Aggregates\ProductAgg\ProductAttachment.cs" />
     <Compile Include="Aggregates\ProductAgg\ProductItem.cs" />
     <Compile Include="Aggregates\AssetsAgg\PurchaseLineItem.cs" />

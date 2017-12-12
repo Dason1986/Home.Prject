@@ -36,6 +36,8 @@ namespace Library.Storage.Image
             }
         }
 
+        public long Size { get { throw new NotImplementedException(); } }
+
         private string rawFormat = ".jpeg";
         private string _path;
 

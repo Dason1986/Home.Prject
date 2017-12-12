@@ -23,7 +23,7 @@ namespace HomeApplication.DomainServices
         }
         public AddPhotoDomainService()
         {
-            _photoEnvironment = Library.Bootstrap.Currnet.GetService<IPhotoEnvironment>(); 
+            _photoEnvironment = Library.Bootstrap.Currnet.GetService<IPhotoEnvironment>();
         }
         private readonly IPhotoEnvironment _photoEnvironment;
         private Library.Storage.IFileStorage storage;
@@ -64,21 +64,26 @@ namespace HomeApplication.DomainServices
                 }
                 using (var storage = CurrnetFile.GetStorage())
                 {
-                    // Logger.TraceByContent("AddPhotoDomainService", CurrnetFile.FullPath);
+                    
 
                     if (!storage.Exists)
-                    {
-                     //   Logger.WarnByContent(Resources.DomainServiceResource.FileNotExist, CurrnetFile.FullPath);
+                    {                    
                         throw new PhotoDomainServiceException(Resources.DomainServiceResource.FileNotExist, new FileNotFoundException(CurrnetFile.FullPath));
                     }
-
-                //    Logger.TraceByContent("Analysis", CurrnetFile.FullPath);
+                    
 
                     fs = storage.Get();
-                    if (string.IsNullOrEmpty(CurrnetFile.MD5))
+
+                    CurrnetFile.MD5 = Library.HelperUtility.FileUtility.FileMD5(fs);
+                    CurrnetFile.FileSize = fs.Length;
+
+                    if (this.FilesRepository.FileExists(CurrnetFile.MD5, CurrnetFile.FileSize))
                     {
-                        CurrnetFile.MD5 = Library.HelperUtility.FileUtility.FileMD5(fs);
-                        CurrnetFile.FileSize = fs.Length;
+                        storage.Delete();
+                        CurrnetFile.FileStatue = Home.DomainModel.FileStatue.Duplicate;
+                        CurrnetFile.StatusCode = Library.ComponentModel.Model.StatusCode.Delete;
+                        this.GalleryModuleProvider.UnitOfWork.Commit();
+                        return;
                     }
                     if (CurrnetPhoto.Attributes != null && CurrnetPhoto.Attributes.Count > 0) return;
                     image = new Bitmap(fs);
@@ -105,7 +110,7 @@ namespace HomeApplication.DomainServices
 
         private void BuildImage(Image image)
         {
-           // Logger.TraceByContent("Create Image", CurrnetFile.FullPath);
+            // Logger.TraceByContent("Create Image", CurrnetFile.FullPath);
             var builder = new PhotoStorageBuilder()
             {
                 SourceImage = image,

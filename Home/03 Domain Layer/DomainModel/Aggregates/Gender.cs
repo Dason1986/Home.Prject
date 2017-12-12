@@ -22,6 +22,12 @@
         Graphy,
         Scand
     }
+    public enum OffileFileType
+    {
+        Doc,
+        Pdf,
+        Execl,
+    }
     public enum MemberAddress
     {
         None,

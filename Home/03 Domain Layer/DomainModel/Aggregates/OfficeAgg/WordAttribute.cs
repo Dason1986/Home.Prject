@@ -15,17 +15,5 @@ namespace Home.DomainModel.Aggregates.OfficeAgg
 
         public virtual WordInfo Owner { get; set; }
     }
-    public class PDFAttribute : Attribute
-    {
-        public PDFAttribute()
-        {
-
-        }
-        public PDFAttribute(ICreatedInfo createinfo) : base(createinfo)
-        {
-
-        }
-
-        public virtual PDFInfo Owner { get; set; }
-    }
+   
 }

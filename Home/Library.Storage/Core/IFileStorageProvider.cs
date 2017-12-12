@@ -8,6 +8,7 @@ namespace Library.Storage
     {
         bool CanDelete { get; }
         bool CanUpdate { get; }
+        long Size { get; }
 
         void Delete(Guid id);
 
