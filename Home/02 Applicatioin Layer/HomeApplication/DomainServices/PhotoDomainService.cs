@@ -12,11 +12,7 @@ namespace HomeApplication.DomainServices
 {
     public abstract class PhotoDomainService : DomainService, IPhotoDomainService
     {
-        //public PhotoDomainService(IGalleryModuleProvider moduleProvider)
-        //{
-        //    _moduleProvider = moduleProvider;
-        //    CreateRepository(_moduleProvider);
-        //}
+
         public IGalleryModuleProvider GalleryModuleProvider
         {
             get { return _moduleProvider; }
@@ -26,6 +22,11 @@ namespace HomeApplication.DomainServices
                 if (value != null)
                 {
                     CreateRepository(value);
+                }
+                else
+                {
+                    PhotoRepository = null;
+                    FilesRepository = null;
                 }
             }
         }
@@ -65,13 +66,11 @@ namespace HomeApplication.DomainServices
                 if (args.PhotoID == Guid.Empty && args.FileID == Guid.Empty) throw new PhotoDomainServiceException(Resources.DomainServiceResource.PhotoItemArgsNull, new ArgumentException("args"));
                 CurrnetFile = FilesRepository.Get(args.FileID);
                 if (CurrnetFile == null) throw new PhotoDomainServiceException(Resources.DomainServiceResource.FileInfoNotExist);
-                //  CurrnetPhoto = CurrnetFile.Photo;
                 args.Tag = CurrnetFile;
             }
             else
             {
                 CurrnetFile = args.Tag as FileInfo;
-                //     CurrnetPhoto = CurrnetFile.Photo;
             }
 
             if (args.PhotoID != Guid.Empty && CurrnetPhoto == null)
@@ -94,7 +93,12 @@ namespace HomeApplication.DomainServices
         {
             if (this.GalleryModuleProvider == null) return;
 
-            //this.GalleryModuleProvider.Dispose();
+        
+        }
+
+        public virtual void Handle(FileInfo file)
+        {
+            throw new NotImplementedException();
         }
     }
 }

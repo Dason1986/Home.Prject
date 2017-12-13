@@ -105,6 +105,7 @@
     <Compile Include="Aggregates\ContactAgg\ContactRelation.cs" />
     <Compile Include="DomainServices\IAddFileDomainService.cs" />
     <Compile Include="DomainServices\IBuildFingerprintDomainService.cs" />
+    <Compile Include="DomainServices\IFileDomainService.cs" />
     <Compile Include="DomainServices\IOfficeFileDomainService.cs" />
     <Compile Include="DomainServices\IPhotoAddDomainService.cs" />
     <Compile Include="DomainServices\IPhotoDomainService.cs" />

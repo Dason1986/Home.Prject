@@ -13,26 +13,24 @@ namespace HomeApplication.Jobs
 {
     [PersistJobDataAfterExecution]
     [DisallowConcurrentExecution]
-    public class OfficeFilesAnalysis : ScheduleJobProvider
+    public class FilesAnalysis : ScheduleJobProvider
     {
         readonly static object _sync = new object();
         // 
-        readonly static string[] Extensions = { ".doc", ".docx", ".dot", ".dotx", ".xlsx", ".xltx", ".xls", ".pptx", ".potx", ".pdf" };
+      
         public override void Execute(IJobExecutionContext context)
         {
             lock (_sync)
             {
                 IFileManagentModuleProvider FileModuleProvider = Library.Bootstrap.Currnet.GetService<IFileManagentModuleProvider>();
-                IOfficeFileDomainService domainService = Library.Bootstrap.Currnet.GetService<IOfficeFileDomainService>();
-                domainService.FileModuleProvider = FileModuleProvider;
+              
                 IFileInfoRepository filesRepository = FileModuleProvider.CreateFileInfo();
 
-                var filecount = filesRepository.GetFilesByExtensions(Extensions);
+                var filecount = filesRepository.GetFilesByExtensions(null, 10);
                 foreach (var item in filecount)
                 {
                     
-                        domainService.Handle(item);
-                        domainService.ModuleProvider.UnitOfWork.Commit();
+                   
                         GC.Collect();
                    
                   

@@ -25,7 +25,7 @@ namespace Home.Repository.Repositories
         {
             StringBuilder builder = new StringBuilder(@" select   * from  equipmentview");
 
-            var list = UnitOfWork.ExecuteQuery<EequipmentItem>(builder.ToString());
+            var list =ExecuteQuery<EequipmentItem>(builder.ToString());
             return list.ToArray();
         }
        
@@ -34,14 +34,14 @@ namespace Home.Repository.Repositories
             
           
            var sql= string.Format("select AttValue 'Name',count(0) 'count' from photoattribute where AttKey='{0}' GROUP BY AttValue", key);
-           var list= this.UnitOfWork.ExecuteQuery<StatisticsItem>(sql);
+           var list= this.ExecuteQuery<StatisticsItem>(sql);
             
             return list.ToDictionary(n => n.Name, n => n.Count);
         }
 
         public TimeLineItem[] GetTimeLineByformat(TimeFormat format, string filtertime = null)
         {
-            var list = UnitOfWork.ExecuteQuery<TimeLineItem>("select * from TimeLineBy" + format).ToArray();
+            var list = ExecuteQuery<TimeLineItem>("select * from TimeLineBy" + format).ToArray();
             return string.IsNullOrEmpty(filtertime) ? list : list.Where(n => n.TimeLine.Contains(filtertime)).ToArray();
         }
     }

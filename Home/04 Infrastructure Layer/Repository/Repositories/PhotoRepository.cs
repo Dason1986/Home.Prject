@@ -22,14 +22,14 @@ namespace Home.Repository.Repositories
 
         public void DeletePhotoAllInfoByID(Guid id)
         {
-            var cmd = this.UnitOfWork;
-            cmd.ExecuteCommand(string.Format("delete from photoattribute  where Photoid='{0}'", id));
+          
+            ExecuteCommand(string.Format("delete from photoattribute  where Photoid='{0}'", id));
 
-            cmd.ExecuteCommand(string.Format("delete from photofingerprint  where Photoid='{0}'", id));
-            cmd.ExecuteCommand(string.Format("delete from photosimilar  where RightPhotoID='{0}'", id));
-            cmd.ExecuteCommand(string.Format("delete from photosimilar  where LeftPhotoID='{0}'", id));
+            ExecuteCommand(string.Format("delete from photofingerprint  where Photoid='{0}'", id));
+            ExecuteCommand(string.Format("delete from photosimilar  where RightPhotoID='{0}'", id));
+            ExecuteCommand(string.Format("delete from photosimilar  where LeftPhotoID='{0}'", id));
 
-            cmd.ExecuteCommand(string.Format("delete from photo  where id='{0}'", id));
+            ExecuteCommand(string.Format("delete from photo  where id='{0}'", id));
         }
 
         public int GetAllPhotoTotal()

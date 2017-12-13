@@ -8,9 +8,9 @@ using System.Threading.Tasks;
 
 namespace Home.DomainModel.DomainServices
 {
-    public interface IOfficeFileDomainService : IDomainService
+    public interface IOfficeFileDomainService : IFileDomainService
     {
-        void Handle(DomainModel.Aggregates.FileAgg.FileInfo file );
+     
 
         IFileManagentModuleProvider FileModuleProvider { get; set; }
     }

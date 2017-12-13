@@ -14,7 +14,7 @@ namespace HomeApplication.DomainServices
 {
     public class AddPhotoDomainService : PhotoDomainService, IAddPhotoDomainService
     {
-        public void Handle(Home.DomainModel.Aggregates.FileAgg.FileInfo file)
+        public override void Handle(FileInfo file)
         {
             CurrnetFile = file;
             if (file != null)

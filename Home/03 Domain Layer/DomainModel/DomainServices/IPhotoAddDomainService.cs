@@ -13,6 +13,6 @@ namespace Home.DomainModel.DomainServices
     {
    
 
-        void Handle( DomainModel.Aggregates.FileAgg.FileInfo file);
+      
     }
 }
