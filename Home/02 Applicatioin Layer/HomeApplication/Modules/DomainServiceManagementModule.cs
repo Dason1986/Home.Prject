@@ -24,7 +24,7 @@ namespace HomeApplication
                     if (type.Value.Length == 1)
                     {
                         var domaintype = type.Value[0];
-                        builder.RegisterType(domaintype).As(domaintype).As(type.Key).SingleInstance();
+                        builder.RegisterType(domaintype).As(domaintype).As(type.Key);
                         if (domaintype.BaseType.IsGenericType)
                         {
 

@@ -1,0 +1,3920 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>Library.Core</name>
+    </assembly>
+    <members>
+        <member name="T:Library.AgeFormat">
+             <summary>
+            
+             </summary>
+        </member>
+        <member name="F:Library.AgeFormat.FormatProvider">
+             <summary>
+            
+             </summary>
+        </member>
+        <member name="M:Library.AgeFormat.Format(System.String,System.Object,System.IFormatProvider)">
+            <summary>
+            
+            </summary>
+            <param name="format"></param>
+            <param name="arg"></param>
+            <param name="formatProvider"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Library.AgeFormat.GetFormat(System.Type)">
+            <summary>
+            
+            </summary>
+            <param name="formatType"></param>
+            <returns></returns>
+        </member>
+        <member name="T:Library.Age">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:Library.Age.Year">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:Library.Age.Month">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="M:Library.Age.FromBirthday(System.DateTime)">
+            <summary>
+            
+            </summary>
+            <param name="birthday"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Library.Age.ToString">
+            <summary>
+            
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:Library.Age.ToString(System.String,System.IFormatProvider)">
+            <summary>
+            
+            </summary>
+            <param name="format"></param>
+            <param name="formatProvider"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Library.Age.CompareTo(Library.Age)">
+            <summary>
+            
+            </summary>
+            <param name="other"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Library.Age.CompareTo(System.Object)">
+            <summary>
+            
+            </summary>
+            <param name="obj"></param>
+            <returns></returns>
+        </member>
+        <member name="T:Library.ComponentModel.AttributeHelper">
+             <summary>
+            
+             </summary>
+        </member>
+        <member name="M:Library.ComponentModel.AttributeHelper.GetAttributes``1(System.Object)">
+             <summary>
+            
+             </summary>
+             <param name="obj"></param>
+             <typeparam name="T"></typeparam>
+             <returns></returns>
+        </member>
+        <member name="M:Library.ComponentModel.AttributeHelper.GetAttribute``1(System.Object)">
+             <summary>
+            
+             </summary>
+             <param name="obj"></param>
+             <typeparam name="T"></typeparam>
+             <returns></returns>
+        </member>
+        <member name="M:Library.ComponentModel.AttributeHelper.GetAttributes``1(System.Reflection.MemberInfo)">
+            <summary>
+            取成员属性
+            </summary>
+            <param name="member"></param>
+            <typeparam name="T"></typeparam>
+            <returns></returns>
+        </member>
+        <member name="M:Library.ComponentModel.AttributeHelper.GetAttribute``1(System.Reflection.Assembly)">
+            <summary>
+            取成员属性
+            </summary>
+            <param name="member"></param>
+            <typeparam name="T"></typeparam>
+            <returns></returns>
+        </member>
+        <member name="M:Library.ComponentModel.AttributeHelper.GetAttributes``1(System.Reflection.Assembly)">
+            <summary>
+            取成员属性
+            </summary>
+            <param name="ass"></param>
+            <typeparam name="T"></typeparam>
+            <returns></returns>
+        </member>
+        <member name="M:Library.ComponentModel.AttributeHelper.GetAttributes``1(System.Type)">
+            <summary>
+            取成员属性
+            </summary>
+            <param name="member"></param>
+            <typeparam name="T"></typeparam>
+            <returns></returns>
+        </member>
+        <member name="M:Library.ComponentModel.AttributeHelper.GetAttribute``1(System.Type)">
+            <summary>
+            取成员属性
+            </summary>
+            <param name="member"></param>
+            <typeparam name="T"></typeparam>
+            <returns></returns>
+        </member>
+        <member name="M:Library.ComponentModel.AttributeHelper.GetAttribute``1(System.Reflection.MemberInfo)">
+            <summary>
+            取成员属性
+            </summary>
+            <param name="member"></param>
+            <typeparam name="T"></typeparam>
+            <returns></returns>
+        </member>
+        <member name="T:Library.ComponentModel.IChangeValue">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:Library.ComponentModel.IChangeValue.PropertyName">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:Library.ComponentModel.IChangeValue.OldValue">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:Library.ComponentModel.IChangeValue.NewValue">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="T:Library.ComponentModel.ChangeValue">
+            <summary>
+            变更值
+            </summary>
+        </member>
+        <member name="M:Library.ComponentModel.ChangeValue.#ctor(System.String,System.Object,System.Object)">
+            <summary>
+            初始化变更值
+            </summary>
+            <param name="propertyName">属性名</param> 
+            <param name="oldValue">旧值</param>
+            <param name="newValue">新值</param>
+        </member>
+        <member name="P:Library.ComponentModel.ChangeValue.PropertyName">
+            <summary>
+            属性名
+            </summary>
+        </member>
+        <member name="P:Library.ComponentModel.ChangeValue.OldValue">
+            <summary>
+            旧值
+            </summary>
+        </member>
+        <member name="P:Library.ComponentModel.ChangeValue.NewValue">
+            <summary>
+            新值
+            </summary>
+        </member>
+        <member name="M:Library.ComponentModel.ChangeValue.ToString">
+            <summary>
+            输出变更信息
+            </summary>
+        </member>
+        <member name="T:Library.ComponentModel.ChangeValue`1">
+            <summary>
+            变更值
+            </summary>
+        </member>
+        <member name="M:Library.ComponentModel.ChangeValue`1.#ctor(System.String,`0,`0)">
+            <summary>
+            初始化变更值
+            </summary>
+            <param name="propertyName">属性名</param> 
+            <param name="oldValue">旧值</param>
+            <param name="newValue">新值</param>
+        </member>
+        <member name="P:Library.ComponentModel.ChangeValue`1.PropertyName">
+            <summary>
+            属性名
+            </summary>
+        </member>
+        <member name="P:Library.ComponentModel.ChangeValue`1.OldValue">
+            <summary>
+            旧值
+            </summary>
+        </member>
+        <member name="P:Library.ComponentModel.ChangeValue`1.NewValue">
+            <summary>
+            新值
+            </summary>
+        </member>
+        <member name="M:Library.ComponentModel.ChangeValue`1.ToString">
+            <summary>
+            输出变更信息
+            </summary>
+        </member>
+        <member name="T:Library.ComponentModel.IValueCalculatorProvider">
+            <summary>
+            计算产品价格
+            </summary>
+        </member>
+        <member name="M:Library.ComponentModel.IValueCalculatorProvider.Calculator">
+            <summary>
+            
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="T:Library.ComponentModel.Model.IPagingList">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:Library.ComponentModel.Model.IPagingList.PageSize">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:Library.ComponentModel.Model.IPagingList.PageIndex">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:Library.ComponentModel.Model.IPagingList.Total">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:Library.ComponentModel.Model.IPagingList.Items">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="T:Library.ComponentModel.Model.IPagingList`1">
+            <summary>
+            
+            </summary>
+            <typeparam name="T"></typeparam>
+        </member>
+        <member name="P:Library.ComponentModel.Model.IPagingList`1.Items">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="T:Library.ComponentModel.Model.PagingList`1">
+            <summary>
+            
+            </summary>
+            <typeparam name="T"></typeparam>
+        </member>
+        <member name="M:Library.ComponentModel.Model.PagingList`1.#ctor(System.Collections.Generic.IEnumerable{`0},Library.ComponentModel.Model.PageSizeDescriptor,System.Int32)">
+            <summary>
+            
+            </summary>
+            <param name="source"></param>
+            <param name="paging"></param>
+            <param name="total"></param>
+        </member>
+        <member name="P:Library.ComponentModel.Model.PagingList`1.PageSize">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:Library.ComponentModel.Model.PagingList`1.PageIndex">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:Library.ComponentModel.Model.PagingList`1.Total">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:Library.ComponentModel.Model.PagingList`1.Items">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="T:Library.ComponentModel.Model.QueryDescriptor">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:Library.ComponentModel.Model.QueryDescriptor.PageNo">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:Library.ComponentModel.Model.QueryDescriptor.PageSize">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:Library.ComponentModel.Model.QueryDescriptor.Filters">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:Library.ComponentModel.Model.QueryDescriptor.Sorting">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="T:Library.ComponentModel.Model.FilterDescriptor">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:Library.ComponentModel.Model.FilterDescriptor.Key">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:Library.ComponentModel.Model.FilterDescriptor.Value">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="T:Library.ComponentModel.Model.PageSizeDescriptor">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:Library.ComponentModel.Model.PageSizeDescriptor.Index">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:Library.ComponentModel.Model.PageSizeDescriptor.Size">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="T:Library.ComponentModel.Model.SortDescriptor">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:Library.ComponentModel.Model.SortDescriptor.Direction">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:Library.ComponentModel.Model.SortDescriptor.Field">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="T:Library.ComponentModel.Model.SortDescriptor.SortingDirection">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="F:Library.ComponentModel.Model.SortDescriptor.SortingDirection.Ascending">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="F:Library.ComponentModel.Model.SortDescriptor.SortingDirection.Descending">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="T:Library.ComponentModel.Model.IEntity">
+             <summary>
+            
+             </summary>
+        </member>
+        <member name="P:Library.ComponentModel.Model.IEntity.StatusCode">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="T:Library.ComponentModel.Model.IAggregateRoot`1">
+            <summary>
+            
+            </summary>
+            <typeparam name="TKey"></typeparam>
+        </member>
+        <member name="P:Library.ComponentModel.Model.IAggregateRoot`1.ID">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="T:Library.ComponentModel.Model.IEntityDeleted">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="M:Library.ComponentModel.Model.IEntityDeleted.Delete(Library.ComponentModel.Model.ICreatedInfo)">
+            <summary>
+            
+            </summary>
+            <param name="manaegment"></param>
+        </member>
+        <member name="T:Library.ComponentModel.Model.ICreatedInfo">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:Library.ComponentModel.Model.ICreatedInfo.Created">
+            <summary>
+            創建日期
+            </summary>
+        </member>
+        <member name="P:Library.ComponentModel.Model.ICreatedInfo.CreatedBy">
+            <summary>
+            創建者
+            </summary>
+        </member>
+        <member name="T:Library.ComponentModel.Model.IModifiedInfo">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:Library.ComponentModel.Model.IModifiedInfo.Modified">
+            <summary>
+            修改日期
+            </summary>
+        </member>
+        <member name="P:Library.ComponentModel.Model.IModifiedInfo.ModifiedBy">
+            <summary>
+            修改者
+            </summary>
+        </member>
+        <member name="T:Library.ComponentModel.Model.IAuditedEntity">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="T:Library.ComponentModel.Model.StatusCode">
+             <summary>
+            
+             </summary>
+        </member>
+        <member name="F:Library.ComponentModel.Model.StatusCode.Delete">
+            <summary>
+            邏輯刪除，不能返回去前端
+            </summary>
+        </member>
+        <member name="F:Library.ComponentModel.Model.StatusCode.Disabled">
+            <summary>
+            無效
+            </summary>
+        </member>
+        <member name="F:Library.ComponentModel.Model.StatusCode.Enabled">
+            <summary>
+            有效
+            </summary>
+        </member>
+        <member name="F:Library.ComponentModel.Model.StatusCode.ReadOnly">
+            <summary>
+            只讀
+            </summary>
+        </member>
+        <member name="T:Library.ComponentModel.Model.EditableModel">
+             <summary>
+            
+             </summary>
+        </member>
+        <member name="M:Library.ComponentModel.Model.EditableModel.CanEdit">
+             <summary>
+            
+             </summary>
+        </member>
+        <member name="M:Library.ComponentModel.Model.EditableModel.BeginEdit">
+             <summary>
+            
+             </summary>
+        </member>
+        <member name="M:Library.ComponentModel.Model.EditableModel.CancelEdit">
+             <summary>
+            
+             </summary>
+        </member>
+        <member name="M:Library.ComponentModel.Model.EditableModel.EndEdit">
+             <summary>
+            
+             </summary>
+        </member>
+        <member name="M:Library.ComponentModel.Model.EditableModel.OnSaveBaseValue(System.String,System.String)">
+             <summary>
+            
+             </summary>
+             <param name="propertyName"></param>
+             <param name="oldValue"></param>
+        </member>
+        <member name="T:Library.ComponentModel.Model.EditableObjectException">
+             <summary>
+            
+             </summary>
+        </member>
+        <member name="M:Library.ComponentModel.Model.EditableObjectException.#ctor">
+             <summary>
+            
+             </summary>
+        </member>
+        <member name="M:Library.ComponentModel.Model.EditableObjectException.#ctor(System.String,System.Double)">
+             <summary>
+            
+             </summary>
+             <param name="message"></param>
+             <param name="resultCode"></param>
+        </member>
+        <member name="M:Library.ComponentModel.Model.EditableObjectException.#ctor(System.String,System.Double,System.Exception)">
+             <summary>
+            
+             </summary>
+             <param name="message"></param>
+             <param name="resultCode"></param>
+             <param name="inner"></param>
+        </member>
+        <member name="M:Library.ComponentModel.Model.EditableObjectException.#ctor(System.String)">
+             <summary>
+            
+             </summary>
+             <param name="message"></param>
+        </member>
+        <member name="M:Library.ComponentModel.Model.EditableObjectException.#ctor(System.String,System.Exception)">
+             <summary>
+            
+             </summary>
+             <param name="message"></param>
+             <param name="inner"></param>
+        </member>
+        <member name="M:Library.ComponentModel.Model.EditableObjectException.#ctor(System.Runtime.Serialization.SerializationInfo,System.Runtime.Serialization.StreamingContext)">
+             <summary>
+            
+             </summary>
+             <param name="info"></param>
+             <param name="context"></param>
+        </member>
+        <member name="T:Library.ComponentModel.Model.PropertyChangeModel">
+             <summary>
+            
+             </summary>
+        </member>
+        <member name="E:Library.ComponentModel.Model.PropertyChangeModel.PropertyChanged">
+             <summary>
+            
+             </summary>
+        </member>
+        <member name="M:Library.ComponentModel.Model.PropertyChangeModel.NotifyOfPropertyChange``1(System.Linq.Expressions.Expression{System.Func{``0}})">
+            <summary>
+              Notifies subscribers of the property change.
+            </summary>
+            <typeparam name = "TProperty">The type of the property.</typeparam>
+            <param name = "property">The property expression.</param>
+        </member>
+        <member name="M:Library.ComponentModel.Model.PropertyChangeModel.OnPropertyChanged(System.String)">
+             <summary>
+            
+             </summary>
+             <param name="propertyName"></param>
+        </member>
+        <member name="T:Library.ComponentModel.Model.RevertibleChangeModel">
+             <summary>
+            
+             </summary>
+        </member>
+        <member name="M:Library.ComponentModel.Model.RevertibleChangeModel.OnSaveBaseValue(System.String,System.Object)">
+             <summary>
+            
+             </summary>
+             <param name="propetyname"></param>
+             <param name="value"></param>
+        </member>
+        <member name="M:Library.ComponentModel.Model.RevertibleChangeModel.RejectChanges">
+             <summary>
+            
+             </summary>
+        </member>
+        <member name="M:Library.ComponentModel.Model.RevertibleChangeModel.AcceptChanges">
+             <summary>
+            
+             </summary>
+        </member>
+        <member name="P:Library.ComponentModel.Model.RevertibleChangeModel.IsChanged">
+             <summary>
+            
+             </summary>
+        </member>
+        <member name="T:Library.ComponentModel.Logic.ILogicService">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:Library.ComponentModel.Logic.ILogicService.Option">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="M:Library.ComponentModel.Logic.ILogicService.Start">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="T:Library.ComponentModel.Logic.IOption">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="T:Library.ComponentModel.Logic.IMultiThreadingOption">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:Library.ComponentModel.Logic.IMultiThreadingOption.ThreadCount">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:Library.ComponentModel.Logic.IMultiThreadingOption.BatchSize">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="T:Library.ComponentModel.Logic.IOptionCommandBuilder">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="M:Library.ComponentModel.Logic.IOptionCommandBuilder.RumCommandLine">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="M:Library.ComponentModel.Logic.IOptionCommandBuilder.GetOption">
+            <summary>
+            
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="T:Library.ComponentModel.Logic.IOptionCommandBuilder`1">
+            <summary>
+            
+            </summary>
+            <typeparam name="TOption"></typeparam>
+        </member>
+        <member name="M:Library.ComponentModel.Logic.IOptionCommandBuilder`1.GetOption">
+            <summary>
+            
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="T:Library.ComponentModel.Logic.EmptyOption">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:Library.ComponentModel.Logic.EmptyOption.Epmty">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="T:Library.ComponentModel.Logic.EmptyOptionCommandBuilder">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="M:Library.ComponentModel.Logic.EmptyOptionCommandBuilder.GetOption">
+            <summary>
+            
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:Library.ComponentModel.Logic.EmptyOptionCommandBuilder.RumCommandLine">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="T:Library.ComponentModel.Logic.LogicServiceProgress">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="M:Library.ComponentModel.Logic.LogicServiceProgress.#ctor(System.Int64,System.Int64,System.Int64,System.Int64)">
+            <summary>
+            
+            </summary>
+            <param name="totalRecord"></param>
+            <param name="completedRecord"></param>
+            <param name="beginIndex"></param>
+            <param name="endIndex"></param>
+        </member>
+        <member name="P:Library.ComponentModel.Logic.LogicServiceProgress.TotalRecord">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:Library.ComponentModel.Logic.LogicServiceProgress.CompletedRecord">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:Library.ComponentModel.Logic.LogicServiceProgress.BeginIndex">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:Library.ComponentModel.Logic.LogicServiceProgress.EndIndex">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="T:Library.ComponentModel.Logic.LogicServiceFailure">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="M:Library.ComponentModel.Logic.LogicServiceFailure.#ctor(System.Exception,System.Int64,System.Int64)">
+            <summary>
+            
+            </summary>
+            <param name="error"></param>
+            <param name="beginIndex"></param>
+            <param name="endIndex"></param>
+        </member>
+        <member name="P:Library.ComponentModel.Logic.LogicServiceFailure.Error">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:Library.ComponentModel.Logic.LogicServiceFailure.BeginIndex">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:Library.ComponentModel.Logic.LogicServiceFailure.EndIndex">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="T:Library.ComponentModel.Logic.ExceptionEventArgs">
+             <summary>
+            
+             </summary>
+        </member>
+        <member name="P:Library.ComponentModel.Logic.ExceptionEventArgs.Error">
+             <summary>
+            
+             </summary>
+        </member>
+        <member name="M:Library.ComponentModel.Logic.ExceptionEventArgs.#ctor(System.Exception)">
+             <summary>
+            
+             </summary>
+             <param name="error"></param>
+        </member>
+        <member name="T:Library.ComponentModel.Logic.CompletedEventArgs">
+             <summary>
+            
+             </summary>
+        </member>
+        <member name="P:Library.ComponentModel.Logic.CompletedEventArgs.UseTime">
+             <summary>
+            
+             </summary>
+        </member>
+        <member name="M:Library.ComponentModel.Logic.CompletedEventArgs.#ctor(System.TimeSpan)">
+             <summary>
+            
+             </summary>
+             <param name="useTime"></param>
+        </member>
+        <member name="T:Library.ComponentModel.Logic.ProgressChangedEventArgs">
+             <summary>
+            
+             </summary>
+        </member>
+        <member name="M:Library.ComponentModel.Logic.ProgressChangedEventArgs.#ctor(System.Int32)">
+             <summary>
+            
+             </summary>
+             <param name="progressPercentage"></param>
+        </member>
+        <member name="P:Library.ComponentModel.Logic.ProgressChangedEventArgs.ProgressPercentage">
+             <summary>
+            
+             </summary>
+        </member>
+        <member name="T:Library.ComponentModel.Logic.MessageEventArgs">
+             <summary>
+            
+             </summary>
+        </member>
+        <member name="P:Library.ComponentModel.Logic.MessageEventArgs.Message">
+             <summary>
+            
+             </summary>
+        </member>
+        <member name="P:Library.ComponentModel.Logic.MessageEventArgs.Time">
+             <summary>
+            
+             </summary>
+        </member>
+        <member name="M:Library.ComponentModel.Logic.MessageEventArgs.#ctor(System.String)">
+             <summary>
+            
+             </summary>
+             <param name="message"></param>
+        </member>
+        <member name="T:Library.ComponentModel.Logic.ProgressChangedEventHandler">
+             <summary>
+            
+             </summary>
+             <param name="sender"></param>
+             <param name="e"></param>
+        </member>
+        <member name="T:Library.ComponentModel.Logic.CompletedEventHandler">
+             <summary>
+            
+             </summary>
+             <param name="sender"></param>
+             <param name="e"></param>
+        </member>
+        <member name="T:Library.ComponentModel.Logic.ExceptionEventHandler">
+             <summary>
+            
+             </summary>
+             <param name="sender"></param>
+             <param name="e"></param>
+        </member>
+        <member name="T:Library.ComponentModel.Logic.MessageEventHandler">
+             <summary>
+            
+             </summary>
+             <param name="sender"></param>
+             <param name="e"></param>
+        </member>
+        <member name="T:Library.ComponentModel.Logic.ILogic">
+             <summary>
+            
+             </summary>
+        </member>
+        <member name="E:Library.ComponentModel.Logic.ILogic.Messge">
+             <summary>
+            
+             </summary>
+        </member>
+        <member name="E:Library.ComponentModel.Logic.ILogic.Failure">
+             <summary>
+            
+             </summary>
+        </member>
+        <member name="E:Library.ComponentModel.Logic.ILogic.Completed">
+             <summary>
+            
+             </summary>
+        </member>
+        <member name="E:Library.ComponentModel.Logic.ILogic.ProgressChanged">
+             <summary>
+            
+             </summary>
+        </member>
+        <member name="M:Library.ComponentModel.Logic.ILogic.Start">
+             <summary>
+            
+             </summary>
+        </member>
+        <member name="P:Library.ComponentModel.Logic.ILogic.IsRunning">
+             <summary>
+            
+             </summary>
+        </member>
+        <member name="T:Library.ComponentModel.ComponentPatterns.ActivationEventArgs">
+            <summary>
+            EventArgs sent during activation.
+            </summary>
+        </member>
+        <member name="M:Library.ComponentModel.ComponentPatterns.ActivationEventArgs.#ctor(System.Boolean)">
+             <summary>
+            
+             </summary>
+             <param name="wasInitialized"></param>
+        </member>
+        <member name="P:Library.ComponentModel.ComponentPatterns.ActivationEventArgs.WasInitialized">
+            <summary>
+            Indicates whether the sender was initialized in addition to being activated.
+            </summary>
+        </member>
+        <member name="T:Library.ComponentModel.ComponentPatterns.ActivationProcessedEventArgs">
+            <summary>
+            Contains details about the success or failure of an item's activation through an
+            </summary>
+        </member>
+        <member name="M:Library.ComponentModel.ComponentPatterns.ActivationProcessedEventArgs.#ctor(System.Object,System.Boolean)">
+             <summary>
+            
+             </summary>
+             <param name="item"></param>
+             <param name="success"></param>
+        </member>
+        <member name="P:Library.ComponentModel.ComponentPatterns.ActivationProcessedEventArgs.Item">
+            <summary>
+            The item whose activation was processed.
+            </summary>
+        </member>
+        <member name="P:Library.ComponentModel.ComponentPatterns.ActivationProcessedEventArgs.Success">
+            <summary>
+            Gets or sets a value indicating whether the activation was a success.
+            </summary>
+            <value><c>true</c> if success; otherwise, <c>false</c>.</value>
+        </member>
+        <member name="T:Library.ComponentModel.ComponentPatterns.DeactivationEventArgs">
+            <summary>
+            EventArgs sent during deactivation.
+            </summary>
+        </member>
+        <member name="M:Library.ComponentModel.ComponentPatterns.DeactivationEventArgs.#ctor(System.Boolean)">
+             <summary>
+            
+             </summary>
+             <param name="wasClosed"></param>
+        </member>
+        <member name="P:Library.ComponentModel.ComponentPatterns.DeactivationEventArgs.WasClosed">
+            <summary>
+            Indicates whether the sender was closed in addition to being deactivated.
+            </summary>
+        </member>
+        <member name="T:Library.ComponentModel.ComponentPatterns.IActivate">
+            <summary>
+            Denotes an instance which requires activation.
+            </summary>
+        </member>
+        <member name="P:Library.ComponentModel.ComponentPatterns.IActivate.IsActive">
+            <summary>
+             Indicates whether or not this instance is active.
+            </summary>
+        </member>
+        <member name="M:Library.ComponentModel.ComponentPatterns.IActivate.Activate">
+            <summary>
+            Activates this instance.
+            </summary>
+        </member>
+        <member name="E:Library.ComponentModel.ComponentPatterns.IActivate.Activated">
+            <summary>
+            Raised after activation occurs.
+            </summary>
+        </member>
+        <member name="T:Library.ComponentModel.ComponentPatterns.IDeactivate">
+            <summary>
+            Denotes an instance which requires deactivation.
+            </summary>
+        </member>
+        <member name="M:Library.ComponentModel.ComponentPatterns.IDeactivate.Deactivate(System.Boolean)">
+            <summary>
+            Deactivates this instance.
+            </summary>
+            <param name="close">Indicates whether or not this instance is being closed.</param>
+        </member>
+        <member name="E:Library.ComponentModel.ComponentPatterns.IDeactivate.Deactivated">
+            <summary>
+            Raised after deactivation.
+            </summary>
+        </member>
+        <member name="T:Library.ComponentModel.ComponentPatterns.IGuardClose">
+            <summary>
+            Denotes an instance which may prevent closing.
+            </summary>
+        </member>
+        <member name="M:Library.ComponentModel.ComponentPatterns.IGuardClose.CanClose(System.Action{System.Boolean})">
+            <summary>
+            Called to check whether or not this instance can close.
+            </summary>
+            <param name="callback">The implementer calls this action with the result of the close check.</param>
+        </member>
+        <member name="T:Library.ComponentModel.IClose">
+            <summary>
+            Denotes an object that can be closed.
+            </summary>
+        </member>
+        <member name="M:Library.ComponentModel.IClose.TryClose">
+            <summary>
+            Tries to close this instance.
+            </summary>
+        </member>
+        <member name="T:Library.ComponentModel.IDisplay">
+             <summary>
+            
+             </summary>
+        </member>
+        <member name="P:Library.ComponentModel.IDisplay.DisplayName">
+            <summary>
+            顯示名稱
+            </summary>
+        </member>
+        <member name="T:Library.ComponentModel.Test.CodeTimer">
+             <summary>
+            
+             </summary>
+        </member>
+        <member name="M:Library.ComponentModel.Test.CodeTimer.Time(System.String,System.Int32,System.Action)">
+             <summary>
+            
+             </summary>
+             <param name="name"></param>
+             <param name="iteration"></param>
+             <param name="action"></param>
+        </member>
+        <member name="T:Library.Att.LanguageCategoryAttribute">
+             <summary>
+            
+             </summary>
+        </member>
+        <member name="M:Library.Att.LanguageCategoryAttribute.#ctor(System.String)">
+             <summary>
+            
+             </summary>
+             <param name="description"></param>
+        </member>
+        <member name="M:Library.Att.LanguageCategoryAttribute.#ctor(System.String,System.Type)">
+             <summary>
+            
+             </summary>
+             <param name="description"></param>
+             <param name="resourceType"></param>
+        </member>
+        <member name="M:Library.Att.LanguageCategoryAttribute.GetLocalizedString(System.String)">
+             <summary>
+            
+             </summary>
+             <param name="value"></param>
+             <returns></returns>
+        </member>
+        <member name="T:Library.Att.LanguageDescriptionAttribute">
+             <summary>
+            
+             </summary>
+        </member>
+        <member name="P:Library.Att.LanguageDescriptionAttribute.Description">
+             <summary>
+            
+             </summary>
+        </member>
+        <member name="M:Library.Att.LanguageDescriptionAttribute.#ctor(System.String)">
+             <summary>
+            
+             </summary>
+             <param name="description"></param>
+        </member>
+        <member name="M:Library.Att.LanguageDescriptionAttribute.#ctor(System.String,System.Type)">
+             <summary>
+            
+             </summary>
+             <param name="description"></param>
+             <param name="resourceType"></param>
+        </member>
+        <member name="T:Library.Att.LanguageDisplayNameAttribute">
+             <summary>
+            
+             </summary>
+        </member>
+        <member name="P:Library.Att.LanguageDisplayNameAttribute.DisplayName">
+             <summary>
+            
+             </summary>
+        </member>
+        <member name="M:Library.Att.LanguageDisplayNameAttribute.#ctor(System.String)">
+             <summary>
+            
+             </summary>
+             <param name="displayName"></param>
+        </member>
+        <member name="M:Library.Att.LanguageDisplayNameAttribute.#ctor(System.String,System.Type)">
+             <summary>
+            
+             </summary>
+             <param name="description"></param>
+             <param name="resourceType"></param>
+        </member>
+        <member name="T:Library.AlignmentType">
+            <summary>
+            方向
+            </summary>
+        </member>
+        <member name="F:Library.AlignmentType.Horizontally">
+            <summary>
+            垂直
+            </summary>
+        </member>
+        <member name="F:Library.AlignmentType.Vertically">
+            <summary>
+            橫向
+            </summary>
+        </member>
+        <member name="T:Library.ByteSize">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:Library.ByteSize.Size">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:Library.ByteSize.Unit">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:Library.ByteSize.UnitFullName">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:Library.ByteSize.UnitName">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="M:Library.ByteSize.#ctor(System.Int64)">
+            <summary>
+            
+            </summary>
+            <param name="size"></param>
+        </member>
+        <member name="M:Library.ByteSize.GetHashCode">
+            <summary>
+            
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:Library.ByteSize.ToString">
+            <summary>
+            
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="T:Library.KBSize">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:Library.KBSize.KBs">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:Library.KBSize.UnitFullName">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:Library.KBSize.UnitName">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:Library.KBSize.Unit">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="M:Library.KBSize.#ctor(System.Int64)">
+            <summary>
+            
+            </summary>
+            <param name="bytesdize"></param>
+        </member>
+        <member name="T:Library.MBSize">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:Library.MBSize.MBs">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:Library.MBSize.Unit">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:Library.MBSize.UnitFullName">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:Library.MBSize.UnitName">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="M:Library.MBSize.#ctor(System.Int64)">
+            <summary>
+            
+            </summary>
+            <param name="bytesdize"></param>
+        </member>
+        <member name="T:Library.GBSize">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:Library.GBSize.GBs">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:Library.GBSize.Unit">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:Library.GBSize.UnitFullName">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:Library.GBSize.UnitName">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="M:Library.GBSize.#ctor(System.Int64)">
+            <summary>
+            
+            </summary>
+            <param name="bytesdize"></param>
+        </member>
+        <member name="T:Library.TBSize">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:Library.TBSize.TBs">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:Library.TBSize.Unit">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:Library.TBSize.UnitFullName">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:Library.TBSize.UnitName">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="M:Library.TBSize.#ctor(System.Int64)">
+            <summary>
+            
+            </summary>
+            <param name="bytesdize"></param>
+        </member>
+        <member name="T:Library.PBSize">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:Library.PBSize.PBs">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:Library.PBSize.Unit">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:Library.PBSize.UnitFullName">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:Library.PBSize.UnitName">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="M:Library.PBSize.#ctor(System.Int64)">
+            <summary>
+            
+            </summary>
+            <param name="bytesdize"></param>
+        </member>
+        <member name="T:Library.Sex">
+             <summary>
+            
+             </summary>
+        </member>
+        <member name="F:Library.Sex.Female">
+            <summary>
+            女
+            </summary>
+        </member>
+        <member name="F:Library.Sex.Male">
+            <summary>
+            男
+            </summary>
+        </member>
+        <member name="T:Library.IDependencyResolver">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="M:Library.IDependencyResolver.GetService(System.Type)">
+            <summary>
+            
+            </summary>
+            <param name="serviceType"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Library.IDependencyResolver.GetServices(System.Type)">
+            <summary>
+            
+            </summary>
+            <param name="serviceType"></param>
+            <returns></returns>
+        </member>
+        <member name="T:Library.ResourceManagement">
+             <summary>
+            
+             </summary>
+        </member>
+        <member name="M:Library.ResourceManagement.AddRegister(System.Type)">
+             <summary>
+            
+             </summary>
+             <param name="resourceType"></param>
+        </member>
+        <member name="M:Library.ResourceManagement.GetManager(System.Type)">
+             <summary>
+            
+             </summary>
+             <param name="resourceType"></param>
+             <returns></returns>
+        </member>
+        <member name="M:Library.ResourceManagement.GetString(System.Type,System.String)">
+             <summary>
+            
+             </summary>
+             <param name="resourceType"></param>
+             <param name="name"></param>
+             <returns></returns>
+        </member>
+        <member name="M:Library.ResourceManagement.GetString(System.Type,System.String,System.Globalization.CultureInfo)">
+             <summary>
+            
+             </summary>
+             <param name="resourceType"></param>
+             <param name="name"></param>
+             <param name="cultureInfo"></param>
+             <returns></returns>
+        </member>
+        <member name="T:Library.ISerialNumberBuilder">
+            <summary>
+            序號生成器
+            </summary>
+        </member>
+        <member name="P:Library.ISerialNumberBuilder.CurrentNumber">
+            <summary>
+            當前號碼
+            </summary>
+        </member>
+        <member name="P:Library.ISerialNumberBuilder.SerialNumberFormat">
+            <summary>
+            序號格式
+            </summary>
+        </member>
+        <member name="M:Library.ISerialNumberBuilder.CreateSerialNumber">
+            <summary>
+            生成一批序號
+            </summary>
+        </member>
+        <member name="P:Library.ISerialNumberBuilder.Count">
+            <summary>
+            序號數量
+            </summary>
+        </member>
+        <member name="M:Library.ISerialNumberBuilder.Dequeue">
+            <summary>
+            取出最新序號
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="T:Library.SerialNumberBuilder">
+             <summary>
+            
+             </summary>
+        </member>
+        <member name="P:Library.SerialNumberBuilder.CurrentNumber">
+            <summary>
+            /
+            </summary>
+        </member>
+        <member name="P:Library.SerialNumberBuilder.SerialNumberFormat">
+            <summary>
+            /
+            </summary>
+        </member>
+        <member name="P:Library.SerialNumberBuilder.Buildrecord">
+             <summary>
+            
+             </summary>
+        </member>
+        <member name="M:Library.SerialNumberBuilder.SetOption(System.String,System.Int32,System.Int32)">
+            <summary>
+            /
+            </summary>
+            <param name="format"></param>
+            <param name="currentNumber"></param>
+            <param name="buildrecord"></param>
+        </member>
+        <member name="F:Library.SerialNumberBuilder.VariableRegex">
+             <summary>
+            
+             </summary>
+        </member>
+        <member name="M:Library.SerialNumberBuilder.GetEnumerateVariables(System.String)">
+             <summary>
+            
+             </summary>
+             <param name="s"></param>
+             <returns></returns>
+        </member>
+        <member name="M:Library.SerialNumberBuilder.CreateSerialNumber">
+             <summary>
+            
+             </summary>
+        </member>
+        <member name="P:Library.SerialNumberBuilder.Count">
+             <summary>
+            
+             </summary>
+        </member>
+        <member name="M:Library.SerialNumberBuilder.Dequeue">
+             <summary>
+            
+             </summary>
+             <returns></returns>
+        </member>
+        <member name="F:Library.Date.DateTimePeriod.After">
+            <summary>
+            更遲以後
+            </summary>
+        </member>
+        <member name="F:Library.Date.DateTimePeriod.ThisYear">
+            <summary>
+            這一年
+            </summary>
+        </member>
+        <member name="F:Library.Date.DateTimePeriod.ThisMonth">
+            <summary>
+            這個月
+            </summary>
+        </member>
+        <member name="F:Library.Date.DateTimePeriod.NextMonth">
+            <summary>
+            下星期
+            </summary>
+        </member>
+        <member name="F:Library.Date.DateTimePeriod.NextWeek">
+            <summary>
+            下星期
+            </summary>
+        </member>
+        <member name="F:Library.Date.DateTimePeriod.ThisWeek">
+            <summary>
+            這個星期
+            </summary>
+        </member>
+        <member name="F:Library.Date.DateTimePeriod.TheDayAfterTomorrow">
+            <summary>
+            後天
+            </summary>
+        </member>
+        <member name="F:Library.Date.DateTimePeriod.Tomorrow">
+            <summary>
+            明天
+            </summary>
+        </member>
+        <member name="F:Library.Date.DateTimePeriod.Today">
+            <summary>
+            今天
+            </summary>
+        </member>
+        <member name="F:Library.Date.DateTimePeriod.Yesterday">
+            <summary>
+            昨天
+            </summary>
+        </member>
+        <member name="F:Library.Date.DateTimePeriod.TheDayBeforeYesterday">
+            <summary>
+            前天
+            </summary>
+        </member>
+        <member name="F:Library.Date.DateTimePeriod.LastWeek">
+            <summary>
+            上個星期
+            </summary>
+        </member>
+        <member name="F:Library.Date.DateTimePeriod.LastMonth">
+            <summary>
+            上個月
+            </summary>
+        </member>
+        <member name="F:Library.Date.DateTimePeriod.Earlier">
+            <summary>
+            更早之前
+            </summary>
+        </member>
+        <member name="F:Library.Date.CalendarInfo.ChineseMonths">
+             <summary>
+            
+             </summary>
+        </member>
+        <member name="F:Library.Date.CalendarInfo.Gan">
+            <summary>
+            天幹
+            </summary>
+        </member>
+        <member name="F:Library.Date.CalendarInfo.Zhi">
+            <summary>
+            地支
+            </summary>
+        </member>
+        <member name="F:Library.Date.CalendarInfo.ChineseZodiac">
+            <summary>
+            生肖
+            </summary>
+        </member>
+        <member name="F:Library.Date.CalendarInfo.ConstellationName">
+            <summary>
+            星座名称
+            </summary>
+        </member>
+        <member name="F:Library.Date.CalendarInfo.TheSolarTermsHolidays">
+            <summary>
+            二十四節氣
+            </summary>
+        </member>
+        <member name="F:Library.Date.CalendarInfo.ChineseConstellationName">
+            <summary>
+            二十八星宿
+            </summary>
+        </member>
+        <member name="F:Library.Date.CalendarInfo.ChineseConstellationAnimalName">
+            <summary>
+            二十八星宿
+            </summary>
+        </member>
+        <member name="F:Library.Date.CalendarInfo.STermInfo">
+            <summary>
+            節氣数据
+            </summary>
+        </member>
+        <member name="F:Library.Date.CalendarInfo.SolarHolidays">
+            <summary>
+            按公历计算的節日
+            </summary>
+        </member>
+        <member name="F:Library.Date.CalendarInfo.LunarHolidays">
+            <summary>
+            按農曆计算的節日
+            </summary>
+        </member>
+        <member name="F:Library.Date.CalendarInfo.WeekHolidays">
+            <summary>
+            按某月第几个星期几
+            </summary>
+        </member>
+        <member name="T:Library.Date.ChineseDateTimeException">
+            <summary>
+            中国日历异常处理
+            </summary>
+        </member>
+        <member name="M:Library.Date.ChineseDateTimeException.#ctor(System.Double,System.Object[])">
+             <summary>
+            
+             </summary>
+             <param name="resultCode"></param>
+             <param name="formatages"></param>
+        </member>
+        <member name="M:Library.Date.ChineseDateTimeException.#ctor(System.Double)">
+             <summary>
+            
+             </summary>
+             <param name="resultCode"></param>
+        </member>
+        <member name="T:Library.Date.ChineseDateTime">
+            <summary>
+            中国農曆类 版本V1.0 支持 1900.1.31日起至 2049.12.31日止的数据
+            </summary>
+            <remarks>
+            本程序使用数据来源于网上的万年历查询，并综合了一些其它数据
+            </remarks>
+        </member>
+        <member name="F:Library.Date.ChineseDateTime.LunarDateArray">
+             <summary>
+             来源于网上的農曆数据
+             </summary>
+             <remarks>
+             数据结构如下，共使用17位数据
+             第17位：表示闰月天数，0表示29天   1表示30天
+             第16位-第5位（共12位）表示12个月，其中第16位表示第一月，如果该月为30天则为1，29天为0
+             第4位-第1位（共4位）表示闰月是哪个月，如果当年没有闰月，则置0
+            </remarks>
+        </member>
+        <member name="M:Library.Date.ChineseDateTime.#ctor(System.DateTime)">
+            <summary>
+            用一个标准的公历日期来初使化
+            </summary>
+            <param name="dt"></param>
+        </member>
+        <member name="M:Library.Date.ChineseDateTime.#ctor(System.Int32,System.Int32,System.Int32,System.Boolean)">
+            <summary>
+            用農曆的日期来初使化
+            </summary>
+            <param name="cy">農曆年</param>
+            <param name="cm">農曆月</param>
+            <param name="cd">農曆日</param>
+            <param name="leapMonthFlag"></param>
+        </member>
+        <member name="M:Library.Date.ChineseDateTime.GetChineseMonthDays(System.Int32,System.Int32)">
+            <summary>
+            传回農曆 y年m月的总天数
+            </summary>
+            <param name="year"></param>
+            <param name="month"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Library.Date.ChineseDateTime.GetChineseLeapMonth(System.Int32)">
+            <summary>
+            传回農曆 y年闰哪个月 1-12 , 没闰传回 0
+            </summary>
+            <param name="year"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Library.Date.ChineseDateTime.GetChineseLeapMonthDays(System.Int32)">
+            <summary>
+            传回農曆 y年闰月的天数
+            </summary>
+            <param name="year"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Library.Date.ChineseDateTime.GetChineseYearDays(System.Int32)">
+            <summary>
+            取農曆年一年的天数
+            </summary>
+            <param name="year"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Library.Date.ChineseDateTime.GetChineseHour(System.DateTime)">
+             <summary>
+             获得当前时间的时辰
+             </summary>
+             <param name="dt"></param>
+             <returns></returns>
+            
+        </member>
+        <member name="M:Library.Date.ChineseDateTime.ValidateDateLimit(System.DateTime)">
+            <summary>
+            检查公历日期是否符合要求
+            </summary>
+            <param name="dt"></param>
+        </member>
+        <member name="M:Library.Date.ChineseDateTime.ValidateChineseDateLimit(System.Int32,System.Int32,System.Int32,System.Boolean)">
+            <summary>
+            检查農曆日期是否合理
+            </summary>
+            <param name="year"></param>
+            <param name="month"></param>
+            <param name="day"></param>
+            <param name="leapMonth"></param>
+        </member>
+        <member name="M:Library.Date.ChineseDateTime.BitTest32(System.Int32,System.Int32)">
+            <summary>
+            测试某位是否为真
+            </summary>
+            <param name="num"></param>
+            <param name="bitpostion"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Library.Date.ChineseDateTime.CompareWeekDayHoliday(System.DateTime,System.Int32,System.Int32,System.DayOfWeek)">
+            <summary>
+            比较当天是不是指定的第周几
+            </summary>
+            <param name="date"></param>
+            <param name="month"></param>
+            <param name="week"></param>
+            <param name="day"></param>
+            <returns></returns>
+        </member>
+        <member name="P:Library.Date.ChineseDateTime.ChineseCalendarHoliday">
+            <summary>
+            计算中国農曆節日
+            </summary>
+        </member>
+        <member name="P:Library.Date.ChineseDateTime.WeekDayHoliday">
+            <summary>
+            按某月第几周第几日计算的節日
+            </summary>
+        </member>
+        <member name="P:Library.Date.ChineseDateTime.DateHoliday">
+            <summary>
+            按公历日计算的節日
+            </summary>
+        </member>
+        <member name="P:Library.Date.ChineseDateTime.Date">
+            <summary>
+            取对应的公历日期
+            </summary>
+        </member>
+        <member name="P:Library.Date.ChineseDateTime.WeekDay">
+            <summary>
+            取对应的公历日期
+            </summary>
+        </member>
+        <member name="P:Library.Date.ChineseDateTime.Constellation">
+            <summary>
+            计算指定日期的星座序号
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="P:Library.Date.ChineseDateTime.ChineseConstellation">
+            <summary>
+            28星宿
+            </summary>
+        </member>
+        <member name="P:Library.Date.ChineseDateTime.ChineseConstellationAnimal">
+            <summary>
+            28星宿動物
+            </summary>
+        </member>
+        <member name="P:Library.Date.ChineseDateTime.ChineseHour">
+            <summary>
+            时辰
+            </summary>
+        </member>
+        <member name="P:Library.Date.ChineseDateTime.Now">
+            <summary>
+            當前日期
+            </summary>
+        </member>
+        <member name="P:Library.Date.ChineseDateTime.IsChineseLeapMonth">
+            <summary>
+            是否闰月
+            </summary>
+        </member>
+        <member name="P:Library.Date.ChineseDateTime.IsChineseLeapYear">
+            <summary>
+            当年是否有闰月
+            </summary>
+        </member>
+        <member name="P:Library.Date.ChineseDateTime.ChineseDate">
+             <summary>
+            
+             </summary>
+        </member>
+        <member name="P:Library.Date.ChineseDateTime.ChineseDay">
+            <summary>
+            農曆日中文表示
+            </summary>
+        </member>
+        <member name="P:Library.Date.ChineseDateTime.ChineseMonth">
+            <summary>
+            農曆月份字符串
+            </summary>
+        </member>
+        <member name="P:Library.Date.ChineseDateTime.TheSolarTerms">
+            <summary>
+            定气法计算二十四節氣,二十四節氣是按地球公转来计算的，并非是阴历计算的
+            </summary>
+            <remarks>
+            節氣的定法有两种。古代历法采用的称为"恒气"，即按时间把一年等分为24份，
+            每一節氣平均得15天有余，所以又称"平气"。现代農曆采用的称为"定气"，即
+            按地球在轨道上的位置为标准，一周360°，两節氣之间相隔15°。由于冬至时地
+            球位于近日点附近，运动速度较快，因而太阳在黄道上移动15°的时间不到15天。
+            夏至前后的情况正好相反，太阳在黄道上移动较慢，一个節氣达16天之多。采用
+            定气时可以保证春、秋两分必然在昼夜平分的那两天。
+            </remarks>
+        </member>
+        <member name="P:Library.Date.ChineseDateTime.ChineseTwentyFourPrevDay">
+            <summary>
+            当前日期前一个最近節氣
+            </summary>
+        </member>
+        <member name="P:Library.Date.ChineseDateTime.ChineseTwentyFourNextDay">
+            <summary>
+            当前日期后一个最近節氣
+            </summary>
+        </member>
+        <member name="P:Library.Date.ChineseDateTime.ChineseZodiac">
+            <summary>
+            取属相字符串
+            </summary>
+        </member>
+        <member name="P:Library.Date.ChineseDateTime.ChineseEraYear">
+            <summary>
+            取農曆年的干支表示法如 乙丑年
+            </summary>
+        </member>
+        <member name="P:Library.Date.ChineseDateTime.ChineseEraMonth">
+            <summary>
+            取干支的月表示字符串，注意農曆的闰月不记干支
+            </summary>
+        </member>
+        <member name="P:Library.Date.ChineseDateTime.ChineseEraDay">
+            <summary>
+            取干支日表示法
+            </summary>
+        </member>
+        <member name="P:Library.Date.ChineseDateTime.ChineseEraDate">
+            <summary>
+            取当前日期的干支表示法如 甲子年乙丑月丙庚日
+            </summary>
+        </member>
+        <member name="T:Library.Date.HolidayFormat">
+             <summary>
+            
+             </summary>
+        </member>
+        <member name="M:Library.Date.HolidayFormat.#ctor">
+             <summary>
+            
+             </summary>
+        </member>
+        <member name="F:Library.Date.HolidayFormat.FormatProvider">
+             <summary>
+            
+             </summary>
+        </member>
+        <member name="M:Library.Date.HolidayFormat.GetFormat(System.Type)">
+             <summary>
+            
+             </summary>
+             <param name="formatType"></param>
+             <returns></returns>
+        </member>
+        <member name="M:Library.Date.HolidayFormat.Format(System.String,System.Object,System.IFormatProvider)">
+             <summary>
+            
+             </summary>
+             <param name="format"></param>
+             <param name="arg"></param>
+             <param name="formatProvider"></param>
+             <returns></returns>
+        </member>
+        <member name="M:Library.Date.HolidayFormat.HolidayToString.#ctor(System.String,System.Object,System.Globalization.CultureInfo)">
+             <summary>
+            
+             </summary>
+             <param name="format"></param>
+             <param name="obj"></param>
+             <param name="cul"></param>
+        </member>
+        <member name="M:Library.Date.HolidayFormat.HolidayToString.ToFormat">
+             <summary>
+            
+             </summary>
+             <returns></returns>
+        </member>
+        <member name="M:Library.Date.HolidayFormat.HolidayToString.WeekHoliday">
+             <summary>
+            
+             </summary>
+             <returns></returns>
+        </member>
+        <member name="M:Library.Date.HolidayFormat.HolidayToString.LunarHoliday">
+             <summary>
+            
+             </summary>
+             <returns></returns>
+        </member>
+        <member name="M:Library.Date.HolidayFormat.HolidayToString.SolarHoliday">
+             <summary>
+            
+             </summary>
+             <returns></returns>
+        </member>
+        <member name="M:Library.Date.HolidayFormat.Cn.#ctor(System.String,System.Object,System.Globalization.CultureInfo)">
+             <summary>
+            
+             </summary>
+             <param name="format"></param>
+             <param name="obj"></param>
+             <param name="cul"></param>
+        </member>
+        <member name="M:Library.Date.HolidayFormat.Cn.WeekHoliday">
+             <summary>
+            
+             </summary>
+             <returns></returns>
+        </member>
+        <member name="M:Library.Date.HolidayFormat.Cn.LunarHoliday">
+             <summary>
+            
+             </summary>
+             <returns></returns>
+        </member>
+        <member name="M:Library.Date.HolidayFormat.Cn.SolarHoliday">
+             <summary>
+            
+             </summary>
+             <returns></returns>
+        </member>
+        <member name="T:Library.Date.HolidayFormat.En">
+             <summary>
+            
+             </summary>
+        </member>
+        <member name="M:Library.Date.HolidayFormat.En.WeekHoliday">
+             <summary>
+            
+             </summary>
+             <returns></returns>
+        </member>
+        <member name="M:Library.Date.HolidayFormat.En.LunarHoliday">
+             <summary>
+            
+             </summary>
+             <returns></returns>
+        </member>
+        <member name="M:Library.Date.HolidayFormat.En.SolarHoliday">
+             <summary>
+            
+             </summary>
+             <returns></returns>
+        </member>
+        <member name="T:Library.Date.TheSolarTermsHoliday">
+            <summary>
+            二十四節氣
+            </summary>
+            <remarks>节气指二十四时节和气候，是中国古代订立的一种用来指导农事的补充历法。</remarks>
+        </member>
+        <member name="P:Library.Date.TheSolarTermsHoliday.HolidayName">
+            <summary>
+            名稱
+            </summary>
+        </member>
+        <member name="P:Library.Date.TheSolarTermsHoliday.TheSolarTermsData">
+            <summary>
+            節氣數據
+            </summary>
+        </member>
+        <member name="M:Library.Date.TheSolarTermsHoliday.#ctor(System.String,System.Int32,System.Boolean)">
+             <summary>
+            
+             </summary>
+             <param name="name">名稱</param>
+             <param name="data">節氣數據</param>
+             <param name="flag">ture為時節，否則為氣候</param>
+        </member>
+        <member name="P:Library.Date.TheSolarTermsHoliday.IsSeason">
+            <summary>
+            时节
+            </summary>
+        </member>
+        <member name="P:Library.Date.TheSolarTermsHoliday.IsClimate">
+            <summary>
+            气候
+            </summary>
+        </member>
+        <member name="M:Library.Date.TheSolarTermsHoliday.ConvertDateTime(System.Int32)">
+             <summary>
+            
+             </summary>
+             <param name="year"></param>
+             <returns></returns>
+        </member>
+        <member name="F:Library.Date.TheSolarTermsHoliday.SlightCold">
+            <summary>
+            小寒 Slight Cold
+            </summary>
+        </member>
+        <member name="F:Library.Date.TheSolarTermsHoliday.GreatCold">
+            <summary>
+            大寒 Great Cold
+            </summary>
+        </member>
+        <member name="F:Library.Date.TheSolarTermsHoliday.TheBeginningOfSpring">
+            <summary>
+            立春 the Beginning of Spring
+            </summary>
+        </member>
+        <member name="F:Library.Date.TheSolarTermsHoliday.RainWater">
+            <summary>
+            雨水 Rain Water
+            </summary>
+        </member>
+        <member name="F:Library.Date.TheSolarTermsHoliday.TheWakingOfInsects">
+            <summary>
+            惊蛰 the Waking of Insects
+            </summary>
+        </member>
+        <member name="F:Library.Date.TheSolarTermsHoliday.TheSpringEquinox">
+            <summary>
+            春分 the Spring Equinox
+            </summary>
+        </member>
+        <member name="F:Library.Date.TheSolarTermsHoliday.PureBrightness">
+            <summary>
+            清明 Pure Brightness
+            </summary>
+        </member>
+        <member name="F:Library.Date.TheSolarTermsHoliday.GrainRain">
+            <summary>
+            谷雨 Grain Rain
+            </summary>
+        </member>
+        <member name="F:Library.Date.TheSolarTermsHoliday.TheBeginningOfSummer">
+            <summary>
+            立夏 the Beginning of Summer
+            </summary>
+        </member>
+        <member name="F:Library.Date.TheSolarTermsHoliday.GrainFull">
+            <summary>
+            小满 Grain Full
+            </summary>
+        </member>
+        <member name="F:Library.Date.TheSolarTermsHoliday.GraininEar">
+            <summary>
+            芒种 Grain in Ear
+            </summary>
+        </member>
+        <member name="F:Library.Date.TheSolarTermsHoliday.TheSummerSolstice">
+            <summary>
+            夏至 the Summer Solstice
+            </summary>
+        </member>
+        <member name="F:Library.Date.TheSolarTermsHoliday.SlightHeat">
+            <summary>
+            小暑 Slight Heat
+            </summary>
+        </member>
+        <member name="F:Library.Date.TheSolarTermsHoliday.GreatHeat">
+            <summary>
+            大暑 Great Heat
+            </summary>
+        </member>
+        <member name="F:Library.Date.TheSolarTermsHoliday.TheBeginningOfAutumn">
+            <summary>
+            立秋 the Beginning of Autumn
+            </summary>
+        </member>
+        <member name="F:Library.Date.TheSolarTermsHoliday.TheLimitOfHeat">
+            <summary>
+            处暑 the Limit of Heat
+            </summary>
+        </member>
+        <member name="F:Library.Date.TheSolarTermsHoliday.WhiteDew">
+            <summary>
+            白露 White Dew
+            </summary>
+        </member>
+        <member name="F:Library.Date.TheSolarTermsHoliday.TheAutumnalEquinox">
+            <summary>
+            秋分 the Autumnal Equinox
+            </summary>
+        </member>
+        <member name="F:Library.Date.TheSolarTermsHoliday.ColdDew">
+            <summary>
+            寒露 Cold Dew
+            </summary>
+        </member>
+        <member name="F:Library.Date.TheSolarTermsHoliday.FrostsDescent">
+            <summary>
+            霜降 Frost's Descent
+            </summary>
+        </member>
+        <member name="F:Library.Date.TheSolarTermsHoliday.TheBeginningOfWinter">
+            <summary>
+            立冬 the Beginning of Winter
+            </summary>
+        </member>
+        <member name="F:Library.Date.TheSolarTermsHoliday.SlightSnow">
+            <summary>
+            小雪 Slight Snow
+            </summary>
+        </member>
+        <member name="F:Library.Date.TheSolarTermsHoliday.GreatSnow">
+            <summary>
+            大雪 Great Snow
+            </summary>
+        </member>
+        <member name="F:Library.Date.TheSolarTermsHoliday.TheWinterSolstice">
+            <summary>
+            冬至 the Winter Solstice
+            </summary>
+        </member>
+        <member name="T:Library.Date.IHoliday">
+             <summary>
+            
+             </summary>
+        </member>
+        <member name="P:Library.Date.IHoliday.Month">
+            <summary>
+            月
+            </summary>
+        </member>
+        <member name="P:Library.Date.IHoliday.Day">
+            <summary>
+            日
+            </summary>
+        </member>
+        <member name="P:Library.Date.IHoliday.HolidayName">
+            <summary>
+            節日名稱
+            </summary>
+        </member>
+        <member name="M:Library.Date.IHoliday.ConvertDateTime(System.Int32)">
+            <summary>
+            轉換成公曆日期
+            </summary>
+            <param name="year"></param>
+            <returns></returns>
+        </member>
+        <member name="T:Library.Date.LunarHoliday">
+             <summary>
+            
+             </summary>
+        </member>
+        <member name="P:Library.Date.LunarHoliday.Month">
+             <summary>
+            
+             </summary>
+        </member>
+        <member name="P:Library.Date.LunarHoliday.Day">
+             <summary>
+            
+             </summary>
+        </member>
+        <member name="P:Library.Date.LunarHoliday.HolidayName">
+             <summary>
+            
+             </summary>
+        </member>
+        <member name="M:Library.Date.LunarHoliday.#ctor(System.Int32,System.Int32,System.String)">
+             <summary>
+            
+             </summary>
+             <param name="month"></param>
+             <param name="day"></param>
+             <param name="name"></param>
+        </member>
+        <member name="M:Library.Date.LunarHoliday.ConvertDateTime(System.Int32)">
+            <summary>
+            轉換成公曆日期
+            </summary>
+            <param name="year"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Library.Date.LunarHoliday.ToString(System.String)">
+             <summary>
+            
+             </summary>
+             <param name="format"></param>
+             <returns></returns>
+        </member>
+        <member name="M:Library.Date.LunarHoliday.ToString(System.String,System.IFormatProvider)">
+             <summary>
+            
+             </summary>
+             <param name="format"></param>
+             <param name="formatProvider"></param>
+             <returns></returns>
+        </member>
+        <member name="M:Library.Date.LunarHoliday.op_LessThan(Library.Date.LunarHoliday,Library.Date.LunarHoliday)">
+             <summary>
+            
+             </summary>
+             <param name="t1"></param>
+             <param name="t2"></param>
+             <returns></returns>
+        </member>
+        <member name="M:Library.Date.LunarHoliday.op_LessThanOrEqual(Library.Date.LunarHoliday,Library.Date.LunarHoliday)">
+             <summary>
+            
+             </summary>
+             <param name="t1"></param>
+             <param name="t2"></param>
+             <returns></returns>
+        </member>
+        <member name="M:Library.Date.LunarHoliday.op_Equality(Library.Date.LunarHoliday,Library.Date.LunarHoliday)">
+             <summary>
+            
+             </summary>
+             <param name="t1"></param>
+             <param name="t2"></param>
+             <returns></returns>
+        </member>
+        <member name="M:Library.Date.LunarHoliday.op_Inequality(Library.Date.LunarHoliday,Library.Date.LunarHoliday)">
+             <summary>
+            
+             </summary>
+             <param name="t1"></param>
+             <param name="t2"></param>
+             <returns></returns>
+        </member>
+        <member name="M:Library.Date.LunarHoliday.op_GreaterThan(Library.Date.LunarHoliday,Library.Date.LunarHoliday)">
+             <summary>
+            
+             </summary>
+             <param name="t1"></param>
+             <param name="t2"></param>
+             <returns></returns>
+        </member>
+        <member name="M:Library.Date.LunarHoliday.op_GreaterThanOrEqual(Library.Date.LunarHoliday,Library.Date.LunarHoliday)">
+             <summary>
+            
+             </summary>
+             <param name="t1"></param>
+             <param name="t2"></param>
+             <returns></returns>
+        </member>
+        <member name="M:Library.Date.LunarHoliday.CompareTo(System.Object)">
+             <summary>
+            
+             </summary>
+             <param name="obj"></param>
+             <returns></returns>
+        </member>
+        <member name="M:Library.Date.LunarHoliday.CompareTo(Library.Date.LunarHoliday)">
+             <summary>
+            
+             </summary>
+             <param name="other"></param>
+             <returns></returns>
+        </member>
+        <member name="M:Library.Date.LunarHoliday.CompareTo(Library.Date.IHoliday,System.Int32)">
+             <summary>
+            
+             </summary>
+             <param name="other"></param>
+             <param name="year"></param>
+             <returns></returns>
+        </member>
+        <member name="M:Library.Date.LunarHoliday.Equals(Library.Date.LunarHoliday,Library.Date.LunarHoliday)">
+             <summary>
+            
+             </summary>
+             <param name="t1"></param>
+             <param name="t2"></param>
+             <returns></returns>
+        </member>
+        <member name="M:Library.Date.LunarHoliday.Equals(Library.Date.LunarHoliday)">
+             <summary>
+            
+             </summary>
+             <param name="other"></param>
+             <returns></returns>
+        </member>
+        <member name="M:Library.Date.LunarHoliday.Equals(System.Object)">
+             <summary>
+            
+             </summary>
+             <param name="obj"></param>
+             <returns></returns>
+        </member>
+        <member name="M:Library.Date.LunarHoliday.GetHashCode">
+             <summary>
+            
+             </summary>
+             <returns></returns>
+        </member>
+        <member name="T:Library.Date.SolarHoliday">
+             <summary>
+            
+             </summary>
+        </member>
+        <member name="P:Library.Date.SolarHoliday.Month">
+             <summary>
+            
+             </summary>
+        </member>
+        <member name="P:Library.Date.SolarHoliday.Day">
+             <summary>
+            
+             </summary>
+        </member>
+        <member name="P:Library.Date.SolarHoliday.HolidayName">
+             <summary>
+            
+             </summary>
+        </member>
+        <member name="M:Library.Date.SolarHoliday.#ctor(System.Int32,System.Int32,System.String)">
+             <summary>
+            
+             </summary>
+             <param name="month"></param>
+             <param name="day"></param>
+             <param name="name"></param>
+        </member>
+        <member name="M:Library.Date.SolarHoliday.ConvertDateTime(System.Int32)">
+            <summary>
+            滖傖鼠
+            </summary>
+            <param name="year"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Library.Date.SolarHoliday.ToString(System.String)">
+             <summary>
+            
+             </summary>
+             <param name="format"></param>
+             <returns></returns>
+        </member>
+        <member name="M:Library.Date.SolarHoliday.ToString(System.String,System.IFormatProvider)">
+             <summary>
+            
+             </summary>
+             <param name="format"></param>
+             <param name="formatProvider"></param>
+             <returns></returns>
+        </member>
+        <member name="M:Library.Date.SolarHoliday.op_LessThan(Library.Date.SolarHoliday,Library.Date.SolarHoliday)">
+             <summary>
+            
+             </summary>
+             <param name="t1"></param>
+             <param name="t2"></param>
+             <returns></returns>
+        </member>
+        <member name="M:Library.Date.SolarHoliday.op_LessThanOrEqual(Library.Date.SolarHoliday,Library.Date.SolarHoliday)">
+             <summary>
+            
+             </summary>
+             <param name="t1"></param>
+             <param name="t2"></param>
+             <returns></returns>
+        </member>
+        <member name="M:Library.Date.SolarHoliday.op_Equality(Library.Date.SolarHoliday,Library.Date.SolarHoliday)">
+             <summary>
+            
+             </summary>
+             <param name="t1"></param>
+             <param name="t2"></param>
+             <returns></returns>
+        </member>
+        <member name="M:Library.Date.SolarHoliday.op_Inequality(Library.Date.SolarHoliday,Library.Date.SolarHoliday)">
+             <summary>
+            
+             </summary>
+             <param name="t1"></param>
+             <param name="t2"></param>
+             <returns></returns>
+        </member>
+        <member name="M:Library.Date.SolarHoliday.op_GreaterThan(Library.Date.SolarHoliday,Library.Date.SolarHoliday)">
+             <summary>
+            
+             </summary>
+             <param name="t1"></param>
+             <param name="t2"></param>
+             <returns></returns>
+        </member>
+        <member name="M:Library.Date.SolarHoliday.op_GreaterThanOrEqual(Library.Date.SolarHoliday,Library.Date.SolarHoliday)">
+             <summary>
+            
+             </summary>
+             <param name="t1"></param>
+             <param name="t2"></param>
+             <returns></returns>
+        </member>
+        <member name="M:Library.Date.SolarHoliday.CompareTo(System.Object)">
+             <summary>
+            
+             </summary>
+             <param name="obj"></param>
+             <returns></returns>
+        </member>
+        <member name="M:Library.Date.SolarHoliday.CompareTo(Library.Date.SolarHoliday)">
+             <summary>
+            
+             </summary>
+             <param name="other"></param>
+             <returns></returns>
+        </member>
+        <member name="M:Library.Date.SolarHoliday.CompareTo(Library.Date.IHoliday,System.Int32)">
+             <summary>
+            
+             </summary>
+             <param name="other"></param>
+             <param name="year"></param>
+             <returns></returns>
+        </member>
+        <member name="M:Library.Date.SolarHoliday.Equals(Library.Date.SolarHoliday,Library.Date.SolarHoliday)">
+             <summary>
+            
+             </summary>
+             <param name="t1"></param>
+             <param name="t2"></param>
+             <returns></returns>
+        </member>
+        <member name="M:Library.Date.SolarHoliday.Equals(Library.Date.SolarHoliday)">
+             <summary>
+            
+             </summary>
+             <param name="other"></param>
+             <returns></returns>
+        </member>
+        <member name="M:Library.Date.SolarHoliday.Equals(System.Object)">
+             <summary>
+            
+             </summary>
+             <param name="obj"></param>
+             <returns></returns>
+        </member>
+        <member name="M:Library.Date.SolarHoliday.GetHashCode">
+             <summary>
+            
+             </summary>
+             <returns></returns>
+        </member>
+        <member name="T:Library.Date.WeekHoliday">
+             <summary>
+            
+             </summary>
+        </member>
+        <member name="P:Library.Date.WeekHoliday.Month">
+            <summary>
+            月份
+            </summary>
+        </member>
+        <member name="P:Library.Date.WeekHoliday.WeekAtMonth">
+            <summary>
+            第幾個星期
+            </summary>
+        </member>
+        <member name="P:Library.Date.WeekHoliday.WeekDay">
+            <summary>
+            星期
+            </summary>
+        </member>
+        <member name="P:Library.Date.WeekHoliday.HolidayName">
+            <summary>
+            節日名稱
+            </summary>
+        </member>
+        <member name="M:Library.Date.WeekHoliday.#ctor(System.Int32,System.Int32,System.DayOfWeek,System.String)">
+             <summary>
+            
+             </summary>
+             <param name="month"></param>
+             <param name="weekAtMonth">0為最後的一個星期</param>
+             <param name="weekDay"></param>
+             <param name="name"></param>
+        </member>
+        <member name="M:Library.Date.WeekHoliday.ConvertDateTime(System.Int32)">
+            <summary>
+            轉換成公曆日期
+            </summary>
+            <param name="year"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Library.Date.WeekHoliday.ToString(System.String)">
+             <summary>
+            
+             </summary>
+             <param name="format"></param>
+             <returns></returns>
+        </member>
+        <member name="M:Library.Date.WeekHoliday.ToString(System.String,System.IFormatProvider)">
+             <summary>
+            
+             </summary>
+             <param name="format"></param>
+             <param name="formatProvider"></param>
+             <returns></returns>
+        </member>
+        <member name="M:Library.Date.WeekHoliday.op_LessThan(Library.Date.WeekHoliday,Library.Date.WeekHoliday)">
+             <summary>
+            
+             </summary>
+             <param name="t1"></param>
+             <param name="t2"></param>
+             <returns></returns>
+        </member>
+        <member name="M:Library.Date.WeekHoliday.op_LessThanOrEqual(Library.Date.WeekHoliday,Library.Date.WeekHoliday)">
+             <summary>
+            
+             </summary>
+             <param name="t1"></param>
+             <param name="t2"></param>
+             <returns></returns>
+        </member>
+        <member name="M:Library.Date.WeekHoliday.op_Equality(Library.Date.WeekHoliday,Library.Date.WeekHoliday)">
+             <summary>
+            
+             </summary>
+             <param name="t1"></param>
+             <param name="t2"></param>
+             <returns></returns>
+        </member>
+        <member name="M:Library.Date.WeekHoliday.op_Inequality(Library.Date.WeekHoliday,Library.Date.WeekHoliday)">
+             <summary>
+            
+             </summary>
+             <param name="t1"></param>
+             <param name="t2"></param>
+             <returns></returns>
+        </member>
+        <member name="M:Library.Date.WeekHoliday.op_GreaterThan(Library.Date.WeekHoliday,Library.Date.WeekHoliday)">
+             <summary>
+            
+             </summary>
+             <param name="t1"></param>
+             <param name="t2"></param>
+             <returns></returns>
+        </member>
+        <member name="M:Library.Date.WeekHoliday.op_GreaterThanOrEqual(Library.Date.WeekHoliday,Library.Date.WeekHoliday)">
+             <summary>
+            
+             </summary>
+             <param name="t1"></param>
+             <param name="t2"></param>
+             <returns></returns>
+        </member>
+        <member name="M:Library.Date.WeekHoliday.CompareTo(System.Object)">
+             <summary>
+            
+             </summary>
+             <param name="obj"></param>
+             <returns></returns>
+        </member>
+        <member name="M:Library.Date.WeekHoliday.CompareTo(Library.Date.WeekHoliday)">
+             <summary>
+            
+             </summary>
+             <param name="other"></param>
+             <returns></returns>
+        </member>
+        <member name="M:Library.Date.WeekHoliday.CompareTo(Library.Date.IHoliday,System.Int32)">
+             <summary>
+            
+             </summary>
+             <param name="other"></param>
+             <param name="year"></param>
+             <returns></returns>
+        </member>
+        <member name="M:Library.Date.WeekHoliday.Equals(Library.Date.WeekHoliday,Library.Date.WeekHoliday)">
+             <summary>
+            
+             </summary>
+             <param name="t1"></param>
+             <param name="t2"></param>
+             <returns></returns>
+        </member>
+        <member name="M:Library.Date.WeekHoliday.Equals(Library.Date.WeekHoliday)">
+             <summary>
+            
+             </summary>
+             <param name="other"></param>
+             <returns></returns>
+        </member>
+        <member name="M:Library.Date.WeekHoliday.Equals(System.Object)">
+             <summary>
+            
+             </summary>
+             <param name="obj"></param>
+             <returns></returns>
+        </member>
+        <member name="M:Library.Date.WeekHoliday.GetHashCode">
+             <summary>
+            
+             </summary>
+             <returns></returns>
+        </member>
+        <member name="T:Library.Date.Timestamp">
+            <summary>
+            时间戳
+            </summary>
+        </member>
+        <member name="M:Library.Date.Timestamp.ToUtp(System.DateTime)">
+             <summary>
+            
+             </summary>
+             <param name="dt"></param>
+             <returns></returns>
+        </member>
+        <member name="M:Library.Date.Timestamp.ToUtp(System.Int32,System.Int32,System.Int32)">
+             <summary>
+            
+             </summary>
+             <param name="year"></param>
+             <param name="month"></param>
+             <param name="day"></param>
+             <returns></returns>
+        </member>
+        <member name="M:Library.Date.Timestamp.ToUtp(System.Int32,System.Int32,System.Int32,System.Int32,System.Int32,System.Int32)">
+             <summary>
+            
+             </summary>
+             <param name="year"></param>
+             <param name="month"></param>
+             <param name="day"></param>
+             <param name="hour"></param>
+             <param name="minute"></param>
+             <param name="second"></param>
+             <returns></returns>
+        </member>
+        <member name="M:Library.Date.Timestamp.FromUtp(System.Int64)">
+             <summary>
+            
+             </summary>
+             <param name="tp"></param>
+             <returns></returns>
+        </member>
+        <member name="P:Library.Date.Timestamp.Now">
+            <summary>
+            当前时间
+            </summary>
+        </member>
+        <member name="T:Library.CodeException">
+             <summary>
+            
+             </summary>
+        </member>
+        <member name="P:Library.CodeException.Message">
+            <summary>
+            获取描述当前异常的消息。
+            </summary>
+            <returns>
+            解释异常原因的错误消息或空字符串 ("")。
+            </returns>
+            <filterpriority>1</filterpriority>
+        </member>
+        <member name="P:Library.CodeException.ResultCode">
+             <summary>
+            
+             </summary>
+        </member>
+        <member name="P:Library.CodeException.Args">
+             <summary>
+            
+             </summary>
+        </member>
+        <member name="M:Library.CodeException.#ctor">
+             <summary>
+            
+             </summary>
+        </member>
+        <member name="M:Library.CodeException.#ctor(System.Double,System.Exception)">
+             <summary>
+            
+             </summary>
+             <param name="code"></param>
+             <param name="inner"></param>
+        </member>
+        <member name="M:Library.CodeException.#ctor(System.String)">
+             <summary>
+            
+             </summary>
+             <param name="message"></param>
+        </member>
+        <member name="M:Library.CodeException.#ctor(System.Double)">
+             <summary>
+            
+             </summary>
+             <param name="resultCode"></param>
+        </member>
+        <member name="M:Library.CodeException.#ctor(System.String,System.Double)">
+             <summary>
+            
+             </summary>
+             <param name="message"></param>
+             <param name="resultCode"></param>
+        </member>
+        <member name="M:Library.CodeException.#ctor(System.String,System.Double,System.Exception)">
+             <summary>
+            
+             </summary>
+             <param name="message"></param>
+             <param name="resultCode"></param>
+             <param name="inner"></param>
+        </member>
+        <member name="M:Library.CodeException.#ctor(System.String,System.Double,System.Object[])">
+             <summary>
+            
+             </summary>
+             <param name="mesage"></param>
+             <param name="code"></param>
+             <param name="args"></param>
+        </member>
+        <member name="M:Library.CodeException.#ctor(System.Double,System.Object[])">
+             <summary>
+            
+             </summary>
+             <param name="resultCode"></param>
+             <param name="args"></param>
+        </member>
+        <member name="M:Library.CodeException.#ctor(System.String,System.Exception)">
+             <summary>
+            
+             </summary>
+             <param name="message"></param>
+             <param name="inner"></param>
+        </member>
+        <member name="M:Library.CodeException.#ctor(System.Runtime.Serialization.SerializationInfo,System.Runtime.Serialization.StreamingContext)">
+             <summary>
+            
+             </summary>
+             <param name="info"></param>
+             <param name="context"></param>
+        </member>
+        <member name="T:Library.GlobalResource">
+            <summary>
+              一个强类型的资源类，用于查找本地化的字符串等。
+            </summary>
+        </member>
+        <member name="P:Library.GlobalResource.ResourceManager">
+            <summary>
+              返回此类使用的缓存的 ResourceManager 实例。
+            </summary>
+        </member>
+        <member name="P:Library.GlobalResource.Culture">
+            <summary>
+              使用此强类型资源类，为所有资源查找
+              重写当前线程的 CurrentUICulture 属性。
+            </summary>
+        </member>
+        <member name="P:Library.GlobalResource._Code11001_1">
+            <summary>
+              查找类似 證件號碼格式不符合 的本地化字符串。
+            </summary>
+        </member>
+        <member name="P:Library.GlobalResource._Code11001_104">
+            <summary>
+              查找类似 身份證校驗碼不正確 的本地化字符串。
+            </summary>
+        </member>
+        <member name="P:Library.GlobalResource._Code11001_105">
+            <summary>
+              查找类似 轉換值出錯,不為數字 的本地化字符串。
+            </summary>
+        </member>
+        <member name="P:Library.GlobalResource._Code11001_106">
+            <summary>
+              查找类似 不存在對應省份 的本地化字符串。
+            </summary>
+        </member>
+        <member name="P:Library.GlobalResource._Code11001_107">
+            <summary>
+              查找类似 轉換日期值出錯 的本地化字符串。
+            </summary>
+        </member>
+        <member name="P:Library.GlobalResource._Code11002_1">
+            <summary>
+              查找类似 超出可转换的日期 的本地化字符串。
+            </summary>
+        </member>
+        <member name="P:Library.GlobalResource._Code11002_101">
+            <summary>
+              查找类似 [{0}]不合法的農曆日期,年份不在可轉換範圍[{1}-{2}] 的本地化字符串。
+            </summary>
+        </member>
+        <member name="P:Library.GlobalResource._Code11002_102">
+            <summary>
+              查找类似 [{0}]不合法的農曆日期,月份不存在。 的本地化字符串。
+            </summary>
+        </member>
+        <member name="P:Library.GlobalResource._Code11002_103">
+            <summary>
+              查找类似 不合法的農曆日期,[{0}日]不存在 的本地化字符串。
+            </summary>
+        </member>
+        <member name="P:Library.GlobalResource._Code11002_104">
+            <summary>
+              查找类似 不合法的農曆日期,[{0}月]不為闰月。 的本地化字符串。
+            </summary>
+        </member>
+        <member name="P:Library.GlobalResource._Code11002_105">
+            <summary>
+              查找类似 [{0}]天數不為有效值[0-31] 的本地化字符串。
+            </summary>
+        </member>
+        <member name="P:Library.GlobalResource._Code11002_106">
+            <summary>
+              查找类似 不支持類型轉換 的本地化字符串。
+            </summary>
+        </member>
+        <member name="P:Library.GlobalResource._Code11002_107">
+            <summary>
+              查找类似 不為日期類型 的本地化字符串。
+            </summary>
+        </member>
+        <member name="P:Library.GlobalResource.Apply">
+            <summary>
+              查找类似 申請 的本地化字符串。
+            </summary>
+        </member>
+        <member name="P:Library.GlobalResource.Author">
+            <summary>
+              查找类似 作者 的本地化字符串。
+            </summary>
+        </member>
+        <member name="P:Library.GlobalResource.Batch">
+            <summary>
+              查找类似 批量 的本地化字符串。
+            </summary>
+        </member>
+        <member name="P:Library.GlobalResource.Cancel">
+            <summary>
+              查找类似 取消 的本地化字符串。
+            </summary>
+        </member>
+        <member name="P:Library.GlobalResource.Chinese">
+            <summary>
+              查找类似 中文 的本地化字符串。
+            </summary>
+        </member>
+        <member name="P:Library.GlobalResource.Comment">
+            <summary>
+              查找类似 评论 的本地化字符串。
+            </summary>
+        </member>
+        <member name="P:Library.GlobalResource.Compression">
+            <summary>
+              查找类似 压缩 的本地化字符串。
+            </summary>
+        </member>
+        <member name="P:Library.GlobalResource.Copyright">
+            <summary>
+              查找类似 版权 的本地化字符串。
+            </summary>
+        </member>
+        <member name="P:Library.GlobalResource.Delete">
+            <summary>
+              查找类似 刪除 的本地化字符串。
+            </summary>
+        </member>
+        <member name="P:Library.GlobalResource.Description">
+            <summary>
+              查找类似 描述 的本地化字符串。
+            </summary>
+        </member>
+        <member name="P:Library.GlobalResource.Edit">
+            <summary>
+              查找类似 編輯 的本地化字符串。
+            </summary>
+        </member>
+        <member name="P:Library.GlobalResource.English">
+            <summary>
+              查找类似 英文 的本地化字符串。
+            </summary>
+        </member>
+        <member name="P:Library.GlobalResource.Feature">
+            <summary>
+              查找类似 功能 的本地化字符串。
+            </summary>
+        </member>
+        <member name="P:Library.GlobalResource.FileInfo">
+            <summary>
+              查找类似 文件信息 的本地化字符串。
+            </summary>
+        </member>
+        <member name="P:Library.GlobalResource.Keyword">
+            <summary>
+              查找类似 关键字 的本地化字符串。
+            </summary>
+        </member>
+        <member name="P:Library.GlobalResource.Language">
+            <summary>
+              查找类似 语言 的本地化字符串。
+            </summary>
+        </member>
+        <member name="P:Library.GlobalResource.Notepad">
+            <summary>
+              查找类似 記事本 的本地化字符串。
+            </summary>
+        </member>
+        <member name="P:Library.GlobalResource.Portuguese">
+            <summary>
+              查找类似 葡文 的本地化字符串。
+            </summary>
+        </member>
+        <member name="P:Library.GlobalResource.Rating">
+            <summary>
+              查找类似 星级 的本地化字符串。
+            </summary>
+        </member>
+        <member name="P:Library.GlobalResource.RawFormat">
+            <summary>
+              查找类似 原始格式 的本地化字符串。
+            </summary>
+        </member>
+        <member name="P:Library.GlobalResource.RawFormatID">
+            <summary>
+              查找类似 原始格式編號 的本地化字符串。
+            </summary>
+        </member>
+        <member name="P:Library.GlobalResource.Reject">
+            <summary>
+              查找类似 拒绝 的本地化字符串。
+            </summary>
+        </member>
+        <member name="P:Library.GlobalResource.Save">
+            <summary>
+              查找类似 保存 的本地化字符串。
+            </summary>
+        </member>
+        <member name="P:Library.GlobalResource.Send">
+            <summary>
+              查找类似 發送 的本地化字符串。
+            </summary>
+        </member>
+        <member name="P:Library.GlobalResource.Solution">
+            <summary>
+              查找类似 方案 的本地化字符串。
+            </summary>
+        </member>
+        <member name="P:Library.GlobalResource.Subject">
+            <summary>
+              查找类似 主题 的本地化字符串。
+            </summary>
+        </member>
+        <member name="P:Library.GlobalResource.Submit">
+            <summary>
+              查找类似 提交 的本地化字符串。
+            </summary>
+        </member>
+        <member name="P:Library.GlobalResource.Test">
+            <summary>
+              查找类似 測試 的本地化字符串。
+            </summary>
+        </member>
+        <member name="P:Library.GlobalResource.Title">
+            <summary>
+              查找类似 标题 的本地化字符串。
+            </summary>
+        </member>
+        <member name="P:Library.GlobalResource.Unknown">
+            <summary>
+              查找类似 未知的 的本地化字符串。
+            </summary>
+        </member>
+        <member name="P:Library.GlobalResource.Version">
+            <summary>
+              查找类似 版本 的本地化字符串。
+            </summary>
+        </member>
+        <member name="P:Library.GlobalResource.View">
+            <summary>
+              查找类似 檢視 的本地化字符串。
+            </summary>
+        </member>
+        <member name="T:Library.IDCrad.IIDCard">
+            <summary>
+            身份證
+            </summary>
+        </member>
+        <member name="P:Library.IDCrad.IIDCard.Version">
+            <summary>
+            第幾代身份證
+            </summary>
+        </member>
+        <member name="P:Library.IDCrad.IIDCard.CardTypeID">
+             <summary>
+            
+             </summary>
+        </member>
+        <member name="P:Library.IDCrad.IIDCard.CardTypeName">
+            <summary>
+            身份證類型名稱
+            </summary>
+        </member>
+        <member name="P:Library.IDCrad.IIDCard.IDNumber">
+            <summary>
+            身份證
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:Library.IDCrad.IIDCard.Validate">
+            <summary>
+            驗證身份證號碼
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="T:Library.IDCrad.IIDCardProvider">
+             <summary>
+            
+             </summary>
+        </member>
+        <member name="M:Library.IDCrad.IIDCardProvider.CreateNew">
+             <summary>
+            
+             </summary>
+             <returns></returns>
+        </member>
+        <member name="T:Library.IO.IFileBuilder">
+             <summary>
+            
+             </summary>
+        </member>
+        <member name="T:Library.IO.IOMonitor">
+             <summary>
+            
+             </summary>
+        </member>
+        <member name="P:Library.IO.IOMonitor.BeginTime">
+            <summary>
+            羲宎奀潔
+            </summary>
+        </member>
+        <member name="P:Library.IO.IOMonitor.IsRunning">
+            <summary>
+            岆瘁堍俴
+            </summary>
+        </member>
+        <member name="M:Library.IO.IOMonitor.Start">
+            <summary>
+            雄
+            </summary>
+        </member>
+        <member name="M:Library.IO.IOMonitor.Stop">
+            <summary>
+            礿砦
+            </summary>
+        </member>
+        <member name="M:Library.IO.IOMonitor.Close">
+            <summary>
+            壽敕
+            </summary>
+        </member>
+        <member name="T:Library.IO.IPrintModel">
+             <summary>
+            
+             </summary>
+        </member>
+        <member name="M:Library.IO.IPrintModel.GetPrintObjects">
+            <summary>
+            湖荂砓
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="T:Library.IO.IDocumentInfo">
+             <summary>
+            
+             </summary>
+        </member>
+        <member name="P:Library.IO.IDocumentInfo.Author">
+             <summary>
+            
+             </summary>
+        </member>
+        <member name="P:Library.IO.IDocumentInfo.Keywords">
+             <summary>
+            
+             </summary>
+        </member>
+        <member name="P:Library.IO.IDocumentInfo.Subject">
+             <summary>
+            
+             </summary>
+        </member>
+        <member name="P:Library.IO.IDocumentInfo.Title">
+             <summary>
+            
+             </summary>
+        </member>
+        <member name="T:Library.IO.DocumentInfo">
+             <summary>
+            
+             </summary>
+        </member>
+        <member name="P:Library.IO.DocumentInfo.Author">
+             <summary>
+            
+             </summary>
+        </member>
+        <member name="P:Library.IO.DocumentInfo.Keywords">
+             <summary>
+            
+             </summary>
+        </member>
+        <member name="P:Library.IO.DocumentInfo.Subject">
+             <summary>
+            
+             </summary>
+        </member>
+        <member name="P:Library.IO.DocumentInfo.Title">
+             <summary>
+            
+             </summary>
+        </member>
+        <member name="T:Library.IParameter">
+             <summary>
+            
+             </summary>
+        </member>
+        <member name="P:Library.IParameter.Group">
+            <summary>
+            組
+            </summary>
+        </member>
+        <member name="P:Library.IParameter.Description">
+            <summary>
+            說明
+            </summary>
+        </member>
+        <member name="P:Library.IParameter.Key">
+            <summary>
+            鍵
+            </summary>
+        </member>
+        <member name="P:Library.IParameter.IsReadOnly">
+            <summary>
+            只讀
+            </summary>
+        </member>
+        <member name="P:Library.IParameter.Value">
+            <summary>
+            值
+            </summary>
+        </member>
+        <member name="M:Library.IParameter.SetValue(System.String)">
+            <summary>
+            付值
+            </summary>
+            <param name="value"></param>
+        </member>
+        <member name="M:Library.IParameter.GetValue">
+            <summary>
+            
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="T:Library.ISetting">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="M:Library.ISetting.Form(System.Collections.Generic.IEnumerable{Library.IParameter})">
+            <summary>
+            
+            </summary>
+            <param name="parameters"></param>
+        </member>
+        <member name="M:Library.ISetting.To">
+            <summary>
+            
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="T:Library.ParameterItem">
+             <summary>
+            
+             </summary>
+        </member>
+        <member name="M:Library.ParameterItem.#ctor(System.String,System.String,System.String,System.Boolean,System.String)">
+             <summary>
+            
+             </summary>
+             <param name="group"></param>
+             <param name="key"></param>
+             <param name="description"></param>
+             <param name="isReadOnly"></param>
+             <param name="value"></param>
+        </member>
+        <member name="P:Library.ParameterItem.Group">
+             <summary>
+            
+             </summary>
+        </member>
+        <member name="P:Library.ParameterItem.Description">
+             <summary>
+            
+             </summary>
+        </member>
+        <member name="P:Library.ParameterItem.Key">
+             <summary>
+            
+             </summary>
+        </member>
+        <member name="P:Library.ParameterItem.IsReadOnly">
+             <summary>
+            
+             </summary>
+        </member>
+        <member name="P:Library.ParameterItem.Value">
+             <summary>
+            
+             </summary>
+        </member>
+        <member name="M:Library.ParameterItem.GetValue">
+            <summary>
+            
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:Library.ParameterItem.SetValue(System.String)">
+             <summary>
+            
+             </summary>
+             <param name="value"></param>
+        </member>
+        <member name="T:Library.Comparable.IRangeItem`1">
+             <summary>
+            
+             </summary>
+             <typeparam name="T"></typeparam>
+        </member>
+        <member name="P:Library.Comparable.IRangeItem`1.Begin">
+             <summary>
+            
+             </summary>
+        </member>
+        <member name="P:Library.Comparable.IRangeItem`1.End">
+             <summary>
+            
+             </summary>
+        </member>
+        <member name="M:Library.Comparable.IRangeItem`1.IsInside(`0)">
+             <summary>
+             Check if the specified value is inside of the range.
+             </summary>
+            
+             <param name="x">Value to check.</param>
+            
+             <returns><b>True</b> if the specified value is inside of the range or
+             <b>false</b> otherwise.</returns>
+            
+        </member>
+        <member name="T:Library.LibException">
+             <summary>
+            
+             </summary>
+        </member>
+        <member name="M:Library.LibException.#ctor(System.Double)">
+             <summary>
+            
+             </summary>
+        </member>
+        <member name="M:Library.LibException.#ctor">
+             <summary>
+            
+             </summary>
+        </member>
+        <member name="M:Library.LibException.#ctor(System.String,System.Double)">
+             <summary>
+            
+             </summary>
+             <param name="message"></param>
+             <param name="resultCode"></param>
+        </member>
+        <member name="M:Library.LibException.#ctor(System.String,System.Double,System.Exception)">
+             <summary>
+            
+             </summary>
+             <param name="message"></param>
+             <param name="resultCode"></param>
+             <param name="inner"></param>
+        </member>
+        <member name="M:Library.LibException.#ctor(System.String)">
+             <summary>
+            
+             </summary>
+             <param name="message"></param>
+        </member>
+        <member name="M:Library.LibException.#ctor(System.String,System.Exception)">
+             <summary>
+            
+             </summary>
+             <param name="message"></param>
+             <param name="inner"></param>
+        </member>
+        <member name="M:Library.LibException.#ctor(System.Double,System.Object[])">
+             <summary>
+            
+             </summary>
+             <param name="resultCode"></param>
+             <param name="formatages"></param>
+        </member>
+        <member name="M:Library.LibException.#ctor(System.Runtime.Serialization.SerializationInfo,System.Runtime.Serialization.StreamingContext)">
+             <summary>
+            
+             </summary>
+             <param name="info"></param>
+             <param name="context"></param>
+        </member>
+        <member name="T:Library.LogicException">
+             <summary>
+            
+             </summary>
+        </member>
+        <member name="M:Library.LogicException.#ctor">
+             <summary>
+            
+             </summary>
+        </member>
+        <member name="M:Library.LogicException.#ctor(System.String,System.Double)">
+             <summary>
+            
+             </summary>
+             <param name="message"></param>
+             <param name="resultCode"></param>
+        </member>
+        <member name="M:Library.LogicException.#ctor(System.String,System.Double,System.Exception)">
+             <summary>
+            
+             </summary>
+             <param name="message"></param>
+             <param name="resultCode"></param>
+             <param name="inner"></param>
+        </member>
+        <member name="M:Library.LogicException.#ctor(System.String)">
+             <summary>
+            
+             </summary>
+             <param name="message"></param>
+        </member>
+        <member name="M:Library.LogicException.#ctor(System.String,System.Exception)">
+             <summary>
+            
+             </summary>
+             <param name="message"></param>
+             <param name="inner"></param>
+        </member>
+        <member name="M:Library.LogicException.#ctor(System.Double,System.Object[])">
+             <summary>
+            
+             </summary>
+             <param name="resultCode"></param>
+             <param name="formatages"></param>
+        </member>
+        <member name="M:Library.LogicException.#ctor(System.Runtime.Serialization.SerializationInfo,System.Runtime.Serialization.StreamingContext)">
+             <summary>
+            
+             </summary>
+             <param name="info"></param>
+             <param name="context"></param>
+        </member>
+        <member name="T:Library.IdentityGenerator">
+             <summary>
+            
+             </summary>
+        </member>
+        <member name="M:Library.IdentityGenerator.Next(System.Guid)">
+             <summary>
+            
+             </summary>
+             <param name="id"></param>
+             <returns></returns>
+        </member>
+        <member name="M:Library.IdentityGenerator.NewGuid">
+            <summary>
+            該算法生成跨系統邊界secuential的GUID，非常適合數據庫
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="T:Library.Annotations.CanBeNullAttribute">
+            <summary>
+            Indicates that the value of the marked element could be <c>null</c> sometimes,
+            so the check for <c>null</c> is necessary before its usage
+            </summary>
+            <example><code>
+            [CanBeNull] public object Test() { return null; }
+            public void UseTest() {
+              var p = Test();
+              var s = p.ToString(); // Warning: Possible 'System.NullReferenceException'
+            }
+            </code></example>
+        </member>
+        <member name="T:Library.Annotations.NotNullAttribute">
+            <summary>
+            Indicates that the value of the marked element could never be <c>null</c>
+            </summary>
+            <example><code>
+            [NotNull] public object Foo() {
+              return null; // Warning: Possible 'null' assignment
+            }
+            </code></example>
+        </member>
+        <member name="T:Library.Annotations.StringFormatMethodAttribute">
+            <summary>
+            Indicates that the marked method builds string by format pattern and (optional) arguments.
+            Parameter, which contains format string, should be given in constructor. The format string
+            should be in <see cref="M:System.String.Format(System.IFormatProvider,System.String,System.Object[])"/>-like form
+            </summary>
+            <example><code>
+            [StringFormatMethod("message")]
+            public void ShowError(string message, params object[] args) { /* do something */ }
+            public void Foo() {
+              ShowError("Failed: {0}"); // Warning: Non-existing argument in format string
+            }
+            </code></example>
+        </member>
+        <member name="M:Library.Annotations.StringFormatMethodAttribute.#ctor(System.String)">
+            <param name="formatParameterName">
+            Specifies which parameter of an annotated method should be treated as format-string
+            </param>
+        </member>
+        <member name="T:Library.Annotations.InvokerParameterNameAttribute">
+            <summary>
+            Indicates that the function argument should be string literal and match one
+            of the parameters of the caller function. For example, ReSharper annotates
+            the parameter of <see cref="T:System.ArgumentNullException"/>
+            </summary>
+            <example><code>
+            public void Foo(string param) {
+              if (param == null)
+                throw new ArgumentNullException("par"); // Warning: Cannot resolve symbol
+            }
+            </code></example>
+        </member>
+        <member name="T:Library.Annotations.NotifyPropertyChangedInvocatorAttribute">
+             <summary>
+             Indicates that the method is contained in a type that implements
+             <see cref="T:System.ComponentModel.INotifyPropertyChanged"/> interface
+             and this method is used to notify that some property value changed
+             </summary>
+             <remarks>
+             The method should be non-static and conform to one of the supported signatures:
+             <list>
+             <item><c>NotifyChanged(string)</c></item>
+             <item><c>NotifyChanged(params string[])</c></item>
+             <item><c>NotifyChanged{T}(Expression{Func{T}})</c></item>
+             <item><c>NotifyChanged{T,U}(Expression{Func{T,U}})</c></item>
+             <item><c>SetProperty{T}(ref T, T, string)</c></item>
+             </list>
+             </remarks>
+             <example><code>
+             public class Foo : INotifyPropertyChanged {
+               public event PropertyChangedEventHandler PropertyChanged;
+               [NotifyPropertyChangedInvocator]
+               protected virtual void NotifyChanged(string propertyName) { ... }
+            
+               private string _name;
+               public string Name {
+                 get { return _name; }
+                 set { _name = value; NotifyChanged("LastName"); /* Warning */ }
+               }
+             }
+             </code>
+             Examples of generated notifications:
+             <list>
+             <item><c>NotifyChanged("Property")</c></item>
+             <item><c>NotifyChanged(() =&gt; Property)</c></item>
+             <item><c>NotifyChanged((VM x) =&gt; x.Property)</c></item>
+             <item><c>SetProperty(ref myField, value, "Property")</c></item>
+             </list>
+             </example>
+        </member>
+        <member name="T:Library.Annotations.ContractAnnotationAttribute">
+            <summary>
+            Describes dependency between method input and output
+            </summary>
+            <syntax>
+            <p>Function Definition Table syntax:</p>
+            <list>
+            <item>FDT      ::= FDTRow [;FDTRow]*</item>
+            <item>FDTRow   ::= Input =&gt; Output | Output &lt;= Input</item>
+            <item>Input    ::= ParameterName: Value [, Input]*</item>
+            <item>Output   ::= [ParameterName: Value]* {halt|stop|void|nothing|Value}</item>
+            <item>Value    ::= true | false | null | notnull | canbenull</item>
+            </list>
+            If method has single input parameter, it's name could be omitted.<br/>
+            Using <c>halt</c> (or <c>void</c>/<c>nothing</c>, which is the same)
+            for method output means that the methos doesn't return normally.<br/>
+            <c>canbenull</c> annotation is only applicable for output parameters.<br/>
+            You can use multiple <c>[ContractAnnotation]</c> for each FDT row,
+            or use single attribute with rows separated by semicolon.<br/>
+            </syntax>
+            <examples><list>
+            <item><code>
+            [ContractAnnotation("=> halt")]
+            public void TerminationMethod()
+            </code></item>
+            <item><code>
+            [ContractAnnotation("halt &lt;= condition: false")]
+            public void Assert(bool condition, string text) // regular assertion method
+            </code></item>
+            <item><code>
+            [ContractAnnotation("s:null => true")]
+            public bool IsNullOrEmpty(string s) // string.IsNullOrEmpty()
+            </code></item>
+            <item><code>
+            // A method that returns null if the parameter is null, and not null if the parameter is not null
+            [ContractAnnotation("null => null; notnull => notnull")]
+            public object Transform(object data)
+            </code></item>
+            <item><code>
+            [ContractAnnotation("s:null=>false; =>true,result:notnull; =>false, result:null")]
+            public bool TryParse(string s, out Person result)
+            </code></item>
+            </list></examples>
+        </member>
+        <member name="T:Library.Annotations.LocalizationRequiredAttribute">
+            <summary>
+            Indicates that marked element should be localized or not
+            </summary>
+            <example><code>
+            [LocalizationRequiredAttribute(true)]
+            public class Foo {
+              private string str = "my string"; // Warning: Localizable string
+            }
+            </code></example>
+        </member>
+        <member name="T:Library.Annotations.CannotApplyEqualityOperatorAttribute">
+            <summary>
+            Indicates that the value of the marked type (or its derivatives)
+            cannot be compared using '==' or '!=' operators and <c>Equals()</c>
+            should be used instead. However, using '==' or '!=' for comparison
+            with <c>null</c> is always permitted.
+            </summary>
+            <example><code>
+            [CannotApplyEqualityOperator]
+            class NoEquality { }
+            class UsesNoEquality {
+              public void Test() {
+                var ca1 = new NoEquality();
+                var ca2 = new NoEquality();
+                if (ca1 != null) { // OK
+                  bool condition = ca1 == ca2; // Warning
+                }
+              }
+            }
+            </code></example>
+        </member>
+        <member name="T:Library.Annotations.BaseTypeRequiredAttribute">
+            <summary>
+            When applied to a target attribute, specifies a requirement for any type marked
+            with the target attribute to implement or inherit specific type or types.
+            </summary>
+            <example><code>
+            [BaseTypeRequired(typeof(IComponent)] // Specify requirement
+            public class ComponentAttribute : Attribute { }
+            [Component] // ComponentAttribute requires implementing IComponent interface
+            public class MyComponent : IComponent { }
+            </code></example>
+        </member>
+        <member name="T:Library.Annotations.UsedImplicitlyAttribute">
+            <summary>
+            Indicates that the marked symbol is used implicitly
+            (e.g. via reflection, in external library), so this symbol
+            will not be marked as unused (as well as by other usage inspections)
+            </summary>
+        </member>
+        <member name="T:Library.Annotations.MeansImplicitUseAttribute">
+            <summary>
+            Should be used on attributes and causes ReSharper
+            to not mark symbols marked with such attributes as unused
+            (as well as by other usage inspections)
+            </summary>
+        </member>
+        <member name="F:Library.Annotations.ImplicitUseKindFlags.Access">
+            <summary>Only entity marked with attribute considered used</summary>
+        </member>
+        <member name="F:Library.Annotations.ImplicitUseKindFlags.Assign">
+            <summary>Indicates implicit assignment to a member</summary>
+        </member>
+        <member name="F:Library.Annotations.ImplicitUseKindFlags.InstantiatedWithFixedConstructorSignature">
+            <summary>
+            Indicates implicit instantiation of a type with fixed constructor signature.
+            That means any unused constructor parameters won't be reported as such.
+            </summary>
+        </member>
+        <member name="F:Library.Annotations.ImplicitUseKindFlags.InstantiatedNoFixedConstructorSignature">
+            <summary>Indicates implicit instantiation of a type</summary>
+        </member>
+        <member name="T:Library.Annotations.ImplicitUseTargetFlags">
+            <summary>
+            Specify what is considered used implicitly
+            when marked with <see cref="T:Library.Annotations.MeansImplicitUseAttribute"/>
+            or <see cref="T:Library.Annotations.UsedImplicitlyAttribute"/>
+            </summary>
+        </member>
+        <member name="F:Library.Annotations.ImplicitUseTargetFlags.Members">
+            <summary>Members of entity marked with attribute are considered used</summary>
+        </member>
+        <member name="F:Library.Annotations.ImplicitUseTargetFlags.WithMembers">
+            <summary>Entity marked with attribute and all its members considered used</summary>
+        </member>
+        <member name="T:Library.Annotations.PublicAPIAttribute">
+            <summary>
+            This attribute is intended to mark publicly available API
+            which should not be removed and so is treated as used
+            </summary>
+        </member>
+        <member name="T:Library.Annotations.InstantHandleAttribute">
+            <summary>
+            Tells code analysis engine if the parameter is completely handled
+            when the invoked method is on stack. If the parameter is a delegate,
+            indicates that delegate is executed while the method is executed.
+            If the parameter is an enumerable, indicates that it is enumerated
+            while the method is executed
+            </summary>
+        </member>
+        <member name="T:Library.Annotations.PureAttribute">
+            <summary>
+            Indicates that a method does not make any observable state changes.
+            The same as <c>System.Diagnostics.Contracts.PureAttribute</c>
+            </summary>
+            <example><code>
+            [Pure] private int Multiply(int x, int y) { return x * y; }
+            public void Foo() {
+              const int a = 2, b = 2;
+              Multiply(a, b); // Waring: Return value of pure method is not used
+            }
+            </code></example>
+        </member>
+        <member name="T:Library.Annotations.PathReferenceAttribute">
+            <summary>
+            Indicates that a parameter is a path to a file or a folder
+            within a web project. Path can be relative or absolute,
+            starting from web root (~)
+            </summary>
+        </member>
+        <member name="T:Library.Annotations.AspMvcActionAttribute">
+            <summary>
+            ASP.NET MVC attribute. If applied to a parameter, indicates that the parameter
+            is an MVC action. If applied to a method, the MVC action name is calculated
+            implicitly from the context. Use this attribute for custom wrappers similar to
+            <c>System.Web.Mvc.Html.ChildActionExtensions.RenderAction(HtmlHelper, String)</c>
+            </summary>
+        </member>
+        <member name="T:Library.Annotations.AspMvcAreaAttribute">
+            <summary>
+            ASP.NET MVC attribute. Indicates that a parameter is an MVC area.
+            Use this attribute for custom wrappers similar to
+            <c>System.Web.Mvc.Html.ChildActionExtensions.RenderAction(HtmlHelper, String)</c>
+            </summary>
+        </member>
+        <member name="T:Library.Annotations.AspMvcControllerAttribute">
+            <summary>
+            ASP.NET MVC attribute. If applied to a parameter, indicates that
+            the parameter is an MVC controller. If applied to a method,
+            the MVC controller name is calculated implicitly from the context.
+            Use this attribute for custom wrappers similar to
+            <c>System.Web.Mvc.Html.ChildActionExtensions.RenderAction(HtmlHelper, String, String)</c>
+            </summary>
+        </member>
+        <member name="T:Library.Annotations.AspMvcMasterAttribute">
+            <summary>
+            ASP.NET MVC attribute. Indicates that a parameter is an MVC Master.
+            Use this attribute for custom wrappers similar to
+            <c>System.Web.Mvc.Controller.View(String, String)</c>
+            </summary>
+        </member>
+        <member name="T:Library.Annotations.AspMvcModelTypeAttribute">
+            <summary>
+            ASP.NET MVC attribute. Indicates that a parameter is an MVC model type.
+            Use this attribute for custom wrappers similar to
+            <c>System.Web.Mvc.Controller.View(String, Object)</c>
+            </summary>
+        </member>
+        <member name="T:Library.Annotations.AspMvcPartialViewAttribute">
+            <summary>
+            ASP.NET MVC attribute. If applied to a parameter, indicates that
+            the parameter is an MVC partial view. If applied to a method,
+            the MVC partial view name is calculated implicitly from the context.
+            Use this attribute for custom wrappers similar to
+            <c>System.Web.Mvc.Html.RenderPartialExtensions.RenderPartial(HtmlHelper, String)</c>
+            </summary>
+        </member>
+        <member name="T:Library.Annotations.AspMvcSupressViewErrorAttribute">
+            <summary>
+            ASP.NET MVC attribute. Allows disabling all inspections
+            for MVC views within a class or a method.
+            </summary>
+        </member>
+        <member name="T:Library.Annotations.AspMvcDisplayTemplateAttribute">
+            <summary>
+            ASP.NET MVC attribute. Indicates that a parameter is an MVC display template.
+            Use this attribute for custom wrappers similar to
+            <c>System.Web.Mvc.Html.DisplayExtensions.DisplayForModel(HtmlHelper, String)</c>
+            </summary>
+        </member>
+        <member name="T:Library.Annotations.AspMvcEditorTemplateAttribute">
+            <summary>
+            ASP.NET MVC attribute. Indicates that a parameter is an MVC editor template.
+            Use this attribute for custom wrappers similar to
+            <c>System.Web.Mvc.Html.EditorExtensions.EditorForModel(HtmlHelper, String)</c>
+            </summary>
+        </member>
+        <member name="T:Library.Annotations.AspMvcTemplateAttribute">
+            <summary>
+            ASP.NET MVC attribute. Indicates that a parameter is an MVC template.
+            Use this attribute for custom wrappers similar to
+            <c>System.ComponentModel.DataAnnotations.UIHintAttribute(System.String)</c>
+            </summary>
+        </member>
+        <member name="T:Library.Annotations.AspMvcViewAttribute">
+            <summary>
+            ASP.NET MVC attribute. If applied to a parameter, indicates that the parameter
+            is an MVC view. If applied to a method, the MVC view name is calculated implicitly
+            from the context. Use this attribute for custom wrappers similar to
+            <c>System.Web.Mvc.Controller.View(Object)</c>
+            </summary>
+        </member>
+        <member name="T:Library.Annotations.AspMvcActionSelectorAttribute">
+            <summary>
+            ASP.NET MVC attribute. When applied to a parameter of an attribute,
+            indicates that this parameter is an MVC action name
+            </summary>
+            <example><code>
+            [ActionName("Foo")]
+            public ActionResult Login(string returnUrl) {
+              ViewBag.ReturnUrl = Url.Action("Foo"); // OK
+              return RedirectToAction("Bar"); // Error: Cannot resolve action
+            }
+            </code></example>
+        </member>
+        <member name="T:Library.Annotations.RazorSectionAttribute">
+            <summary>
+            Razor attribute. Indicates that a parameter or a method is a Razor section.
+            Use this attribute for custom wrappers similar to
+            <c>System.Web.WebPages.WebPageBase.RenderSection(String)</c>
+            </summary>
+        </member>
+        <member name="T:Library.TryResult">
+             <summary>
+            
+             </summary>
+        </member>
+        <member name="M:Library.TryResult.#ctor(System.Collections.Generic.IEnumerable{System.Exception})">
+             <summary>
+            
+             </summary>
+             <param name="exceptions"></param>
+        </member>
+        <member name="M:Library.TryResult.#ctor(System.Exception[])">
+             <summary>
+            
+             </summary>
+             <param name="exceptions"></param>
+        </member>
+        <member name="M:Library.TryResult.#ctor(System.Boolean)">
+             <summary>
+            
+             </summary>
+             <param name="flag"></param>
+        </member>
+        <member name="P:Library.TryResult.HasError">
+             <summary>
+            
+             </summary>
+        </member>
+        <member name="P:Library.TryResult.Error">
+             <summary>
+            
+             </summary>
+        </member>
+        <member name="P:Library.TryResult.Errors">
+             <summary>
+            
+             </summary>
+        </member>
+        <member name="M:Library.TryResult.op_Implicit(System.Exception)~Library.TryResult">
+             <summary>
+            
+             </summary>
+             <param name="ex"></param>
+             <returns></returns>
+        </member>
+        <member name="M:Library.TryResult.op_Implicit(System.Boolean)~Library.TryResult">
+             <summary>
+            
+             </summary>
+             <param name="flag"></param>
+             <returns></returns>
+        </member>
+        <member name="M:Library.TryResult.op_Implicit(Library.TryResult)~System.Boolean">
+             <summary>
+            
+             </summary>
+             <param name="value"></param>
+             <returns></returns>
+        </member>
+        <member name="M:Library.TryResult.op_True(Library.TryResult)">
+             <summary>
+            
+             </summary>
+             <param name="x"></param>
+             <returns></returns>
+        </member>
+        <member name="M:Library.TryResult.op_False(Library.TryResult)">
+             <summary>
+            
+             </summary>
+             <param name="x"></param>
+             <returns></returns>
+        </member>
+        <member name="T:Library.TryResult`1">
+             <summary>
+            
+             </summary>
+             <typeparam name="T"></typeparam>
+        </member>
+        <member name="M:Library.TryResult`1.#ctor(`0)">
+             <summary>
+            
+             </summary>
+             <param name="value"></param>
+        </member>
+        <member name="M:Library.TryResult`1.#ctor(System.Exception)">
+             <summary>
+            
+             </summary>
+             <param name="exception"></param>
+        </member>
+        <member name="M:Library.TryResult`1.#ctor(`0,System.Exception)">
+             <summary>
+            
+             </summary>
+             <param name="exception"></param>
+             <param name="defaultValue"></param>
+        </member>
+        <member name="P:Library.TryResult`1.Error">
+             <summary>
+            
+             </summary>
+        </member>
+        <member name="P:Library.TryResult`1.Value">
+             <summary>
+            
+             </summary>
+        </member>
+        <member name="P:Library.TryResult`1.HasError">
+             <summary>
+            
+             </summary>
+        </member>
+        <member name="M:Library.TryResult`1.ToString">
+             <summary>
+            
+             </summary>
+             <returns></returns>
+        </member>
+        <member name="M:Library.TryResult`1.op_Implicit(`0)~Library.TryResult{`0}">
+             <summary>
+            
+             </summary>
+             <param name="value"></param>
+             <returns></returns>
+        </member>
+        <member name="M:Library.TryResult`1.op_Implicit(System.Exception)~Library.TryResult{`0}">
+             <summary>
+            
+             </summary>
+             <param name="ex"></param>
+             <returns></returns>
+        </member>
+        <member name="M:Library.TryResult`1.op_Implicit(Library.TryResult{`0})~`0">
+             <summary>
+            
+             </summary>
+             <param name="value"></param>
+             <returns></returns>
+        </member>
+        <member name="M:Library.TryResult`1.op_True(Library.TryResult{`0})">
+             <summary>
+            
+             </summary>
+             <param name="x"></param>
+             <returns></returns>
+        </member>
+        <member name="M:Library.TryResult`1.op_False(Library.TryResult{`0})">
+             <summary>
+            
+             </summary>
+             <param name="x"></param>
+             <returns></returns>
+        </member>
+        <member name="M:Library.TryResult`1.Cast``1(Library.TryResult{System.Object})">
+             <summary>
+            
+             </summary>
+             <param name="obj"></param>
+             <typeparam name="TModel"></typeparam>
+             <returns></returns>
+        </member>
+        <member name="M:Library.TryResult`1.Cast``1(System.Object)">
+             <summary>
+            
+             </summary>
+             <param name="obj"></param>
+             <typeparam name="TModel"></typeparam>
+             <returns></returns>
+        </member>
+    </members>
+</doc>

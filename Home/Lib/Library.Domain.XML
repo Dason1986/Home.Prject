@@ -1,0 +1,613 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>Library.Domain</name>
+    </assembly>
+    <members>
+        <member name="T:Library.Domain.InThread.DomainEventPublish`1">
+             <summary>
+            
+             </summary>
+             <typeparam name="TService"></typeparam>
+        </member>
+        <member name="M:Library.Domain.InThread.DomainEventPublish`1.#ctor(Library.Domain.Data.ModuleProviders.IModuleProvider)">
+             <summary>
+            
+             </summary>
+             <param name="domainModuleProvider"></param>
+        </member>
+        <member name="P:Library.Domain.InThread.DomainEventPublish`1.ModuleProvider">
+             <summary>
+            
+             </summary>
+        </member>
+        <member name="M:Library.Domain.InThread.DomainEventPublish`1.Publish(Library.Domain.DomainEvents.DomainEventArgs)">
+             <summary>
+            
+             </summary>
+             <param name="args"></param>
+        </member>
+        <member name="T:Library.Domain.InThread.DomainEventBus">
+             <summary>
+            
+             </summary>
+        </member>
+        <member name="M:Library.Domain.InThread.DomainEventBus.#ctor">
+             <summary>
+            
+             </summary>
+        </member>
+        <member name="P:Library.Domain.InThread.DomainEventBus.ModuleProvider">
+             <summary>
+            
+             </summary>
+        </member>
+        <member name="M:Library.Domain.InThread.DomainEventBus.AddEvent(Library.Domain.DomainEvents.DomainEventHandler)">
+             <summary>
+            
+             </summary>
+             <param name="eventHandler"></param>
+        </member>
+        <member name="M:Library.Domain.InThread.DomainEventBus.Publish(Library.Domain.DomainEvents.DomainEventArgs)">
+             <summary>
+            
+             </summary>
+        </member>
+        <member name="M:Library.Domain.InThread.DomainEventBus.PublishAwait(Library.Domain.DomainEvents.DomainEventArgs)">
+             <summary>
+            
+             </summary>
+        </member>
+        <member name="T:Library.Domain.EF.EfDomainEventPublish`1">
+             <summary>
+            
+             </summary>
+             <typeparam name="TService"></typeparam>
+        </member>
+        <member name="M:Library.Domain.EF.EfDomainEventPublish`1.#ctor(Library.Domain.Data.ModuleProviders.IModuleProvider)">
+             <summary>
+            
+             </summary>
+             <param name="domainModuleProvider"></param>
+        </member>
+        <member name="P:Library.Domain.EF.EfDomainEventPublish`1.ModuleProvider">
+             <summary>
+            
+             </summary>
+        </member>
+        <member name="M:Library.Domain.EF.EfDomainEventPublish`1.Publish(Library.Domain.DomainEvents.DomainEventArgs)">
+             <summary>
+            
+             </summary>
+             <param name="args"></param>
+        </member>
+        <member name="T:Library.Domain.EF.EfDomainEventBus">
+             <summary>
+            
+             </summary>
+        </member>
+        <member name="M:Library.Domain.EF.EfDomainEventBus.#ctor">
+             <summary>
+            
+             </summary>
+        </member>
+        <member name="P:Library.Domain.EF.EfDomainEventBus.ModuleProvider">
+             <summary>
+            
+             </summary>
+        </member>
+        <member name="M:Library.Domain.EF.EfDomainEventBus.AddEvent(Library.Domain.DomainEvents.DomainEventHandler)">
+             <summary>
+            
+             </summary>
+             <param name="eventHandler"></param>
+        </member>
+        <member name="M:Library.Domain.EF.EfDomainEventBus.Publish(Library.Domain.DomainEvents.DomainEventArgs)">
+             <summary>
+            
+             </summary>
+        </member>
+        <member name="T:Library.Domain.DomainEvents.DomainEventHandler`1">
+             <summary>
+            
+             </summary>
+             <typeparam name="TService"></typeparam>
+        </member>
+        <member name="M:Library.Domain.DomainEvents.DomainEventHandler`1.CreateService">
+             <summary>
+            
+             </summary>
+             <returns></returns>
+        </member>
+        <member name="M:Library.Domain.DomainEvents.DomainEventHandler`1.OnCreateService">
+             <summary>
+            
+             </summary>
+             <returns></returns>
+        </member>
+        <member name="T:Library.Domain.DomainEvents.DomainEventHandler">
+             <summary>
+            
+             </summary>
+        </member>
+        <member name="M:Library.Domain.DomainEvents.DomainEventHandler.OnCreateService">
+             <summary>
+            
+             </summary>
+             <returns></returns>
+        </member>
+        <member name="T:Library.Domain.DomainEvents.IDomainService">
+             <summary>
+            
+             </summary>
+        </member>
+        <member name="P:Library.Domain.DomainEvents.IDomainService.ModuleProvider">
+             <summary>
+            
+             </summary>
+        </member>
+        <member name="M:Library.Domain.DomainEvents.IDomainService.Handle(Library.Domain.DomainEvents.DomainEventArgs)">
+             <summary>
+            
+             </summary>
+             <param name="args"></param>
+        </member>
+        <member name="T:Library.Domain.DomainEvents.IDomainEventPublish">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="M:Library.Domain.DomainEvents.IDomainEventPublish.Publish(Library.Domain.DomainEvents.DomainEventArgs)">
+            <summary>
+            
+            </summary>
+            <param name="args"></param>
+        </member>
+        <member name="T:Library.Domain.DomainEvents.IDomainService`1">
+             <summary>
+            
+             </summary>
+        </member>
+        <member name="M:Library.Domain.DomainEvents.IDomainService`1.Handle(`0)">
+             <summary>
+            
+             </summary>
+             <param name="args"></param>
+        </member>
+        <member name="T:Library.Domain.DomainEvents.IDomainEventHandler">
+             <summary>
+            
+             </summary>
+        </member>
+        <member name="M:Library.Domain.DomainEvents.IDomainEventHandler.CreateService">
+             <summary>
+            
+             </summary>
+             <returns></returns>
+        </member>
+        <member name="T:Library.Domain.DomainEvents.IDomainEventHandler`1">
+             <summary>
+            
+             </summary>
+             <typeparam name="TService"></typeparam>
+        </member>
+        <member name="M:Library.Domain.DomainEvents.IDomainEventHandler`1.CreateService">
+             <summary>
+            
+             </summary>
+             <returns></returns>
+        </member>
+        <member name="T:Library.Domain.DomainEvents.DomainEventArgs">
+             <summary>
+            
+             </summary>
+        </member>
+        <member name="T:Library.Domain.DomainEvents.DomainEmtpyArgs">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="T:Library.Domain.DomainEvents.IDomainEventBus">
+             <summary>
+            
+             </summary>
+        </member>
+        <member name="M:Library.Domain.DomainEvents.IDomainEventBus.AddEvent(Library.Domain.DomainEvents.IDomainEventHandler)">
+             <summary>
+            
+             </summary>
+             <param name="eventHandler"></param>
+        </member>
+        <member name="M:Library.Domain.DomainEvents.IDomainEventBus.Publish(Library.Domain.DomainEvents.DomainEventArgs)">
+             <summary>
+            
+             </summary>
+        </member>
+        <member name="T:Library.Domain.EntityHelper">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="M:Library.Domain.EntityHelper.Create(Library.Domain.Entity,Library.ComponentModel.Model.ICreatedInfo)">
+            <summary>
+            
+            </summary>
+            <param name="entity"></param>
+            <param name="created"></param>
+        </member>
+        <member name="M:Library.Domain.EntityHelper.SetChangedInfo(Library.Domain.AuditedEntity,System.String)">
+            <summary>
+            
+            </summary>
+            <param name="entity"></param>
+            <param name="modifiedBy"></param>
+        </member>
+        <member name="T:Library.Domain.IDEntity">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:Library.Domain.IDEntity.ID">
+            <summary>
+            
+            </summary>      
+        </member>
+        <member name="P:Library.Domain.IDEntity.Created">
+            <summary>
+            創建日期
+            </summary>
+        </member>
+        <member name="T:Library.Domain.Entity">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="M:Library.Domain.Entity.#ctor(Library.ComponentModel.Model.ICreatedInfo)">
+            <summary>
+            
+            </summary>
+            <param name="createinfo"></param>
+        </member>
+        <member name="M:Library.Domain.Entity.#ctor">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="M:Library.Domain.Entity.IsEmpty">
+            <summary>
+            
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="P:Library.Domain.Entity.ID">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:Library.Domain.Entity.StatusCode">
+            <summary>
+            
+            </summary>       
+        </member>
+        <member name="P:Library.Domain.Entity.Created">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:Library.Domain.Entity.CreatedBy">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="T:Library.Domain.AuditedEntity">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="M:Library.Domain.AuditedEntity.#ctor">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="M:Library.Domain.AuditedEntity.#ctor(Library.ComponentModel.Model.ICreatedInfo)">
+            <summary>
+            
+            </summary>
+            <param name="createinfo"></param>
+        </member>
+        <member name="P:Library.Domain.AuditedEntity.Modified">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:Library.Domain.AuditedEntity.ModifiedBy">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="M:Library.Domain.AuditedEntity.Delete(Library.ComponentModel.Model.ICreatedInfo)">
+            <summary>
+            
+            </summary>
+            <param name="manaegment"></param>
+        </member>
+        <member name="T:Library.Domain.Data.IUnitOfWork">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:Library.Domain.Data.IUnitOfWork.TraceId">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="M:Library.Domain.Data.IUnitOfWork.Commit">
+            <summary>
+            
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:Library.Domain.Data.IUnitOfWork.RollbackChanges">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="T:Library.Domain.Data.ISqlCommand">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="M:Library.Domain.Data.ISqlCommand.ExecuteCommand(System.String,System.Object[])">
+            <summary>
+            
+            </summary>
+            <param name="sqlCommand"></param>
+            <param name="parameters"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Library.Domain.Data.ISqlCommand.ExecuteQuery``1(System.String,System.Object[])">
+            <summary>
+            
+            </summary>
+            <typeparam name="TEntity"></typeparam>
+            <param name="sqlQuery"></param>
+            <param name="parameters"></param>
+            <returns></returns>
+        </member>
+        <member name="T:Library.Domain.Data.IVersion">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="T:Library.Domain.Data.IDbContext">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="M:Library.Domain.Data.IDbContext.CreateSet``1">
+            <summary>
+            
+            </summary>
+            <typeparam name="TEntity"></typeparam>
+            <returns></returns>
+        </member>
+        <member name="T:Library.Domain.Data.IDbContextWrapper`1">
+            <summary>
+            
+            </summary>
+            <typeparam name="TEntity"></typeparam>
+        </member>
+        <member name="M:Library.Domain.Data.IDbContextWrapper`1.CreateSet">
+            <summary>
+            
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:Library.Domain.Data.IDbContextWrapper`1.Find">
+            <summary>
+            查找实体
+            </summary>
+        </member>
+        <member name="M:Library.Domain.Data.IDbContextWrapper`1.FindAsNoTracking">
+            <summary>
+            获取未跟踪的实体集
+            </summary>
+        </member>
+        <member name="M:Library.Domain.Data.IDbContextWrapper`1.Find(Library.Domain.Data.Composite.ISpecification{`0},Library.ComponentModel.Model.SortDescriptor[],System.Linq.Expressions.Expression{System.Func{`0,System.Object}}[])">
+            <summary>
+            
+            </summary>
+            <param name="specification"></param>
+            <param name="sortings"></param>
+            <param name="includeProperties"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Library.Domain.Data.IDbContextWrapper`1.FindPageList(System.Linq.Expressions.Expression{System.Func{`0,System.Boolean}},Library.ComponentModel.Model.PageSizeDescriptor,Library.ComponentModel.Model.SortDescriptor[],System.Linq.Expressions.Expression{System.Func{`0,System.Object}}[])">
+            <summary>
+            
+            </summary>
+            <param name="criteria"></param>
+            <param name="page"></param>
+            <param name="sortings"></param>
+            <param name="includeProperties"></param>
+            <returns></returns>
+        </member>
+        <member name="T:Library.Domain.Data.Composite.ISpecification`1">
+            <summary>
+            
+            </summary>
+            <typeparam name="T"></typeparam>
+        </member>
+        <member name="M:Library.Domain.Data.Composite.ISpecification`1.IsSatisifiedBy(`0)">
+            <summary>
+            
+            </summary>
+            <param name="entity"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Library.Domain.Data.Composite.ISpecification`1.ToExpression">
+            <summary>
+            
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:Library.Domain.Data.Composite.ISpecification`1.And(Library.Domain.Data.Composite.ISpecification{`0})">
+            <summary>
+            
+            </summary>
+            <param name="specification"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Library.Domain.Data.Composite.ISpecification`1.Or(Library.Domain.Data.Composite.ISpecification{`0})">
+            <summary>
+            
+            </summary>
+            <param name="specification"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Library.Domain.Data.Composite.ISpecification`1.Not(Library.Domain.Data.Composite.ISpecification{`0})">
+            <summary>
+            
+            </summary>
+            <param name="specification"></param>
+            <returns></returns>
+        </member>
+        <member name="T:Library.Domain.Data.Composite.ISpecification`2">
+            <summary>
+            
+            </summary>
+            <typeparam name="T"></typeparam>
+            <typeparam name="TKey"></typeparam>
+        </member>
+        <member name="M:Library.Domain.Data.Composite.ISpecification`2.AddCreateDataRange(System.String,System.String)">
+            <summary>
+            
+            </summary>
+            <param name="daterange_begin"></param>
+            <param name="datarange_end"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Library.Domain.Data.Composite.ISpecification`2.AddCreateDataRange(System.DateTime,System.DateTime)">
+            <summary>
+            
+            </summary>
+            <param name="daterange_begin"></param>
+            <param name="datarange_end"></param>
+            <returns></returns>
+        </member>
+        <member name="T:Library.Domain.Data.Composite.IExpressionSpecification`1">
+            <summary>
+            
+            </summary>
+            <typeparam name="T"></typeparam>
+        </member>
+        <member name="M:Library.Domain.Data.Composite.IExpressionSpecification`1.And(System.Linq.Expressions.Expression{System.Func{`0,System.Boolean}})">
+            <summary>
+            
+            </summary>
+            <param name="expression"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Library.Domain.Data.Composite.IExpressionSpecification`1.Or(System.Linq.Expressions.Expression{System.Func{`0,System.Boolean}})">
+            <summary>
+            
+            </summary>
+            <param name="expression"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Library.Domain.Data.Composite.IExpressionSpecification`1.Not(System.Linq.Expressions.Expression{System.Func{`0,System.Boolean}})">
+            <summary>
+            
+            </summary>
+            <param name="expression"></param>
+            <returns></returns>
+        </member>
+        <member name="T:Library.Domain.Data.Repositorys.IRepository">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:Library.Domain.Data.Repositorys.IRepository.UnitOfWork">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="T:Library.Domain.Data.Repositorys.IRepository`2">
+            <summary>
+            
+            </summary>
+            <typeparam name="TEntity"></typeparam>
+            <typeparam name="TKey"></typeparam>
+        </member>
+        <member name="M:Library.Domain.Data.Repositorys.IRepository`2.Add(`0)">
+            <summary>
+            
+            </summary>
+            <param name="item"></param>
+        </member>
+        <member name="M:Library.Domain.Data.Repositorys.IRepository`2.Remove(`1)">
+            <summary>
+            
+            </summary>
+            <param name="id"></param>
+        </member>
+        <member name="M:Library.Domain.Data.Repositorys.IRepository`2.Get(`1)">
+            <summary>
+            
+            </summary>
+            <param name="id"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Library.Domain.Data.Repositorys.IRepository`2.GetAll">
+            <summary>
+            
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:Library.Domain.Data.Repositorys.IRepository`2.FindPageList(System.Linq.Expressions.Expression{System.Func{`0,System.Boolean}},Library.ComponentModel.Model.PageSizeDescriptor,Library.ComponentModel.Model.SortDescriptor[],System.Linq.Expressions.Expression{System.Func{`0,System.Object}}[])">
+            <summary>
+            
+            </summary>
+            <param name="criteria"></param>
+            <param name="pageSize"></param>
+            <param name="sortings"></param>
+            <param name="includeProperties"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Library.Domain.Data.Repositorys.IRepository`2.Find(Library.Domain.Data.Composite.ISpecification{`0},Library.ComponentModel.Model.SortDescriptor[],System.Linq.Expressions.Expression{System.Func{`0,System.Object}}[])">
+            <summary>
+            
+            </summary>
+            <param name="specification"></param>
+            <param name="sortings"></param>
+            <param name="includeProperties"></param>
+            <returns></returns>
+        </member>
+        <member name="T:Library.Domain.Data.Repositorys.IRepository`1">
+            <summary>
+            
+            </summary>
+            <typeparam name="TEntity"></typeparam>
+        </member>
+        <member name="T:Library.Domain.ValueObject`1">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="M:Library.Domain.ValueObject`1.Equals(`0,`0)">
+            <summary>
+            
+            </summary>
+            <param name="x"></param>
+            <param name="y"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Library.Domain.ValueObject`1.GetHashCode(`0)">
+            <summary>
+            
+            </summary>
+            <param name="obj"></param>
+            <returns></returns>
+        </member>
+    </members>
+</doc>

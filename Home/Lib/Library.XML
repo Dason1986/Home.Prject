@@ -1,0 +1,3907 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>Library</name>
+    </assembly>
+    <members>
+        <member name="T:Library.BitComputing">
+             <summary>
+            
+             </summary>
+        </member>
+        <member name="M:Library.BitComputing.OrOperation(System.Int32,System.Int32)">
+            <summary>
+            或運算
+            </summary>
+            <param name="x"></param>
+            <param name="y"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Library.BitComputing.IsRight(System.Int32,System.Int32)">
+            <summary>
+            是否包含y
+            </summary>
+            <param name="x"></param>
+            <param name="y"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Library.BitComputing.AnyIsRight(System.Int32,System.Int32[])">
+            <summary>
+            x是否包含其中一個記錄
+            </summary>
+            <param name="x"></param>
+            <param name="y"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Library.BitComputing.AllIsRight(System.Int32,System.Int32[])">
+            <summary>
+            x所有包含記錄
+            </summary>
+            <param name="x"></param>
+            <param name="y"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Library.BitComputing.BitLeftOperation(System.Int32)">
+            <summary>
+            左位移
+            </summary>
+            <param name="x"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Library.BitComputing.BitRightOperation(System.Int32)">
+            <summary>
+            右位移
+            </summary>
+            <param name="x"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Library.BitComputing.BitLeft2Operation(System.Int32)">
+            <summary>
+            左位移
+            </summary>
+            <param name="x"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Library.BitComputing.BitRight2Operation(System.Int32)">
+            <summary>
+            右位移
+            </summary>
+            <param name="x"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Library.BitComputing.BitLeft3Operation(System.Int32)">
+            <summary>
+            左位移
+            </summary>
+            <param name="x"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Library.BitComputing.BitRight3Operation(System.Int32)">
+            <summary>
+            右位移
+            </summary>
+            <param name="x"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Library.BitComputing.BitLeft4Operation(System.Int32)">
+            <summary>
+            左位移
+            </summary>
+            <param name="x"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Library.BitComputing.BitRight4Operation(System.Int32)">
+            <summary>
+            右位移
+            </summary>
+            <param name="x"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Library.BitComputing.AndOperation(System.Int32,System.Int32)">
+            <summary>
+            與運算
+            </summary>
+            <param name="x"></param>
+            <param name="y"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Library.BitComputing.NonOperation(System.Int32)">
+            <summary>
+            非運算
+            </summary>
+            <param name="x"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Library.BitComputing.XOROperation(System.Int32,System.Int32)">
+            <summary>
+            异或运算
+            </summary>
+            <param name="x"></param>
+            <param name="y"></param>
+            <returns></returns>
+        </member>
+        <member name="T:Library.BootstrapException">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="M:Library.BootstrapException.#ctor">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="M:Library.BootstrapException.#ctor(System.String)">
+            <summary>
+            
+            </summary>
+            <param name="message"></param>
+        </member>
+        <member name="M:Library.BootstrapException.#ctor(System.String,System.Exception)">
+            <summary>
+            
+            </summary>
+            <param name="message"></param>
+            <param name="inner"></param>
+        </member>
+        <member name="M:Library.BootstrapException.#ctor(System.Runtime.Serialization.SerializationInfo,System.Runtime.Serialization.StreamingContext)">
+            <summary>
+            
+            </summary>
+            <param name="info"></param>
+            <param name="context"></param>
+        </member>
+        <member name="T:Library.Bootstrap">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="M:Library.Bootstrap.#ctor">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:Library.Bootstrap.Currnet">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="M:Library.Bootstrap.Run">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="M:Library.Bootstrap.Register">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="M:Library.Bootstrap.GetService``1">
+            <summary>
+            
+            </summary>
+            <typeparam name="T"></typeparam>
+            <returns></returns>
+        </member>
+        <member name="M:Library.Bootstrap.GetService(System.Type)">
+            <summary>
+            
+            </summary>
+            <param name="type"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Library.Bootstrap.GetService(System.Type,System.Type[],System.Object[])">
+            <summary>
+            
+            </summary>
+            <param name="type"></param>
+            <param name="argtypes"></param>
+            <param name="obj"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Library.Bootstrap.GetService(System.Type,System.String[],System.Object[])">
+            <summary>
+            
+            </summary>
+            <param name="type"></param>
+            <param name="constantNames"></param>
+            <param name="obj"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Library.Bootstrap.GetService``1(System.String)">
+            <summary>
+            
+            </summary>
+            <typeparam name="T"></typeparam>
+            <returns></returns>
+        </member>
+        <member name="M:Library.Bootstrap.GetService``1(System.Type[],System.Object[])">
+            <summary>
+            
+            </summary>
+            <typeparam name="T"></typeparam>
+            <param name="type"></param>
+            <param name="obj"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Library.Bootstrap.GetService``1(System.String[],System.Object[])">
+            <summary>
+            
+            </summary>
+            <typeparam name="T"></typeparam>
+            <param name="constantNames"></param>
+            <param name="obj"></param>
+            <returns></returns>
+        </member>
+        <member name="T:Library.ComponentModel.IAlgorithm">
+             <summary>
+            
+             </summary>
+        </member>
+        <member name="T:Library.ComponentModel.IGreedAlgorithm">
+             <summary>
+            
+             </summary>
+        </member>
+        <member name="P:Library.ComponentModel.IGreedAlgorithm.Products">
+             <summary>
+            
+             </summary>
+        </member>
+        <member name="P:Library.ComponentModel.IGreedAlgorithm.HaveProducts">
+             <summary>
+            
+             </summary>
+        </member>
+        <member name="T:Library.ComponentModel.GreedType">
+             <summary>
+            
+             </summary>
+        </member>
+        <member name="F:Library.ComponentModel.GreedType.Price">
+             <summary>
+            
+             </summary>
+        </member>
+        <member name="F:Library.ComponentModel.GreedType.Unit">
+             <summary>
+            
+             </summary>
+        </member>
+        <member name="T:Library.ComponentModel.IGainItem">
+            <summary>
+            獲得產品
+            </summary>
+        </member>
+        <member name="P:Library.ComponentModel.IGainItem.Price">
+             <summary>
+            
+             </summary>
+        </member>
+        <member name="P:Library.ComponentModel.IGainItem.Quantity">
+             <summary>
+            
+             </summary>
+        </member>
+        <member name="T:Library.ComponentModel.GainItem">
+             <summary>
+            
+             </summary>
+        </member>
+        <member name="P:Library.ComponentModel.GainItem.Price">
+             <summary>
+            
+             </summary>
+        </member>
+        <member name="P:Library.ComponentModel.GainItem.Code">
+             <summary>
+            
+             </summary>
+        </member>
+        <member name="P:Library.ComponentModel.GainItem.Quantity">
+             <summary>
+            
+             </summary>
+        </member>
+        <member name="T:Library.ComponentModel.GainCollection">
+             <summary>
+            
+             </summary>
+        </member>
+        <member name="P:Library.ComponentModel.GainCollection.Total">
+            <summary>
+            總值
+            </summary>
+        </member>
+        <member name="P:Library.ComponentModel.GainCollection.Quantity">
+            <summary>
+            總數量
+            </summary>
+        </member>
+        <member name="T:Library.ComponentModel.ILimitItem">
+            <summary>
+            產品限制數量
+            </summary>
+        </member>
+        <member name="P:Library.ComponentModel.ILimitItem.Limit">
+             <summary>
+            
+             </summary>
+        </member>
+        <member name="T:Library.ComponentModel.LimitItem">
+             <summary>
+            
+             </summary>
+        </member>
+        <member name="P:Library.ComponentModel.LimitItem.Code">
+             <summary>
+            
+             </summary>
+        </member>
+        <member name="P:Library.ComponentModel.LimitItem.Limit">
+             <summary>
+            
+             </summary>
+        </member>
+        <member name="T:Library.ComponentModel.IGreedAlgorithmByPrice">
+             <summary>
+            
+             </summary>
+        </member>
+        <member name="P:Library.ComponentModel.IGreedAlgorithmByPrice.MaxAmount">
+            <summary>
+            最大量（金額）
+            </summary>
+        </member>
+        <member name="T:Library.ComponentModel.IGreedAlgorithmByUnits">
+             <summary>
+            
+             </summary>
+        </member>
+        <member name="P:Library.ComponentModel.IGreedAlgorithmByUnits.MaxUnits">
+             <summary>
+            
+             </summary>
+        </member>
+        <member name="T:Library.ComponentModel.IGreedMultipleAlgorithm">
+             <summary>
+            
+             </summary>
+        </member>
+        <member name="P:Library.ComponentModel.IGreedMultipleAlgorithm.MaxQuantity">
+            <summary>
+            最多只能獲取多少個數量
+            </summary>
+        </member>
+        <member name="T:Library.ComponentModel.GreedMultipleAlgorithmByPrice">
+             <summary>
+            
+             </summary>
+        </member>
+        <member name="M:Library.ComponentModel.GreedMultipleAlgorithmByPrice.Invoke">
+             <summary>
+            
+             </summary>
+        </member>
+        <member name="P:Library.ComponentModel.GreedMultipleAlgorithmByPrice.MaxAmount">
+             <summary>
+            
+             </summary>
+        </member>
+        <member name="T:Library.ComponentModel.GreedMultipleAlgorithmByUnits">
+             <summary>
+            
+             </summary>
+        </member>
+        <member name="M:Library.ComponentModel.GreedMultipleAlgorithmByUnits.Invoke">
+             <summary>
+            
+             </summary>
+        </member>
+        <member name="P:Library.ComponentModel.GreedMultipleAlgorithmByUnits.MaxUnits">
+             <summary>
+            
+             </summary>
+        </member>
+        <member name="T:Library.ComponentModel.GreedMultipleAlgorithm">
+             <summary>
+            
+             </summary>
+        </member>
+        <member name="P:Library.ComponentModel.GreedMultipleAlgorithm.Limits">
+             <summary>
+            
+             </summary>
+        </member>
+        <member name="P:Library.ComponentModel.GreedMultipleAlgorithm.MaxQuantity">
+            <summary>
+            最多只能獲取多少個數量
+            </summary>
+        </member>
+        <member name="M:Library.ComponentModel.GreedMultipleAlgorithm.OnValid">
+             <summary>
+            
+             </summary>
+        </member>
+        <member name="T:Library.ComponentModel.GreedAlgorithmByPrice">
+             <summary>
+            
+             </summary>
+        </member>
+        <member name="P:Library.ComponentModel.GreedAlgorithmByPrice.MaxAmount">
+             <summary>
+            
+             </summary>
+        </member>
+        <member name="M:Library.ComponentModel.GreedAlgorithmByPrice.Invoke">
+             <summary>
+            
+             </summary>
+        </member>
+        <member name="T:Library.ComponentModel.GreedAlgorithmByUnit">
+             <summary>
+            
+             </summary>
+        </member>
+        <member name="P:Library.ComponentModel.GreedAlgorithmByUnit.MaxUnits">
+             <summary>
+            
+             </summary>
+        </member>
+        <member name="M:Library.ComponentModel.GreedAlgorithmByUnit.Invoke">
+            <inheritdoc />
+        </member>
+        <member name="T:Library.ComponentModel.GreedAlgorithm">
+             <summary>
+            
+             </summary>
+        </member>
+        <member name="M:Library.ComponentModel.GreedAlgorithm.#ctor">
+             <summary>
+            
+             </summary>
+        </member>
+        <member name="P:Library.ComponentModel.GreedAlgorithm.Products">
+             <summary>
+            
+             </summary>
+        </member>
+        <member name="P:Library.ComponentModel.GreedAlgorithm.HaveProducts">
+             <summary>
+            
+             </summary>
+        </member>
+        <member name="M:Library.ComponentModel.GreedAlgorithm.Invoke">
+             <summary>
+            
+             </summary>
+        </member>
+        <member name="M:Library.ComponentModel.GreedAlgorithm.OnValid">
+             <summary>
+            
+             </summary>
+        </member>
+        <member name="T:Library.ComponentModel.IProduct">
+            <summary>
+            產品
+            </summary>
+        </member>
+        <member name="P:Library.ComponentModel.IProduct.Code">
+            <summary>
+            唯一編號
+            </summary>
+        </member>
+        <member name="T:Library.ComponentModel.IGreedAlgorithmItem">
+             <summary>
+            
+             </summary>
+        </member>
+        <member name="P:Library.ComponentModel.IGreedAlgorithmItem.Price">
+            <summary>
+            價值
+            </summary>
+        </member>
+        <member name="P:Library.ComponentModel.IGreedAlgorithmItem.Units">
+            <summary>
+            組成單位
+            </summary>
+        </member>
+        <member name="P:Library.ComponentModel.IGreedAlgorithmItem.UnitPrice">
+            <summary>
+            每1單位的價值
+            </summary>
+        </member>
+        <member name="T:Library.Date.HolidayBuilder">
+             <summary>
+            
+             </summary>
+        </member>
+        <member name="F:Library.Date.HolidayBuilder.Holidays">
+             <summary>
+            
+             </summary>
+        </member>
+        <member name="M:Library.Date.HolidayBuilder.AddHolidy(Library.Date.IHoliday)">
+             <summary>
+            
+             </summary>
+             <param name="holiday"></param>
+        </member>
+        <member name="M:Library.Date.HolidayBuilder.AddRangeHolidy(System.Collections.Generic.IEnumerable{Library.Date.IHoliday})">
+             <summary>
+            
+             </summary>
+             <param name="collection"></param>
+        </member>
+        <member name="M:Library.Date.HolidayBuilder.Create">
+             <summary>
+            
+             </summary>
+        </member>
+        <member name="T:Library.Date.SafeDateTime">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="M:Library.Date.SafeDateTime.GetSafeDateTime">
+            <summary>
+            
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="T:Library.FastReflection.IConstructorInvoker">
+             <summary>
+            
+             </summary>
+        </member>
+        <member name="M:Library.FastReflection.IConstructorInvoker.Invoke(System.Object[])">
+             <summary>
+            
+             </summary>
+             <param name="parameters"></param>
+             <returns></returns>
+        </member>
+        <member name="T:Library.FastReflection.ConstructorInvoker">
+             <summary>
+            
+             </summary>
+        </member>
+        <member name="P:Library.FastReflection.ConstructorInvoker.ConstructorInfo">
+             <summary>
+            
+             </summary>
+        </member>
+        <member name="M:Library.FastReflection.ConstructorInvoker.#ctor(System.Reflection.ConstructorInfo)">
+             <summary>
+            
+             </summary>
+             <param name="constructorInfo"></param>
+        </member>
+        <member name="M:Library.FastReflection.ConstructorInvoker.Invoke(System.Object[])">
+             <summary>
+            
+             </summary>
+             <param name="parameters"></param>
+             <returns></returns>
+        </member>
+        <member name="T:Library.FastReflection.ConstructorInvokerCache">
+             <summary>
+            
+             </summary>
+        </member>
+        <member name="M:Library.FastReflection.ConstructorInvokerCache.Create(System.Reflection.ConstructorInfo)">
+             <summary>
+            
+             </summary>
+             <param name="key"></param>
+             <returns></returns>
+        </member>
+        <member name="T:Library.FastReflection.ConstructorInvokerFactory">
+             <summary>
+            
+             </summary>
+        </member>
+        <member name="M:Library.FastReflection.ConstructorInvokerFactory.Create(System.Reflection.ConstructorInfo)">
+             <summary>
+            
+             </summary>
+             <param name="key"></param>
+             <returns></returns>
+        </member>
+        <member name="T:Library.FastReflection.FastReflectionCache`2">
+             <summary>
+            
+             </summary>
+             <typeparam name="TKey"></typeparam>
+             <typeparam name="TValue"></typeparam>
+        </member>
+        <member name="M:Library.FastReflection.FastReflectionCache`2.Get(`0)">
+             <summary>
+            
+             </summary>
+             <param name="key"></param>
+             <returns></returns>
+        </member>
+        <member name="M:Library.FastReflection.FastReflectionCache`2.Create(`0)">
+             <summary>
+            
+             </summary>
+             <param name="key"></param>
+             <returns></returns>
+        </member>
+        <member name="T:Library.FastReflection.FastReflectionCaches">
+             <summary>
+            
+             </summary>
+        </member>
+        <member name="P:Library.FastReflection.FastReflectionCaches.MethodInvokerCache">
+             <summary>
+            
+             </summary>
+        </member>
+        <member name="P:Library.FastReflection.FastReflectionCaches.PropertyAccessorCache">
+             <summary>
+            
+             </summary>
+        </member>
+        <member name="P:Library.FastReflection.FastReflectionCaches.FieldAccessorCache">
+             <summary>
+            
+             </summary>
+        </member>
+        <member name="P:Library.FastReflection.FastReflectionCaches.ConstructorInvokerCache">
+             <summary>
+            
+             </summary>
+        </member>
+        <member name="T:Library.FastReflection.FastReflectionFactories">
+             <summary>
+            
+             </summary>
+        </member>
+        <member name="P:Library.FastReflection.FastReflectionFactories.MethodInvokerFactory">
+             <summary>
+            
+             </summary>
+        </member>
+        <member name="P:Library.FastReflection.FastReflectionFactories.PropertyAccessorFactory">
+             <summary>
+            
+             </summary>
+        </member>
+        <member name="P:Library.FastReflection.FastReflectionFactories.FieldAccessorFactory">
+             <summary>
+            
+             </summary>
+        </member>
+        <member name="P:Library.FastReflection.FastReflectionFactories.ConstructorInvokerFactory">
+             <summary>
+            
+             </summary>
+        </member>
+        <member name="T:Library.FastReflection.IFieldAccessor">
+             <summary>
+            
+             </summary>
+        </member>
+        <member name="M:Library.FastReflection.IFieldAccessor.GetValue(System.Object)">
+             <summary>
+            
+             </summary>
+             <param name="instance"></param>
+             <returns></returns>
+        </member>
+        <member name="T:Library.FastReflection.FieldAccessor">
+             <summary>
+            
+             </summary>
+        </member>
+        <member name="P:Library.FastReflection.FieldAccessor.FieldInfo">
+             <summary>
+            
+             </summary>
+        </member>
+        <member name="M:Library.FastReflection.FieldAccessor.#ctor(System.Reflection.FieldInfo)">
+             <summary>
+            
+             </summary>
+             <param name="fieldInfo"></param>
+        </member>
+        <member name="M:Library.FastReflection.FieldAccessor.GetValue(System.Object)">
+             <summary>
+            
+             </summary>
+             <param name="instance"></param>
+             <returns></returns>
+        </member>
+        <member name="T:Library.FastReflection.FieldAccessorCache">
+             <summary>
+            
+             </summary>
+        </member>
+        <member name="M:Library.FastReflection.FieldAccessorCache.Create(System.Reflection.FieldInfo)">
+             <summary>
+            
+             </summary>
+             <param name="key"></param>
+             <returns></returns>
+        </member>
+        <member name="T:Library.FastReflection.FieldAccessorFactory">
+             <summary>
+            
+             </summary>
+        </member>
+        <member name="M:Library.FastReflection.FieldAccessorFactory.Create(System.Reflection.FieldInfo)">
+             <summary>
+            
+             </summary>
+             <param name="key"></param>
+             <returns></returns>
+        </member>
+        <member name="T:Library.FastReflection.IFastReflectionCache`2">
+             <summary>
+            
+             </summary>
+             <typeparam name="TKey"></typeparam>
+             <typeparam name="TValue"></typeparam>
+        </member>
+        <member name="M:Library.FastReflection.IFastReflectionCache`2.Get(`0)">
+             <summary>
+            
+             </summary>
+             <param name="key"></param>
+             <returns></returns>
+        </member>
+        <member name="T:Library.FastReflection.IFastReflectionFactory`2">
+             <summary>
+            
+             </summary>
+             <typeparam name="TKey"></typeparam>
+             <typeparam name="TValue"></typeparam>
+        </member>
+        <member name="M:Library.FastReflection.IFastReflectionFactory`2.Create(`0)">
+             <summary>
+            
+             </summary>
+             <param name="key"></param>
+             <returns></returns>
+        </member>
+        <member name="T:Library.FastReflection.IMethodInvoker">
+             <summary>
+            
+             </summary>
+        </member>
+        <member name="M:Library.FastReflection.IMethodInvoker.Invoke(System.Object,System.Object[])">
+             <summary>
+            
+             </summary>
+             <param name="instance"></param>
+             <param name="parameters"></param>
+             <returns></returns>
+        </member>
+        <member name="T:Library.FastReflection.MethodInvoker">
+             <summary>
+            
+             </summary>
+        </member>
+        <member name="P:Library.FastReflection.MethodInvoker.MethodInfo">
+             <summary>
+            
+             </summary>
+        </member>
+        <member name="M:Library.FastReflection.MethodInvoker.#ctor(System.Reflection.MethodInfo)">
+             <summary>
+            
+             </summary>
+             <param name="methodInfo"></param>
+        </member>
+        <member name="M:Library.FastReflection.MethodInvoker.Invoke(System.Object,System.Object[])">
+             <summary>
+            
+             </summary>
+             <param name="instance"></param>
+             <param name="parameters"></param>
+             <returns></returns>
+        </member>
+        <member name="T:Library.FastReflection.MethodInvokerCache">
+             <summary>
+            
+             </summary>
+        </member>
+        <member name="M:Library.FastReflection.MethodInvokerCache.Create(System.Reflection.MethodInfo)">
+             <summary>
+            
+             </summary>
+             <param name="key"></param>
+             <returns></returns>
+        </member>
+        <member name="T:Library.FastReflection.MethodInvokerFactory">
+             <summary>
+            
+             </summary>
+        </member>
+        <member name="M:Library.FastReflection.MethodInvokerFactory.Create(System.Reflection.MethodInfo)">
+             <summary>
+            
+             </summary>
+             <param name="key"></param>
+             <returns></returns>
+        </member>
+        <member name="T:Library.FastReflection.IPropertyAccessor">
+             <summary>
+            
+             </summary>
+        </member>
+        <member name="M:Library.FastReflection.IPropertyAccessor.GetValue(System.Object)">
+             <summary>
+            
+             </summary>
+             <param name="instance"></param>
+             <returns></returns>
+        </member>
+        <member name="M:Library.FastReflection.IPropertyAccessor.SetValue(System.Object,System.Object)">
+             <summary>
+            
+             </summary>
+             <param name="instance"></param>
+             <param name="value"></param>
+        </member>
+        <member name="T:Library.FastReflection.PropertyAccessor">
+             <summary>
+            
+             </summary>
+        </member>
+        <member name="P:Library.FastReflection.PropertyAccessor.PropertyInfo">
+             <summary>
+            
+             </summary>
+        </member>
+        <member name="M:Library.FastReflection.PropertyAccessor.#ctor(System.Reflection.PropertyInfo)">
+             <summary>
+            
+             </summary>
+             <param name="propertyInfo"></param>
+        </member>
+        <member name="M:Library.FastReflection.PropertyAccessor.GetValue(System.Object)">
+             <summary>
+            
+             </summary>
+             <param name="o"></param>
+             <returns></returns>
+        </member>
+        <member name="M:Library.FastReflection.PropertyAccessor.SetValue(System.Object,System.Object)">
+             <summary>
+            
+             </summary>
+             <param name="o"></param>
+             <param name="value"></param>
+        </member>
+        <member name="T:Library.FastReflection.PropertyAccessorCache">
+             <summary>
+            
+             </summary>
+        </member>
+        <member name="M:Library.FastReflection.PropertyAccessorCache.Create(System.Reflection.PropertyInfo)">
+             <summary>
+            
+             </summary>
+             <param name="key"></param>
+             <returns></returns>
+        </member>
+        <member name="T:Library.FastReflection.PropertyAccessorFactory">
+             <summary>
+            
+             </summary>
+        </member>
+        <member name="M:Library.FastReflection.PropertyAccessorFactory.Create(System.Reflection.PropertyInfo)">
+             <summary>
+            
+             </summary>
+             <param name="key"></param>
+             <returns></returns>
+        </member>
+        <member name="T:Library.Data.DataManager">
+             <summary>
+            
+             </summary>
+        </member>
+        <member name="M:Library.Data.DataManager.#ctor(System.Object)">
+             <summary>
+            
+             </summary>
+             <param name="datasource"></param>
+             <exception cref="T:System.ArgumentNullException"></exception>
+        </member>
+        <member name="M:Library.Data.DataManager.GetList(System.Object)">
+             <summary>
+            
+             </summary>
+             <param name="datasource"></param>
+        </member>
+        <member name="P:Library.Data.DataManager.Properties">
+             <summary>
+            
+             </summary>
+             <returns></returns>
+             <exception cref="T:System.NotSupportedException"></exception>
+        </member>
+        <member name="P:Library.Data.DataManager.List">
+             <summary>
+            
+             </summary>
+        </member>
+        <member name="P:Library.Data.DataManager.ObjectType">
+             <summary>
+            
+             </summary>
+        </member>
+        <member name="E:Library.Data.DataManager.PositionChanged">
+             <summary>
+            
+             </summary>
+        </member>
+        <member name="P:Library.Data.DataManager.Count">
+             <summary>
+            
+             </summary>
+        </member>
+        <member name="P:Library.Data.DataManager.Current">
+             <summary>
+            
+             </summary>
+        </member>
+        <member name="P:Library.Data.DataManager.Position">
+             <summary>
+            
+             </summary>
+        </member>
+        <member name="P:Library.Data.DataManager.NameIgnoreCase">
+             <summary>
+            
+             </summary>
+        </member>
+        <member name="M:Library.Data.DataManager.Read">
+             <summary>
+            
+             </summary>
+             <returns></returns>
+        </member>
+        <member name="M:Library.Data.DataManager.OnPositionChanged">
+             <summary>
+            
+             </summary>
+        </member>
+        <member name="P:Library.Data.DataManager.FieldCount">
+             <summary>
+            
+             </summary>
+        </member>
+        <member name="M:Library.Data.DataManager.GetBoolean(System.Int32)">
+             <summary>
+            
+             </summary>
+             <param name="i"></param>
+             <returns></returns>
+        </member>
+        <member name="M:Library.Data.DataManager.GetByte(System.Int32)">
+             <summary>
+            
+             </summary>
+             <param name="i"></param>
+             <returns></returns>
+        </member>
+        <member name="M:Library.Data.DataManager.GetChar(System.Int32)">
+             <summary>
+            
+             </summary>
+             <param name="i"></param>
+             <returns></returns>
+        </member>
+        <member name="M:Library.Data.DataManager.GetDateTime(System.Int32)">
+             <summary>
+            
+             </summary>
+             <param name="i"></param>
+             <returns></returns>
+        </member>
+        <member name="M:Library.Data.DataManager.GetDecimal(System.Int32)">
+             <summary>
+            
+             </summary>
+             <param name="i"></param>
+             <returns></returns>
+        </member>
+        <member name="M:Library.Data.DataManager.GetDouble(System.Int32)">
+             <summary>
+            
+             </summary>
+             <param name="i"></param>
+             <returns></returns>
+        </member>
+        <member name="M:Library.Data.DataManager.GetFieldType(System.Int32)">
+             <summary>
+            
+             </summary>
+             <param name="i"></param>
+             <returns></returns>
+        </member>
+        <member name="M:Library.Data.DataManager.GetFloat(System.Int32)">
+             <summary>
+            
+             </summary>
+             <param name="i"></param>
+             <returns></returns>
+        </member>
+        <member name="M:Library.Data.DataManager.GetGuid(System.Int32)">
+             <summary>
+            
+             </summary>
+             <param name="i"></param>
+             <returns></returns>
+        </member>
+        <member name="M:Library.Data.DataManager.GetInt16(System.Int32)">
+             <summary>
+            
+             </summary>
+             <param name="i"></param>
+             <returns></returns>
+        </member>
+        <member name="M:Library.Data.DataManager.GetInt32(System.Int32)">
+             <summary>
+            
+             </summary>
+             <param name="i"></param>
+             <returns></returns>
+        </member>
+        <member name="M:Library.Data.DataManager.GetInt64(System.Int32)">
+             <summary>
+            
+             </summary>
+             <param name="i"></param>
+             <returns></returns>
+        </member>
+        <member name="M:Library.Data.DataManager.GetName(System.Int32)">
+             <summary>
+            
+             </summary>
+             <param name="i"></param>
+             <returns></returns>
+        </member>
+        <member name="M:Library.Data.DataManager.GetOrdinal(System.String)">
+             <summary>
+            
+             </summary>
+             <param name="name"></param>
+             <returns></returns>
+        </member>
+        <member name="M:Library.Data.DataManager.GetString(System.Int32)">
+             <summary>
+            
+             </summary>
+             <param name="i"></param>
+             <returns></returns>
+        </member>
+        <member name="M:Library.Data.DataManager.GetValue(System.Int32)">
+             <summary>
+            
+             </summary>
+             <param name="i"></param>
+             <returns></returns>
+        </member>
+        <member name="M:Library.Data.DataManager.GetValues(System.Object[])">
+             <summary>
+            
+             </summary>
+             <param name="values"></param>
+             <returns></returns>
+        </member>
+        <member name="M:Library.Data.DataManager.IsDBNull(System.Int32)">
+             <summary>
+            
+             </summary>
+             <param name="i"></param>
+             <returns></returns>
+        </member>
+        <member name="P:Library.Data.DataManager.Item(System.String)">
+             <summary>
+            
+             </summary>
+             <param name="name"></param>
+             <returns></returns>
+        </member>
+        <member name="P:Library.Data.DataManager.Item(System.Int32)">
+             <summary>
+            
+             </summary>
+             <param name="i"></param>
+             <returns></returns>
+        </member>
+        <member name="T:Library.HelperUtility.AssemblyUtility">
+             <summary>
+            
+             </summary>
+        </member>
+        <member name="M:Library.HelperUtility.AssemblyUtility.GetResourcesFileAllTextByCallingAssembly(System.String)">
+            <summary>
+            
+            </summary>
+            <param name="path"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Library.HelperUtility.AssemblyUtility.GetResourcesFileAllTextByExecutingAssembly(System.String)">
+            <summary>
+            
+            </summary>
+            <param name="path"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Library.HelperUtility.AssemblyUtility.GetResourcesFileAllText(System.Reflection.Assembly,System.String)">
+            <summary>
+            
+            </summary>
+            <param name="assembly"></param>
+            <param name="path"></param>
+            <returns></returns>
+        </member>
+        <member name="T:Library.HelperUtility.DateTimeUtility">
+             <summary>
+            
+             </summary>
+        </member>
+        <member name="M:Library.HelperUtility.DateTimeUtility.GetDate(System.String)">
+             <summary>
+            
+             </summary>
+             <param name="datestr"></param>
+             <returns></returns>
+        </member>
+        <member name="M:Library.HelperUtility.DateTimeUtility.GetDateddMMyyyy(System.String)">
+             <summary>
+            
+             </summary>
+             <param name="datestr"></param>
+             <returns></returns>
+        </member>
+        <member name="M:Library.HelperUtility.DateTimeUtility.GetDateyyyyMMdd(System.String)">
+             <summary>
+            
+             </summary>
+             <param name="datestr"></param>
+             <returns></returns>
+        </member>
+        <member name="M:Library.HelperUtility.DateTimeUtility.FormatddMMyyyy(System.DateTime)">
+             <summary>
+            
+             </summary>
+             <param name="datetime"></param>
+             <returns></returns>
+        </member>
+        <member name="M:Library.HelperUtility.DateTimeUtility.FormatddMMyyyyhhmmssttFull(System.DateTime)">
+             <summary>
+            
+             </summary>
+        </member>
+        <member name="M:Library.HelperUtility.DateTimeUtility.FormatyyyyMMdd(System.DateTime)">
+             <summary>
+            
+             </summary>
+             <param name="datetime"></param>
+             <returns></returns>
+        </member>
+        <member name="M:Library.HelperUtility.DateTimeUtility.FormatHHmm(System.DateTime)">
+             <summary>
+            
+             </summary>
+             <param name="datetime"></param>
+             <returns></returns>
+        </member>
+        <member name="M:Library.HelperUtility.DateTimeUtility.GetDateTimeRange(Library.Date.DateTimePeriod)">
+             <summary>
+            
+             </summary>
+             <param name="period"></param>
+             <returns></returns>
+        </member>
+        <member name="M:Library.HelperUtility.DateTimeUtility.GetPeriod(System.DateTime)">
+            <summary>
+            輸入時間與當前時間的關係
+            </summary>
+            <param name="datetime"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Library.HelperUtility.DateTimeUtility.TimeSpanChinese(System.DateTime,System.Nullable{System.DateTime})">
+            <summary>
+            获取中文间隔时间差
+            </summary>
+            <param name="time"></param>
+            <param name="nowTime"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Library.HelperUtility.DateTimeUtility.FormatPeriodText(System.DateTime)">
+            <summary>
+            日期關係輸出
+            </summary>
+            <param name="datetime"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Library.HelperUtility.DateTimeUtility.FormatddMMyyyy(System.Nullable{System.DateTime})">
+             <summary>
+            
+             </summary>
+             <param name="datetime"></param>
+             <returns></returns>
+        </member>
+        <member name="M:Library.HelperUtility.DateTimeUtility.FormatddMMyyyyhhmmssttFull(System.Nullable{System.DateTime})">
+             <summary>
+            
+             </summary>
+        </member>
+        <member name="M:Library.HelperUtility.DateTimeUtility.FormatyyyyMMdd(System.Nullable{System.DateTime})">
+             <summary>
+            
+             </summary>
+             <param name="datetime"></param>
+             <returns></returns>
+        </member>
+        <member name="M:Library.HelperUtility.DateTimeUtility.FormatHHmm(System.Nullable{System.DateTime})">
+             <summary>
+            
+             </summary>
+             <param name="datetime"></param>
+             <returns></returns>
+        </member>
+        <member name="M:Library.HelperUtility.DateTimeUtility.TimeStamp(System.DateTime)">
+            <summary>
+            获取时间戳
+            </summary>
+            <param name="time"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Library.HelperUtility.DateTimeUtility.FromTimeStamp(System.Int64)">
+            <summary>
+            通過时间戳獲取日期
+            </summary>
+            <param name="timeStamp"></param>
+            <returns></returns>
+        </member>
+        <member name="T:Library.HelperUtility.DictionaryHelper">
+             <summary>
+            
+             </summary>
+        </member>
+        <member name="M:Library.HelperUtility.DictionaryHelper.AddOrReplace``2(System.Collections.Generic.IDictionary{``0,``1},``0,``1)">
+             <summary>
+            
+             </summary>
+             <typeparam name="TKey"></typeparam>
+             <typeparam name="TValue"></typeparam>
+             <param name="dictionary"></param>
+             <param name="key"></param>
+             <param name="value"></param>
+        </member>
+        <member name="M:Library.HelperUtility.DictionaryHelper.GetValue``2(System.Collections.Generic.IDictionary{``0,``1},``0,``1)">
+             <summary>
+            
+             </summary>
+             <typeparam name="TKey"></typeparam>
+             <typeparam name="TValue"></typeparam>
+             <param name="dictionary"></param>
+             <param name="key"></param>
+             <param name="defaultvalue"></param>
+             <returns></returns>
+        </member>
+        <member name="M:Library.HelperUtility.DictionaryHelper.GetValueIgnoreCase``1(System.Collections.Generic.IDictionary{System.String,``0},System.String,``0)">
+             <summary>
+            
+             </summary>
+             <typeparam name="TValue"></typeparam>
+             <param name="dictionary"></param>
+             <param name="key"></param>
+             <param name="defaultValue"></param>
+             <returns></returns>
+        </member>
+        <member name="M:Library.HelperUtility.DictionaryHelper.Reomve``2(System.Collections.Generic.IDictionary{``0,``1},``0,System.Func{``1,System.Boolean})">
+             <summary>
+            
+             </summary>
+             <typeparam name="TKey"></typeparam>
+             <typeparam name="TValue"></typeparam>
+             <param name="dict"></param>
+             <param name="key"></param>
+             <param name="func"></param>
+        </member>
+        <member name="M:Library.HelperUtility.DictionaryHelper.GetValueOrdefault``2(System.Collections.Generic.IDictionary{``0,``1},``0,System.Func{``1})">
+             <summary>
+            
+             </summary>
+             <param name="dict"></param>
+             <param name="key"></param>
+             <param name="defaultFunc"></param>
+             <typeparam name="TKey"></typeparam>
+             <typeparam name="TValue"></typeparam>
+             <returns></returns>
+        </member>
+        <member name="M:Library.HelperUtility.DictionaryHelper.GetValueOrdefault``2(System.Collections.Generic.IDictionary{``0,``1},``0,System.Func{``0,``1})">
+             <summary>
+            
+             </summary>
+             <param name="dict"></param>
+             <param name="key"></param>
+             <param name="defaultFunc"></param>
+             <typeparam name="TKey"></typeparam>
+             <typeparam name="TValue"></typeparam>
+             <returns></returns>
+        </member>
+        <member name="T:Library.HelperUtility.ExpressionHelper">
+             <summary>
+            
+             </summary>
+        </member>
+        <member name="M:Library.HelperUtility.ExpressionHelper.True``1">
+             <summary>
+            
+             </summary>
+             <typeparam name="T"></typeparam>
+             <returns></returns>
+        </member>
+        <member name="M:Library.HelperUtility.ExpressionHelper.False``1">
+             <summary>
+            
+             </summary>
+             <typeparam name="T"></typeparam>
+             <returns></returns>
+        </member>
+        <member name="M:Library.HelperUtility.ExpressionHelper.GetMemberInfo(System.Linq.Expressions.Expression)">
+            <summary>
+            Converts an expression into a <see cref="T:System.Reflection.MemberInfo"/>.
+            </summary>
+            <param name="expression">The expression to convert.</param>
+            <returns>The member info.</returns>
+        </member>
+        <member name="M:Library.HelperUtility.ExpressionHelper.Property(System.Linq.Expressions.Expression,System.String)">
+            <summary>
+            创建属性表达式
+            </summary>
+            <param name="expression">表达式</param>
+            <param name="propertyName">属性名,支持多级属性名，与句点分隔，范例：Customer.Name</param>
+        </member>
+        <member name="M:Library.HelperUtility.ExpressionHelper.Property(System.Linq.Expressions.Expression,System.Reflection.MemberInfo)">
+            <summary>
+            创建属性表达式
+            </summary>
+            <param name="expression">表达式</param>
+            <param name="member">属性</param>
+        </member>
+        <member name="M:Library.HelperUtility.ExpressionHelper.And(System.Linq.Expressions.Expression,System.Linq.Expressions.Expression)">
+            <summary>
+            与操作表达式
+            </summary>
+            <param name="left">左操作数</param>
+            <param name="right">右操作数</param>
+        </member>
+        <member name="M:Library.HelperUtility.ExpressionHelper.And``1(System.Linq.Expressions.Expression{System.Func{``0,System.Boolean}},System.Linq.Expressions.Expression{System.Func{``0,System.Boolean}})">
+            <summary>
+            与操作表达式
+            </summary>
+            <typeparam name="T">对象类型</typeparam>
+            <param name="left">左操作数</param>
+            <param name="right">右操作数</param>
+        </member>
+        <member name="M:Library.HelperUtility.ExpressionHelper.Or(System.Linq.Expressions.Expression,System.Linq.Expressions.Expression)">
+            <summary>
+            或操作表达式
+            </summary>
+            <param name="left">左操作数</param>
+            <param name="right">右操作数</param>
+        </member>
+        <member name="M:Library.HelperUtility.ExpressionHelper.Or``1(System.Linq.Expressions.Expression{System.Func{``0,System.Boolean}},System.Linq.Expressions.Expression{System.Func{``0,System.Boolean}})">
+            <summary>
+            或操作表达式
+            </summary>
+            <typeparam name="T">对象类型</typeparam>
+            <param name="left">左操作数</param>
+            <param name="right">右操作数</param>
+        </member>
+        <member name="M:Library.HelperUtility.ExpressionHelper.NotEqual(System.Linq.Expressions.Expression,System.Linq.Expressions.Expression)">
+            <summary>
+            或操作表达式
+            </summary>
+            <param name="left">左操作数</param>
+            <param name="right">右操作数</param>
+        </member>
+        <member name="M:Library.HelperUtility.ExpressionHelper.NotEqual``1(System.Linq.Expressions.Expression{System.Func{``0,System.Boolean}},System.Linq.Expressions.Expression{System.Func{``0,System.Boolean}})">
+            <summary>
+            
+            </summary>
+            <typeparam name="T"></typeparam>
+            <param name="expLeft"></param>
+            <param name="expRight"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Library.HelperUtility.ExpressionHelper.Constant(System.Linq.Expressions.Expression,System.Object)">
+            <summary> 
+            获取常量表达式 
+            </summary> 
+            <param name="expression">表达式</param> 
+            <param name="value">值</param> 
+        </member>
+        <member name="M:Library.HelperUtility.ExpressionHelper.BuildLikeExpression``1(System.Linq.Expressions.Expression{System.Func{``0,System.String}},System.String,System.Char)">
+            <summary>
+            
+            </summary>
+            <typeparam name="TElement"></typeparam>
+            <param name="valueSelector"></param>
+            <param name="value"></param>
+            <param name="wildcard"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Library.HelperUtility.ExpressionHelper.Greater(System.Linq.Expressions.Expression,System.Linq.Expressions.Expression)">
+            <summary>
+            创建大于运算表达式
+            </summary>
+            <param name="left">左操作数</param>
+            <param name="right">右操作数</param>
+        </member>
+        <member name="M:Library.HelperUtility.ExpressionHelper.Greater(System.Linq.Expressions.Expression,System.Object)">
+            <summary>
+            创建大于运算表达式
+            </summary>
+            <param name="left">左操作数</param>
+            <param name="value">值</param>
+        </member>
+        <member name="M:Library.HelperUtility.ExpressionHelper.GreaterEqual(System.Linq.Expressions.Expression,System.Linq.Expressions.Expression)">
+            <summary>
+            创建大于等于运算表达式
+            </summary>
+            <param name="left">左操作数</param>
+            <param name="right">右操作数</param>
+        </member>
+        <member name="M:Library.HelperUtility.ExpressionHelper.GreaterEqual(System.Linq.Expressions.Expression,System.Object)">
+            <summary>
+            创建大于等于运算表达式
+            </summary>
+            <param name="left">左操作数</param>
+            <param name="value">值</param>
+        </member>
+        <member name="M:Library.HelperUtility.ExpressionHelper.Less(System.Linq.Expressions.Expression,System.Linq.Expressions.Expression)">
+            <summary>
+            创建小于运算表达式
+            </summary>
+            <param name="left">左操作数</param>
+            <param name="right">右操作数</param>
+        </member>
+        <member name="M:Library.HelperUtility.ExpressionHelper.Less(System.Linq.Expressions.Expression,System.Object)">
+            <summary>
+            创建小于运算表达式
+            </summary>
+            <param name="left">左操作数</param>
+            <param name="value">值</param>
+        </member>
+        <member name="M:Library.HelperUtility.ExpressionHelper.LessEqual(System.Linq.Expressions.Expression,System.Linq.Expressions.Expression)">
+            <summary>
+            创建小于等于运算表达式
+            </summary>
+            <param name="left">左操作数</param>
+            <param name="right">右操作数</param>
+        </member>
+        <member name="M:Library.HelperUtility.ExpressionHelper.LessEqual(System.Linq.Expressions.Expression,System.Object)">
+            <summary>
+            创建小于等于运算表达式
+            </summary>
+            <param name="left">左操作数</param>
+            <param name="value">值</param>
+        </member>
+        <member name="M:Library.HelperUtility.ExpressionHelper.StartsWith(System.Linq.Expressions.Expression,System.Object)">
+            <summary>
+            头匹配
+            </summary>
+            <param name="left">左操作数</param>
+            <param name="value">值</param>
+        </member>
+        <member name="M:Library.HelperUtility.ExpressionHelper.EndsWith(System.Linq.Expressions.Expression,System.Object)">
+            <summary>
+            尾匹配
+            </summary>
+            <param name="left">左操作数</param>
+            <param name="value">值</param>
+        </member>
+        <member name="M:Library.HelperUtility.ExpressionHelper.Contains(System.Linq.Expressions.Expression,System.Object)">
+            <summary>
+            模糊匹配
+            </summary>
+            <param name="left">左操作数</param>
+            <param name="value">值</param>
+        </member>
+        <member name="M:Library.HelperUtility.ExpressionHelper.Call(System.Linq.Expressions.Expression,System.String,System.Linq.Expressions.Expression[])">
+            <summary>
+            创建调用方法表达式
+            </summary>
+            <param name="instance">调用的实例</param>
+            <param name="methodName">方法名</param>
+            <param name="values">参数值列表</param>
+        </member>
+        <member name="M:Library.HelperUtility.ExpressionHelper.Call(System.Linq.Expressions.Expression,System.String,System.Object[])">
+            <summary>
+            创建调用方法表达式
+            </summary>
+            <param name="instance">调用的实例</param>
+            <param name="methodName">方法名</param>
+            <param name="values">参数值列表</param>
+        </member>
+        <member name="M:Library.HelperUtility.ExpressionHelper.Call(System.Linq.Expressions.Expression,System.String,System.Type[],System.Object[])">
+            <summary>
+            创建调用方法表达式
+            </summary>
+            <param name="instance">调用的实例</param>
+            <param name="methodName">方法名</param>
+            <param name="paramTypes">参数类型列表</param>
+            <param name="values">参数值列表</param>
+        </member>
+        <member name="M:Library.HelperUtility.ExpressionHelper.GetConditionCount(System.Linq.Expressions.LambdaExpression)">
+            <summary> 
+            获取查询条件个数 
+            </summary> 
+            <param name="expression">谓词表达式,范例1：t => t.Name == "A" ，结果1。 
+            范例2：t => t.Name == "A" &amp;&amp; t.Age =1 ，结果2。</param> 
+        </member>
+        <member name="M:Library.HelperUtility.ExpressionHelper.GetMember(System.Linq.Expressions.Expression)">
+            <summary> 
+            获取成员 
+            </summary> 
+            <param name="expression">表达式,范例：t => t.Name</param> 
+        </member>
+        <member name="M:Library.HelperUtility.ExpressionHelper.GetMemberExpression(System.Linq.Expressions.Expression)">
+            <summary> 
+            获取成员表达式 
+            </summary> 
+            <param name="expression">表达式</param> 
+        </member>
+        <member name="M:Library.HelperUtility.ExpressionHelper.GetAttribute``1(System.Linq.Expressions.Expression)">
+            <summary> 
+            获取特性 
+            </summary> 
+            <typeparam name="TAttribute">特性类型</typeparam> 
+            <param name="expression">属性表达式</param> 
+        </member>
+        <member name="M:Library.HelperUtility.ExpressionHelper.GetAttribute``3(System.Linq.Expressions.Expression{System.Func{``0,``1}})">
+            <summary> 
+            获取特性 
+            </summary> 
+            <typeparam name="TEntity">实体类型</typeparam> 
+            <typeparam name="TProperty">属性类型</typeparam> 
+            <typeparam name="TAttribute">特性类型</typeparam> 
+            <param name="propertyExpression">属性表达式</param> 
+        </member>
+        <member name="M:Library.HelperUtility.ExpressionHelper.GetAttribute``2(System.Linq.Expressions.Expression{System.Func{``0}})">
+            <summary> 
+            获取特性 
+            </summary> 
+            <typeparam name="TProperty">属性类型</typeparam> 
+            <typeparam name="TAttribute">特性类型</typeparam> 
+            <param name="propertyExpression">属性表达式</param> 
+        </member>
+        <member name="T:Library.HelperUtility.FastReflectionExtensions">
+             <summary>
+            
+             </summary>
+        </member>
+        <member name="M:Library.HelperUtility.FastReflectionExtensions.FastInvoke(System.Reflection.MethodInfo,System.Object,System.Object[])">
+             <summary>
+            
+             </summary>
+             <param name="methodInfo"></param>
+             <param name="instance"></param>
+             <param name="parameters"></param>
+             <returns></returns>
+        </member>
+        <member name="M:Library.HelperUtility.FastReflectionExtensions.FastSetValue(System.Reflection.PropertyInfo,System.Object,System.Object)">
+             <summary>
+            
+             </summary>
+             <param name="propertyInfo"></param>
+             <param name="instance"></param>
+             <param name="value"></param>
+        </member>
+        <member name="M:Library.HelperUtility.FastReflectionExtensions.FastGetValue(System.Reflection.PropertyInfo,System.Object)">
+             <summary>
+            
+             </summary>
+             <param name="propertyInfo"></param>
+             <param name="instance"></param>
+             <returns></returns>
+        </member>
+        <member name="M:Library.HelperUtility.FastReflectionExtensions.FastGetValue``1(System.Reflection.PropertyInfo,System.Object)">
+             <summary>
+            
+             </summary>
+             <param name="propertyInfo"></param>
+             <param name="instance"></param>
+             <returns></returns>
+        </member>
+        <member name="M:Library.HelperUtility.FastReflectionExtensions.FastGetValue(System.Reflection.FieldInfo,System.Object)">
+             <summary>
+            
+             </summary>
+             <param name="fieldInfo"></param>
+             <param name="instance"></param>
+             <returns></returns>
+        </member>
+        <member name="M:Library.HelperUtility.FastReflectionExtensions.FastGetValue``1(System.Reflection.FieldInfo,System.Object)">
+             <summary>
+            
+             </summary>
+             <param name="fieldInfo"></param>
+             <param name="instance"></param>
+             <returns></returns>
+        </member>
+        <member name="M:Library.HelperUtility.FastReflectionExtensions.FastInvoke(System.Reflection.ConstructorInfo,System.Object[])">
+             <summary>
+            
+             </summary>
+             <param name="constructorInfo"></param>
+             <param name="parameters"></param>
+             <returns></returns>
+        </member>
+        <member name="M:Library.HelperUtility.FastReflectionExtensions.FastInvoke``1(System.Reflection.ConstructorInfo,System.Object[])">
+             <summary>
+            
+             </summary>
+             <param name="constructorInfo"></param>
+             <param name="parameters"></param>
+             <returns></returns>
+        </member>
+        <member name="M:Library.HelperUtility.FastReflectionExtensions.CreateInstance``1(System.Type)">
+            <summary>
+             创建对象
+            </summary>
+            <param name="type"></param>
+            <typeparam name="T"></typeparam>
+            <returns></returns>
+        </member>
+        <member name="M:Library.HelperUtility.FastReflectionExtensions.CreateInstance(System.Type)">
+            <summary>
+             创建对象
+            </summary>
+            <param name="type"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Library.HelperUtility.FastReflectionExtensions.CreateInstance``1">
+            <summary>
+             创建对象
+            </summary>
+            <typeparam name="T"></typeparam>
+            <returns></returns>
+        </member>
+        <member name="M:Library.HelperUtility.FastReflectionExtensions.CreateInstance``1(System.Type,System.Type[],System.Object[])">
+             <summary>
+            
+             </summary>
+             <param name="type"></param>
+             <param name="parmTypes"></param>
+             <param name="parms"></param>
+             <typeparam name="T"></typeparam>
+             <returns></returns>
+             <exception cref="T:System.ArgumentNullException"></exception>
+        </member>
+        <member name="T:Library.HelperUtility.FileUtility">
+             <summary>
+            
+             </summary>
+        </member>
+        <member name="M:Library.HelperUtility.FileUtility.FileMD5(System.String)">
+            <summary>
+            取文件MD5值
+            </summary>
+            <param name="path"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Library.HelperUtility.FileUtility.GetSHA1(System.String)">
+            <summary>
+            取文SHA1值
+            </summary>
+            <param name="path"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Library.HelperUtility.FileUtility.GetFileGuid(System.String)">
+             <summary>
+            
+             </summary>
+             <param name="path"></param>
+             <returns></returns>
+        </member>
+        <member name="M:Library.HelperUtility.FileUtility.GetFileGuid(System.IO.Stream)">
+             <summary>
+            
+             </summary>
+             <param name="stream"></param>
+             <returns></returns>
+        </member>
+        <member name="M:Library.HelperUtility.FileUtility.GetFileSizeDisplay(System.Int64)">
+             <summary>
+            
+             </summary>
+             <param name="filesize"></param>
+             <returns></returns>
+        </member>
+        <member name="M:Library.HelperUtility.FileUtility.FileMD5(System.IO.Stream)">
+            <summary>
+            取文件MD5值
+            </summary>
+            <param name="stream"></param>
+            <returns></returns>
+            <exception cref="T:System.ArgumentNullException"></exception>
+        </member>
+        <member name="M:Library.HelperUtility.FileUtility.GetSHA1(System.IO.Stream)">
+             <summary>
+            
+             </summary>
+             <param name="stream"></param>
+             <returns></returns>
+        </member>
+        <member name="M:Library.HelperUtility.FileUtility.FileMD5(System.Byte[])">
+             <summary>
+            
+             </summary>
+             <param name="buffter"></param>
+             <returns></returns>
+        </member>
+        <member name="M:Library.HelperUtility.FileUtility.GetSHA1(System.Byte[])">
+             <summary>
+            
+             </summary>
+             <param name="buffter"></param>
+             <returns></returns>
+        </member>
+        <member name="M:Library.HelperUtility.FileUtility.GetFileToDictionary(System.String)">
+             <summary>
+            
+             </summary>
+             <param name="path"></param>
+             <returns></returns>
+        </member>
+        <member name="M:Library.HelperUtility.FileUtility.MaybeExtension(System.String)">
+             <summary>
+            
+             </summary>
+             <param name="code"></param>
+             <returns></returns>
+        </member>
+        <member name="M:Library.HelperUtility.FileUtility.GetFileExtensionCode(System.String)">
+             <summary>
+            
+             </summary>
+             <returns></returns>
+        </member>
+        <member name="M:Library.HelperUtility.FileUtility.GetFileCode(System.IO.Stream)">
+            <summary>
+             通过文件头取扩展名编号
+            </summary>
+            <param name="stream"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Library.HelperUtility.FileUtility.GetFileCode(System.String)">
+            <summary>
+             通过文件头取扩展名编号
+            </summary>
+            <param name="path"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Library.HelperUtility.FileUtility.GetFileCode(System.Byte[])">
+             <summary>
+            
+             </summary>
+             <returns></returns>
+        </member>
+        <member name="M:Library.HelperUtility.FileUtility.GetEncoding(System.IO.Stream)">
+             <summary>
+            
+             </summary>
+             <param name="stream"></param>
+             <returns></returns>
+        </member>
+        <member name="M:Library.HelperUtility.FileUtility.GetEncoding(System.String)">
+            <summary>
+            通过文件取得编码
+            </summary>
+            <param name="path"></param>
+            <returns></returns>
+        </member>
+        <member name="T:Library.HelperUtility.FileUtility.IdentifyEncoding">
+            <summary>
+            验证编码
+            </summary>
+        </member>
+        <member name="M:Library.HelperUtility.FileUtility.IdentifyEncoding.#cctor">
+            <summary>
+            初始化 <see cref="T:Library.HelperUtility.FileUtility.IdentifyEncoding"/> 的实例
+            </summary>
+        </member>
+        <member name="M:Library.HelperUtility.FileUtility.IdentifyEncoding.GetEncodingName(System.SByte[])">
+            <summary>
+            从指定的 <see cref="T:System.SByte"/> 字节数组中判断编码类型
+            </summary>
+            <param name="rawtext">要判断的 <see cref="T:System.IO.FileInfo"/> </param>
+            <returns>返回编码类型("GB2312", "GBK", "HZ", "Big5", "CNS 11643", "ISO 2022CN", "UTF-8", "Unicode", "ASCII", "OTHER")</returns>
+            <example>
+            以下示例演示了如何调用 GetEncodingName 方法：
+            <code>
+             IdentifyEncoding ide = new IdentifyEncoding();
+             Response.Write(ide.GetEncodingName(IdentifyEncoding.ToSByteArray(System.Text.Encoding.GetEncoding("gb2312").GetBytes("Lion互动网络(www.lionsky.net)"))));
+            </code>
+            </example>
+        </member>
+        <member name="M:Library.HelperUtility.FileUtility.IdentifyEncoding.GB2312Probability(System.SByte[])">
+            <summary>
+            判断是GB2312编码的可能性
+            </summary>
+            <param name="rawtext">要判断的 <see cref="T:System.SByte"/> 字节数组</param>
+            <returns>返回 0 至 100 之间的可能性</returns>
+        </member>
+        <member name="M:Library.HelperUtility.FileUtility.IdentifyEncoding.GBKProbability(System.SByte[])">
+            <summary>
+            判断是GBK编码的可能性
+            </summary>
+            <param name="rawtext">要判断的 <see cref="T:System.SByte"/> 字节数组</param>
+            <returns>返回 0 至 100 之间的可能性</returns>
+        </member>
+        <member name="M:Library.HelperUtility.FileUtility.IdentifyEncoding.HZProbability(System.SByte[])">
+            <summary>
+            判断是HZ编码的可能性
+            </summary>
+            <param name="rawtext">要判断的 <see cref="T:System.SByte"/> 字节数组</param>
+            <returns>返回 0 至 100 之间的可能性</returns>
+        </member>
+        <member name="M:Library.HelperUtility.FileUtility.IdentifyEncoding.BIG5Probability(System.SByte[])">
+            <summary>
+            判断是BIG5编码的可能性
+            </summary>
+            <param name="rawtext">要判断的 <see cref="T:System.SByte"/> 字节数组</param>
+            <returns>返回 0 至 100 之间的可能性</returns>
+        </member>
+        <member name="M:Library.HelperUtility.FileUtility.IdentifyEncoding.ENCTWProbability(System.SByte[])">
+            <summary>
+            判断是CNS11643(台湾)编码的可能性
+            </summary>
+            <param name="rawtext">要判断的 <see cref="T:System.SByte"/> 字节数组</param>
+            <returns>返回 0 至 100 之间的可能性</returns>
+        </member>
+        <member name="M:Library.HelperUtility.FileUtility.IdentifyEncoding.ISO2022CNProbability(System.SByte[])">
+            <summary>
+            判断是ISO2022CN编码的可能性
+            </summary>
+            <param name="rawtext">要判断的 <see cref="T:System.SByte"/> 字节数组</param>
+            <returns>返回 0 至 100 之间的可能性</returns>
+        </member>
+        <member name="M:Library.HelperUtility.FileUtility.IdentifyEncoding.UTF8Probability(System.SByte[])">
+            <summary>
+            判断是UTF8编码的可能性
+            </summary>
+            <param name="rawtext">要判断的 <see cref="T:System.SByte"/> 字节数组</param>
+            <returns>返回 0 至 100 之间的可能性</returns>
+        </member>
+        <member name="M:Library.HelperUtility.FileUtility.IdentifyEncoding.UnicodeProbability(System.SByte[])">
+            <summary>
+            判断是Unicode编码的可能性
+            </summary>
+            <param name="rawtext">要判断的 <see cref="T:System.SByte"/> 字节数组</param>
+            <returns>返回 0 至 100 之间的可能性</returns>
+        </member>
+        <member name="M:Library.HelperUtility.FileUtility.IdentifyEncoding.ASCIIProbability(System.SByte[])">
+            <summary>
+            判断是ASCII编码的可能性
+            </summary>
+            <param name="rawtext">要判断的 <see cref="T:System.SByte"/> 字节数组</param>
+            <returns>返回 0 至 100 之间的可能性</returns>
+        </member>
+        <member name="M:Library.HelperUtility.FileUtility.IdentifyEncoding.Initialize_Frequencies">
+            <summary>
+            初始化必要的条件
+            </summary>
+        </member>
+        <member name="M:Library.HelperUtility.FileUtility.IdentifyEncoding.ToByteArray(System.SByte[])">
+            <summary>
+            将此实例中的指定 <see cref="T:System.SByte"/> 字符数组转换到 <see cref="T:System.Byte"/> 字符数组。
+            </summary>
+            <param name="sbyteArray">要转换的 <see cref="T:System.SByte"/> 字符数组</param>
+            <returns>返回转换后的 <see cref="T:System.Byte"/> 字符数组</returns>
+        </member>
+        <member name="M:Library.HelperUtility.FileUtility.IdentifyEncoding.ToByteArray(System.String)">
+            <summary>
+            将此实例中的指定字符串转换到 <see cref="T:System.Byte"/> 字符数组。
+            </summary>
+            <param name="sourceString">要转换的字符串</param>
+            <returns>返回转换后的 <see cref="T:System.Byte"/> 字符数组</returns>
+        </member>
+        <member name="M:Library.HelperUtility.FileUtility.IdentifyEncoding.ToByteArray(System.Object[])">
+            <summary>
+            将此实例中的指定 <see cref="T:System.Object"/> 数组转换到 <see cref="T:System.Byte"/> 字符数组。
+            </summary>
+            <param name="tempObjectArray">要转换的 <see cref="T:System.Object"/> 字符数组</param>
+            <returns>返回转换后的 <see cref="T:System.Byte"/> 字符数组</returns>
+        </member>
+        <member name="M:Library.HelperUtility.FileUtility.IdentifyEncoding.ToSByteArray(System.Byte[])">
+            <summary>
+            将此实例中的指定 <see cref="T:System.Byte"/> 字符数组转换到 <see cref="T:System.SByte"/> 字符数组。
+            </summary>
+            <param name="byteArray">要转换的 <see cref="T:System.Byte"/> 字符数组</param>
+            <returns>返回转换后的 <see cref="T:System.SByte"/> 字符数组</returns>
+        </member>
+        <member name="M:Library.HelperUtility.FileUtility.IdentifyEncoding.ReadInput(System.IO.Stream,System.SByte[]@,System.Int32,System.Int32)">
+            <summary>从流读取字节序列,并将此流中的位置提升读取的字节数.</summary>
+            <param name="sourceStream">要读取的流.</param>
+            <param name="target">字节数组。此方法返回时,该缓冲区包含指定的字符数组,该数组的 start 和 (start + count-1) 之间的值由从当前源中读取的字节替换。</param>
+            <param name="start">buffer 中的从零开始的字节偏移量,从此处开始存储从当前流中读取的数据。.</param>
+            <param name="count">要从当前流中最多读取的字节数。</param>
+            <returns>读入缓冲区中的总字节数。如果当前可用的字节数没有请求的字节数那么多,则总字节数可能小于请求的字节数,或者如果已到达流的末尾,则为零 (0)。</returns>
+            <exception cref="T:System.ArgumentException">start 与 count 的和大于缓冲区长度。</exception>
+            <exception cref="T:System.ArgumentNullException">target 为空引用(Visual Basic 中为 Nothing)。</exception>
+            <exception cref="T:System.ArgumentOutOfRangeException">offset 或 count 为负。</exception>
+            <exception cref="T:System.IO.IOException">发生 I/O 错误。</exception>
+            <exception cref="T:System.NotSupportedException">流不支持读取。</exception>
+            <exception cref="T:System.ObjectDisposedException">在流关闭后调用方法。</exception>
+        </member>
+        <member name="M:Library.HelperUtility.FileUtility.IdentifyEncoding.ReadInput(System.IO.TextReader,System.SByte[]@,System.Int32,System.Int32)">
+            <summary>从字符系列读取字节序列,并将此字符系列中的位置提升读取的字节数。</summary>
+            <param name="sourceTextReader">要读取的流。</param>
+            <param name="target">字节数组。此方法返回时,该缓冲区包含指定的字符数组,该数组的 start 和 (start + count-1) 之间的值由从当前源中读取的字节替换。</param>
+            <param name="start">buffer 中的从零开始的字节偏移量,从此处开始存储从当前流中读取的数据。.</param>
+            <param name="count">要从当前流中最多读取的字节数。</param>
+            <returns>读入缓冲区中的总字节数。如果当前可用的字节数没有请求的字节数那么多,则总字节数可能小于请求的字节数,或者如果已到达流的末尾,则为零 (0)。</returns>
+            <exception cref="T:System.ArgumentException">start 与 count 的和大于缓冲区长度。</exception>
+            <exception cref="T:System.ArgumentNullException">target 为空引用(Visual Basic 中为 Nothing)。</exception>
+            <exception cref="T:System.ArgumentOutOfRangeException">offset 或 count 为负。</exception>
+            <exception cref="T:System.IO.IOException">发生 I/O 错误。</exception>
+            <exception cref="T:System.NotSupportedException">流不支持读取。</exception>
+            <exception cref="T:System.ObjectDisposedException">在流关闭后调用方法。</exception>
+        </member>
+        <member name="M:Library.HelperUtility.FileUtility.IdentifyEncoding.Identity(System.Int64)">
+            <summary>
+            This method returns the literal value received
+            </summary>
+            <param name="literal">The literal to return</param>
+            <returns>The received value</returns>
+        </member>
+        <member name="M:Library.HelperUtility.FileUtility.IdentifyEncoding.Identity(System.UInt64)">
+            <summary>
+            This method returns the literal value received
+            </summary>
+            <param name="literal">The literal to return</param>
+            <returns>The received value</returns>
+        </member>
+        <member name="M:Library.HelperUtility.FileUtility.IdentifyEncoding.Identity(System.Single)">
+            <summary>
+            This method returns the literal value received
+            </summary>
+            <param name="literal">The literal to return</param>
+            <returns>The received value</returns>
+        </member>
+        <member name="M:Library.HelperUtility.FileUtility.IdentifyEncoding.Identity(System.Double)">
+            <summary>
+            This method returns the literal value received
+            </summary>
+            <param name="literal">The literal to return</param>
+            <returns>The received value</returns>
+        </member>
+        <member name="T:Library.HelperUtility.FormatUtility">
+             <summary>
+            
+             </summary>
+        </member>
+        <member name="M:Library.HelperUtility.FormatUtility.DateFormatddMMyyyy(System.Object)">
+             <summary>
+            
+             </summary>
+             <param name="datetime"></param>
+             <returns></returns>
+        </member>
+        <member name="M:Library.HelperUtility.FormatUtility.DateFormatddMMyyyyFull(System.Object)">
+             <summary>
+            
+             </summary>
+        </member>
+        <member name="M:Library.HelperUtility.FormatUtility.DateFormatyyyyMMddFull(System.Object)">
+             <summary>
+            
+             </summary>
+             <param name="datetime"></param>
+             <returns></returns>
+        </member>
+        <member name="M:Library.HelperUtility.FormatUtility.DateFormatyyyyMMdd(System.Object)">
+             <summary>
+            
+             </summary>
+             <param name="datetime"></param>
+             <returns></returns>
+        </member>
+        <member name="M:Library.HelperUtility.FormatUtility.TimeFormat(System.Object)">
+             <summary>
+            
+             </summary>
+             <param name="datetime"></param>
+             <returns></returns>
+        </member>
+        <member name="T:Library.HelperUtility.EmptyUtility">
+             <summary>
+            
+             </summary>
+        </member>
+        <member name="M:Library.HelperUtility.EmptyUtility.IsEmpty``2(System.Collections.Generic.IDictionary{``0,``1})">
+             <summary>
+            
+             </summary>
+             <param name="dictionary"></param>
+             <returns></returns>
+        </member>
+        <member name="M:Library.HelperUtility.EmptyUtility.IsEmpty(System.Collections.IList)">
+             <summary>
+            
+             </summary>
+             <param name="list"></param>
+             <returns></returns>
+        </member>
+        <member name="M:Library.HelperUtility.EmptyUtility.IsEmpty(System.Collections.ICollection)">
+             <summary>
+            
+             </summary>
+             <param name="list"></param>
+             <returns></returns>
+        </member>
+        <member name="M:Library.HelperUtility.EmptyUtility.IsEmpty(System.Collections.IEnumerable)">
+             <summary>
+            
+             </summary>
+             <param name="enumerable"></param>
+             <returns></returns>
+        </member>
+        <member name="M:Library.HelperUtility.EmptyUtility.IsEmpty``1(``0[])">
+             <summary>
+            
+             </summary>
+             <param name="array"></param>
+             <returns></returns>
+        </member>
+        <member name="M:Library.HelperUtility.EmptyUtility.IsEmpty(System.Array)">
+             <summary>
+            
+             </summary>
+             <param name="array"></param>
+             <returns></returns>
+        </member>
+        <member name="M:Library.HelperUtility.EmptyUtility.IsEmpty(System.Data.DataTable)">
+             <summary>
+            
+             </summary>
+             <param name="dt"></param>
+             <returns></returns>
+        </member>
+        <member name="M:Library.HelperUtility.EmptyUtility.IsEmpty(System.String)">
+            <summary> 
+            是否为空 
+            </summary> 
+            <param name="value">值</param> 
+        </member>
+        <member name="M:Library.HelperUtility.EmptyUtility.IsEmpty(System.Data.DataView)">
+             <summary>
+            
+             </summary>
+             <param name="dv"></param>
+             <returns></returns>
+        </member>
+        <member name="M:Library.HelperUtility.EmptyUtility.IsEmpty(System.Data.DataSet)">
+             <summary>
+            
+             </summary>
+             <param name="ds"></param>
+             <returns></returns>
+        </member>
+        <member name="T:Library.HelperUtility.EmptyUtility`1">
+             <summary>
+            
+             </summary>
+             <typeparam name="T"></typeparam>
+        </member>
+        <member name="F:Library.HelperUtility.EmptyUtility`1.EmptyArray">
+             <summary>
+            
+             </summary>
+        </member>
+        <member name="F:Library.HelperUtility.EmptyUtility`1.EmptyList">
+             <summary>
+            
+             </summary>
+        </member>
+        <member name="T:Library.HelperUtility.EnumHelper">
+             <summary>
+            
+             </summary>
+        </member>
+        <member name="M:Library.HelperUtility.EnumHelper.IsRight(System.Enum,System.Enum)">
+             <summary>
+            
+             </summary>
+             <param name="x"></param>
+             <param name="y"></param>
+             <returns></returns>
+        </member>
+        <member name="M:Library.HelperUtility.EnumHelper.AnyIsRight(System.Enum,System.Enum[])">
+            <summary>
+            x是否包含其中一個記錄
+            </summary>
+            <param name="x"></param>
+            <param name="y"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Library.HelperUtility.EnumHelper.AllIsRight(System.Enum,System.Enum[])">
+            <summary>
+            x所有包含記錄
+            </summary>
+            <param name="x"></param>
+            <param name="y"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Library.HelperUtility.EnumHelper.GetIncludeEnums``1(System.Enum)">
+            <summary>
+            取後包含的枚舉數組，
+            </summary>
+            <typeparam name="TEnum"></typeparam>
+            <param name="x"></param>
+            <returns></returns>
+            <example>
+            enum= A1｜B2|C3
+            input A1|B2
+            output enum[]{A1,B2}
+            </example>
+        </member>
+        <member name="M:Library.HelperUtility.EnumHelper.ToDisplay(System.Enum)">
+            <summary>
+            获取DisplayAttribute上指定的Name
+            </summary>
+            <param name="value"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Library.HelperUtility.EnumHelper.ToDescription(System.Enum)">
+            <summary>
+             获取DescriptionAttribute上指定的Description
+            </summary>
+            <param name="value"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Library.HelperUtility.EnumHelper.GetResourceStrnig(System.Enum,System.Resources.ResourceManager,System.String)">
+             <summary>
+            
+             </summary>
+             <param name="inEnum"></param>
+             <param name="resource"></param>
+             <param name="prefix"></param>
+             <returns></returns>
+        </member>
+        <member name="M:Library.HelperUtility.EnumHelper.GetEnumDescription(System.Enum)">
+            <summary>
+            取得枚举类型的说明文字
+            </summary>
+            <param name="objEnum"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Library.HelperUtility.EnumHelper.GetEnumDisplay(System.Enum,System.Int32)">
+            <summary>
+            
+            </summary>
+            <param name="objEnum"></param>
+            <param name="flag">默认值为0.获取Display属性Name值，否则获取Descriptiom</param>
+            <returns></returns>
+        </member>
+        <member name="M:Library.HelperUtility.EnumHelper.GetEnumDisplayAttributs(System.Enum)">
+            <summary>
+            取得枚举类型的Display属性
+            </summary>
+            <param name="objEnum"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Library.HelperUtility.EnumHelper.ConvertToEnum``1(System.String,``0)">
+            <summary>
+            把值转换为相应的枚举类型
+            </summary>
+            <typeparam name="T">枚举类型</typeparam>
+            <param name="rawVal">值</param>
+            <param name="defVal">默认值</param>
+            <returns></returns>
+        </member>
+        <member name="T:Library.HelperUtility.MathUtility">
+             <summary>
+            數學工具
+             </summary>
+        </member>
+        <member name="M:Library.HelperUtility.MathUtility.IsPowerOf2(System.Int32)">
+            <summary>
+            是否2的乘方
+            </summary>
+            <param name="number"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Library.HelperUtility.MathUtility.GCD(System.Int32,System.Int32)">
+            <summary>
+            最大公約數
+            </summary>
+            <param name="a"></param>
+            <param name="b"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Library.HelperUtility.MathUtility.GCD(System.Single,System.Single)">
+            <summary>
+            最大公約數
+            </summary>
+            <param name="a"></param>
+            <param name="b"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Library.HelperUtility.MathUtility.LCM(System.Int32,System.Int32)">
+            <summary>
+            最小公倍數
+            </summary>
+            <param name="a"></param>
+            <param name="b"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Library.HelperUtility.MathUtility.GetDiagonal(System.Int32,System.Int32)">
+            <summary>
+            對角線
+            </summary>
+            <param name="width"></param>
+            <param name="height"></param>
+            <returns></returns>
+        </member>
+        <member name="T:Library.HelperUtility.OSUtility">
+             <summary>
+            
+             </summary>
+        </member>
+        <member name="M:Library.HelperUtility.OSUtility.GetOSUpTime">
+            <summary>
+            系統運行時間
+            </summary>
+        </member>
+        <member name="P:Library.HelperUtility.OSUtility.OSStartTime">
+            <summary>
+            系統啟動時間
+            </summary>
+        </member>
+        <member name="P:Library.HelperUtility.OSUtility.OSName">
+             <summary>
+            
+             </summary>
+        </member>
+        <member name="M:Library.HelperUtility.OSUtility.GetOSName(System.String)">
+            <summary>
+            根据 User Agent 获取操作系统名称
+            </summary>
+        </member>
+        <member name="M:Library.HelperUtility.OSUtility.GetProcessN">
+            <summary>
+            程序 CPU时间
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:Library.HelperUtility.OSUtility.GetServesN">
+            <summary>
+            服務 CPU时间
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="P:Library.HelperUtility.OSUtility.ProcessStartTime">
+            <summary>
+            进程开始时间
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="T:Library.HelperUtility.ProviderUtility">
+             <summary>
+            
+             </summary>
+        </member>
+        <member name="M:Library.HelperUtility.ProviderUtility.AddTo(System.Configuration.Provider.ProviderBase,System.Configuration.Provider.ProviderCollection)">
+             <summary>
+            
+             </summary>
+             <param name="provider"></param>
+             <param name="pc"></param>
+        </member>
+        <member name="T:Library.HelperUtility.RandomHelper">
+             <summary>
+            
+             </summary>
+        </member>
+        <member name="M:Library.HelperUtility.RandomHelper.RandomByDischarge(System.Int32,System.Int32,System.Int32)">
+             <summary>
+            
+             </summary>
+             <param name="min"></param>
+             <param name="max"></param>
+             <param name="count"></param>
+             <returns></returns>
+        </member>
+        <member name="M:Library.HelperUtility.RandomHelper.RandomBySwap(System.Int32,System.Int32,System.Int32)">
+             <summary>
+            
+             </summary>
+             <param name="min"></param>
+             <param name="max"></param>
+             <param name="count"></param>
+             <returns></returns>
+        </member>
+        <member name="M:Library.HelperUtility.RandomHelper.RandomByMove(System.Int32,System.Int32,System.Int32)">
+             <summary>
+            
+             </summary>
+             <param name="min"></param>
+             <param name="max"></param>
+             <param name="count"></param>
+             <returns></returns>
+        </member>
+        <member name="T:Library.HelperUtility.RangeItemHelper">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="M:Library.HelperUtility.RangeItemHelper.ValidateNone``2(System.Collections.Generic.IList{``0},System.Collections.Generic.IList{``0})">
+            <summary>
+            騅兩個區間列表，沒有相交項
+            </summary>
+            <typeparam name="T"></typeparam>
+            <typeparam name="TV"></typeparam>
+            <param name="sourceList"></param>
+            <param name="trageList"></param>
+        </member>
+        <member name="M:Library.HelperUtility.RangeItemHelper.IsIntersect``1(Library.Comparable.IRangeItem{``0},Library.Comparable.IRangeItem{``0})">
+            <summary>
+            判斷兩個區間是否相交
+            </summary>
+            <typeparam name="T"></typeparam>
+            <param name="x"></param>
+            <param name="y"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Library.HelperUtility.RangeItemHelper.Merge``2(System.Collections.Generic.IList{``0})">
+            <summary>
+            合併相交區間元素項，返回合併過後的新區間
+            </summary>
+            <typeparam name="T"></typeparam>
+            <typeparam name="TV"></typeparam>
+            <param name="sourceList"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Library.HelperUtility.RangeItemHelper.GetComparableReslut``1(Library.Comparable.IRangeItem{``0},Library.Comparable.IRangeItem{``0})">
+            <summary>
+            取兩個區間的相交情況
+            </summary>
+            <typeparam name="T"></typeparam>
+            <param name="x"></param>
+            <param name="y"></param>
+            <returns></returns>
+        </member>
+        <member name="T:Library.HelperUtility.StreamHelper">
+             <summary>
+            
+             </summary>
+        </member>
+        <member name="M:Library.HelperUtility.StreamHelper.WriteBytes(System.IO.Stream,System.Byte[])">
+             <summary>
+            
+             </summary>
+             <param name="stream"></param>
+             <param name="bytes"></param>
+        </member>
+        <member name="M:Library.HelperUtility.StreamHelper.Copy(System.IO.Stream,System.IO.Stream)">
+             <summary>
+            
+             </summary>
+             <param name="source"></param>
+             <param name="traget"></param>
+        </member>
+        <member name="M:Library.HelperUtility.StreamHelper.WriteString(System.IO.Stream,System.String,System.Text.Encoding)">
+             <summary>
+            
+             </summary>
+             <param name="stream"></param>
+             <param name="str"></param>
+             <param name="encoding"></param>
+        </member>
+        <member name="M:Library.HelperUtility.StreamHelper.ReadString(System.IO.Stream,System.Text.Encoding)">
+             <summary>
+            
+             </summary>
+             <param name="stream"></param>
+             <param name="encoding"></param>
+        </member>
+        <member name="M:Library.HelperUtility.StreamHelper.ReadLastLine(System.IO.Stream,System.Text.Encoding)">
+            <summary>
+            大文件时，读取最后一行
+            </summary>
+            <param name="stream"></param>
+            <param name="encoding"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Library.HelperUtility.StreamHelper.ToArray(System.IO.Stream)">
+             <summary>
+            
+             </summary>
+             <param name="stream"></param>
+        </member>
+        <member name="M:Library.HelperUtility.StreamHelper.TrySeek(System.IO.Stream)">
+            <summary>
+            跳到起始位置
+            </summary>
+            <param name="stream"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Library.HelperUtility.StreamHelper.ToArray(System.IO.Stream,System.Int32)">
+             <summary>
+            
+             </summary>
+             <param name="stream"></param>
+             <param name="length"> </param>
+        </member>
+        <member name="M:Library.HelperUtility.StreamHelper.ReadToEnd(System.IO.Stream)">
+             <summary>
+            
+             </summary>
+             <param name="stream"></param>
+             <returns></returns>
+        </member>
+        <member name="T:Library.HelperUtility.UserProflieHelper">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="M:Library.HelperUtility.UserProflieHelper.GetAge(System.DateTime)">
+            <summary>
+            根据传入出生日期字符串判断当前年龄
+            </summary>
+            <param name="birthday"></param>
+            <returns></returns>        
+        </member>
+        <member name="T:Library.HelperUtility.ADONetHepler">
+             <summary>
+            
+             </summary>
+        </member>
+        <member name="M:Library.HelperUtility.ADONetHepler.Cast``1(System.Data.DataRow,System.String,``0)">
+             <summary>
+            
+             </summary>
+             <param name="row"></param>
+             <param name="name"></param>
+             <param name="defaultValue"></param>
+             <typeparam name="T"></typeparam>
+             <returns></returns>
+        </member>
+        <member name="M:Library.HelperUtility.ADONetHepler.GetList``1(System.Data.DataTable)">
+             <summary>
+            
+             </summary>
+             <param name="table"></param>
+             <typeparam name="T"></typeparam>
+             <returns></returns>
+             <exception cref="T:System.ArgumentNullException"></exception>
+        </member>
+        <member name="M:Library.HelperUtility.ADONetHepler.GetList(System.Data.DataTable,System.Type)">
+             <summary>
+            
+             </summary>
+             <param name="table"></param>
+             <param name="clasType"></param>
+             <returns></returns>
+             <exception cref="T:System.ArgumentNullException"></exception>
+             <exception cref="T:System.Data.DataException"></exception>
+        </member>
+        <member name="M:Library.HelperUtility.ADONetHepler.GetList(System.Data.IDataReader,System.Type)">
+             <summary>
+            
+             </summary>
+             <param name="dataReader"></param>
+             <param name="clasType"></param>
+             <returns></returns>
+             <exception cref="T:System.ArgumentNullException"></exception>
+             <exception cref="T:System.Data.DataException"></exception>
+        </member>
+        <member name="M:Library.HelperUtility.ADONetHepler.GetList``1(System.Data.IDataReader)">
+             <summary>
+            
+             </summary>
+             <param name="dataReader"></param>
+             <typeparam name="T"></typeparam>
+             <returns></returns>
+             <exception cref="T:System.ArgumentNullException"></exception>
+             <exception cref="T:System.Data.DataException"></exception>
+        </member>
+        <member name="M:Library.HelperUtility.ADONetHepler.GetEntity(System.Data.IDataReader,System.Type)">
+             <summary>
+            
+             </summary>
+             <param name="dataReader"></param>
+             <param name="type"></param>
+             <returns></returns>
+        </member>
+        <member name="M:Library.HelperUtility.ADONetHepler.Clone(System.Data.Common.DbConnection)">
+             <summary>
+            
+             </summary>
+             <param name="connection"></param>
+             <returns></returns>
+        </member>
+        <member name="M:Library.HelperUtility.ADONetHepler.GetDbProviderFactory(System.Data.Common.DbConnection)">
+             <summary>
+            
+             </summary>
+             <param name="connection"></param>
+             <returns></returns>
+        </member>
+        <member name="T:Library.HelperUtility.DelegateEqualityComparer`1">
+             <summary>
+            
+             </summary>
+             <typeparam name="T"></typeparam>
+        </member>
+        <member name="M:Library.HelperUtility.DelegateEqualityComparer`1.#ctor(System.Func{`0,`0,System.Boolean})">
+             <summary>
+            
+             </summary>
+             <param name="func"></param>
+             <exception cref="T:System.ArgumentNullException"></exception>
+        </member>
+        <member name="M:Library.HelperUtility.DelegateEqualityComparer`1.Equals(`0,`0)">
+             <summary>
+            
+             </summary>
+             <param name="x"></param>
+             <param name="y"></param>
+             <returns></returns>
+        </member>
+        <member name="M:Library.HelperUtility.DelegateEqualityComparer`1.GetHashCode(`0)">
+             <summary>
+            
+             </summary>
+             <param name="obj"></param>
+             <returns></returns>
+        </member>
+        <member name="T:Library.HelperUtility.CompareUtility">
+             <summary>
+            
+             </summary>
+        </member>
+        <member name="M:Library.HelperUtility.CompareUtility.IsBetween``1(``0,``0,``0)">
+             <summary>
+            
+             </summary>
+             <param name="x"></param>
+             <param name="min"></param>
+             <param name="max"></param>
+             <typeparam name="T"></typeparam>
+             <returns></returns>
+             <exception cref="T:System.Exception"></exception>
+        </member>
+        <member name="F:Library.HelperUtility.CompareUtility.StringEqualityComparer">
+             <summary>
+            
+             </summary>
+        </member>
+        <member name="M:Library.HelperUtility.CompareUtility.IsBetween``1(System.Nullable{``0},``0,``0)">
+             <summary>
+            
+             </summary>
+             <param name="x"></param>
+             <param name="min"></param>
+             <param name="max"></param>
+             <typeparam name="T"></typeparam>
+             <returns></returns>
+             <exception cref="T:System.Exception"></exception>
+        </member>
+        <member name="M:Library.HelperUtility.CompareUtility.Compare(System.Decimal,System.Decimal,System.Int32)">
+            <summary>
+            ㄢゑ耕┛菠﹚计
+            </summary>
+            <param name="x"></param>
+            <param name="y"></param>
+            <param name="digth">﹚计</param>
+            <returns></returns>
+        </member>
+        <member name="M:Library.HelperUtility.CompareUtility.Compare(System.Nullable{System.Decimal},System.Decimal,System.Int32)">
+            <summary>
+            ㄢゑ耕┛菠﹚计
+            </summary>
+            <param name="x"></param>
+            <param name="y"></param>
+            <param name="digth">﹚计</param>
+            <returns></returns>
+        </member>
+        <member name="M:Library.HelperUtility.CompareUtility.Compare(System.Decimal,System.Nullable{System.Decimal},System.Int32)">
+            <summary>
+            ㄢゑ耕┛菠﹚计
+            </summary>
+            <param name="x"></param>
+            <param name="y"></param>
+            <param name="digth">﹚计</param>
+            <returns></returns>
+        </member>
+        <member name="M:Library.HelperUtility.CompareUtility.Compare(System.Nullable{System.Decimal},System.Nullable{System.Decimal},System.Int32)">
+            <summary>
+            ㄢゑ耕┛菠﹚计
+            </summary>
+            <param name="x"></param>
+            <param name="y"></param>
+            <param name="digth">﹚计</param>
+            <returns></returns>
+        </member>
+        <member name="M:Library.HelperUtility.CompareUtility.Compare(System.Double,System.Double,System.Int32)">
+            <summary>
+            ㄢゑ耕┛菠﹚计
+            </summary>
+            <param name="x"></param>
+            <param name="y"></param>
+            <param name="digth">﹚计</param>
+            <returns></returns>
+        </member>
+        <member name="M:Library.HelperUtility.CompareUtility.Compare(System.Nullable{System.Double},System.Double,System.Int32)">
+            <summary>
+            ㄢゑ耕┛菠﹚计
+            </summary>
+            <param name="x"></param>
+            <param name="y"></param>
+            <param name="digth">﹚计</param>
+            <returns></returns>
+        </member>
+        <member name="M:Library.HelperUtility.CompareUtility.Compare(System.Double,System.Nullable{System.Double},System.Int32)">
+            <summary>
+            ㄢゑ耕┛菠﹚计
+            </summary>
+            <param name="x"></param>
+            <param name="y"></param>
+            <param name="digth">﹚计</param>
+            <returns></returns>
+        </member>
+        <member name="M:Library.HelperUtility.CompareUtility.Compare(System.Nullable{System.Double},System.Nullable{System.Double},System.Int32)">
+            <summary>
+            ㄢゑ耕┛菠﹚计
+            </summary>
+            <param name="x"></param>
+            <param name="y"></param>
+            <param name="digth">﹚计</param>
+            <returns></returns>
+        </member>
+        <member name="M:Library.HelperUtility.CompareUtility.Compare(System.Double,System.Decimal,System.Int32)">
+            <summary>
+            ㄢゑ耕┛菠﹚计
+            </summary>
+            <param name="x"></param>
+            <param name="y"></param>
+            <param name="digth">﹚计</param>
+            <returns></returns>
+        </member>
+        <member name="M:Library.HelperUtility.CompareUtility.Compare(System.Nullable{System.Double},System.Decimal,System.Int32)">
+            <summary>
+            ㄢゑ耕┛菠﹚计
+            </summary>
+            <param name="x"></param>
+            <param name="y"></param>
+            <param name="digth">﹚计</param>
+            <returns></returns>
+        </member>
+        <member name="M:Library.HelperUtility.CompareUtility.Compare(System.Double,System.Nullable{System.Decimal},System.Int32)">
+            <summary>
+            ㄢゑ耕┛菠﹚计
+            </summary>
+            <param name="x"></param>
+            <param name="y"></param>
+            <param name="digth">﹚计</param>
+            <returns></returns>
+        </member>
+        <member name="M:Library.HelperUtility.CompareUtility.Compare(System.Nullable{System.Double},System.Nullable{System.Decimal},System.Int32)">
+            <summary>
+            ㄢゑ耕┛菠﹚计
+            </summary>
+            <param name="x"></param>
+            <param name="y"></param>
+            <param name="digth">﹚计</param>
+            <returns></returns>
+        </member>
+        <member name="M:Library.HelperUtility.CompareUtility.Compare(System.Decimal,System.Double,System.Int32)">
+            <summary>
+            ㄢゑ耕┛菠﹚计
+            </summary>
+            <param name="x"></param>
+            <param name="y"></param>
+            <param name="digth">﹚计</param>
+            <returns></returns>
+        </member>
+        <member name="M:Library.HelperUtility.CompareUtility.Compare(System.Nullable{System.Decimal},System.Double,System.Int32)">
+            <summary>
+            ㄢゑ耕┛菠﹚计
+            </summary>
+            <param name="x"></param>
+            <param name="y"></param>
+            <param name="digth">﹚计</param>
+            <returns></returns>
+        </member>
+        <member name="M:Library.HelperUtility.CompareUtility.Compare(System.Decimal,System.Nullable{System.Double},System.Int32)">
+            <summary>
+            ㄢゑ耕┛菠﹚计
+            </summary>
+            <param name="x"></param>
+            <param name="y"></param>
+            <param name="digth">﹚计</param>
+            <returns></returns>
+        </member>
+        <member name="M:Library.HelperUtility.CompareUtility.Compare(System.Nullable{System.Decimal},System.Nullable{System.Double},System.Int32)">
+            <summary>
+            ㄢゑ耕┛菠﹚计
+            </summary>
+            <param name="x"></param>
+            <param name="y"></param>
+            <param name="digth">﹚计</param>
+            <returns></returns>
+        </member>
+        <member name="T:Library.HelperUtility.EnumerableHelper">
+             <summary>
+            
+             </summary>
+        </member>
+        <member name="M:Library.HelperUtility.EnumerableHelper.AppendItem``1(``0[],``0)">
+             <summary>
+            
+             </summary>
+             <typeparam name="T"></typeparam>
+             <param name="source"></param>
+             <param name="item"></param>
+             <returns></returns>
+        </member>
+        <member name="M:Library.HelperUtility.EnumerableHelper.AppendItems``1(``0[],``0[])">
+             <summary>
+            
+             </summary>
+             <typeparam name="T"></typeparam>
+             <param name="source"></param>
+             <param name="items"></param>
+             <returns></returns>
+        </member>
+        <member name="M:Library.HelperUtility.EnumerableHelper.HasRecord(System.ComponentModel.IListSource,System.Int32)">
+             <summary>
+            
+             </summary>
+             <param name="list"></param>
+             <param name="count"></param>
+             <returns></returns>
+        </member>
+        <member name="M:Library.HelperUtility.EnumerableHelper.HasRecord(System.Collections.IList,System.Int32)">
+             <summary>
+            
+             </summary>
+             <param name="list"></param>
+             <param name="count"></param>
+             <returns></returns>
+        </member>
+        <member name="M:Library.HelperUtility.EnumerableHelper.HasRecord(System.Collections.ICollection,System.Int32)">
+             <summary>
+            
+             </summary>
+             <param name="list"></param>
+             <param name="count"></param>
+             <returns></returns>
+        </member>
+        <member name="M:Library.HelperUtility.EnumerableHelper.HasRecord(System.Array,System.Int32)">
+             <summary>
+            
+             </summary>
+             <param name="list"></param>
+             <param name="count"></param>
+             <returns></returns>
+        </member>
+        <member name="M:Library.HelperUtility.EnumerableHelper.HasRecord(System.Collections.IEnumerable,System.Int32)">
+             <summary>
+            
+             </summary>
+             <param name="list"></param>
+             <param name="count"></param>
+             <returns></returns>
+        </member>
+        <member name="M:Library.HelperUtility.EnumerableHelper.IsNullOrEmpty(System.Collections.IList)">
+            <summary>
+            判断ICollection 是否有值 或 Null
+            </summary>
+            <param name="source"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Library.HelperUtility.EnumerableHelper.IsNullOrEmpty(System.Collections.ICollection)">
+            <summary>
+            判断ICollection 是否有值 或 Null
+            </summary>
+            <param name="source"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Library.HelperUtility.EnumerableHelper.IsNullOrEmpty(System.Collections.IEnumerable)">
+            <summary>
+            判断ICollection 是否有值 或 Null
+            </summary> 
+            <param name="source"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Library.HelperUtility.EnumerableHelper.AddIfNotContains``1(System.Collections.Generic.ICollection{``0},``0)">
+            <summary>
+            添加ICollection中不存在的值
+            </summary>
+            <typeparam name="T"></typeparam>
+            <param name="source"></param>
+            <param name="item"></param>
+            <returns></returns>
+        </member>
+        <member name="T:Library.HelperUtility.NullableHelper">
+             <summary>
+            
+             </summary>
+        </member>
+        <member name="M:Library.HelperUtility.NullableHelper.GetValue``1(System.Nullable{``0})">
+             <summary>
+            
+             </summary>
+             <param name="t"></param>
+             <typeparam name="T"></typeparam>
+             <returns></returns>
+        </member>
+        <member name="M:Library.HelperUtility.NullableHelper.GetValue``1(System.Nullable{``0},``0)">
+             <summary>
+            
+             </summary>
+             <param name="t"></param>
+             <param name="defaultValue"></param>
+             <typeparam name="T"></typeparam>
+             <returns></returns>
+        </member>
+        <member name="T:Library.HelperUtility.ObjectUtility">
+             <summary>
+            
+             </summary>
+        </member>
+        <member name="M:Library.HelperUtility.ObjectUtility.TryCast``1(System.Object)">
+             <summary>
+            
+             </summary>
+             <param name="value"></param>
+             <typeparam name="T"></typeparam>
+             <returns></returns>
+        </member>
+        <member name="M:Library.HelperUtility.ObjectUtility.Cast``1(System.Object)">
+             <summary>
+            
+             </summary>
+             <param name="value"></param>
+             <typeparam name="T"></typeparam>
+             <returns></returns>
+        </member>
+        <member name="M:Library.HelperUtility.ObjectUtility.TryCast``1(System.Object,``0)">
+             <summary>
+            
+             </summary>
+             <param name="value"></param>
+             <param name="defaultvalue"></param>
+             <typeparam name="T"></typeparam>
+             <returns></returns>
+        </member>
+        <member name="M:Library.HelperUtility.ObjectUtility.TryCast(System.Object,System.Type,System.Object)">
+             <summary>
+            
+             </summary>
+             <param name="value"></param>
+             <param name="targetType"></param>
+             <param name="defaultvalue"></param>
+             <returns></returns>
+        </member>
+        <member name="M:Library.HelperUtility.ObjectUtility.Cast(System.Object,System.Type,System.Object)">
+             <summary>
+            
+             </summary>
+             <param name="value"></param>
+             <param name="targetType"></param>
+             <param name="defaultValue"></param>
+             <returns></returns>
+             <exception cref="T:System.ArgumentNullException"></exception>
+             <exception cref="T:System.NotSupportedException"></exception>
+        </member>
+        <member name="M:Library.HelperUtility.ObjectUtility.GetRandomInt(System.Int32,System.Int32)">
+             <summary>
+            
+             </summary>
+             <param name="a"></param>
+             <param name="b"></param>
+             <returns></returns>
+        </member>
+        <member name="T:Library.HelperUtility.StringUtility">
+             <summary>
+            
+             </summary>
+        </member>
+        <member name="M:Library.HelperUtility.StringUtility.TryCast``1(System.String)">
+             <summary>
+            
+             </summary>
+             <param name="str"></param>
+             <typeparam name="T"></typeparam>
+             <returns></returns>
+        </member>
+        <member name="M:Library.HelperUtility.StringUtility.TryCast``1(System.String,``0)">
+             <summary>
+            
+             </summary>
+             <param name="str"></param>
+             <param name="defaultvalue"></param>
+             <typeparam name="T"></typeparam>
+             <returns></returns>
+        </member>
+        <member name="M:Library.HelperUtility.StringUtility.ReomveFirstAndLastChar(System.String[],System.Char)">
+             <summary>
+            
+             </summary>
+             <param name="arr"></param>
+             <param name="ch"></param>
+             <returns></returns>
+             <exception cref="T:System.ArgumentNullException"></exception>
+        </member>
+        <member name="M:Library.HelperUtility.StringUtility.Cast(System.String,System.Type)">
+             <summary>
+            
+             </summary>
+             <param name="str"></param>
+             <param name="targetType"></param>
+             <returns></returns>
+             <exception cref="T:System.ArgumentNullException"></exception>
+             <exception cref="T:System.NotSupportedException"></exception>
+        </member>
+        <member name="M:Library.HelperUtility.StringUtility.A_ZToNumber(System.String)">
+            <summary>
+            0-9 轉成0-9
+            A-Z 轉成10-35
+            </summary>
+            <param name="order"></param>
+            <returns></returns>
+        </member>
+        <member name="T:Library.HelperUtility.TypeHelper">
+             <summary>
+            
+             </summary>
+        </member>
+        <member name="M:Library.HelperUtility.TypeHelper.GetFullName(System.Type)">
+            <summary>
+            
+            </summary>
+            <param name="classType"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Library.HelperUtility.TypeHelper.GetSubTypes(System.Type)">
+            <summary>
+            获取子类型
+            </summary>
+            <param name="type">父类型</param>
+            <returns></returns>
+        </member>
+        <member name="M:Library.HelperUtility.TypeHelper.GetSubTypes``1">
+            <summary>
+            获取子类型
+            </summary>
+            <typeparam name="T">父类型</typeparam>
+            <returns></returns>
+        </member>
+        <member name="M:Library.HelperUtility.TypeHelper.GetAllExceptionInfo(System.Exception)">
+             <summary>
+            
+             </summary>
+             <param name="ex"></param>
+             <returns></returns>
+        </member>
+        <member name="M:Library.HelperUtility.TypeHelper.RemoveNullabl(System.Type)">
+             <summary>
+            
+             </summary>
+             <param name="obj"></param>
+             <returns></returns>
+             <exception cref="T:System.ArgumentNullException"></exception>
+        </member>
+        <member name="M:Library.HelperUtility.TypeHelper.IsNumberType(System.Type)">
+             <summary>
+            
+             </summary>
+             <param name="type"></param>
+             <returns></returns>
+             <exception cref="T:System.ArgumentNullException"></exception>
+        </member>
+        <member name="M:Library.HelperUtility.TypeHelper.GetListItemProperties(System.Object,System.ComponentModel.PropertyDescriptor[])">
+             <summary>
+            
+             </summary>
+             <param name="list"></param>
+             <param name="listAccessors"></param>
+             <returns></returns>
+        </member>
+        <member name="M:Library.HelperUtility.TypeHelper.IsListBasedType(System.Type)">
+             <summary>
+            
+             </summary>
+             <param name="type"></param>
+             <returns></returns>
+        </member>
+        <member name="M:Library.HelperUtility.TypeHelper.GetListGenericType(System.Type)">
+             <summary>
+            
+             </summary>
+             <param name="type"></param>
+             <returns></returns>
+        </member>
+        <member name="T:Library.HelperUtility.ParameterHeler">
+             <summary>
+            
+             </summary>
+        </member>
+        <member name="M:Library.HelperUtility.ParameterHeler.Cast``1(Library.IParameter)">
+            <summary>
+            
+            </summary>
+            <typeparam name="T"></typeparam>
+            <param name="parameter"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Library.HelperUtility.ParameterHeler.CastNameValueCollection(System.Collections.Generic.IEnumerable{Library.IParameter})">
+            <summary>
+            
+            </summary>
+            <param name="parameters"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Library.HelperUtility.ParameterHeler.CastArray``1(Library.IParameter,System.Char)">
+            <summary>
+            
+            </summary>
+            <typeparam name="T"></typeparam>
+            <param name="parameter"></param>
+            <param name="split"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Library.HelperUtility.ParameterHeler.Cast``1(Library.IParameter,``0)">
+            <summary>
+            
+            </summary>
+            <typeparam name="T"></typeparam>
+            <param name="parameter"></param>
+            <param name="defaultValue"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Library.HelperUtility.ParameterHeler.Cast``1(System.Collections.Generic.IEnumerable{Library.IParameter},System.String,``0)">
+            <summary>
+            
+            </summary>
+            <typeparam name="T"></typeparam>
+            <param name="parameters"></param>
+            <param name="key"></param>
+            <param name="defaultValue"></param>
+            <returns></returns>
+        </member>
+        <member name="T:Library.IDCrad.ChineseIDCard">
+            <summary>
+            中華人民共和國大陆居民身份證
+            </summary>
+        </member>
+        <member name="P:Library.IDCrad.ChineseIDCard.CardTypeID">
+             <summary>
+            
+             </summary>
+        </member>
+        <member name="P:Library.IDCrad.ChineseIDCard.CardTypeName">
+             <summary>
+            
+             </summary>
+        </member>
+        <member name="P:Library.IDCrad.ChineseIDCard.Version">
+             <summary>
+            
+             </summary>
+        </member>
+        <member name="P:Library.IDCrad.ChineseIDCard.IDNumber">
+             <summary>
+            
+             </summary>
+        </member>
+        <member name="M:Library.IDCrad.ChineseIDCard.#ctor(System.String)">
+             <summary>
+            
+             </summary>
+             <param name="idnumber"></param>
+        </member>
+        <member name="M:Library.IDCrad.ChineseIDCard.Validate">
+             <summary>
+            
+             </summary>
+             <exception cref="T:System.NotImplementedException"></exception>
+        </member>
+        <member name="P:Library.IDCrad.ChineseIDCard.ProvinceCode">
+             <summary>
+            
+             </summary>
+        </member>
+        <member name="P:Library.IDCrad.ChineseIDCard.ProvinceName">
+             <summary>
+            
+             </summary>
+        </member>
+        <member name="P:Library.IDCrad.ChineseIDCard.CityCode">
+             <summary>
+            
+             </summary>
+        </member>
+        <member name="P:Library.IDCrad.ChineseIDCard.CountyCode">
+             <summary>
+            
+             </summary>
+        </member>
+        <member name="P:Library.IDCrad.ChineseIDCard.ChecksumDigitCode">
+             <summary>
+            
+             </summary>
+        </member>
+        <member name="P:Library.IDCrad.ChineseIDCard.BirthdayCode">
+             <summary>
+            
+             </summary>
+        </member>
+        <member name="P:Library.IDCrad.ChineseIDCard.Birthday">
+             <summary>
+            
+             </summary>
+        </member>
+        <member name="P:Library.IDCrad.ChineseIDCard.SixCode">
+             <summary>
+            
+             </summary>
+        </member>
+        <member name="P:Library.IDCrad.ChineseIDCard.Sex">
+             <summary>
+            
+             </summary>
+        </member>
+        <member name="T:Library.IDCrad.ChineseIDCardProvider">
+             <summary>
+            
+             </summary>
+        </member>
+        <member name="P:Library.IDCrad.ChineseIDCardProvider.DistrictFullCode">
+             <summary>
+            
+             </summary>
+        </member>
+        <member name="P:Library.IDCrad.ChineseIDCardProvider.Birthday">
+             <summary>
+            
+             </summary>
+        </member>
+        <member name="P:Library.IDCrad.ChineseIDCardProvider.CodeRange">
+             <summary>
+            
+             </summary>
+        </member>
+        <member name="P:Library.IDCrad.ChineseIDCardProvider.Order">
+             <summary>
+            
+             </summary>
+        </member>
+        <member name="P:Library.IDCrad.ChineseIDCardProvider.Sex">
+             <summary>
+            
+             </summary>
+        </member>
+        <member name="M:Library.IDCrad.ChineseIDCardProvider.CreateNew">
+             <summary>
+            
+             </summary>
+             <returns></returns>
+        </member>
+        <member name="M:Library.IDCrad.ChineseIDCardProvider.CreateNew(System.String,System.DateTime,Library.Sex,System.Int32,System.Int32)">
+             <summary>
+            
+             </summary>
+             <param name="districtFullCode">省市全值代碼</param>
+             <param name="birthday">出生日期</param>
+             <param name="sex">性別</param>
+             <param name="codeRange">3位编码段</param>
+             <param name="order">領證順序</param>
+             <returns></returns>
+             <exception cref="T:System.Exception"></exception>
+        </member>
+        <member name="T:Library.IDCrad.HongKongIDCard">
+            <summary>
+            中華人民共和國香港特別行政區居民身份證
+            </summary>
+        </member>
+        <member name="P:Library.IDCrad.HongKongIDCard.CardTypeID">
+             <summary>
+            
+             </summary>
+        </member>
+        <member name="P:Library.IDCrad.HongKongIDCard.CardTypeName">
+             <summary>
+            
+             </summary>
+        </member>
+        <member name="P:Library.IDCrad.HongKongIDCard.Version">
+             <summary>
+            
+             </summary>
+        </member>
+        <member name="P:Library.IDCrad.HongKongIDCard.IDNumber">
+             <summary>
+            
+             </summary>
+        </member>
+        <member name="M:Library.IDCrad.HongKongIDCard.#ctor(System.String)">
+             <summary>
+            
+             </summary>
+             <param name="idnumber"></param>
+        </member>
+        <member name="M:Library.IDCrad.HongKongIDCard.Validate">
+             <summary>
+            
+             </summary>
+        </member>
+        <member name="T:Library.IDCrad.IDCardException">
+             <summary>
+            
+             </summary>
+        </member>
+        <member name="M:Library.IDCrad.IDCardException.#ctor">
+             <summary>
+            
+             </summary>
+        </member>
+        <member name="M:Library.IDCrad.IDCardException.#ctor(System.String,System.Double)">
+             <summary>
+            
+             </summary>
+             <param name="message"></param>
+             <param name="resultCode"></param>
+        </member>
+        <member name="M:Library.IDCrad.IDCardException.#ctor(System.String,System.Double,System.Exception)">
+             <summary>
+            
+             </summary>
+             <param name="message"></param>
+             <param name="resultCode"></param>
+             <param name="inner"></param>
+        </member>
+        <member name="M:Library.IDCrad.IDCardException.#ctor(System.String)">
+             <summary>
+            
+             </summary>
+             <param name="message"></param>
+        </member>
+        <member name="M:Library.IDCrad.IDCardException.#ctor(System.String,System.Exception)">
+             <summary>
+            
+             </summary>
+             <param name="message"></param>
+             <param name="inner"></param>
+        </member>
+        <member name="M:Library.IDCrad.IDCardException.#ctor(System.Runtime.Serialization.SerializationInfo,System.Runtime.Serialization.StreamingContext)">
+             <summary>
+            
+             </summary>
+             <param name="info"></param>
+             <param name="context"></param>
+        </member>
+        <member name="T:Library.IDCrad.MacauIDCard">
+            <summary>
+            中華人民共和國澳門特別行政區居民身份證
+            </summary>
+        </member>
+        <member name="P:Library.IDCrad.MacauIDCard.CardTypeID">
+             <summary>
+            
+             </summary>
+        </member>
+        <member name="P:Library.IDCrad.MacauIDCard.CardTypeName">
+             <summary>
+            
+             </summary>
+        </member>
+        <member name="P:Library.IDCrad.MacauIDCard.Version">
+             <summary>
+            
+             </summary>
+        </member>
+        <member name="P:Library.IDCrad.MacauIDCard.IDNumber">
+             <summary>
+            
+             </summary>
+        </member>
+        <member name="M:Library.IDCrad.MacauIDCard.#ctor(System.String)">
+             <summary>
+            
+             </summary>
+             <param name="idnumber"></param>
+        </member>
+        <member name="M:Library.IDCrad.MacauIDCard.Validate">
+             <summary>
+            
+             </summary>
+        </member>
+        <member name="T:Library.IDCrad.TaiwanIDCard">
+            <summary>
+            中華人民共和國臺灣居民身份證
+            </summary>
+        </member>
+        <member name="P:Library.IDCrad.TaiwanIDCard.CardTypeID">
+             <summary>
+            
+             </summary>
+        </member>
+        <member name="P:Library.IDCrad.TaiwanIDCard.CardTypeName">
+             <summary>
+            
+             </summary>
+        </member>
+        <member name="P:Library.IDCrad.TaiwanIDCard.Version">
+             <summary>
+            
+             </summary>
+        </member>
+        <member name="P:Library.IDCrad.TaiwanIDCard.IDNumber">
+             <summary>
+            
+             </summary>
+        </member>
+        <member name="M:Library.IDCrad.TaiwanIDCard.#ctor(System.String)">
+             <summary>
+            
+             </summary>
+             <param name="idnumber"></param>
+        </member>
+        <member name="M:Library.IDCrad.TaiwanIDCard.Validate">
+             <summary>
+            
+             </summary>
+             <exception cref="T:Library.IDCrad.IDCardException"></exception>
+        </member>
+        <member name="P:Library.IDCrad.TaiwanIDCard.ChecksumDigitCode">
+            <summary>
+            检验码
+            </summary>
+        </member>
+        <member name="P:Library.IDCrad.TaiwanIDCard.CityName">
+            <summary>
+            城市名称
+            </summary>
+        </member>
+        <member name="P:Library.IDCrad.TaiwanIDCard.CityCode">
+            <summary>
+            城市代码
+            </summary>
+        </member>
+        <member name="T:Library.Net.DnsProxy">
+             <summary>
+            
+             </summary>
+        </member>
+        <member name="P:Library.Net.DnsProxy.DefaultV4">
+             <summary>
+            
+             </summary>
+        </member>
+        <member name="P:Library.Net.DnsProxy.DefaultV6">
+             <summary>
+            
+             </summary>
+        </member>
+        <member name="M:Library.Net.DnsProxy.#ctor(System.Net.IPAddress[],System.Net.Sockets.AddressFamily,System.Int32,System.Boolean)">
+             <summary>
+            
+             </summary>
+             <param name="dnsServers"></param>
+             <param name="addressFamily"></param>
+             <param name="listenerCount"></param>
+             <param name="forceTcp"></param>
+        </member>
+        <member name="M:Library.Net.DnsProxy.Start">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="M:Library.Net.DnsProxy.Stop">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="M:Library.Net.DnsProxy.System#IDisposable#Dispose">
+            <summary>执行与释放或重置非托管资源相关的应用程序定义的任务。</summary>
+            <filterpriority>2</filterpriority>
+        </member>
+        <member name="T:Library.Net.Ping">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="M:Library.Net.Ping.PingHost(System.String)">
+             <summary>
+            
+             </summary>
+             <param name="host"></param>
+             <returns></returns>
+        </member>
+        <member name="M:Library.Net.Ping.Serialize(Library.Net.IcmpPacket,System.Byte[],System.Int32,System.Int32)">
+            <summary>
+             This method get the Packet and calculates the total size
+             of the Pack by converting it to byte array
+            </summary>
+        </member>
+        <member name="M:Library.Net.Ping.checksum(System.UInt16[],System.Int32)">
+            <summary>
+             This Method has the algorithm to make a checksum
+            </summary>
+        </member>
+        <member name="T:Library.Net.IcmpPacket">
+            类结束
+            <summary>
+             Class that holds the Pack information
+            </summary>
+        </member>
+        <member name="P:Library.Net.IcmpPacket.Type">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:Library.Net.IcmpPacket.SubCode">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:Library.Net.IcmpPacket.CheckSum">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:Library.Net.IcmpPacket.Identifier">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:Library.Net.IcmpPacket.SequenceNumber">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:Library.Net.IcmpPacket.Data">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="T:Library.PermutationAndCombination`1">
+             <summary>
+            
+             </summary>
+             <typeparam name="T"></typeparam>
+        </member>
+        <member name="M:Library.PermutationAndCombination`1.Swap(`0@,`0@)">
+            <summary>
+            交换两个变量
+            </summary>
+            <param name="a">变量1</param>
+            <param name="b">变量2</param>
+        </member>
+        <member name="M:Library.PermutationAndCombination`1.GetPermutation(System.Collections.Generic.List{`0[]}@,`0[],System.Int32,System.Int32)">
+            <summary>
+            递归算法求排列(私有成员)
+            </summary>
+            <param name="list">返回的列表</param>
+            <param name="t">所求数组</param>
+            <param name="startIndex">起始标号</param>
+            <param name="endIndex">结束标号</param>
+        </member>
+        <member name="M:Library.PermutationAndCombination`1.GetPermutation(`0[],System.Int32,System.Int32)">
+            <summary>
+            求从起始标号到结束标号的排列，其余元素不变
+            </summary>
+            <param name="t">所求数组</param>
+            <param name="startIndex">起始标号</param>
+            <param name="endIndex">结束标号</param>
+            <returns>从起始标号到结束标号排列的范型</returns>
+        </member>
+        <member name="M:Library.PermutationAndCombination`1.GetPermutation(`0[])">
+            <summary>
+            返回数组所有元素的全排列
+            </summary>
+            <param name="t">所求数组</param>
+            <returns>全排列的范型</returns>
+        </member>
+        <member name="M:Library.PermutationAndCombination`1.GetPermutation(`0[],System.Int32)">
+            <summary>
+            求数组中n个元素的排列
+            </summary>
+            <param name="t">所求数组</param>
+            <param name="n">元素个数</param>
+            <returns>数组中n个元素的排列</returns>
+        </member>
+        <member name="M:Library.PermutationAndCombination`1.GetCombination(`0[],System.Int32)">
+            <summary>
+            求数组中n个元素的组合
+            </summary>
+            <param name="t">所求数组</param>
+            <param name="n">元素个数</param>
+            <returns>数组中n个元素的组合的范型</returns>
+        </member>
+        <member name="M:Library.PermutationAndCombination`1.GetCombination(System.Collections.Generic.List{`0[]}@,`0[],System.Int32,System.Int32,System.Int32[],System.Int32)">
+            <summary>
+            递归算法求数组的组合(私有成员)
+            </summary>
+            <param name="list">返回的范型</param>
+            <param name="t">所求数组</param>
+            <param name="n">辅助变量</param>
+            <param name="m">辅助变量</param>
+            <param name="b">辅助数组</param>
+            <param name="M">辅助变量M</param>
+        </member>
+        <member name="T:Library.Comparable.RangeItem`1">
+            <summary>
+            區間元素
+            </summary>
+            <typeparam name="T"></typeparam>
+        </member>
+        <member name="M:Library.Comparable.RangeItem`1.#ctor(`0,`0)">
+             <summary>
+            
+             </summary>
+             <param name="begin"></param>
+             <param name="end"></param>
+        </member>
+        <member name="M:Library.Comparable.RangeItem`1.IsEmpty">
+             <summary>
+            
+             </summary>
+             <returns></returns>
+        </member>
+        <member name="P:Library.Comparable.RangeItem`1.Empty">
+             <summary>
+            
+             </summary>
+             <returns></returns>
+        </member>
+        <member name="P:Library.Comparable.RangeItem`1.Begin">
+            <summary>
+            開始值
+            </summary>
+        </member>
+        <member name="P:Library.Comparable.RangeItem`1.End">
+            <summary>
+            結束值
+            </summary>
+        </member>
+        <member name="M:Library.Comparable.RangeItem`1.IsInside(`0)">
+             <summary>
+             Check if the specified value is inside of the range.
+             </summary>
+            
+             <param name="x">Value to check.</param>
+            
+             <returns><b>True</b> if the specified value is inside of the range or
+             <b>false</b> otherwise.</returns>
+            
+        </member>
+        <member name="M:Library.Comparable.RangeItem`1.ToString">
+             <summary>
+            
+             </summary>
+             <returns></returns>
+        </member>
+        <member name="T:Library.Comparable.MergeRange`1">
+            <summary>
+            區間元素
+            </summary>
+            <typeparam name="T"></typeparam>
+        </member>
+        <member name="M:Library.Comparable.MergeRange`1.#ctor(`0,`0)">
+             <summary>
+            
+             </summary>
+             <param name="begin"></param>
+             <param name="end"></param>
+        </member>
+        <member name="M:Library.Comparable.MergeRange`1.#ctor(`0,`0,Library.Comparable.IRangeItem{`0}[])">
+             <summary>
+            
+             </summary>
+             <param name="begin"></param>
+             <param name="end"></param>
+             <param name="list"></param>
+        </member>
+        <member name="P:Library.Comparable.MergeRange`1.List">
+             <summary>
+            
+             </summary>
+        </member>
+        <member name="P:Library.Comparable.MergeRange`1.Begin">
+            <summary>
+            開始值
+            </summary>
+        </member>
+        <member name="P:Library.Comparable.MergeRange`1.End">
+            <summary>
+            結束值
+            </summary>
+        </member>
+        <member name="M:Library.Comparable.MergeRange`1.IsInside(`0)">
+             <summary>
+             Check if the specified value is inside of the range.
+             </summary>
+            
+             <param name="x">Value to check.</param>
+            
+             <returns><b>True</b> if the specified value is inside of the range or
+             <b>false</b> otherwise.</returns>
+            
+        </member>
+        <member name="T:Library.Comparable.IntersectException">
+             <summary>
+            
+             </summary>
+        </member>
+        <member name="M:Library.Comparable.IntersectException.#ctor(Library.Comparable.RangeComparable,System.Object,System.Object)">
+             <summary>
+            
+             </summary>
+             <param name="exceptionType"></param>
+             <param name="sourceItem"></param>
+             <param name="trageItem"></param>
+        </member>
+        <member name="P:Library.Comparable.IntersectException.SourceItem">
+             <summary>
+            
+             </summary>
+        </member>
+        <member name="P:Library.Comparable.IntersectException.TrageItem">
+             <summary>
+            
+             </summary>
+        </member>
+        <member name="P:Library.Comparable.IntersectException.Reslut">
+             <summary>
+            
+             </summary>
+        </member>
+        <member name="T:Library.Comparable.RangeComparable">
+            <summary>
+            區間比較
+            </summary>
+        </member>
+        <member name="F:Library.Comparable.RangeComparable.None">
+            <summary>
+            沒相交
+            </summary>
+        </member>
+        <member name="F:Library.Comparable.RangeComparable.Own">
+            <summary>
+            數值出錯
+            </summary>
+        </member>
+        <member name="F:Library.Comparable.RangeComparable.LeftJoin">
+            <summary>
+            左邊相交
+            </summary>
+        </member>
+        <member name="F:Library.Comparable.RangeComparable.RightJoin">
+            <summary>
+            右邊相交
+            </summary>
+        </member>
+        <member name="F:Library.Comparable.RangeComparable.Include">
+            <summary>
+            包含對方
+            </summary>
+        </member>
+        <member name="F:Library.Comparable.RangeComparable.UnInclude">
+            <summary>
+            被對方包含
+            </summary>
+        </member>
+        <member name="F:Library.Comparable.RangeComparable.Intersect">
+            <summary>
+            相交
+            </summary>
+        </member>
+        <member name="F:Library.Comparable.RangeComparable.Same">
+            <summary>
+            完全一致
+            </summary>
+        </member>
+        <member name="T:Library.RequestParamsConvert">
+            <summary>
+            轉換參數
+            </summary>
+        </member>
+        <member name="M:Library.RequestParamsConvert.#ctor(System.Collections.Specialized.NameValueCollection)">
+             <summary>
+            
+             </summary>
+             <param name="collection"></param>
+        </member>
+        <member name="M:Library.RequestParamsConvert.GetValue``1(System.String)">
+             <summary>
+            
+             </summary>
+             <typeparam name="T"></typeparam>
+             <param name="requestParam"></param>
+             <returns></returns>
+        </member>
+        <member name="M:Library.RequestParamsConvert.GetValue``1(System.String,``0)">
+             <summary>
+            
+             </summary>
+             <typeparam name="T"></typeparam>
+             <param name="requestParam"></param>
+             <param name="defaultValue"></param>
+             <returns></returns>
+        </member>
+        <member name="F:Library.RequestParamsConvert.ParamNamePageSize">
+             <summary>
+            
+             </summary>
+        </member>
+        <member name="F:Library.RequestParamsConvert.ParamNamePageNo">
+             <summary>
+            
+             </summary>
+        </member>
+        <member name="M:Library.RequestParamsConvert.GetPageSize">
+             <summary>
+            
+             </summary>
+             <returns></returns>
+        </member>
+        <member name="M:Library.RequestParamsConvert.GetPageNo">
+             <summary>
+            
+             </summary>
+             <returns></returns>
+        </member>
+        <member name="M:Library.RequestParamsConvert.GetValueType``1(System.String)">
+             <summary>
+            
+             </summary>
+             <typeparam name="T"></typeparam>
+             <param name="requestParam"></param>
+             <returns></returns>
+        </member>
+        <member name="M:Library.RequestParamsConvert.GetEnums``1(System.String)">
+             <summary>
+            
+             </summary>
+             <typeparam name="T"></typeparam>
+             <param name="requestParam"></param>
+             <returns></returns>
+        </member>
+        <member name="M:Library.RequestParamsConvert.GetEnum``1(System.String)">
+             <summary>
+            
+             </summary>
+             <typeparam name="T"></typeparam>
+             <param name="requestParam"></param>
+             <returns></returns>
+        </member>
+        <member name="M:Library.RequestParamsConvert.GetString(System.String)">
+             <summary>
+            
+             </summary>
+             <param name="requestParam"></param>
+             <returns></returns>
+        </member>
+        <member name="M:Library.RequestParamsConvert.GetParamStringValue(System.String)">
+             <summary>
+            
+             </summary>
+             <param name="requestParam"></param>
+             <returns></returns>
+        </member>
+        <member name="M:Library.RequestParamsConvert.GetGuid(System.String)">
+             <summary>
+            
+             </summary>
+             <param name="requestParam"></param>
+             <returns></returns>
+        </member>
+        <member name="M:Library.RequestParamsConvert.GetDateTimeOrNull(System.String,System.String)">
+             <summary>
+            
+             </summary>
+             <param name="requestParam"></param>
+             <param name="format"></param>
+             <returns></returns>
+        </member>
+        <member name="P:Library.RequestParamsConvert.Prefixes">
+             <summary>
+            
+             </summary>
+        </member>
+        <member name="M:Library.RequestParamsConvert.GetModel``1(``0)">
+             <summary>
+            
+             </summary>
+             <typeparam name="TModel"></typeparam>
+             <param name="model"></param>
+             <returns></returns>
+        </member>
+        <member name="T:Library.ServiceProxy">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="F:Library.ServiceProxy.AddHeader">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="T:Library.DisposableObject">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="M:Library.DisposableObject.Finalize">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="M:Library.DisposableObject.Dispose(System.Boolean)">
+            <summary>
+            
+            </summary>
+            <param name="disposing"></param>
+        </member>
+        <member name="M:Library.DisposableObject.ExplicitDispose">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="M:Library.DisposableObject.Dispose">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="T:Library.ServiceProxy`1">
+            <summary>
+            表示用於調用WFC Service的客戶端服務代理類型。
+            </summary>
+            <typeparam name="T">需要调用的服务契约类型。</typeparam>
+        </member>
+        <member name="M:Library.ServiceProxy`1.Dispose(System.Boolean)">
+            <summary>
+            
+            </summary>
+            <param name="disposing"></param>
+        </member>
+        <member name="P:Library.ServiceProxy`1.Channel">
+            <summary>
+            獲取調用WCF服務的通道。
+            </summary>
+        </member>
+        <member name="M:Library.ServiceProxy`1.Close">
+            <summary>
+            關閉並斷開客戶端通道（Client Channel）。
+            </summary>
+            <remarks> 
+            如果使用using語句對ServiceProxy進行了包裹，那麼當程序執行點離開using的
+            覆蓋範圍時，Close方法會被自動調用，此時客戶端無需顯式調用Close方法。反之
+            如果沒有使用using語句，那麼則需要顯式調用Close方法。
+            </remarks>
+        </member>
+        <member name="P:Library.ChannelFactoryManager.Instance">
+            <summary>
+            獲取<c>ChannelFactoryManager</c>的單件（Singleton）实例。
+            </summary>
+        </member>
+        <member name="M:Library.ChannelFactoryManager.GetFactory``1">
+            <summary>
+            獲取與指定服務契約的類型相關的Channel Factory實例。
+            </summary>
+            <typeparam name="T">服務契約的類型。</typeparam>
+            <returns>與指定服務契約類型相關的Channel Factory實例。</returns>
+        </member>
+    </members>
+</doc>

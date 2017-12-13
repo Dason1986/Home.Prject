@@ -9,6 +9,7 @@ using System.Collections.Generic;
 using System.Text;
 using DocumentFormat.OpenXml.Packaging;
 using DocumentFormat.OpenXml;
+using System.Linq;
 
 namespace HomeApplication.ComponentModel.IO
 {
@@ -263,11 +264,16 @@ namespace HomeApplication.ComponentModel.IO
         }
         void ReaderContent(OpenXmlElement element, StringBuilder builder)
         {
+            if (element is DocumentFormat.OpenXml.Presentation.NonVisualDrawingProperties)
+            {
+                var properties = element as DocumentFormat.OpenXml.Presentation.NonVisualDrawingProperties;
+                if (!string.IsNullOrEmpty(properties.Name)) builder.AppendLine(properties.Name);
+            }
             if (element is DocumentFormat.OpenXml.Drawing.Paragraph)
             {
                 builder.AppendLine(element.InnerText);
                 return;
-            } 
+            }
             foreach (var item in element.ChildElements)
             {
                 ReaderContent(item, builder);
@@ -279,12 +285,16 @@ namespace HomeApplication.ComponentModel.IO
             PresentationDocument document = PresentationDocument.Open(packing);
             var list = document.PresentationPart.SlideParts;
             StringBuilder builder = new StringBuilder();
+            int count = 0;
             foreach (var item in list)
             {
+                count++;
+                builder.AppendFormat("Papge:{0}", count);
+                builder.AppendLine();
                 foreach (var element in item.Slide.ChildElements)
                 {
                     ReaderContent(element, builder);
-             
+
                 }
             }
             var props = document.PackageProperties;
@@ -303,6 +313,7 @@ namespace HomeApplication.ComponentModel.IO
             Properties.Add("Modified", props.Modified);
             Properties.Add("Revision", props.Revision);
             Properties.Add("Version", props.Version);
+            Properties.Add("Pages", list.Count());
             Content = builder.ToString();
 
         }
