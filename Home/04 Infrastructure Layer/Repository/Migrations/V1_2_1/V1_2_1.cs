@@ -12,8 +12,7 @@ namespace Repository.Migrations
         void ExSqlUp()
         {
           
-            SqlResource("Home.Repository.Migrations.V1_2_1.up.sql");
-            SqlResource("Home.Repository.Migrations.V1_2_1.CreateView.sql");
+            SqlResource("Home.Repository.Migrations.V1_2_1.up.sql"); 
 
 
         }

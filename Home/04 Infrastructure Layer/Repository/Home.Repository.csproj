@@ -184,13 +184,12 @@
     <EmbeddedResource Include="Migrations\201712110725281_V1_3_2.resx">
       <DependentUpon>201712110725281_V1_3_2.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\InitializeDB\CreateView.sql" />
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Include="Migrations\InitializeDB\init.sql" />
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="HOME_SQL\InitializeDB\CreateView.sql" />
+    <EmbeddedResource Include="HOME_SQL\InitializeDB\EquipmentView.sql" />
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Include="HOME_SQL\InitializeDB\init.sql" />
@@ -218,13 +217,16 @@
     <EmbeddedResource Include="Migrations\V1_2_1\up.sql" />
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="HOME_SQL\V1_2_1\CreateView.sql" />
-    <EmbeddedResource Include="Migrations\V1_2_1\CreateView.sql" />
+    <EmbeddedResource Include="HOME_SQL\InitializeDB\duplicatebymd5view.sql" />
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Include="Migrations\V1_2_1\down.sql" />
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Include="HOME_SQL\V1_2_1\down.sql" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Migrations\InitializeDB\duplicatebymd5view.sql" />
+    <EmbeddedResource Include="Migrations\InitializeDB\EquipmentView.sql" />
   </ItemGroup>
 </Project>

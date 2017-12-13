@@ -10,15 +10,9 @@ using System.Linq;
 
 namespace Home.DomainModel.Aggregates.FileAgg
 {
-    public interface IAggregate<TEntity> where TEntity : class, Library.ComponentModel.Model.IAggregateRoot<Guid>
+    public class FileAggregate : IAggregate<FileInfo>
     {
-        Guid ID { get; }
-        TEntity Entity { get; }
-        void Commit();
-    }
-    public class FileAggregateRoot : IAggregate<FileInfo>
-    {
-        public FileAggregateRoot(Guid fileid, IFileInfoRepository fileRspository = null)
+        public FileAggregate(Guid fileid, IFileInfoRepository fileRspository = null)
         {
             if (fileRspository == null)
                 fileRspository = Bootstrap.Currnet.GetService<IFileInfoRepository>();

@@ -69,14 +69,15 @@
     <Compile Include="Aggregates\AssetsAgg\AssetsItem.cs" />
     <Compile Include="Aggregates\AssetsAgg\Money.cs" />
     <Compile Include="Aggregates\Attachment.cs" />
+    <Compile Include="Aggregates\FileAgg\FileAggregate.cs" />
     <Compile Include="Aggregates\FileAgg\FileAttribute.cs" />
     <Compile Include="Aggregates\FileAgg\FileInfoExtend.cs" />
     <Compile Include="Aggregates\FileAgg\FileLogicTree.cs" />
+    <Compile Include="Aggregates\IAggregate.cs" />
     <Compile Include="Aggregates\FileAgg\StorageEngine.cs" />
     <Compile Include="Aggregates\FileAgg\StorageEngineSetting.cs" />
     <Compile Include="Aggregates\GalleryAgg\EequipmentItem.cs" />
     <Compile Include="Aggregates\GalleryAgg\PhotoFace.cs" />
-    <Compile Include="Aggregates\FileAgg\FileAggregateRoot.cs" />
     <Compile Include="Aggregates\FileAgg\FileInfo.cs" />
     <Compile Include="Aggregates\GalleryAgg\Album.cs" />
     <Compile Include="Aggregates\ContactAgg\FamilyRole.cs" />
@@ -91,7 +92,6 @@
     <Compile Include="Aggregates\LogsAgg\DomainEventArgsLog.cs" />
     <Compile Include="Aggregates\LogsAgg\LogEntity.cs" />
     <Compile Include="Aggregates\LogsAgg\ScheduleJobLog.cs" />
-    <Compile Include="Aggregates\ObjectElement.cs" />
     <Compile Include="Aggregates\OfficeAgg\OfficeInfo.cs" />
     <Compile Include="Aggregates\OfficeAgg\WordAttribute.cs" />
     <Compile Include="Aggregates\OfficeAgg\WordInfo.cs" />

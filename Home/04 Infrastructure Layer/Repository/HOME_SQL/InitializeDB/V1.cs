@@ -11,11 +11,15 @@ namespace Home.Repository.HOME_SQL
     {
         private void InitSql()
         {
-            SqlResource("Home.Repository.HOME_SQL.InitializeDB.init.sql");
-            SqlResource("Home.Repository.HOME_SQL.InitializeDB.CreateView.sql");
-            SqlResource("Home.Repository.HOME_SQL.InitializeDB.TimeLineByYYYY.sql");
-            SqlResource("Home.Repository.HOME_SQL.InitializeDB.TimeLineByYYYYMM.sql");
-            SqlResource("Home.Repository.HOME_SQL.InitializeDB.TimeLineByYYYYMMDD.sql");
+ 
+            var ass = this.GetType().Assembly;
+            var sqlfiles = ass.GetManifestResourceNames();
+            foreach (var item in sqlfiles.Where(n => n.StartsWith("Home.Repository.HOME_SQL.InitializeDB.")))
+            {
+
+                SqlResource(item, ass);
+            }
+
         }
     }
 

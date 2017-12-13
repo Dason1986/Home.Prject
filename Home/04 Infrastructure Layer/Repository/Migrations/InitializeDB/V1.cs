@@ -11,11 +11,18 @@ namespace Repository.Migrations
     {
         private void InitSql()
         {
-            SqlResource("Home.Repository.Migrations.InitializeDB.init.sql");
-            SqlResource("Home.Repository.Migrations.InitializeDB.CreateView.sql");
-            SqlResource("Home.Repository.Migrations.InitializeDB.TimeLineByYYYY.sql");
-            SqlResource("Home.Repository.Migrations.InitializeDB.TimeLineByYYYYMM.sql");
-            SqlResource("Home.Repository.Migrations.InitializeDB.TimeLineByYYYYMMDD.sql");
+     
+            var ass = this.GetType().Assembly;
+            var sqlfiles = ass.GetManifestResourceNames();
+            foreach (var item in sqlfiles.Where(n => n.StartsWith("Home.Repository.Migrations.InitializeDB.")))
+            {
+
+                SqlResource(item, ass);
+            }
+
+
+
+          
         }
     }
 
