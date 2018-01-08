@@ -17,24 +17,12 @@ namespace HomeApplication.Owin
         {
             InitializeComponent();
         }
-
+        public const string Name = "HomeOwinService";
         protected override void OnStart(string[] args)
         {
             // TODO: 在此处添加代码以启动服务。
-            StartOptions option = OwinAppBootstrap.CraeteStratOptions();
-
-            using (WebApp.Start(option))
-            {
-
-                foreach (var item in option.Urls)
-                {
-                    Console.WriteLine(item);
-                }
-                Console.WriteLine("Press [enter] to quit...");
-                Console.ReadLine();
-
-
-            }
+             OwinAppBootstrap.MVCHostStart(args);
+ 
         }
 
         protected override void OnStop()

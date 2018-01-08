@@ -2,6 +2,7 @@ using System.Web.Http;
 using WebActivatorEx;
 using HomeApplication.Owin;
 using Swashbuckle.Application;
+using System.Linq;
 
 [assembly: PreApplicationStartMethod(typeof(SwaggerConfig), "Register")]
 
@@ -58,10 +59,12 @@ namespace HomeApplication.Owin
                         // you'll need to implement a custom IDocumentFilter and/or IOperationFilter to set these properties
                         // according to your specific authorization implementation
                         //
-                        //c.BasicAuth("basic")
-                        //    .Description("Basic HTTP Authentication");
+                        c.ApiKey("Authorization")
+                                   .Description("Standard Authorization header using the Bearer scheme. Example: \"Authorization: Bearer {token}\"")
+                                   .Name("Authorization")
+                                   .In("header");
                         //
-						// NOTE: You must also configure 'EnableApiKeySupport' below in the SwaggerUI section
+                        // NOTE: You must also configure 'EnableApiKeySupport' below in the SwaggerUI section
                         //c.ApiKey("apiKey")
                         //    .Description("API Key Authentication")
                         //    .Name("apiKey")
@@ -79,14 +82,14 @@ namespace HomeApplication.Owin
                         //    });
 
                         // Set this flag to omit descriptions for any actions decorated with the Obsolete attribute
-                        //c.IgnoreObsoleteActions();
+                        c.IgnoreObsoleteActions();
 
                         // Each operation be assigned one or more tags which are then used by consumers for various reasons.
                         // For example, the swagger-ui groups operations according to the first tag of each operation.
                         // By default, this will be controller name but you can use the "GroupActionsBy" option to
                         // override with any value.
                         //
-                        //c.GroupActionsBy(apiDesc => apiDesc.HttpMethod.ToString());
+                        c.GroupActionsBy(apiDesc => apiDesc.HttpMethod.ToString());
 
                         // You can also specify a custom sort order for groups (as defined by "GroupActionsBy") to dictate
                         // the order in which operations are listed. For example, if the default grouping is in place
@@ -94,7 +97,7 @@ namespace HomeApplication.Owin
                         // ProductsController will be listed before those from a CustomersController. This is typically
                         // used to customize the order of groupings in the swagger-ui.
                         //
-                        //c.OrderActionGroupsBy(new DescendingAlphabeticComparer());
+                    //    c.OrderActionGroupsBy(new DescendingAlphabeticComparer());
 
                         // If you annotate Controllers and API Types with
                         // Xml comments (http://msdn.microsoft.com/en-us/library/b2s063f7(v=vs.110).aspx), you can incorporate
@@ -115,7 +118,7 @@ namespace HomeApplication.Owin
                         // complex Schema, use a Schema filter.
                         //
                         //c.MapType<ProductType>(() => new Schema { type = "integer", format = "int32" });
-
+                          c.Schemes(new[] { "http", "https" });
                         // If you want to post-modify "complex" Schemas once they've been generated, across the board or for a
                         // specific type, you can wire up one or more Schema filters.
                         //
@@ -136,14 +139,14 @@ namespace HomeApplication.Owin
 
                         // Set this flag to omit schema property descriptions for any type properties decorated with the
                         // Obsolete attribute
-                        //c.IgnoreObsoleteProperties();
+                        c.IgnoreObsoleteProperties();
 
                         // In accordance with the built in JsonSerializer, Swashbuckle will, by default, describe enums as integers.
                         // You can change the serializer behavior by configuring the StringToEnumConverter globally or for a given
                         // enum type. Swashbuckle will honor this change out-of-the-box. However, if you use a different
                         // approach to serialize enums as strings, you can also force Swashbuckle to describe them as strings.
                         //
-                        //c.DescribeAllEnumsAsStrings();
+                        c.DescribeAllEnumsAsStrings();
 
                         // Similar to Schema filters, Swashbuckle also supports Operation and Document filters:
                         //
@@ -170,12 +173,12 @@ namespace HomeApplication.Owin
                         // with the same path (sans query string) and HTTP method. You can workaround this by providing a
                         // custom strategy to pick a winner or merge the descriptions for the purposes of the Swagger docs
                         //
-                        //c.ResolveConflictingActions(apiDescriptions => apiDescriptions.First());
+                        c.ResolveConflictingActions(apiDescriptions => apiDescriptions.First());
 
                         // Wrap the default SwaggerGenerator with additional behavior (e.g. caching) or provide an
                         // alternative implementation for ISwaggerProvider with the CustomProvider option.
                         //
-                        //c.CustomProvider((defaultProvider) => new CachingSwaggerProvider(defaultProvider));
+                      //  c.CustomProvider((defaultProvider) => new CachingSwaggerProvider(defaultProvider));
                     })
                 .EnableSwaggerUi(c =>
                     {
@@ -242,13 +245,14 @@ namespace HomeApplication.Owin
                         //    clientSecret: null,
                         //    realm: "test-realm",
                         //    appName: "Swagger UI"
-                        //    //additionalQueryStringParams: new Dictionary<string, string>() { { "foo", "bar" } }
+                        ////additionalQueryStringParams: new Dictionary<string, string>() { { "foo", "bar" } }
                         //);
-
                         // If your API supports ApiKey, you can override the default values.
                         // "apiKeyIn" can either be "query" or "header"
                         //
                         //c.EnableApiKeySupport("apiKey", "header");
+
+                        
                     });
         }
     }

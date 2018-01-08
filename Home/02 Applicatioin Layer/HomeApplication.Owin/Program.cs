@@ -29,16 +29,14 @@ namespace HomeApplication.Owin
         {
             if (System.Environment.UserInteractive)
             {
-                StartOptions option = OwinAppBootstrap.CraeteStratOptions();
-
-                using (WebApp.Start(option))
+             
+                if (args.Length == 0)
                 {
-                    foreach (var item in option.Urls)
-                    {
-                        Console.WriteLine(item);
-                    }
-                    Console.WriteLine("Press [enter] to quit...");
-                    Console.ReadLine();
+                    OwinAppBootstrap.MVCHostStart(args);
+                }
+                else
+                {
+                    WinServiceManagement.Run(args, HomeOwinService.Name);
                 }
             }
             else

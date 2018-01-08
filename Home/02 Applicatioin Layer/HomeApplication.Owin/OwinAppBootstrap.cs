@@ -15,6 +15,7 @@ using Owin;
 using System;
 using System.Collections.Generic;
 using System.Reflection;
+using System.Threading;
 using System.Web.Http;
 using System.Web.Http.Cors;
 
@@ -43,31 +44,68 @@ namespace HomeApplication
         protected ILogger Logger { get; set; }
         IAppBuilder _app;
         HttpConfiguration config = new HttpConfiguration();
-
-        public static StartOptions CraeteStratOptions()
+        public HttpConfiguration Config { get { return config; } }
+        static StartOptions CraeteStratOptions()
         {
             var settingPort = System.Configuration.ConfigurationManager.AppSettings["Port"];
             var port = Library.HelperUtility.StringUtility.TryCast(settingPort, 9000).Value;
-            var option = new StartOptions("http://localhost:" + port)
+            var startOpts = new StartOptions()
             {
                 ServerFactory = "Microsoft.Owin.Host.HttpListener"
             };
-            option.Urls.Add(string.Format("http://{0}:{1}", "127.0.0.1", port));
-            var hostname = System.Net.Dns.GetHostName();
 
-            option.Urls.Add(string.Format("http://{0}:{1}", hostname, port));
-            foreach (var address in System.Net.Dns.GetHostAddresses(hostname))
+            startOpts.Port = port;
+            startOpts.Urls.Add(string.Format("http://{0}:{1}", "localhost", startOpts.Port ?? 80));
+            startOpts.Urls.Add(string.Format("http://{0}:{1}", "127.0.0.1", startOpts.Port ?? 80));
+            //System.Security.Principal.WindowsIdentity identity = System.Security.Principal.WindowsIdentity.GetCurrent();
+            //System.Security.Principal.WindowsPrincipal principal = new System.Security.Principal.WindowsPrincipal(identity);
+            //if (principal.IsInRole(System.Security.Principal.WindowsBuiltInRole.Administrator))
+            //   {
+            startOpts.Urls.Add(string.Format("http://{0}:{1}", "*", startOpts.Port ?? 80));
+
+            return startOpts;
+        }
+
+        internal static void MVCHostStart(string[] args)
+        {
+            var option = CraeteStratOptions();
+
+
+            var web = WebApp.Start(option);
+
+            if (System.Environment.UserInteractive)
             {
-                if (address.AddressFamily == System.Net.Sockets.AddressFamily.InterNetwork)
-                    option.Urls.Add(string.Format("http://{0}:{1}", address, port));
+
+                foreach (var item in option.Urls)
+                {
+                    Console.WriteLine(item);
+                }
+                Console.WriteLine("Press [enter] to quit...");
+                Console.ReadLine();
+                web.Dispose();
+
+            }
+            else
+            {
+                var thread = new Thread(n =>
+                {
+
+                    Console.ReadLine();
+                });
+                thread.Start();
             }
 
-            return option;
+
+        }
+        private void RegOwinMiddleware()
+        {
+            Logger.Trace("註冊中間件OwinMiddleware");
+            _app.Use<AppDashboardOwinMiddleware>();
+
         }
         protected override void Register()
         {
             InitErrorProvider();
-            WebConfig();
             AutoMap.AutoMapProfile.Reg();
 
             Logger.Info("Ioc");
@@ -88,13 +126,14 @@ namespace HomeApplication
             var serialNumberBuilder = GetService<SerialNumberBuilderProvider>();
             serialNumberBuilder.Initialize();
 
+            WebConfig();
         }
         private void InitErrorProvider()
         {
             Logger.Trace("註冊錯誤信息處理器");
             CustomExceptionProvider.Add(new LogicFaultExceptionProvider());
-         //   CustomExceptionProvider.Add(new NotImplementedExceptionProvider());
-       //     CustomExceptionProvider.Add(new ArgumentExceptionProvider());
+            //   CustomExceptionProvider.Add(new NotImplementedExceptionProvider());
+            //     CustomExceptionProvider.Add(new ArgumentExceptionProvider());
             CustomExceptionProvider.Add(new DbValidataionFaultExceptionProvider());
             CustomExceptionProvider.Add(new EFUpdateFaultExceptionProvider());
             CustomExceptionProvider.Add(new EFDbUpdateFaultExceptionProvider());
@@ -111,7 +150,7 @@ namespace HomeApplication
             settings.FloatParseHandling = FloatParseHandling.Decimal;
 
             // settings.Converters.Add(new DatenullJsonConverter());
-            settings.ContractResolver = new Newtonsoft.Json.Serialization.DefaultContractResolver();//CamelCasePropertyNamesContractResolver();
+            settings.ContractResolver = new Newtonsoft.Json.Serialization.CamelCasePropertyNamesContractResolver(); //new Newtonsoft.Json.Serialization.DefaultContractResolver();
 
             //    config.Formatters.Insert(0, new JsonpMediaTypeFormatter(jsonFormatter));
             // logger.Info("日期格式：{0}", settings.DateFormatString);
@@ -123,17 +162,30 @@ namespace HomeApplication
 
             //将web api以Middleware注册到OWIN管道中
 
+            RegOwinMiddleware();
 
             //    app.Use<HelloWorldMiddleware>();
             Logger.Trace("啟用:Swagger");
             config.RegisterSwagger();
+            //_app.UseWelcomePage();
+            _app.UseAutofacWebApi(config);
+            _app.UseAutofacMiddleware(_container);
             _app.UseWebApi(config);
+
+            _app.Run(owinContext =>
+            {
+                var url = owinContext.Request.Uri;
+                if (!url.IsFile && (url.AbsolutePath == "/" || url.AbsolutePath.Equals("/index.html", StringComparison.OrdinalIgnoreCase)))
+                {
+                    owinContext.Response.Redirect("/sites/index.html");
+                    return owinContext.Response.WriteAsync(string.Empty);
+                }
+                return null;
+            });
         }
 
         private void SetWebApi()
         {
-            var cors = new EnableCorsAttribute("*", "*", "*");
-            config.EnableCors(cors);
             config.MapHttpAttributeRoutes();
             //定义web api route
             config.Routes.MapHttpRoute(
@@ -141,7 +193,10 @@ namespace HomeApplication
                         routeTemplate: "api/{controller}/{id}",
                         defaults: new { id = RouteParameter.Optional }
                     );
+            config.Filters.Add(new JWTAuthFilterAttribute());
             config.Filters.Add(new LogicExceptionFilterAttribute());
+            var cors = new EnableCorsAttribute("*", "*", "*");
+            config.EnableCors(cors);
         }
 
         #region GetService

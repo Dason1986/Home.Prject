@@ -61,6 +61,11 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Library.Storage.FileEngineP
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Library.Storage.FileEngineProvider.Sharepoint", "Library.Storage.FileEngineProvider.Sharepoint\Library.Storage.FileEngineProvider.Sharepoint.csproj", "{2004B495-4B9A-47B7-BDCF-A975E3CE6257}"
 EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Deploy", "Deploy", "{BE223FFB-5772-4915-B216-3F10C9D0EC37}"
+	ProjectSection(SolutionItems) = preProject
+		..\Documnet\Deploy\mysql.md = ..\Documnet\Deploy\mysql.md
+	EndProjectSection
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -406,6 +411,7 @@ Global
 		{434C4DFA-D0CA-44FA-BA6B-729807147DC8} = {F55A8A84-F9BE-4505-995F-C426544154F8}
 		{423541FE-B61A-44B3-8A6D-D30139C485C1} = {F55A8A84-F9BE-4505-995F-C426544154F8}
 		{2004B495-4B9A-47B7-BDCF-A975E3CE6257} = {F55A8A84-F9BE-4505-995F-C426544154F8}
+		{BE223FFB-5772-4915-B216-3F10C9D0EC37} = {A6B958DF-7AB1-4647-9ED0-6BC3294CCBA9}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {ADCEA16C-E079-4919-9A3C-160DAAFD2F7E}
