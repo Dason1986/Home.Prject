@@ -18,6 +18,8 @@ using System.Reflection;
 using System.Threading;
 using System.Web.Http;
 using System.Web.Http.Cors;
+using System.Web.Http.Description;
+using System.Web.Http.Dispatcher;
 
 namespace HomeApplication
 {
@@ -113,7 +115,12 @@ namespace HomeApplication
 
             _containerBuilder.RegisterApiControllers(AppDomain.CurrentDomain.GetAssemblies());
 
-
+            _containerBuilder.RegisterWebApiFilterProvider(config);
+            //_containerBuilder.RegisterType<VersionedApiExplorer>().As<IApiExplorer>().WithParameter("configuration", config).InstancePerLifetimeScope();
+            //_containerBuilder.RegisterType<VersionHeaderVersionedControllerSelector>().As<IHttpControllerSelector>()
+            //    .WithParameter("configuration", config)
+            //    .WithParameter("defaultVersion", "2").
+            //    InstancePerLifetimeScope();
             _container = _containerBuilder.Build();
 
             var resolver = new AutofacWebApiDependencyResolver(_container);

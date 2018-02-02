@@ -31,7 +31,7 @@ namespace HomeApplication.Owin.Core
             var request = ((actionContext.Request.Properties[HttpPropertyKeys.RequestContextKey] as HttpWebRequest));
 
             // 分别从Query、Body、Header获取Token字符串
-            const string key = "access_token";
+            const string key = "api_key";
             const string querykey = "Authorization";
             string token = actionContext.Request.Headers.Authorization != null ? actionContext.Request.Headers.Authorization.Parameter : string.Empty;
 
@@ -57,6 +57,7 @@ namespace HomeApplication.Owin.Core
                 if (payload.Exp < DateTime.UtcNow)
                     actionContext.Response = actionContext.ControllerContext.Request.CreateErrorResponse(
                         HttpStatusCode.Unauthorized, "Token已经过期。");
+                actionContext.Request.Headers.Add("StaffNo", payload.Name);
             }
             catch (Exception ex)
             {

@@ -16,7 +16,7 @@
     "authorities": [ "ROLE_USER", "ROLE_ADMIN" ],
     "abilities": [ "ROLE_VIEW_CHOSE_MONTH", "ROLE_MODIFY_CHOSE_MONTH", "ROLE_MODIFY_ROLE" ]
   },
-  "usersttings": {
+  "usersettings": {
 
   },
   "menu": [

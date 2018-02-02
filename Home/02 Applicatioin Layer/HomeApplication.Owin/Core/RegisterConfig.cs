@@ -1,4 +1,5 @@
-﻿using Swashbuckle.Application;
+﻿using HomeApplication.Owin.API;
+using Swashbuckle.Application;
 using System;
 using System.IO;
 using System.Linq;
@@ -15,7 +16,8 @@ namespace HomeApplication
         public static void RegisterSwagger(this HttpConfiguration config)
         {
             var thisAssembly = typeof(RegisterConfig).Assembly;
-
+          //  config.AddApiVersioning(o => o.ReportApiVersions = true);
+        //    var apiExplorer = config.AddVersionedApiExplorer(o => o.GroupNameFormat = "'v'VVV");
             config.EnableSwagger(c =>
             {
                 // By default, the service root url is inferred from the request used to access the docs.
@@ -65,10 +67,12 @@ namespace HomeApplication
                 //    .Description("Basic HTTP Authentication");
                 //
                 // NOTE: You must also configure 'EnableApiKeySupport' below in the SwaggerUI section
-                c.ApiKey("apiKey")
-                   .Description("API Key Authentication")
-                   .Name("apiKey")
-                   .In("header");
+            //    c.OperationFilter<AddAuthorizationHeader>();
+                c.OperationFilter<AddPagination>();
+                c.ApiKey("Authorization")
+                           .Description("Standard Authorization header using the Bearer scheme. Example: \"Authorization: Bearer {token}\"")
+                           .Name("Authorization")
+                           .In("header");
 
                 /*     
                         c.ApiKey("Tokn")

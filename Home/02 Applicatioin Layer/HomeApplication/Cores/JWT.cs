@@ -22,8 +22,7 @@ namespace HomeApplication.Cores
     {
         public string Token { get; set; }
 
-        [JsonConverter(typeof(UtcDateTimeConverter))]
-        public DateTime Expires { get; set; }
+     
     }
     public class UtcDateTimeConverter : JsonConverter
     {

@@ -25,7 +25,7 @@ namespace HomeApplication.Owin.API
         {
 
         }
-        [Route("api/authenticate")]
+       
         [Route("api/authenticate/login")]
         [AllowAnonymousAttribute]
         [HttpPost]
@@ -35,7 +35,7 @@ namespace HomeApplication.Owin.API
             var expire = DateTime.UtcNow.AddHours(2);
             var res = new TokenResult()
             {
-                Expires = expire
+             
             };
             var payloadObj = new JWTPayload()
             {
